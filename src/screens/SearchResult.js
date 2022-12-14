@@ -3,7 +3,8 @@ import CircularProgress from '@mui/material/CircularProgress'
 import {useEffect, useState} from "react";
 import Api from "../api/Api";
 import Catalog from "../components/Catalog";
-import List from '@mui/material/List';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 const SearchResult = (props) => {
     const location = useLocation();
@@ -13,23 +14,25 @@ const SearchResult = (props) => {
 
     const getSearchResult = async () => {
         const result = await Api.get('search', {message_id})
-        if (result) {
+        if (result && result.length > 0) {
             const catalogs = result.flatMap(r => r.message.catalogs)
             setSearchResults(catalogs)
             setLoading(false)
         }
     }
     const displayCatalogs = () => (
-        <div>
-            <h1>Search Results</h1>
-            <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+        <Grid container>
+            <Typography variant="h3" gutterBottom paddingX={4}>
+                Search Results
+            </Typography>
+            <Grid item xs={12}>
                 {
-                    searchResults.map(result => (
-                        <Catalog result={result}/>
+                    searchResults.map(catalog => (
+                        <Catalog catalog={catalog}/>
                     ))
                 }
-            </List>
-        </div>
+            </Grid>
+        </Grid>
     )
 
     useEffect(() => {
