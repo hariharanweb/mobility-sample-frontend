@@ -2,9 +2,10 @@ import {useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import LocationSearch from '../components/LocationSearch'
 import Api from "../api/Api";
+import Typography from "@mui/material/Typography";
 
 const SearchScreen = () => {
     const navigate = useNavigate();
@@ -16,7 +17,6 @@ const SearchScreen = () => {
         display: "Garuda Mall",
         latLong: "12.9702626,77.6099629"
     })
-
 
     const onSearchClick = async () => {
         const data = {
@@ -36,19 +36,19 @@ const SearchScreen = () => {
             }
         }
         const response = await Api.post('/search', data)
-        navigate('/search',{state:{...response}});
+        navigate('/search', {state: {...response}});
     }
     return (
-        <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-            <div>
-                <h1 style={{textAlign: 'center'}}>ONDC Sample Mobility App</h1>
-                <LocationSearch type="From" initialLocation={fromLocation}/>
-                <LocationSearch type="To" initialLocation={toLocation}/>
-                <FormControl fullWidth sx={{m: 1}} variant="filled">
-                    <Button variant="contained" onClick={onSearchClick}>Find Rides</Button>
-                </FormControl>
-            </div>
-        </Box>
+        <Grid container paddingX={4}>
+            <Typography variant="h4" gutterBottom paddingY={1}>
+                ONDC Sample App
+            </Typography>
+            <LocationSearch type="From" initialLocation={fromLocation}/>
+            <LocationSearch type="To" initialLocation={toLocation}/>
+            <FormControl fullWidth sx={{m: 1}} variant="filled">
+                <Button variant="contained" onClick={onSearchClick}>Find Rides</Button>
+            </FormControl>
+        </Grid>
     )
 }
 

@@ -6,7 +6,7 @@ import Catalog from "../components/Catalog";
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-const SearchResult = (props) => {
+const SearchResult = () => {
     const location = useLocation();
     const message_id = location.state.message_id;
     const [searchResults, setSearchResults] = useState([])
@@ -22,7 +22,7 @@ const SearchResult = (props) => {
     }
     const displayCatalogs = () => (
         <Grid container>
-            <Typography variant="h3" gutterBottom paddingX={4}>
+            <Typography variant="h4" gutterBottom paddingX={4} paddingY={1}>
                 Search Results
             </Typography>
             <Grid item xs={12}>
