@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Item from "./Item";
 
 const bppProvider = (provider) => {
-    return <Grid container paddingX={4}>
+    return <Grid container paddingX={4} key={provider.id}>
         <Grid container paddingY={2}>
             {
                 provider.descriptor.images
@@ -22,7 +22,7 @@ const bppProvider = (provider) => {
             </Grid>
         </Grid>
         {
-            provider.items.map(item => (<Item item={item}/>))
+            provider.items.map(item => (<Item key={item.id} item={item}/>))
         }
     </Grid>;
 }

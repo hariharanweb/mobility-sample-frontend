@@ -18,7 +18,6 @@ const get = async (url, queryParams) => {
 }
 
 const poll = (call, times, delay) => {
-    console.log(times)
     if(times === 0) return;
     call()
     setTimeout(() => {
