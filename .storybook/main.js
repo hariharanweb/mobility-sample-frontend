@@ -10,4 +10,8 @@ module.exports = {
   core: {
     builder: "@storybook/builder-webpack5",
   },
+  env: (config) => ({
+    ...config,
+    REACT_APP_API_KEY: process.env.REACT_APP_API_KEY,
+  }),
 };

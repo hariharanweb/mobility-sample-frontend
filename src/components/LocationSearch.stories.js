@@ -1,3 +1,4 @@
+import { LoadScript } from "@react-google-maps/api";
 import React from "react";
 
 import LocationSearch from "./LocationSearch";
@@ -7,10 +8,14 @@ export default {
   component: LocationSearch,
 };
 export const Primary = () => (
+  <LoadScript
+        googleMapsApiKey={process.env.REACT_APP_API_KEY}
+        libraries={["places"]}
+      >
   <LocationSearch
     type="To"
     initialLocation={toLocation}
     locationChange={() => {}}
     placeholder="Enter Destination Point"
-  />
+  /></LoadScript>
 );
