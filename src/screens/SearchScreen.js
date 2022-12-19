@@ -9,14 +9,8 @@ import Typography from "@mui/material/Typography";
 
 const SearchScreen = () => {
     const navigate = useNavigate();
-    const [fromLocation] = useState({
-        display: "Forum Mall",
-        latLong: "12.9348455,77.6109492"
-    })
-    const [toLocation] = useState({
-        display: "Garuda Mall",
-        latLong: "12.9702626,77.6099629"
-    })
+    const [fromLocation,setFromLocation] = useState({});
+    const [toLocation,setToLocation] = useState({});
 
     const onSearchClick = async () => {
         const data = {
@@ -37,14 +31,16 @@ const SearchScreen = () => {
         }
         const response = await Api.post('/search', data)
         navigate('/search', {state: {...response}});
+        // console.log(fromLocation);
+        // console.log(toLocation);
     }
     return (
         <Grid container paddingX={4}>
             <Typography variant="h4" gutterBottom paddingY={1}>
                 ONDC Sample App
             </Typography>
-            <LocationSearch type="From" initialLocation={fromLocation}/>
-            <LocationSearch type="To" initialLocation={toLocation}/>
+            <LocationSearch type="From" initialLocation={fromLocation} initialLocationChange={setFromLocation} sampleText="Enter Pickup Point"/>
+            <LocationSearch type="To" initialLocation={toLocation} initialLocationChange={setToLocation} sampleText="Enter Destination Point"/>
             <FormControl fullWidth sx={{m: 1}} variant="filled">
                 <Button variant="contained" onClick={onSearchClick}>Find Rides</Button>
             </FormControl>
