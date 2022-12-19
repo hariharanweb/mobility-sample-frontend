@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import FormControl from '@mui/material/FormControl'
 import TextField from '@mui/material/TextField'
-import { Autocomplete, LoadScript } from '@react-google-maps/api';
+import { Autocomplete} from '@react-google-maps/api';
 
 const LocationSearch = ({type, initialLocation, onLocationChange,initialLocationChange,sampleText}) => {
     const [location, setLocation] = useState(initialLocation)
@@ -31,17 +31,14 @@ const LocationSearch = ({type, initialLocation, onLocationChange,initialLocation
     return (
         
         <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-            <LoadScript
-        googleMapsApiKey={process.env.REACT_APP_API_KEY}
-        libraries={["places"]}
-      >
+            
+            
         <Autocomplete
             onLoad={onLoad}
             onPlaceChanged={onPlaceChanged}
           >
             <TextField fullWidth sx={{ m: 1 }} style={{"marginLeft":0}} label={type} variant="standard" defaultValue={location.display} placeholder={sampleText}/>
             </Autocomplete>
-            </LoadScript>
         </FormControl>
     )
 }
