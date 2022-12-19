@@ -31,8 +31,6 @@ const SearchScreen = () => {
     };
     const response = await Api.post("/search", data);
     navigate("/search", { state: { ...response } });
-    // console.log(fromLocation);
-    // console.log(toLocation);
   };
   return (
     <Grid container paddingX={4}>
@@ -42,14 +40,14 @@ const SearchScreen = () => {
       <LocationSearch
         type="From"
         initialLocation={fromLocation}
-        initialLocationChange={setFromLocation}
-        sampleText="Enter Pickup Point"
+        locationChange={setFromLocation}
+        placeholder="Enter Pickup Point"
       />
       <LocationSearch
         type="To"
         initialLocation={toLocation}
-        initialLocationChange={setToLocation}
-        sampleText="Enter Destination Point"
+        locationChange={setToLocation}
+        placeholder="Enter Destination Point"
       />
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
         <Button variant="contained" onClick={onSearchClick}>

@@ -6,16 +6,13 @@ import { Autocomplete } from "@react-google-maps/api";
 const LocationSearch = ({
   type,
   initialLocation,
-  onLocationChange,
-  initialLocationChange,
-  sampleText,
+  locationChange,
+  placeholder,
 }) => {
   const [location, setLocation] = useState(initialLocation);
-  console.log(process.env.REACT_APP_API_KEY);
   const [autocomplete, setAutoComplete] = useState(null);
 
   const onLoad = (autocomplete) => {
-    console.log("autocomplete: ", autocomplete);
 
     setAutoComplete(autocomplete);
   };
@@ -23,16 +20,12 @@ const LocationSearch = ({
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
       let place = autocomplete.getPlace();
-      console.log(place); //result of the selected location from dropdown
-      console.log("lat", place.geometry["location"].lat());
-      console.log("lng", place.geometry["location"].lng());
       let locationObj = {};
       locationObj.display = place?.name;
       locationObj.latLong =
         place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
-      console.log(locationObj);
       setLocation(locationObj);
-      initialLocationChange(locationObj);
+      locationChange(locationObj);
     }
   };
   return (
@@ -45,7 +38,7 @@ const LocationSearch = ({
           label={type}
           variant="standard"
           defaultValue={location.display}
-          placeholder={sampleText}
+          placeholder={placeholder}
         />
       </Autocomplete>
     </FormControl>
