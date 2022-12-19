@@ -13,7 +13,6 @@ const LocationSearch = ({
   const [autocomplete, setAutoComplete] = useState(null);
 
   const onLoad = (autocomplete) => {
-
     setAutoComplete(autocomplete);
   };
 
