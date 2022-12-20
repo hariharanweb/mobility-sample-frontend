@@ -15,7 +15,6 @@ export const Primary = () => (
   <LocationSearch
     type="To"
     initialLocation={toLocation}
-    locationChange={() => {}}
-    placeholder="Enter Destination Point"
+    onLocationChange ={() => {}}
   /></LoadScript>
 );
