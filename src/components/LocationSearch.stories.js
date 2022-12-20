@@ -19,6 +19,7 @@ export const Primary = () => (
       type="To"
       initialLocation={toLocation}
       onLocationChange={() => {}}
+      onCancelDisabled={() => {}}
     />
   </LoadScript>
 );

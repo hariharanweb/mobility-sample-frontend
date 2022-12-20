@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 
 const SearchScreen = () => {
   const navigate = useNavigate();
+  const [disabledFromLocation, setDisabledFromLocation] = useState(false);
+  const [disabledToLocation, setDisabledToLocation] = useState(false);
   const [fromLocation, setFromLocation] = useState({
     display: "Forum Mall",
     latLong: "12.9372469,77.6109981",
@@ -17,10 +19,7 @@ const SearchScreen = () => {
     display: "Garuda Mall",
     latLong: "12.9702626,77.6099629",
   });
-
   const onSearchClick = async () => {
-    console.log(fromLocation);
-    console.log(toLocation);
     const data = {
       intent: {
         fulfillment: {
@@ -49,14 +48,24 @@ const SearchScreen = () => {
         type="From"
         initialLocation={fromLocation}
         onLocationChange={setFromLocation}
+        onCancelDisabled={setDisabledFromLocation}
       />
       <LocationSearch
         type="To"
         initialLocation={toLocation}
         onLocationChange={setToLocation}
+        onCancelDisabled={setDisabledToLocation}
       />
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-        <Button variant="contained" onClick={onSearchClick}>
+        <Button
+          variant="contained"
+          onClick={onSearchClick}
+          disabled={
+            disabledToLocation === false && disabledFromLocation === false
+              ? false
+              : true
+          }
+        >
           Find Rides
         </Button>
       </FormControl>

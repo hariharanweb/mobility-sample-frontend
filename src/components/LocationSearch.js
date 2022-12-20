@@ -9,39 +9,45 @@ const LocationSearch = ({
   type,
   initialLocation,
   onLocationChange,
-  placeholder,
+  onCancelDisabled,
 }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   const onLoad = (autocomplete) => {
     setAutoComplete(autocomplete);
   };
-const onChange=e=>{
-  setLocation({display:e.target.value,latLong:""});
-}
+  const onChange = (e) => {
+    if (e.target.value.length > 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+    setLocation({ display: e.target.value, latLong: "" });
+  };
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
       let place = autocomplete.getPlace();
-      console.log(autocomplete.gm_accessors_.place.jj.formattedPrediction)
       let locationObj = {};
-      let locationDisplayObj={};
+      let locationDisplayObj = {};
       locationObj.display = place?.name;
-      locationDisplayObj.display=autocomplete?.gm_accessors_?.place?.jj?.formattedPrediction;
+      locationDisplayObj.display =
+        autocomplete?.gm_accessors_?.place?.jj?.formattedPrediction;
       locationDisplayObj.latLong =
-      place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
+        place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
       locationObj.latLong =
         place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
       setLocation(locationDisplayObj);
-      console.log(locationObj);
       onLocationChange(locationObj);
+      onCancelDisabled(false);
     }
   };
   const clearTextField = () => {
-    setLocation({display:" ",latLong:" "});
-    onLocationChange({display:" ",latLong:" "});
-    
-    
+    setLocation({ display: " ", latLong: " " });
+    onLocationChange({ display: " ", latLong: " " });
+    setDisabled(true);
+    onCancelDisabled(true);
   };
   return (
     <FormControl fullWidth sx={{ m: 1 }} variant="filled">
@@ -58,10 +64,11 @@ const onChange=e=>{
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
-                onClick={clearTextField}
+                  onClick={clearTextField}
                   edge="end"
+                  disabled={disabled}
                 >
-                <CancelIcon/>
+                  <CancelIcon />
                 </IconButton>
               </InputAdornment>
             ),
