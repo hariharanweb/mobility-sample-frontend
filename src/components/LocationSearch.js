@@ -2,11 +2,11 @@ import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import { Autocomplete } from "@react-google-maps/api";
-import "./LocationSearch.css"
+import "./LocationSearch.css";
 const LocationSearch = ({
   type,
   initialLocation,
-  onLocationChange ,
+  onLocationChange,
   placeholder,
 }) => {
   const [location, setLocation] = useState(initialLocation);
@@ -24,7 +24,8 @@ const LocationSearch = ({
       locationObj.latLong =
         place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
       setLocation(locationObj);
-      onLocationChange (locationObj);
+      console.log(locationObj);
+      onLocationChange(locationObj);
     }
   };
   return (
@@ -36,7 +37,7 @@ const LocationSearch = ({
           label={type}
           variant="standard"
           defaultValue={location.display}
-          className="textbox"
+          className="locationSearch-textbox"
         />
       </Autocomplete>
     </FormControl>

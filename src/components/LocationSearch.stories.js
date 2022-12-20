@@ -9,12 +9,13 @@ export default {
 };
 export const Primary = () => (
   <LoadScript
-        googleMapsApiKey={process.env.REACT_APP_API_KEY}
-        libraries={["places"]}
-      >
-  <LocationSearch
-    type="To"
-    initialLocation={toLocation}
-    onLocationChange ={() => {}}
-  /></LoadScript>
+    googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+    libraries={["places"]}
+  >
+    <LocationSearch
+      type="To"
+      initialLocation={toLocation}
+      onLocationChange={() => {}}
+    />
+  </LoadScript>
 );
