@@ -2,7 +2,9 @@ import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import { Autocomplete } from "@react-google-maps/api";
+import CancelIcon from "@mui/icons-material/Cancel";
 import "./LocationSearch.css";
+import { IconButton, InputAdornment } from "@mui/material";
 const LocationSearch = ({
   type,
   initialLocation,
@@ -28,6 +30,12 @@ const LocationSearch = ({
       onLocationChange(locationObj);
     }
   };
+  const clearTextField = () => {
+    setLocation({display:" ",latLong:" "});
+    onLocationChange({display:" ",latLong:" "});
+    
+    
+  };
   return (
     <FormControl fullWidth sx={{ m: 1 }} variant="filled">
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
@@ -36,8 +44,20 @@ const LocationSearch = ({
           sx={{ m: 1 }}
           label={type}
           variant="standard"
-          defaultValue={location.display}
+          value={location.display}
           className="locationSearch-textbox"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                onClick={clearTextField}
+                  edge="end"
+                >
+                <CancelIcon/>
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
       </Autocomplete>
     </FormControl>
