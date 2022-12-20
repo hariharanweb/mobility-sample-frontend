@@ -17,15 +17,22 @@ const LocationSearch = ({
   const onLoad = (autocomplete) => {
     setAutoComplete(autocomplete);
   };
-
+const onChange=e=>{
+  setLocation({display:e.target.value,latLong:""});
+}
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
       let place = autocomplete.getPlace();
+      console.log(autocomplete.gm_accessors_.place.jj.formattedPrediction)
       let locationObj = {};
+      let locationDisplayObj={};
       locationObj.display = place?.name;
+      locationDisplayObj.display=autocomplete?.gm_accessors_?.place?.jj?.formattedPrediction;
+      locationDisplayObj.latLong =
+      place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
       locationObj.latLong =
         place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
-      setLocation(locationObj);
+      setLocation(locationDisplayObj);
       console.log(locationObj);
       onLocationChange(locationObj);
     }
@@ -45,6 +52,7 @@ const LocationSearch = ({
           label={type}
           variant="standard"
           value={location.display}
+          onChange={onChange}
           className="locationSearch-textbox"
           InputProps={{
             endAdornment: (

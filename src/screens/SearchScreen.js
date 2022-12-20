@@ -19,6 +19,8 @@ const SearchScreen = () => {
   });
 
   const onSearchClick = async () => {
+    console.log(fromLocation);
+    console.log(toLocation);
     const data = {
       intent: {
         fulfillment: {

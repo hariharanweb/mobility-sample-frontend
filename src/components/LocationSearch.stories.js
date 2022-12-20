@@ -2,7 +2,10 @@ import { LoadScript } from "@react-google-maps/api";
 import React from "react";
 
 import LocationSearch from "./LocationSearch";
-const toLocation = {};
+const toLocation = {
+  display: "Garuda Mall",
+  latLong: "12.9702626,77.6099629",
+};
 export default {
   title: "Location Search",
   component: LocationSearch,
