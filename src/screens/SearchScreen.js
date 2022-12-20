@@ -40,14 +40,12 @@ const SearchScreen = () => {
       <LocationSearch
         type="From"
         initialLocation={fromLocation}
-        locationChange={setFromLocation}
-        placeholder="Enter Pickup Point"
+        onLocationChange ={setFromLocation}
       />
       <LocationSearch
         type="To"
         initialLocation={toLocation}
-        locationChange={setToLocation}
-        placeholder="Enter Destination Point"
+        onLocationChange ={setToLocation}
       />
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
         <Button variant="contained" onClick={onSearchClick}>
