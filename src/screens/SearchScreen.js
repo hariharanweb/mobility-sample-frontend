@@ -9,8 +9,14 @@ import Typography from "@mui/material/Typography";
 
 const SearchScreen = () => {
   const navigate = useNavigate();
-  const [fromLocation, setFromLocation] = useState({});
-  const [toLocation, setToLocation] = useState({});
+  const [fromLocation, setFromLocation] = useState({
+    display: "Forum Mall",
+    latLong: "12.9372469,77.6109981",
+  });
+  const [toLocation, setToLocation] = useState({
+    display: "Garuda Mall",
+    latLong: "12.9702626,77.6099629",
+  });
 
   const onSearchClick = async () => {
     const data = {
@@ -40,12 +46,12 @@ const SearchScreen = () => {
       <LocationSearch
         type="From"
         initialLocation={fromLocation}
-        onLocationChange ={setFromLocation}
+        onLocationChange={setFromLocation}
       />
       <LocationSearch
         type="To"
         initialLocation={toLocation}
-        onLocationChange ={setToLocation}
+        onLocationChange={setToLocation}
       />
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
         <Button variant="contained" onClick={onSearchClick}>
