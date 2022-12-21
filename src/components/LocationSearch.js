@@ -29,8 +29,10 @@ const LocationSearch = ({
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
       let place = autocomplete.getPlace();
-      let locationObj = {};
-      let locationDisplayObj = {};
+      let locationObj;
+      locationObj = {} || locationObj;
+      let locationDisplayObj;
+      locationDisplayObj = {} || locationDisplayObj;
       locationObj.display = place?.name;
       locationDisplayObj.display =
         autocomplete?.gm_accessors_?.place?.jj?.formattedPrediction;
