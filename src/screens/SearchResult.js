@@ -5,6 +5,7 @@ import Api from "../api/Api";
 import Catalog from "../components/Catalog";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import "./SearchResult.css";
 const SearchResult = () => {
   const location = useLocation();
   const message_id = location.state.message_id;
@@ -42,7 +43,7 @@ const SearchResult = () => {
     }
   }, [loading]);
 
-  return loading ? <CircularProgress /> : displayCatalogs();
+  return loading ? <CircularProgress className="searchResult-loadingScreen" style={{width:"105em",height:"5em"}}/> : displayCatalogs();
 };
 
 export default SearchResult;

@@ -1,0 +1,6 @@
+.searchResult-loadingScreen
+{
+    display: flex !important;
+    justify-content: center;
+    margin-top: 20%;
+}
