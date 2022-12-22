@@ -2,5 +2,12 @@
 {
     display: flex !important;
     justify-content: center;
-    margin-top: 20%;
+    margin-top: 22%;
+    margin-left: 4%;
+}
+@media only screen and (max-width: 600px) {
+    .searchResult-loadingScreen
+{
+    margin-top: 70%;
+}
 }
