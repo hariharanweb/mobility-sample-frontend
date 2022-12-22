@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
@@ -43,12 +43,12 @@ const SearchScreen = () => {
         ONDC Sample App
       </Typography>
       <LocationSearch
-        type="From"
+        label="From"
         initialLocation={fromLocation}
         onLocationChange={setFromLocation}
       />
       <LocationSearch
-        type="To"
+        label="To"
         initialLocation={toLocation}
         onLocationChange={setToLocation}
       />
