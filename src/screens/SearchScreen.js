@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
@@ -17,7 +17,6 @@ const SearchScreen = () => {
     display: "Garuda Mall",
     latLong: "12.9702626,77.6099629",
   });
-
   const onSearchClick = async () => {
     const data = {
       intent: {
@@ -54,7 +53,15 @@ const SearchScreen = () => {
         onLocationChange={setToLocation}
       />
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-        <Button variant="contained" onClick={onSearchClick}>
+        <Button
+          variant="contained"
+          onClick={onSearchClick}
+          disabled={
+            fromLocation.display.length === 0 || toLocation.display.length === 0
+              ? true
+              : false
+          }
+        >
           Find Rides
         </Button>
       </FormControl>
