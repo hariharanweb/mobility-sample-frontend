@@ -5,7 +5,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import CancelIcon from "@mui/icons-material/Cancel";
 import "./LocationSearch.css";
 import { IconButton, InputAdornment } from "@mui/material";
-const LocationSearch = ({ type, initialLocation, onLocationChange }) => {
+const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
   const [disabled, setDisabled] = useState(false);
@@ -50,7 +50,7 @@ const LocationSearch = ({ type, initialLocation, onLocationChange }) => {
         <TextField
           fullWidth
           sx={{ m: 1 }}
-          label={type}
+          label={label}
           variant="standard"
           value={location.display}
           onChange={onChange}

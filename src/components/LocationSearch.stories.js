@@ -16,7 +16,7 @@ export const Primary = () => (
     libraries={["places"]}
   >
     <LocationSearch
-      type="To"
+      label="To"
       initialLocation={toLocation}
       onLocationChange={() => {}}
       onCancelDisabled={() => {}}
