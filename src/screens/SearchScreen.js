@@ -9,8 +9,6 @@ import Typography from "@mui/material/Typography";
 
 const SearchScreen = () => {
   const navigate = useNavigate();
-  const [disabledFromLocation, setDisabledFromLocation] = useState(false);
-  const [disabledToLocation, setDisabledToLocation] = useState(false);
   const [fromLocation, setFromLocation] = useState({
     display: "Forum Mall",
     latLong: "12.9372469,77.6109981",
@@ -48,22 +46,20 @@ const SearchScreen = () => {
         type="From"
         initialLocation={fromLocation}
         onLocationChange={setFromLocation}
-        onCancelDisabled={setDisabledFromLocation}
       />
       <LocationSearch
         type="To"
         initialLocation={toLocation}
         onLocationChange={setToLocation}
-        onCancelDisabled={setDisabledToLocation}
       />
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
         <Button
           variant="contained"
           onClick={onSearchClick}
           disabled={
-            disabledToLocation === false && disabledFromLocation === false
-              ? false
-              : true
+            fromLocation.display.length === 0 || toLocation.display.length === 0
+              ? true
+              : false
           }
         >
           Find Rides

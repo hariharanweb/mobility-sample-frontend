@@ -5,12 +5,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import CancelIcon from "@mui/icons-material/Cancel";
 import "./LocationSearch.css";
 import { IconButton, InputAdornment } from "@mui/material";
-const LocationSearch = ({
-  type,
-  initialLocation,
-  onLocationChange,
-  onCancelDisabled,
-}) => {
+const LocationSearch = ({ type, initialLocation, onLocationChange }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
   const [disabled, setDisabled] = useState(false);
@@ -42,14 +37,12 @@ const LocationSearch = ({
         place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
       setLocation(locationDisplayObj);
       onLocationChange(locationObj);
-      onCancelDisabled(false);
     }
   };
   const clearTextField = () => {
-    setLocation({ display: " ", latLong: " " });
-    onLocationChange({ display: " ", latLong: " " });
+    setLocation({ display: "", latLong: "" });
+    onLocationChange({ display: "", latLong: "" });
     setDisabled(true);
-    onCancelDisabled(true);
   };
   return (
     <FormControl fullWidth sx={{ m: 1 }} variant="filled">
