@@ -43,7 +43,11 @@ const SearchResult = () => {
     }
   }, [loading]);
 
-  return loading ? <CircularProgress className="searchResult-loadingScreen" style={{width:"91%",height:"5em"}}/> : displayCatalogs();
+  return loading ? (
+    <CircularProgress className="searchResult-loadingScreen" />
+  ) : (
+    displayCatalogs()
+  );
 };
 
 export default SearchResult;

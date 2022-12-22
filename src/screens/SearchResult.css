@@ -1,13 +1,15 @@
-.searchResult-loadingScreen
-{
-    display: flex !important;
-    justify-content: center;
-    margin-top: 22%;
-    margin-left: 4%;
+.searchResult-loadingScreen {
+  display: flex !important;
+  justify-content: center;
+  margin-top: 22%;
+  margin-left: 4%;
+}
+.MuiCircularProgress-root {
+  width: 91% !important;
+  height: 5em !important;
 }
 @media only screen and (max-width: 600px) {
-    .searchResult-loadingScreen
-{
+  .searchResult-loadingScreen {
     margin-top: 70%;
-}
+  }
 }
