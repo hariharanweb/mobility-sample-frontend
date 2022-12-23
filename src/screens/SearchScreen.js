@@ -6,11 +6,11 @@ import Grid from "@mui/material/Grid";
 import LocationSearch from "../components/LocationSearch";
 import Api from "../api/Api";
 import Typography from "@mui/material/Typography";
-import { LoadScript, useJsApiLoader } from "@react-google-maps/api";
 import "./SearchScreen.css";
+import { GooglePlacesApiLoader } from "../api/googlePlacesApiLoader";
 
 const SearchScreen = () => {
-  const { isLoaded } = useJsApiLoader({
+  const { isLoaded } = GooglePlacesApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
