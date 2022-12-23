@@ -6,8 +6,16 @@ import Grid from "@mui/material/Grid";
 import LocationSearch from "../components/LocationSearch";
 import Api from "../api/Api";
 import Typography from "@mui/material/Typography";
+import { LoadScript, useJsApiLoader } from "@react-google-maps/api";
+import "./SearchScreen.css";
 
 const SearchScreen = () => {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
+  });
+
   const navigate = useNavigate();
   const [fromLocation, setFromLocation] = useState({
     display: "Forum Mall",
@@ -38,20 +46,24 @@ const SearchScreen = () => {
     navigate("/search", { state: { ...response } });
   };
   return (
-    <Grid container paddingX={4}>
+    <Grid container paddingX={4} direction="column">
       <Typography variant="h4" gutterBottom paddingY={1}>
         ONDC Sample App
       </Typography>
-      <LocationSearch
-        label="From"
-        initialLocation={fromLocation}
-        onLocationChange={setFromLocation}
-      />
-      <LocationSearch
-        label="To"
-        initialLocation={toLocation}
-        onLocationChange={setToLocation}
-      />
+      {isLoaded && (
+        <div className="searchScreen-textFieldGroup">
+          <LocationSearch
+            label="From"
+            initialLocation={fromLocation}
+            onLocationChange={setFromLocation}
+          />
+          <LocationSearch
+            label="To"
+            initialLocation={toLocation}
+            onLocationChange={setToLocation}
+          />
+        </div>
+      )}
       <FormControl fullWidth sx={{ m: 1 }} variant="filled">
         <Button
           variant="contained"
