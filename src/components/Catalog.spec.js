@@ -10,6 +10,9 @@ jest.mock("react-router-dom", () => {
     useNavigate: jest.fn(),
   };
 });
+
+jest.mock("./Item", () => () => <div data-testid="Item" />);
+
 let catalog = {};
 describe("Basic functionality", () => {
   catalog = {
@@ -96,5 +99,10 @@ describe("Basic functionality", () => {
     expect(displayedImage.src).toContain(
       "https://cdn3.iconfinder.com/data/icons/fake-news/500/yul748_24_fake_news_truck_business_logo_computer_car-512.png"
     );
+  });
+
+  it("should display catalog item", async () => {
+    const { getByTestId } = render(<Catalog catalog={catalog} />);
+    expect(getByTestId(/Item/)).toBeInTheDocument();
   });
 });
