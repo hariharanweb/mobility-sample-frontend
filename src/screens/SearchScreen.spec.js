@@ -1,5 +1,4 @@
 import React from "react";
-import { __esModule } from "@testing-library/jest-dom/dist/matchers";
 import { render, waitFor, screen } from "@testing-library/react";
 import SearchScreen from "./SearchScreen";
 import "@testing-library/jest-dom";
