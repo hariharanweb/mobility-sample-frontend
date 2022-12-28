@@ -3,8 +3,49 @@ import Grid from "@mui/material/Grid";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import SelectJourney from "./SelectJourney";
+import Api from "../api/Api";
 
 const Item = ({ item }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+  console.log(item);
+  const handleOpen = async () => {
+    const data = {
+      order: {
+        items: [
+          {
+            id: "FAKE_TAXI_ID",
+            fulfillment_id: "FAKE_TAXI_FULFILLMENT_ID",
+            descriptor: {
+              name: "Premium Taxi",
+              code: "Premium Taxi",
+              images: [
+                "https://cdn.iconscout.com/icon/premium/png-256-thumb/searching-car-automobile-3052095-2538547.png",
+              ],
+            },
+            price: {
+              currency: "INR",
+              value: "111",
+            },
+            category_id: "FAKE_TAXI_CATEGORY_ID",
+            tags: {
+              NameOfModel: "Nexon",
+              Make: "Tata",
+              FuelType: "Petrol",
+              VehicleType: "Premium Taxi",
+            },
+          },
+        ],
+      },
+    };
+
+    const response = await Api.post("/select", data);
+    if (response.message_id) {
+      setOpen(true);
+    }
+  };
+
   return (
     <Grid container className="item-container">
       <Grid
@@ -55,9 +96,12 @@ const Item = ({ item }) => {
         display="flex"
       >
         <Typography variant="subtitle2" gutterBottom>
-          <Button variant="contained">Select</Button>
+          <Button onClick={handleOpen} variant="contained">
+            Select
+          </Button>
         </Typography>
       </Grid>
+      <SelectJourney open={open} handleClose={handleClose} />
     </Grid>
   );
 };
