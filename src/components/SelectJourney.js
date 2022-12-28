@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { Button, FormControl } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -15,7 +16,8 @@ const style = {
   p: 4,
 };
 
-const SelectJourney = ({ open, handleClose }) => {
+const SelectJourney = ({ open, handleClose, data }) => {
+  let selectedItem = data?.order?.items[0];
   return (
     <div>
       <Modal
@@ -25,12 +27,30 @@ const SelectJourney = ({ open, handleClose }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          <Typography variant="h6">Booking Confirmation</Typography>
+          <Typography
+            variant="body1"
+            display="block"
+            gutterBottom
+            data-testid="booking-id"
+          >
+            Taxi id : {selectedItem?.category_id}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          <Typography variant="body1" display="block" gutterBottom>
+            Taxi Name: {selectedItem?.descriptor?.name}
           </Typography>
+          <Typography variant="body1" display="block" gutterBottom>
+            Taxi Price: {selectedItem?.price?.value}
+          </Typography>
+          <Typography variant="body1" display="block" gutterBottom>
+            Taxi Model: {selectedItem?.tags?.NameOfModel}
+          </Typography>
+          <Typography variant="body1" display="block" gutterBottom>
+            Order Fulfillment Id: {selectedItem?.fulfillment_id}
+          </Typography>
+          <FormControl fullWidth sx={{ m: 1 }} variant="filled">
+            <Button variant="contained">Click here to Confirm</Button>
+          </FormControl>
         </Box>
       </Modal>
     </div>
