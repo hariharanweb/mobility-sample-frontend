@@ -20,10 +20,10 @@ const style = {
 const SelectJourney = ({ open, handleClose, data, response }) => {
   let selectedItem = data?.order?.items[0];
   const navigate = useNavigate();
-  
+
   const onSelectClick = () => {
     navigate("/invoice", { state: { ...response } });
-  }
+  };
   return (
     <div>
       <Modal
@@ -55,7 +55,9 @@ const SelectJourney = ({ open, handleClose, data, response }) => {
             Order Fulfillment Id: {selectedItem?.fulfillment_id}
           </Typography>
           <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-            <Button variant="contained" onClick={onSelectClick}>Click here to Confirm</Button>
+            <Button variant="contained" onClick={onSelectClick}>
+              Click here to Confirm
+            </Button>
           </FormControl>
         </Box>
       </Modal>

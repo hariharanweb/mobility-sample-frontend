@@ -11,7 +11,7 @@ const Item = ({ item }) => {
   const [data, setData] = useState({});
   const [response, setResponse] = useState({});
   const handleClose = () => setOpen(false);
-  
+
   const handleOpen = async () => {
     const data = {
       order: {
@@ -105,7 +105,12 @@ const Item = ({ item }) => {
           </Button>
         </Typography>
       </Grid>
-      <SelectJourney open={open} handleClose={handleClose} data={data} response={response} />
+      <SelectJourney
+        open={open}
+        handleClose={handleClose}
+        data={data}
+        response={response}
+      />
     </Grid>
   );
 };
