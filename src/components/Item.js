@@ -9,7 +9,9 @@ import Api from "../api/Api";
 const Item = ({ item }) => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
+  const [response, setResponse] = useState({});
   const handleClose = () => setOpen(false);
+  
   const handleOpen = async () => {
     const data = {
       order: {
@@ -42,6 +44,7 @@ const Item = ({ item }) => {
 
     const response = await Api.post("/select", data);
     if (response.message_id) {
+      setResponse(response);
       setData(data);
       setOpen(true);
     }
@@ -102,7 +105,7 @@ const Item = ({ item }) => {
           </Button>
         </Typography>
       </Grid>
-      <SelectJourney open={open} handleClose={handleClose} data={data} />
+      <SelectJourney open={open} handleClose={handleClose} data={data} response={response} />
     </Grid>
   );
 };

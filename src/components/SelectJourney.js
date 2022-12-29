@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Button, FormControl } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -16,8 +17,13 @@ const style = {
   p: 4,
 };
 
-const SelectJourney = ({ open, handleClose, data }) => {
+const SelectJourney = ({ open, handleClose, data, response }) => {
   let selectedItem = data?.order?.items[0];
+  const navigate = useNavigate();
+  
+  const onSelectClick = () => {
+    navigate("/invoice", { state: { ...response } });
+  }
   return (
     <div>
       <Modal
@@ -49,7 +55,7 @@ const SelectJourney = ({ open, handleClose, data }) => {
             Order Fulfillment Id: {selectedItem?.fulfillment_id}
           </Typography>
           <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-            <Button variant="contained">Click here to Confirm</Button>
+            <Button variant="contained" onClick={onSelectClick}>Click here to Confirm</Button>
           </FormControl>
         </Box>
       </Modal>
