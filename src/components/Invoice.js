@@ -23,7 +23,7 @@ const style = {
 
 const Invoice = () => {
   const location = useLocation();
-  const message_id = location.state.message_id;
+  const message_id = location?.state?.message_id;
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fromLocation, setFromLocation] = useState("");
