@@ -5,7 +5,8 @@ import Typography from "@mui/material/Typography";
 import Loader from "../components/Loader";
 import { Box } from "@mui/system";
 import Geocode from "react-geocode";
-
+import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
+import "./Invoice.css";
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
 const style = {
@@ -13,7 +14,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 500,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -26,6 +27,7 @@ const Invoice = () => {
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fromLocation, setFromLocation] = useState("");
+  const [driverName, setDriverName] = useState("");
   const [toLocation, setToLocation] = useState("");
   const getSelectResult = useCallback(async () => {
     const result = await Api.get("select", { message_id });
@@ -37,6 +39,9 @@ const Invoice = () => {
       getLocation(
         result[0]?.message?.order?.provider?.fulfillments[0]?.end,
         "end"
+      );
+      setDriverName(
+        result[0]?.message?.order?.provider?.items[0]["./komn/driver_name"]
       );
       setOrder(result);
       setLoading(false);
@@ -59,11 +64,32 @@ const Invoice = () => {
 
   const displayCatalogs = () => (
     <>
-      <Typography variant="h4" gutterBottom paddingX={4} paddingY={1}>
-        Order Details
+      <Typography
+        variant="h4"
+        gutterBottom
+        paddingX={4}
+        paddingY={5}
+        textAlign="center"
+      >
+        Your Invoice
       </Typography>
 
       <Box container sx={style}>
+        <div className="invoice-confirmation">
+          <CheckCircleSharpIcon
+            className="invoice-successIcon"
+            sx={{ fontSize: "5em" }}
+          />
+        </div>
+        <Typography
+          variant="body1"
+          display="block"
+          gutterBottom
+          textAlign="center"
+          fontSize="2em"
+        >
+          Your ride is booked.
+        </Typography>
         <Typography variant="body1" display="block" gutterBottom>
           Transaction ID: {order[0]?.context?.transaction_id}
         </Typography>
@@ -78,7 +104,7 @@ const Invoice = () => {
         </Typography>
         <Typography variant="body1" display="block" gutterBottom>
           Driver Name:{" "}
-          {order[0]?.message?.order?.provider?.items[0]["./komn/driver_name"]}
+          {driverName.charAt(0) + driverName.slice(1).toLowerCase()}
         </Typography>
         <Typography variant="body1" display="block" gutterBottom>
           Taxi Fare:{" "}
@@ -91,7 +117,7 @@ const Invoice = () => {
         </Typography>
 
         <Typography variant="body1" display="block" gutterBottom>
-          vehicle:{" "}
+          Vehicle:{" "}
           {
             order[0]?.message?.order?.provider?.fulfillments[0]?.vehicle
               ?.category
