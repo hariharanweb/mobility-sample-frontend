@@ -6,4 +6,4 @@ export default {
   component: Invoice,
 };
 
-export const Primary = () => <Invoice/>;
+export const Primary = () => <Invoice />;
