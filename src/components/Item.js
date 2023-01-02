@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import React, { useCallback, useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import SelectJourney from "./SelectJourney";
+import SelectJourney from "../screens/SelectJourney";
 import Api from "../api/Api";
 
 const Item = ({ item, details }) => {
