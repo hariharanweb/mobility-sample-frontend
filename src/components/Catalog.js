@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Item from "./Item";
 
-const bppProvider = (provider) => {
+const bppProvider = (provider, details) => {
   return (
     <Grid container paddingX={4} key={provider.id}>
       <Grid container paddingY={2}>
@@ -20,15 +20,17 @@ const bppProvider = (provider) => {
         </Grid>
       </Grid>
       {provider.items.map((item) => (
-        <Item key={item.id} item={item} />
+        <Item key={item.id} item={item} details={details} />
       ))}
     </Grid>
   );
 };
 
-const Catalog = ({ catalog }) => {
+const Catalog = ({ catalog, ...props }) => {
   const bppProviders = catalog.bpp_providers;
-  return <div>{bppProviders.map((provider) => bppProvider(provider))}</div>;
+  return (
+    <div>{bppProviders.map((provider) => bppProvider(provider, props))}</div>
+  );
 };
 
 export default Catalog;
