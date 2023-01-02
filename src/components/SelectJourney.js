@@ -18,12 +18,7 @@ const style = {
 };
 
 const SelectJourney = ({ open, handleClose, data, response }) => {
-  let selectedItem = data?.order?.items[0];
-  const navigate = useNavigate();
-
-  const onSelectClick = () => {
-    navigate("/invoice", { state: { ...response } });
-  };
+  let selectedItem = response?.orderDetails?.order?.items[0];
   return (
     <div>
       <Modal
@@ -46,18 +41,31 @@ const SelectJourney = ({ open, handleClose, data, response }) => {
             Taxi Name: {selectedItem?.descriptor?.name}
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
-            Taxi Price: {selectedItem?.price?.value}
+            Taxi Price (incl. of all taxes):{" "}
+            {data[0]?.message?.order?.provider?.items[0]?.price?.currency ===
+            "INR" ? (
+              <>₹ </>
+            ) : (
+              <>
+                {data[0]?.message?.order?.provider?.items[0]?.price?.currency}{" "}
+              </>
+            )}
+            {data[0]?.message?.order?.provider?.items[0]?.price?.value}
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
-            Taxi Model: {selectedItem?.tags?.NameOfModel}
+            Taxi Model:{" "}
+            {
+              data[0]?.message?.order?.provider?.fulfillments[0]?.vehicle
+                ?.category
+            }
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
-            Order Fulfillment Id: {selectedItem?.fulfillment_id}
+            Duration to Pickup:{" "}
+            {data[0]?.message?.order?.provider?.items[0]?.duration_to_pickup}{" "}
+            sec
           </Typography>
           <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-            <Button variant="contained" onClick={onSelectClick}>
-              Click here to Confirm
-            </Button>
+            <Button variant="contained">Click here to Confirm</Button>
           </FormControl>
         </Box>
       </Modal>

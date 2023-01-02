@@ -47,8 +47,8 @@ const Item = ({ item }) => {
 
     const response = await Api.post("/select", data);
     if (response.message_id) {
+      response["orderDetails"] = data;
       setResponse(response);
-      setData(data);
       getSelectResult();
     }
   };
@@ -58,6 +58,7 @@ const Item = ({ item }) => {
       const result = await Api.get("select", { message_id });
       if (result && result.length > 0) {
         setDataLoaded(true);
+        setData(result);
         setLoading(false);
         setOpen(true);
       }
