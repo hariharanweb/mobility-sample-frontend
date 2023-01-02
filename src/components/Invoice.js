@@ -1,10 +1,7 @@
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import Geocode from "react-geocode";
 import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
 import "./Invoice.css";
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-
 const style = {
   position: "absolute",
   top: "50%",
