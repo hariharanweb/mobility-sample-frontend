@@ -1,6 +1,6 @@
 import "./Item.css";
 import Grid from "@mui/material/Grid";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SelectJourney from "./SelectJourney";
@@ -10,9 +10,12 @@ const Item = ({ item }) => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
   const [response, setResponse] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const handleClose = () => setOpen(false);
 
   const handleOpen = async () => {
+    setLoading(true);
     const data = {
       order: {
         items: [
@@ -46,10 +49,31 @@ const Item = ({ item }) => {
     if (response.message_id) {
       setResponse(response);
       setData(data);
-      setOpen(true);
+      getSelectResult();
     }
   };
+  const getSelectResult = useCallback(async () => {
+    let message_id = response.message_id;
+    if (message_id && !dataLoaded) {
+      const result = await Api.get("select", { message_id });
+      if (result && result.length > 0) {
+        setDataLoaded(true);
+        setLoading(false);
+        setOpen(true);
+      }
+    }
+  }, [dataLoaded, response.message_id]);
+  useEffect(() => {
+    if (Object.keys(response).length > 0) {
+      Api.poll(getSelectResult, 3, 1500);
+    }
+  }, [getSelectResult, loading, response]);
 
+  useEffect(() => {
+    if (!loading) {
+      return;
+    }
+  }, [loading]);
   return (
     <Grid container className="item-container">
       <Grid
@@ -100,9 +124,13 @@ const Item = ({ item }) => {
         display="flex"
       >
         <Typography variant="subtitle2" gutterBottom>
-          <Button onClick={handleOpen} variant="contained">
-            Select
-          </Button>
+          {loading === true ? (
+            <div>Loading....</div>
+          ) : (
+            <Button onClick={handleOpen} variant="contained">
+              Select
+            </Button>
+          )}
         </Typography>
       </Grid>
       <SelectJourney
