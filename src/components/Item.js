@@ -1,10 +1,9 @@
 import "./Item.css";
 import Grid from "@mui/material/Grid";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SelectJourney from "../screens/SelectJourney";
-import Api from "../api/Api";
 
 const Item = ({ item, details }) => {
   const {
@@ -25,7 +24,12 @@ const Item = ({ item, details }) => {
         display="flex"
         paddingLeft={2}
       >
-        <img height={32} width={32} src={item.descriptor.images[0]} />
+        <img
+          height={32}
+          width={32}
+          src={item.descriptor.images[0]}
+          alt="taxi-icon"
+        />
       </Grid>
       <Grid
         item
