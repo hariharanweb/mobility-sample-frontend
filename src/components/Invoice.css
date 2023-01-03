@@ -1,0 +1,7 @@
+.invoice-confirmation {
+  display: flex;
+  justify-content: center;
+}
+.invoice-successIcon {
+  color: green;
+}

@@ -3,8 +3,17 @@ import Grid from "@mui/material/Grid";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import SelectJourney from "../screens/SelectJourney";
 
-const Item = ({ item }) => {
+const Item = ({ item, details }) => {
+  const {
+    showModal,
+    bookingInformation,
+    bookingResponse,
+    loadingJourney,
+    handleClose,
+    onSelectJourney,
+  } = details;
   return (
     <Grid container className="item-container">
       <Grid
@@ -15,7 +24,12 @@ const Item = ({ item }) => {
         display="flex"
         paddingLeft={2}
       >
-        <img height={32} width={32} src={item.descriptor.images[0]} />
+        <img
+          height={32}
+          width={32}
+          src={item.descriptor.images[0]}
+          alt="taxi-icon"
+        />
       </Grid>
       <Grid
         item
@@ -55,9 +69,21 @@ const Item = ({ item }) => {
         display="flex"
       >
         <Typography variant="subtitle2" gutterBottom>
-          <Button variant="contained">Select</Button>
+          {loadingJourney === true ? (
+            <div>Loading....</div>
+          ) : (
+            <Button onClick={onSelectJourney} variant="contained">
+              Select
+            </Button>
+          )}
         </Typography>
       </Grid>
+      <SelectJourney
+        showModal={showModal}
+        handleClose={handleClose}
+        bookingInformation={bookingInformation}
+        bookingResponse={bookingResponse}
+      />
     </Grid>
   );
 };
