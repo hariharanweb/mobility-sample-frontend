@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import Invoice from "./Invoice";
+import Invoice from './Invoice';
+
 export default {
-  title: "Invoice",
+  title: 'Invoice',
   component: Invoice,
 };
-let order = {};
+const order = {};
 export const Primary = () => (
   <Invoice
     order={order}

@@ -1,9 +1,9 @@
-import "./Item.css";
-import Grid from "@mui/material/Grid";
-import React from "react";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import SelectJourney from "../screens/SelectJourney";
+import './Item.css';
+import Grid from '@mui/material/Grid';
+import React from 'react';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import SelectJourney from '../screens/SelectJourney';
 
 const Item = ({ item, details }) => {
   const {
@@ -41,7 +41,10 @@ const Item = ({ item, details }) => {
       >
         <Grid item xs={12}>
           <Typography variant="subtitle1" gutterBottom>
-            {item.tags.Make} - {item.tags.NameOfModel}
+            {item.tags.Make}
+            {' '}
+            -
+            {item.tags.NameOfModel}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -58,7 +61,8 @@ const Item = ({ item, details }) => {
         display="flex"
       >
         <Typography variant="h5" gutterBottom>
-          ₹&nbsp;{item.price.value}
+          ₹&nbsp;
+          {item.price.value}
         </Typography>
       </Grid>
       <Grid

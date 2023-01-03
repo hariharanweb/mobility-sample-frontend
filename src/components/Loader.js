@@ -1,6 +1,6 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import CircularProgress from "@mui/material/CircularProgress";
+import React from 'react';
+import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Loader() {
   return (
