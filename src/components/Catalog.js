@@ -26,10 +26,28 @@ const bppProvider = (provider, details) => {
   );
 };
 
-const Catalog = ({ catalog, ...props }) => {
+const Catalog = ({
+  catalog,
+  showModal,
+  bookingInformation,
+  bookingResponse,
+  loadingJourney,
+  handleClose,
+  onSelectJourney,
+}) => {
   const bppProviders = catalog.bpp_providers;
+  let journeyDetails = {
+    showModal: showModal,
+    bookingInformation: bookingInformation,
+    bookingResponse: bookingResponse,
+    loadingJourney: loadingJourney,
+    handleClose: handleClose,
+    onSelectJourney: onSelectJourney,
+  };
   return (
-    <div>{bppProviders.map((provider) => bppProvider(provider, props))}</div>
+    <div>
+      {bppProviders.map((provider) => bppProvider(provider, journeyDetails))}
+    </div>
   );
 };
 
