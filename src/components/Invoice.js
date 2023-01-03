@@ -16,16 +16,6 @@ const style = {
 
 const Invoice = ({ order, driverName, fromLocation, toLocation }) => (
   <>
-    <Typography
-      variant="h4"
-      gutterBottom
-      paddingX={4}
-      paddingY={5}
-      textAlign="center"
-    >
-      Your Invoice
-    </Typography>
-
     <Box container sx={style}>
       <div className="invoice-confirmation">
         <CheckCircleSharpIcon
