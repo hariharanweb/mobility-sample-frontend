@@ -27,4 +27,14 @@ let item = {
     VehicleType: "Premium Taxi",
   },
 };
-export const Primary = () => <Item item={item} />;
+let handleClose = () => {};
+let onSelectJourney = () => {};
+let details = {
+  showModal: false,
+  bookingInformation: {},
+  bookingResponse: {},
+  loadingJourney: false,
+  handleClose: handleClose,
+  onSelectJourney: onSelectJourney,
+};
+export const Primary = () => <Item item={item} details={details} />;

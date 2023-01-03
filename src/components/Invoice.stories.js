@@ -5,5 +5,12 @@ export default {
   title: "Invoice",
   component: Invoice,
 };
-
-export const Primary = () => <Invoice />;
+let order = {};
+export const Primary = () => (
+  <Invoice
+    order={order}
+    driverName="Venkatesh"
+    fromLocation="Forum Mall"
+    toLocation="Thoughtworks"
+  />
+);
