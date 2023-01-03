@@ -44,31 +44,19 @@ const SearchResult = () => {
       order: {
         items: [
           {
-            id: "FAKE_TAXI_ID",
-            fulfillment_id: "FAKE_TAXI_FULFILLMENT_ID",
-            descriptor: {
-              name: "Premium Taxi",
-              code: "Premium Taxi",
-              images: [
-                "https://cdn.iconscout.com/icon/premium/png-256-thumb/searching-car-automobile-3052095-2538547.png",
-              ],
-            },
-            price: {
-              currency: "INR",
-              value: "111",
-            },
-            category_id: "FAKE_TAXI_CATEGORY_ID",
-            tags: {
-              NameOfModel: "Nexon",
-              Make: "Tata",
-              FuelType: "Petrol",
-              VehicleType: "Premium Taxi",
-            },
+            id: searchResults[0]?.bpp_providers[0]?.items[0]?.id,
+            fulfillment_id:
+              searchResults[0]?.bpp_providers[0]?.items[0]?.fulfillment_id,
+            descriptor:
+              searchResults[0]?.bpp_providers[0]?.items[0]?.descriptor,
+            price: searchResults[0]?.bpp_providers[0]?.items[0]?.price,
+            category_id:
+              searchResults[0]?.bpp_providers[0]?.items[0]?.category_id,
+            tags: searchResults[0]?.bpp_providers[0]?.items[0]?.tags,
           },
         ],
       },
     };
-
     const response = await Api.post("/select", data);
     if (response.message_id) {
       response["orderDetails"] = data;
