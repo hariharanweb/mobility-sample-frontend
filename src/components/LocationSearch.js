@@ -14,11 +14,7 @@ const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
     setAutoComplete(autocomplete);
   };
   const onChange = (e) => {
-    if (e.target.value.length > 0) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+    setDisabled(!e.target.value.length > 0);
     setLocation({ display: e.target.value, latLong: "" });
   };
   const onPlaceChanged = () => {

@@ -1,59 +1,70 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import {render, screen, act} from "@testing-library/react";
 import LocationSearch from "./LocationSearch";
-import * as ReactGoogleMapsApi from "@react-google-maps/api";
-import { FormControl } from "@mui/material";
-// let globals = {}
-let toLocation;
-// global.google = {
-//   maps: {
-//     places: {
-//       Autocomplete: jest.fn(),
-//     },
-//   },
-// };
 
-jest.mock("react-router-dom", () => {
-  const originalModule = jest.requireActual("react-router-dom");
-  return {
-    ...originalModule,
-    useNavigate: jest.fn(),
-    // addListener: jest.fn(),
-    //   removeListener: jest.fn(),
-  };
-});
-
-jest.mock("@react-google-maps/api", () => {
-  const originalApi = jest.requireActual("react-router-dom");
-  return {
-    ...originalApi,
-    useJsApiLoader: jest.fn(),
-  };
-});
-
-describe("Basic functionality", () => {
-  toLocation = {
-    display: "Garuda Mall",
-    latLong: "12.9702626,77.6099629",
-  };
-
-  // beforeAll(() => {
-
-  // })
-  it("shows loader", () => {
-    jest.spyOn(ReactGoogleMapsApi, "useJsApiLoader").mockReturnValue({
-      isLoaded: false,
-    });
-    render(
-      <LocationSearch
-        label="To"
-        initialLocation={toLocation}
-        onLocationChange={() => {}}
-        onCancelDisabled={() => {}}
-      />
-    );
-
-    expect(screen.getByText("")).toBeInDocument();
-  });
+let onPlaceChanged;
+let onLoad;
+jest.mock('@react-google-maps/api', () => {
+    return {
+        'Autocomplete': (props) => {
+            onPlaceChanged = props.onPlaceChanged;
+            onLoad = props.onLoad;
+            return (
+                <div>
+                    {props.children}
+                </div>
+            )
+        }
+    }
+})
+describe('Location Search', () => {
+    it('Should initialize with given initial location and label', () => {
+        render(
+            <LocationSearch
+                label="test_label"
+                initialLocation={{
+                    display: "ONDC, New Delhi"
+                }}
+                onLocationChange={() => {
+                }}
+            />
+        )
+        expect(screen.getByText('test_label')).toBeInTheDocument()
+        expect(screen.getByDisplayValue('ONDC, New Delhi')).toBeInTheDocument()
+    })
+    it('onPlaceChanged should change location', () => {
+        render(
+            <LocationSearch
+                label="test_label"
+                initialLocation={{
+                    display: "ONDC, New Delhi"
+                }}
+                onLocationChange={() => {
+                }}
+            />
+        )
+        act(() => onLoad(
+            {
+                getPlace: () => ({
+                    name: "Mg Road, Bangalore",
+                    geometry: {
+                        location: {
+                            lat: ()=> ("11"),
+                            lng: ()=> ("22")
+                        }
+                    }
+                }),
+                gm_accessors_: {
+                    place: {
+                        jj: {
+                            formattedPrediction: "Mg Road, Bangalore"
+                        }
+                    }
+                }
+            }
+        ))
+        act(()=> {
+            onPlaceChanged()
+        })
+        expect(screen.getByDisplayValue('Mg Road, Bangalore')).toBeInTheDocument()
+    })
 });
