@@ -25,8 +25,7 @@ const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
       let locationDisplayObj;
       locationDisplayObj = {} || locationDisplayObj;
       locationObj.display = place?.name;
-      locationDisplayObj.display =
-        autocomplete?.gm_accessors_?.place?.jj?.formattedPrediction;
+      locationDisplayObj.display = place?.name + " " + place?.formatted_address;
       locationDisplayObj.latLong =
         place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
       locationObj.latLong =
