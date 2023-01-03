@@ -79,7 +79,11 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "pre-commit": "^1.2.2",
     "prop-types": "^15.8.1",
     "webpack": "^5.75.0"
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }
