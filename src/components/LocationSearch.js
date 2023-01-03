@@ -1,42 +1,41 @@
-import { useState } from "react";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import { Autocomplete } from "@react-google-maps/api";
-import CancelIcon from "@mui/icons-material/Cancel";
-import "./LocationSearch.css";
-import { IconButton, InputAdornment } from "@mui/material";
+import React, { useState } from 'react';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import { Autocomplete } from '@react-google-maps/api';
+import CancelIcon from '@mui/icons-material/Cancel';
+import './LocationSearch.css';
+import { IconButton, InputAdornment } from '@mui/material';
+
 const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
-  const onLoad = (autocomplete) => {
-    setAutoComplete(autocomplete);
+  const onLoad = (data) => {
+    setAutoComplete(data);
   };
   const onChange = (e) => {
     setDisabled(!e.target.value.length > 0);
-    setLocation({ display: e.target.value, latLong: "" });
+    setLocation({ display: e.target.value, latLong: '' });
   };
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
-      let place = autocomplete.getPlace();
-      let locationObj;
-      locationObj = {} || locationObj;
-      let locationDisplayObj;
-      locationDisplayObj = {} || locationDisplayObj;
-      locationObj.display = place?.name;
-      locationDisplayObj.display = place?.name + " " + place?.formatted_address;
-      locationDisplayObj.latLong =
-        place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
-      locationObj.latLong =
-        place?.geometry?.location.lat() + "," + place?.geometry?.location.lng();
+      const place = autocomplete.getPlace();
+      const locationObj = {
+        display: place?.name,
+        latLong: `${place?.geometry?.location.lat()},${place?.geometry?.location.lng()}`,
+      };
+      const locationDisplayObj = {
+        display: `${place?.name} ${place?.formatted_address}`,
+        latLong: `${place?.geometry?.location.lat()},${place?.geometry?.location.lng()}`,
+      };
       setLocation(locationDisplayObj);
       onLocationChange(locationObj);
     }
   };
   const clearTextField = () => {
-    setLocation({ display: "", latLong: "" });
-    onLocationChange({ display: "", latLong: "" });
+    setLocation({ display: '', latLong: '' });
+    onLocationChange({ display: '', latLong: '' });
     setDisabled(true);
   };
   return (

@@ -1,25 +1,25 @@
-import { useLocation } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
-import Api from "../api/Api";
-import Catalog from "../components/Catalog";
-import Typography from "@mui/material/Typography";
-import Loader from "../components/Loader";
-import Grid from "@mui/material/Grid";
+/* eslint camelcase: 0 */
+import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Api from '../api/Api';
+import Catalog from '../components/Catalog';
+import Loader from '../components/Loader';
 
 const SearchResult = () => {
   const location = useLocation();
-  const message_id = location.state.message_id;
+  const { message_id } = location.state;
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setshowModal] = useState(false);
   const [bookingInformation, setbookingInformation] = useState({});
   const [bookingResponse, setBookingResponse] = useState({});
   const [loadingJourney, setLoadingJourney] = useState(false);
-  const [bookingInformationLoaded, setbookingInformationLoaded] =
-    useState(false);
+  const [bookingInformationLoaded, setbookingInformationLoaded] = useState(false);
   const handleClose = () => setshowModal(false);
   const getSearchResult = useCallback(async () => {
-    const result = await Api.get("search", { message_id });
+    const result = await Api.get('search', { message_id });
     if (result && result.length > 0) {
       const catalogs = result.flatMap((r) => r.message.catalogs);
       setSearchResults(catalogs);
@@ -33,11 +33,18 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  useEffect(() => {
-    if (!loading) {
-      return;
+  const getSelectResult = useCallback(async () => {
+    if (bookingResponse.message_id && !bookingInformationLoaded) {
+      const result = await Api.get('select', { message_id: bookingResponse.message_id });
+      if (result && result.length > 0) {
+        setbookingInformationLoaded(true);
+        setbookingInformation(result);
+        setLoadingJourney(false);
+        setshowModal(true);
+      }
     }
-  }, [loading]);
+  }, [bookingInformationLoaded, bookingResponse.message_id]);
+
   const onSelectJourney = async () => {
     setLoadingJourney(true);
     const data = {
@@ -57,36 +64,19 @@ const SearchResult = () => {
         ],
       },
     };
-    const response = await Api.post("/select", data);
+    const response = await Api.post('/select', data);
     if (response.message_id) {
-      response["orderDetails"] = data;
+      response.orderDetails = data;
       setBookingResponse(response);
       getSelectResult();
     }
   };
-  const getSelectResult = useCallback(async () => {
-    let message_id = bookingResponse.message_id;
-    if (message_id && !bookingInformationLoaded) {
-      const result = await Api.get("select", { message_id });
-      if (result && result.length > 0) {
-        setbookingInformationLoaded(true);
-        setbookingInformation(result);
-        setLoadingJourney(false);
-        setshowModal(true);
-      }
-    }
-  }, [bookingInformationLoaded, bookingResponse.message_id]);
   useEffect(() => {
     if (Object.keys(bookingResponse).length > 0) {
       Api.poll(getSelectResult, 3, 1500);
     }
   }, [getSelectResult, loadingJourney, bookingResponse]);
 
-  useEffect(() => {
-    if (!loadingJourney) {
-      return;
-    }
-  }, [loadingJourney]);
   const displayCatalogs = () => (
     <Grid container>
       <Typography variant="h4" gutterBottom paddingX={4} paddingY={1}>

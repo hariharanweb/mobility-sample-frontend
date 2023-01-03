@@ -1,20 +1,20 @@
 const post = async (url, body) => {
   const response = await fetch(url, {
-    method: "post",
+    method: 'post',
     body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
   });
-  return await response.json();
+  return response.json();
 };
 
 const get = async (url, queryParams) => {
-  let query = Object.keys(queryParams)
+  const query = Object.keys(queryParams)
     .map(
-      (k) => encodeURIComponent(k) + "=" + encodeURIComponent(queryParams[k])
+      (k) => `${encodeURIComponent(k)}=${encodeURIComponent(queryParams[k])}`,
     )
-    .join("&");
+    .join('&');
   const response = await fetch(`${url}?${query}`);
-  return await response.json();
+  return response.json();
 };
 
 const poll = (call, times, delay) => {
