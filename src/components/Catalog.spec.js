@@ -3,14 +3,6 @@ import { render, waitFor, screen } from "@testing-library/react";
 import Catalog from "./Catalog";
 import "@testing-library/jest-dom";
 
-jest.mock("react-router-dom", () => {
-  const originalModule = jest.requireActual("react-router-dom");
-  return {
-    ...originalModule,
-    useNavigate: jest.fn(),
-  };
-});
-
 jest.mock("./Item", () => () => <div data-testid="Item" />);
 
 let catalog = {};
@@ -103,6 +95,6 @@ describe("Basic functionality", () => {
 
   it("should display catalog item", async () => {
     const { getByTestId } = render(<Catalog catalog={catalog} />);
-    expect(getByTestId(/Item/)).toBeInTheDocument();
+    expect(getByTestId("Item")).toBeInTheDocument();
   });
 });

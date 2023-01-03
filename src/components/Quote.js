@@ -15,7 +15,7 @@ const style = {
   p: 4,
 };
 
-const Journey = ({ bookingInformation, bookingResponse }) => {
+const Quote = ({ bookingInformation, bookingResponse }) => {
   let selectedItem = bookingResponse?.orderDetails?.order?.items[0];
   return (
     <Box sx={style}>
@@ -71,4 +71,4 @@ const Journey = ({ bookingInformation, bookingResponse }) => {
   );
 };
 
-export default Journey;
+export default Quote;

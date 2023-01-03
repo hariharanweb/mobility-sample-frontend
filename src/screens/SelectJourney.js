@@ -1,6 +1,6 @@
 import * as React from "react";
 import Modal from "@mui/material/Modal";
-import Journey from "../components/Journey";
+import Quote from "../components/Quote";
 
 const SelectJourney = ({
   showModal,
@@ -18,7 +18,7 @@ const SelectJourney = ({
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Journey
+            <Quote
               bookingInformation={bookingInformation}
               bookingResponse={bookingResponse}
             />
