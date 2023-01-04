@@ -3,15 +3,10 @@ import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import SelectJourney from '../screens/SelectJourney';
 
 const Item = ({ item, details }) => {
   const {
-    showModal,
-    bookingInformation,
-    bookingResponse,
     loadingJourney,
-    handleClose,
     onSelectJourney,
   } = details;
   return (
@@ -73,12 +68,6 @@ const Item = ({ item, details }) => {
           )}
         </Typography>
       </Grid>
-      <SelectJourney
-        showModal={showModal}
-        handleClose={handleClose}
-        bookingInformation={bookingInformation}
-        bookingResponse={bookingResponse}
-      />
     </Grid>
   );
 };

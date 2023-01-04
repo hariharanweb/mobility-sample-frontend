@@ -9,7 +9,7 @@ const bppProvider = (provider, details) => (
     <Grid container paddingY={2}>
       {provider.descriptor.images && provider.descriptor.images.length > 0 && (
       <Grid item xs={1} className="catalog-image">
-        <img height={48} width={48} src={provider.descriptor.images[0]} alt="" />
+        <img height={48} width={48} src={provider.descriptor.images[0]} alt="header-icon" />
       </Grid>
       )}
       <Grid item xs={11} display="flex" alignItems="center" paddingLeft={6}>
@@ -26,20 +26,12 @@ const bppProvider = (provider, details) => (
 
 const Catalog = ({
   catalog,
-  showModal,
-  bookingInformation,
-  bookingResponse,
   loadingJourney,
-  handleClose,
   onSelectJourney,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const journeyDetails = {
-    showModal,
-    bookingInformation,
-    bookingResponse,
     loadingJourney,
-    handleClose,
     onSelectJourney,
   };
   return (

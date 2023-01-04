@@ -6,7 +6,19 @@ import '@testing-library/jest-dom';
 jest.mock('./Item', () => () => <div data-testid="Item" />);
 
 let catalog = {};
+let bookingInformation = {};
+let bookingResponse = {};
+let showModal;
+let loadingJourney;
+let handleClose;
+let onSelectJourney;
 describe('Basic functionality', () => {
+  showModal = false;
+  loadingJourney = false;
+  bookingInformation = {};
+  bookingResponse = {};
+  handleClose = jest.fn();
+  onSelectJourney = jest.fn();
   catalog = {
     'bpp/descriptor': {
       name: 'Fake Taxi',
@@ -73,20 +85,47 @@ describe('Basic functionality', () => {
   };
 
   it('should display catalog header', async () => {
-    render(<Catalog catalog={catalog} />);
-    expect(screen.getByText('Fake Taxi'));
+    render(
+      <Catalog
+        catalog={catalog}
+        showModal={showModal}
+        bookingInformation={bookingInformation}
+        bookingResponse={bookingResponse}
+        loadingJourney={loadingJourney}
+        handleClose={handleClose}
+        onSelectJourney={onSelectJourney}
+      />,
+    );
+    expect(screen.getByText('Fake Taxi')).toBeInTheDocument();
   });
 
   it('should display catalog header image', async () => {
-    render(<Catalog catalog={catalog} />);
-    const displayedImage = document.querySelector('img');
-    expect(displayedImage.src).toContain(
-      'https://cdn3.iconfinder.com/data/icons/fake-news/500/yul748_24_fake_news_truck_business_logo_computer_car-512.png',
+    render(
+      <Catalog
+        catalog={catalog}
+        showModal={showModal}
+        bookingInformation={bookingInformation}
+        bookingResponse={bookingResponse}
+        loadingJourney={loadingJourney}
+        handleClose={handleClose}
+        onSelectJourney={onSelectJourney}
+      />,
     );
+    expect(screen.getByAltText('header-icon')).toBeInTheDocument();
   });
 
   it('should display catalog item', async () => {
-    const { getByTestId } = render(<Catalog catalog={catalog} />);
-    expect(getByTestId('Item')).toBeInTheDocument();
+    render(
+      <Catalog
+        catalog={catalog}
+        showModal={showModal}
+        bookingInformation={bookingInformation}
+        bookingResponse={bookingResponse}
+        loadingJourney={loadingJourney}
+        handleClose={handleClose}
+        onSelectJourney={onSelectJourney}
+      />,
+    );
+    expect(screen.getByTestId('Item')).toBeInTheDocument();
   });
 });

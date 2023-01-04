@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SearchScreen from './screens/SearchScreen';
 import SearchResult from './screens/SearchResult';
 import InvoiceScreen from './screens/InvoiceScreen';
+import SelectJourney from './screens/SelectJourney';
 
 const App = () => (
   <div>
@@ -11,6 +12,7 @@ const App = () => (
         <Route path="/" element={<SearchScreen />} />
         <Route path="/search" element={<SearchResult />} />
         <Route path="/invoice" element={<InvoiceScreen />} />
+        <Route path="/quote" element={<SelectJourney />} />
       </Routes>
     </BrowserRouter>
   </div>

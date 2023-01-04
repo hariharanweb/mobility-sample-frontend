@@ -1,0 +1,7 @@
+.quote-vehicle {
+  display: flex;
+  justify-content: center;
+}
+.quote-vehicleImg{
+  width:30%;
+}
