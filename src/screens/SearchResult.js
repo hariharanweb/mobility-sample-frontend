@@ -21,7 +21,7 @@ const SearchResult = () => {
   const getSearchResult = useCallback(async () => {
     const result = await Api.get('search', { message_id });
     if (result && result.length > 0) {
-      const catalogs = result.flatMap((r) => r.message.catalogs);
+      const catalogs = result.map((r) => r.message.catalog);
       setSearchResults(catalogs);
       setLoading(false);
     }

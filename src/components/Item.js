@@ -35,23 +35,13 @@ const Item = ({ item, details }) => {
         item
         xs={4}
         alignItems="center"
-        justifyContent="center"
-        display="flex-row"
+        justifyContent="left"
+        display="flex"
         paddingLeft={2}
       >
-        <Grid item xs={12}>
-          <Typography variant="subtitle1" gutterBottom>
-            {item.tags.Make}
-            {' '}
-            -
-            {item.tags.NameOfModel}
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="subtitle2" gutterBottom>
-            {item.descriptor.name}
-          </Typography>
-        </Grid>
+        <Typography variant="h6" gutterBottom>
+          {item.descriptor.name}
+        </Typography>
       </Grid>
       <Grid
         item

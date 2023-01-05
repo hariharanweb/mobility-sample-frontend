@@ -33,7 +33,7 @@ const Catalog = ({
   handleClose,
   onSelectJourney,
 }) => {
-  const bppProviders = catalog.bpp_providers;
+  const bppProviders = catalog['bpp/providers'];
   const journeyDetails = {
     showModal,
     bookingInformation,

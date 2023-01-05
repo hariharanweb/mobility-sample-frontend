@@ -3,17 +3,18 @@ import React from 'react';
 import Catalog from './Catalog';
 
 const catalog = {
-  bpp_descriptor: {
+  'bpp/descriptor': {
     name: 'Fake Taxi',
     code: 'FAKE_TAXI',
   },
-  bpp_providers: [
+  'bpp/providers': [
     {
       id: 'FAKE_TAXI',
       descriptor: {
-        name: 'Fake Taxi',
+        name: "Fake Taxi's",
+        long_desc: 'We are fake',
         images: [
-          'https://cdn3.iconfinder.com/data/icons/fake-news/500/yul748_24_fake_news_truck_business_logo_computer_car-512.png',
+          'https://ih1.redbubble.net/image.925211637.3466/flat,128x,075,f-pad,128x128,f8f8f8.jpg',
         ],
       },
       locations: [
@@ -24,19 +25,25 @@ const catalog = {
       ],
       categories: [
         {
-          id: 'FAKE_TAXI_CATEGORY',
+          id: 'FAKE_TAXI_SEDAN',
           descriptor: {
-            name: 'Premium Taxi',
+            name: 'Sedan Taxi',
+          },
+        },
+        {
+          id: 'FAKE_TAXI_SUV',
+          descriptor: {
+            name: 'SUV Taxi',
           },
         },
       ],
       items: [
         {
-          id: 'FAKE_TAXI_ID',
-          fulfillment_id: 'FAKE_TAXI_FULFILLMENT_ID',
+          id: 'FAKE_SEDAN_ID',
+          fulfillment_id: 'FAKE_SEDAN_FULFILLMENT_ID',
           descriptor: {
-            name: 'Premium Taxi',
-            code: 'Premium Taxi',
+            name: 'Sedan Taxi',
+            code: 'SEDAN_TAXI',
             images: [
               'https://cdn.iconscout.com/icon/premium/png-256-thumb/searching-car-automobile-3052095-2538547.png',
             ],
@@ -45,18 +52,28 @@ const catalog = {
             currency: 'INR',
             value: '111',
           },
-          category_id: 'FAKE_TAXI_CATEGORY_ID',
-          tags: {
-            NameOfModel: 'Nexon',
-            Make: 'Tata',
-            FuelType: 'Petrol',
-            VehicleType: 'Premium Taxi',
+          category_id: 'FAKE_TAXI_SEDAN',
+        },
+        {
+          id: 'FAKE_SUV_ID',
+          fulfillment_id: 'FAKE_SUV_FULFILLMENT_ID',
+          descriptor: {
+            name: 'SUV Taxi',
+            code: 'SUV_TAXI',
+            images: [
+              'https://cdn.iconscout.com/icon/premium/png-256-thumb/taxi-2716987-2254385.png',
+            ],
           },
+          price: {
+            currency: 'INR',
+            value: '141',
+          },
+          category_id: 'FAKE_TAXI_SUV',
         },
       ],
     },
   ],
-  bpp_fulfillments: [
+  'bpp/fulfillments': [
     {
       tracking: false,
       start: {
@@ -71,8 +88,6 @@ const catalog = {
       },
     },
   ],
-  bpp_id: 'LOCAL_BPP',
-  bpp_uri: 'http://localhost:3010/',
 };
 export default {
   title: 'Catalog',

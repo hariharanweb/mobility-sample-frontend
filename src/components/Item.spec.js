@@ -49,11 +49,6 @@ describe('Basic functionality', () => {
     expect(screen.getByAltText('taxi-icon')).toBeInTheDocument();
   });
 
-  it('should display taxi', async () => {
-    render(<Item item={item} details={details} />);
-    expect(screen.getByText('Tata - Nexon')).toBeInTheDocument();
-  });
-
   it('should display taxi category', async () => {
     render(<Item item={item} details={details} />);
     expect(screen.getByText('Premium Taxi')).toBeInTheDocument();

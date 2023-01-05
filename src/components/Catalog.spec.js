@@ -8,11 +8,11 @@ jest.mock('./Item', () => () => <div data-testid="Item" />);
 let catalog = {};
 describe('Basic functionality', () => {
   catalog = {
-    bpp_descriptor: {
+    'bpp/descriptor': {
       name: 'Fake Taxi',
       code: 'FAKE_TAXI',
     },
-    bpp_providers: [
+    'bpp/providers': [
       {
         id: 'FAKE_TAXI',
         descriptor: {
@@ -51,17 +51,11 @@ describe('Basic functionality', () => {
               value: '111',
             },
             category_id: 'FAKE_TAXI_CATEGORY_ID',
-            tags: {
-              NameOfModel: 'Nexon',
-              Make: 'Tata',
-              FuelType: 'Petrol',
-              VehicleType: 'Premium Taxi',
-            },
           },
         ],
       },
     ],
-    bpp_fulfillments: [
+    'bpp/fulfillments': [
       {
         tracking: false,
         start: {
@@ -76,8 +70,6 @@ describe('Basic functionality', () => {
         },
       },
     ],
-    bpp_id: 'LOCAL_BPP',
-    bpp_uri: 'http://localhost:3010/',
   };
 
   it('should display catalog header', async () => {
