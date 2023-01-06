@@ -20,7 +20,7 @@ const Item = ({ item, details }) => {
         item
         xs={2}
         alignItems="center"
-        justifyContent="center"
+        justifyContent="left"
         display="flex"
         paddingLeft={2}
       >
@@ -45,12 +45,12 @@ const Item = ({ item, details }) => {
       </Grid>
       <Grid
         item
-        xs={3}
+        xs={2}
         alignItems="center"
-        justifyContent="center"
+        justifyContent="left"
         display="flex"
       >
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="body2" gutterBottom>
           ₹&nbsp;
           {item.price.value}
         </Typography>
@@ -61,6 +61,7 @@ const Item = ({ item, details }) => {
         alignItems="center"
         justifyContent="center"
         display="flex"
+        marginX={1}
       >
         <Typography variant="subtitle2" gutterBottom>
           {loadingJourney === true ? (

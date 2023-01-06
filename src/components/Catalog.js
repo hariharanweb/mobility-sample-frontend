@@ -12,7 +12,7 @@ const bppProvider = (provider, details) => (
         <img height={48} width={48} src={provider.descriptor.images[0]} alt="" />
       </Grid>
       )}
-      <Grid item xs={11} display="flex" alignItems="center" paddingLeft={4}>
+      <Grid item xs={11} display="flex" alignItems="center" paddingLeft={6}>
         <Typography variant="h6" gutterBottom>
           {provider.descriptor.name}
         </Typography>
