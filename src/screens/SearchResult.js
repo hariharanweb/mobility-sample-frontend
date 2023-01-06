@@ -58,7 +58,7 @@ const SearchResult = () => {
     };
     const response = await Api.post('/select', data);
     if (response.message_id) {
-      navigate('/quote', { state: { ...response } });
+      navigate('/select', { state: { ...response } });
     }
   };
   const displayCatalogs = () => (

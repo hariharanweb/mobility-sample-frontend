@@ -27,7 +27,7 @@ const Quote = ({ bookingInformation }) => (
       Booking Confirmation
 
     </Typography>
-    <div className="quote-vehicle">
+    <div className="select-vehicle">
       <img src={bookingInformation[0]?.message?.quote?.items[0]?.descriptor?.images} alt="vehicle-img" className="quote-vehicleImg" />
     </div>
     <Typography
