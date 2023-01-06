@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -64,8 +63,9 @@ const SearchScreen = () => {
           />
         </div>
       )}
-      <FormControl fullWidth sx={{ m: 1 }} variant="filled">
+      <Grid item paddingY={2}>
         <Button
+          fullWidth
           variant="contained"
           onClick={onSearchClick}
           disabled={
@@ -74,7 +74,7 @@ const SearchScreen = () => {
         >
           Find Rides
         </Button>
-      </FormControl>
+      </Grid>
     </Grid>
   );
 };

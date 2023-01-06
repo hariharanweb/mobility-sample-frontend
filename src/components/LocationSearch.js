@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import { Autocomplete } from '@react-google-maps/api';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -39,32 +38,30 @@ const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
     setDisabled(true);
   };
   return (
-    <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-        <TextField
-          fullWidth
-          sx={{ m: 1 }}
-          label={label}
-          variant="standard"
-          value={location.display}
-          onChange={onChange}
-          className="locationSearch-textbox"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={clearTextField}
-                  edge="end"
-                  disabled={disabled}
-                >
-                  <CancelIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Autocomplete>
-    </FormControl>
+    <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+      <TextField
+        fullWidth
+        sx={{ m: 1 }}
+        label={label}
+        variant="standard"
+        value={location.display}
+        onChange={onChange}
+        className="locationSearch-textbox"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                onClick={clearTextField}
+                edge="end"
+                disabled={disabled}
+              >
+                <CancelIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </Autocomplete>
   );
 };
 
