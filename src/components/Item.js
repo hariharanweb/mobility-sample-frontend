@@ -4,11 +4,10 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-const Item = ({ item, details }) => {
-  const {
-    loadingJourney,
-    onSelectJourney,
-  } = details;
+const Item = ({ item, onSelectJourney }) => {
+  const onSelect = () => {
+    onSelectJourney(item);
+  };
   return (
     <Grid container className="item-container">
       <Grid
@@ -59,13 +58,9 @@ const Item = ({ item, details }) => {
         marginX={1}
       >
         <Typography variant="subtitle2" gutterBottom>
-          {loadingJourney === true ? (
-            <div>Loading....</div>
-          ) : (
-            <Button onClick={onSelectJourney} variant="contained">
-              Select
-            </Button>
-          )}
+          <Button onClick={onSelect} variant="contained">
+            Select
+          </Button>
         </Typography>
       </Grid>
     </Grid>

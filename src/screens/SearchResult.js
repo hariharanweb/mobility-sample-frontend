@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { IconButton } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Api from '../api/Api';
 import Catalog from '../components/Catalog';
 import Loader from '../components/Loader';
@@ -15,7 +17,6 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [loadingJourney, setLoadingJourney] = useState(false);
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -34,23 +35,18 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  const onSelectJourney = async () => {
-    setLoadingJourney(true);
+  const onSelectJourney = async (item) => {
     const data = {
       context: ContextBuilder.getContext('select'),
       message: {
         order: {
           items: [
             {
-              id: searchResults[0]?.bpp_providers[0]?.items[0]?.id,
-              fulfillment_id:
-                searchResults[0]?.bpp_providers[0]?.items[0]?.fulfillment_id,
-              descriptor:
-                searchResults[0]?.bpp_providers[0]?.items[0]?.descriptor,
-              price: searchResults[0]?.bpp_providers[0]?.items[0]?.price,
-              category_id:
-                searchResults[0]?.bpp_providers[0]?.items[0]?.category_id,
-              tags: searchResults[0]?.bpp_providers[0]?.items[0]?.tags,
+              id: item?.id,
+              fulfillment_id: item?.fulfillment_id,
+              descriptor: item?.descriptor,
+              price: item?.price,
+              category_id: item?.category_id,
             },
           ],
         },
@@ -61,18 +57,21 @@ const SearchResult = () => {
       navigate('/select', { state: { ...response } });
     }
   };
+  const gotoHome = () => {
+    navigate('/', { state: {} });
+  };
   const displayCatalogs = () => (
     <Grid container>
       <Typography variant="h4" gutterBottom paddingX={4} paddingY={1}>
+        <IconButton color="black" onClick={gotoHome}>
+          <ArrowBackIosNewIcon fontSize="0.9em" />
+        </IconButton>
+        {' '}
         Search Results
       </Typography>
       <Grid item xs={12}>
         {searchResults.map((catalog) => (
-          <Catalog
-            catalog={catalog}
-            loadingJourney={loadingJourney}
-            onSelectJourney={onSelectJourney}
-          />
+          <Catalog catalog={catalog} onSelectJourney={onSelectJourney} />
         ))}
       </Grid>
     </Grid>
