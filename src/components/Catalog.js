@@ -36,7 +36,7 @@ const Catalog = ({
   };
   return (
     <div>
-      {bppProviders.map((provider) => bppProvider(provider, journeyDetails))}
+      {bppProviders && bppProviders.map((provider) => bppProvider(provider, journeyDetails))}
     </div>
   );
 };

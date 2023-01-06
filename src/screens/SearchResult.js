@@ -13,20 +13,24 @@ const SearchResult = () => {
   const navigate = useNavigate();
   const { message_id } = location.state;
   const [searchResults, setSearchResults] = useState([]);
+  const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadingJourney, setLoadingJourney] = useState(false);
   const getSearchResult = useCallback(async () => {
-    const result = await Api.get('search', { message_id });
-    if (result && result.length > 0) {
-      const catalogs = result.map((r) => r.message.catalog);
-      setSearchResults(catalogs);
-      setLoading(false);
+    if (!searchResultsLoaded) {
+      const result = await Api.get('search', { message_id });
+      if (result && result.length > 0) {
+        const catalogs = result.flatMap((r) => r.message.catalog);
+        setSearchResults(catalogs);
+        setLoading(false);
+        setSearchResultsLoaded(true);
+      }
     }
   }, [message_id]);
 
   useEffect(() => {
     if (loading) {
-      Api.poll(getSearchResult, 3, 1500);
+      Api.poll(getSearchResult, 4, 2000);
     }
   }, [getSearchResult, loading]);
 
