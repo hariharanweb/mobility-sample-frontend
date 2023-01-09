@@ -12,7 +12,7 @@ let showModal;
 let loadingJourney;
 let handleClose;
 let onSelectJourney;
-describe('Basic functionality', () => {
+describe('Catalog', () => {
   showModal = false;
   loadingJourney = false;
   bookingInformation = {};

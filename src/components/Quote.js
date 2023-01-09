@@ -28,7 +28,7 @@ const Quote = ({ bookingInformation }) => (
 
     </Typography>
     <div className="select-vehicle">
-      <img src={bookingInformation[0]?.message?.quote?.items[0]?.descriptor?.images} alt="vehicle-img" className="quote-vehicleImg" />
+      <img src={bookingInformation[0]?.message?.quote?.items[0]?.descriptor?.images} alt="vehicle-img" className="select-vehicle-icon" />
     </div>
     <Typography
       variant="body1"

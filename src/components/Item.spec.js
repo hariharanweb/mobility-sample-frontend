@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => {
 
 let item = {};
 let details = {};
-describe('Basic functionality', () => {
+describe('Item', () => {
   item = {
     id: 'FAKE_TAXI_ID',
     fulfillment_id: 'FAKE_TAXI_FULFILLMENT_ID',
