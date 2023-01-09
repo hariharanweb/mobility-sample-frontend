@@ -14,7 +14,7 @@ const SelectJourney = () => {
 
   const getSelectResult = React.useCallback(async () => {
     if (message_id && !bookingInformationLoaded) {
-      const result = await Api.get('search', { message_id });
+      const result = await Api.get('select', { message_id });
       if (result && result.length > 0) {
         setbookingInformationLoaded(true);
         setbookingInformation(result);
