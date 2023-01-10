@@ -1,26 +1,36 @@
+/* eslint camelcase: 0 */
 import * as React from 'react';
-import Modal from '@mui/material/Modal';
+import { useLocation } from 'react-router-dom';
 import Quote from '../components/Quote';
+import Api from '../api/Api';
+import Loader from '../components/Loader';
 
-const SelectJourney = ({
-  showModal,
-  handleClose,
-  bookingInformation,
-  bookingResponse,
-}) => bookingInformation && (
-<div>
-  <Modal
-    open={showModal}
-    onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Quote
-      bookingInformation={bookingInformation}
-      bookingResponse={bookingResponse}
-    />
-  </Modal>
-</div>
-);
+const SelectJourney = () => {
+  const location = useLocation();
+  const { message_id } = location.state;
+  const [bookingInformationLoaded, setbookingInformationLoaded] = React.useState(false);
+  const [bookingInformation, setbookingInformation] = React.useState({});
+  const [loadingJourney, setLoadingJourney] = React.useState(true);
 
+  const getSelectResult = React.useCallback(async () => {
+    if (message_id && !bookingInformationLoaded) {
+      const result = await Api.get('select', { message_id });
+      if (result && result.length > 0) {
+        setbookingInformationLoaded(true);
+        setbookingInformation(result);
+        setLoadingJourney(false);
+      }
+    }
+  }, [bookingInformationLoaded, message_id]);
+  React.useEffect(() => {
+    Api.poll(getSelectResult, 3, 1500);
+  }, [getSelectResult, loadingJourney]);
+  return (
+    loadingJourney ? <Loader /> : (
+      <Quote
+        bookingInformation={bookingInformation}
+      />
+    )
+  );
+};
 export default SelectJourney;

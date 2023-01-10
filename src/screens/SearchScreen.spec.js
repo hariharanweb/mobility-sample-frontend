@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-describe('Basic functionality', () => {
+describe('Search Screen', () => {
   it('should display header', async () => {
     render(<SearchScreen />);
     expect(screen.getByText('ONDC Sample App'));

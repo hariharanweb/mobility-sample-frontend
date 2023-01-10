@@ -1,0 +1,7 @@
+.select-vehicle {
+  display: flex;
+  justify-content: center;
+}
+.select-vehicle-icon{
+  width:30%;
+}

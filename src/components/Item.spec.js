@@ -1,8 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {
+  render, screen,
+} from '@testing-library/react';
 import Item from './Item';
 import '@testing-library/jest-dom';
 
+jest.mock('../screens/SelectJourney', () => () => <div data-testid="SelectJourney" />);
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');
   return {
@@ -13,7 +16,7 @@ jest.mock('react-router-dom', () => {
 
 let item = {};
 let details = {};
-describe('Basic functionality', () => {
+describe('Item', () => {
   item = {
     id: 'FAKE_TAXI_ID',
     fulfillment_id: 'FAKE_TAXI_FULFILLMENT_ID',
