@@ -17,11 +17,13 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [bppUrl, setBppUrl] = useState('');
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
       if (result && result.length > 0) {
         const catalogs = result.flatMap((r) => r.message.catalog);
+        setBppUrl(result[0]?.context?.bpp_uri);
         setSearchResults(catalogs);
         setLoading(false);
         setSearchResultsLoaded(true);
@@ -37,7 +39,7 @@ const SearchResult = () => {
 
   const onSelectJourney = async (item) => {
     const data = {
-      context: ContextBuilder.getContext('select'),
+      context: ContextBuilder.getContext('select', bppUrl),
       message: {
         order: {
           items: [
