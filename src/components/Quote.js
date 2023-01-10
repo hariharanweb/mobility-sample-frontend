@@ -28,7 +28,7 @@ const Quote = ({ bookingInformation }) => (
 
     </Typography>
     <div className="select-vehicle">
-      <img src={bookingInformation[0]?.message?.quote?.items[0]?.descriptor?.images} alt="vehicle-img" className="select-vehicle-icon" />
+      <img src={bookingInformation[0]?.message?.order?.provider?.descriptor?.images[0]} alt="vehicle-img" className="select-vehicle-icon" />
     </div>
     <Typography
       variant="body1"
@@ -38,7 +38,7 @@ const Quote = ({ bookingInformation }) => (
     >
       Fulfillment id :
       {' '}
-      {bookingInformation[0]?.message?.quote?.items[0]?.fulfillment_id}
+      {bookingInformation[0]?.message?.order?.items[0]?.fulfillment_id}
     </Typography>
     <Typography
       variant="body1"
@@ -48,18 +48,18 @@ const Quote = ({ bookingInformation }) => (
     >
       Taxi id :
       {' '}
-      {bookingInformation[0]?.message?.quote?.provider?.id}
+      {bookingInformation[0]?.message?.order?.provider?.id}
     </Typography>
     <Typography variant="body1" display="block" gutterBottom>
       Taxi Name:
       {' '}
-      {bookingInformation[0]?.message?.quote?.provider?.categories[0]?.descriptor?.name}
+      {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
     </Typography>
     <Typography variant="body1" display="block" gutterBottom>
       Taxi Model:
       {' '}
       {
-          bookingInformation[0]?.message?.quote?.provider?.items[0]?.tags?.NameOfModel
+          bookingInformation[0]?.message?.order?.items[0]?.tags?.NameOfModel
         }
     </Typography>
     <Typography
@@ -72,7 +72,7 @@ const Quote = ({ bookingInformation }) => (
       Taxi Fare Breakup
     </Typography>
     <List disablePadding>
-      {bookingInformation[0]?.message?.quote?.quote?.breakup.map((product) => (
+      {bookingInformation[0]?.message?.order?.quote?.breakup.map((product) => (
         <ListItem key={product.name} sx={{ py: 0, px: 0 }}>
           <ListItemText primary={product.title} />
           <Typography variant="body2">
@@ -88,12 +88,12 @@ const Quote = ({ bookingInformation }) => (
         <ListItemText primary="Total" />
         <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           ₹
-          {bookingInformation[0]?.message?.quote?.quote?.price?.value}
+          {bookingInformation[0]?.message?.order?.quote?.price?.value}
         </Typography>
       </ListItem>
     </List>
     <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-      <Button variant="contained">Click here to Confirm</Button>
+      <Button variant="contained">Proceed</Button>
     </FormControl>
   </Box>
 );
