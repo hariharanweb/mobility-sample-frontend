@@ -1,31 +1,18 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
   Button, FormControl, List, ListItem, ListItemText,
 } from '@mui/material';
 import './Quote.css';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 const Quote = ({ bookingInformation }) => (
-  <Box sx={style}>
+  <div className="booking-details">
     <Typography
       variant="h6"
       textAlign="center"
       fontSize="2em"
     >
-      Booking Confirmation
-
+      Booking Details
     </Typography>
     <div className="select-vehicle">
       <img src={bookingInformation[0]?.message?.order?.provider?.descriptor?.images[0]} alt="vehicle-img" className="select-vehicle-icon" />
@@ -71,7 +58,7 @@ const Quote = ({ bookingInformation }) => (
     >
       Taxi Fare Breakup
     </Typography>
-    <List disablePadding>
+    <List sx={{ px: 2 }}>
       {bookingInformation[0]?.message?.order?.quote?.breakup.map((product) => (
         <ListItem key={product.name} sx={{ py: 0, px: 0 }}>
           <ListItemText primary={product.title} />
@@ -84,7 +71,7 @@ const Quote = ({ bookingInformation }) => (
         </ListItem>
       ))}
 
-      <ListItem sx={{ py: 0, px: 0 }}>
+      <ListItem>
         <ListItemText primary="Total" />
         <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           ₹
@@ -92,10 +79,10 @@ const Quote = ({ bookingInformation }) => (
         </Typography>
       </ListItem>
     </List>
-    <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-      <Button variant="contained">Proceed</Button>
+    <FormControl fullWidth variant="filled">
+      <Button variant="contained">Click to Proceed</Button>
     </FormControl>
-  </Box>
+  </div>
 );
 
 export default Quote;
