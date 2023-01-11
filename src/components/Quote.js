@@ -1,67 +1,27 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
   Button, FormControl, List, ListItem, ListItemText,
 } from '@mui/material';
 import './Quote.css';
+import Grid from '@mui/material/Grid';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 const Quote = ({ bookingInformation }) => (
-  <Box sx={style}>
+  <Grid sx={{
+    maxWidth: 400,
+    flexGrow: 1,
+  }}
+  >
     <Typography
       variant="h6"
       textAlign="center"
       fontSize="2em"
     >
-      Booking Confirmation
-
+      Booking Details
     </Typography>
-    <div className="select-vehicle">
+    <Grid sx={{ px: 10 }}>
       <img src={bookingInformation[0]?.message?.order?.provider?.descriptor?.images[0]} alt="vehicle-img" className="select-vehicle-icon" />
-    </div>
-    <Typography
-      variant="body1"
-      display="block"
-      gutterBottom
-      bookingInformation-testid="booking-id"
-    >
-      Fulfillment id :
-      {' '}
-      {bookingInformation[0]?.message?.order?.items[0]?.fulfillment_id}
-    </Typography>
-    <Typography
-      variant="body1"
-      display="block"
-      gutterBottom
-      bookingInformation-testid="booking-id"
-    >
-      Taxi id :
-      {' '}
-      {bookingInformation[0]?.message?.order?.provider?.id}
-    </Typography>
-    <Typography variant="body1" display="block" gutterBottom>
-      Taxi Name:
-      {' '}
-      {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
-    </Typography>
-    <Typography variant="body1" display="block" gutterBottom>
-      Taxi Model:
-      {' '}
-      {
-          bookingInformation[0]?.message?.order?.items[0]?.tags?.NameOfModel
-        }
-    </Typography>
+    </Grid>
     <Typography
       variant="h6"
       display="block"
@@ -71,31 +31,33 @@ const Quote = ({ bookingInformation }) => (
     >
       Taxi Fare Breakup
     </Typography>
-    <List disablePadding>
-      {bookingInformation[0]?.message?.order?.quote?.breakup.map((product) => (
-        <ListItem key={product.name} sx={{ py: 0, px: 0 }}>
-          <ListItemText primary={product.title} />
-          <Typography variant="body2">
-            {' '}
+    <Grid sx={{ px: 5 }}>
+      <List>
+        {bookingInformation[0]?.message?.order?.quote?.breakup.map((product) => (
+          <ListItem key={product.name}>
+            <ListItemText primary={product.title} />
+            <Typography variant="body2">
+              {' '}
+              ₹
+              {' '}
+              {product?.price?.value}
+            </Typography>
+          </ListItem>
+        ))}
+
+        <ListItem>
+          <ListItemText primary="Total" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
             ₹
-            {' '}
-            {product?.price?.value}
+            {bookingInformation[0]?.message?.order?.quote?.price?.value}
           </Typography>
         </ListItem>
-      ))}
-
-      <ListItem sx={{ py: 0, px: 0 }}>
-        <ListItemText primary="Total" />
-        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          ₹
-          {bookingInformation[0]?.message?.order?.quote?.price?.value}
-        </Typography>
-      </ListItem>
-    </List>
-    <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-      <Button variant="contained">Proceed</Button>
-    </FormControl>
-  </Box>
+      </List>
+      <FormControl sx={{ px: 10 }} variant="filled">
+        <Button variant="contained">Tap To Proceed</Button>
+      </FormControl>
+    </Grid>
+  </Grid>
 );
 
 export default Quote;
