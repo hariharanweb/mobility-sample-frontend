@@ -130,7 +130,10 @@ const trainCatalog = {
             maximum_value: '1560',
           },
           time: {
-            timestamp: '2023-01-09T16:55:00+00:00',
+            range: {
+              start: '2023-01-09T16:55:00+00:00',
+              end: '2023-01-09T18:45:00+00:00',
+            },
           },
         },
         {
@@ -145,7 +148,10 @@ const trainCatalog = {
             value: '825',
           },
           time: {
-            timestamp: '2023-01-09T16:55:00+00:00',
+            range: {
+              start: '2023-01-09T16:55:00+00:00',
+              end: '2023-01-09T18:45:00+00:00',
+            },
           },
           category_id: '3A',
         },
@@ -161,7 +167,10 @@ const trainCatalog = {
             value: '1250',
           },
           time: {
-            timestamp: '2023-01-09T16:55:00+00:00',
+            range: {
+              start: '2023-01-09T16:55:00+00:00',
+              end: '2023-01-09T18:45:00+00:00',
+            },
           },
           category_id: '2A',
         },
@@ -177,7 +186,10 @@ const trainCatalog = {
             value: '1560',
           },
           time: {
-            timestamp: '2023-01-09T16:55:00+00:00',
+            range: {
+              start: '2023-01-09T16:55:00+00:00',
+              end: '2023-01-09T18:45:00+00:00',
+            },
           },
           category_id: '1A',
         },

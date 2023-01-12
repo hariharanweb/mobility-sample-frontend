@@ -33,7 +33,7 @@ const Items = ({
     </AccordionSummary>
     <AccordionDetails>
       {items.map((item) => {
-        const category = _.find(categories, { id: item.category_id }) || item.category_id;
+        const category = _.find(categories, { id: item.category_id });
         const categoryDecription = category ? category.description : item.category_id;
         return (
           displayItem(item, categoryDecription, onSelectJourney)

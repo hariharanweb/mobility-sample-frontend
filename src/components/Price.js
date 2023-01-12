@@ -4,17 +4,17 @@ import Typography from '@mui/material/Typography';
 const Price = ({ price }) => (
   <>
     {!!price.value && (
-    <Typography variant="body2" gutterBottom>
+    <Typography variant="subtitle2" gutterBottom>
       ₹&nbsp;
         {price.value}
     </Typography>
     )}
     {!!price.minimum_value && !!price.maximum_value && (
-    <Typography variant="body2" gutterBottom>
-      ₹&nbsp;
-        {price.minimum_value}
-      {' '}
-      - ₹&nbsp;
+    <Typography variant="subtitle2" gutterBottom>
+      ₹
+      {price.minimum_value}
+      &nbsp;-&nbsp;
+      ₹
       {price.maximum_value}
     </Typography>
     )}

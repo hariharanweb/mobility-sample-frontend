@@ -4,6 +4,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Price from './Price';
+import Time from './Time';
 
 const Item = ({
   item, category, isParent, onSelectJourney,
@@ -11,14 +12,14 @@ const Item = ({
   const onSelect = () => {
     onSelectJourney(item);
   };
-  const containerStyle = isParent ? 'item-container' : 'item-container item-with-border';
+  const containerStyle = isParent ? '' : 'item-with-border';
   return (
-    <Grid container className={containerStyle}>
+    <Grid container className={containerStyle} display="flex">
       { item.descriptor.images && item.descriptor.images.length > 0
       && (
       <Grid
         item
-        xs={2}
+        xs={1}
         alignItems="center"
         justifyContent="left"
         display="flex"
@@ -63,17 +64,31 @@ const Item = ({
         item
         xs={2}
         alignItems="center"
-        justifyContent="left"
+        justifyContent="center"
         display="flex"
       >
         <Price price={item.price} />
       </Grid>
+      {
+        item.time
+        && (
+        <Grid
+          item
+          xs={1}
+          alignItems="center"
+          justifyContent="left"
+          display="flex"
+        >
+          <Time time={item.time} />
+        </Grid>
+        )
+      }
       {!isParent && (
       <Grid
         item
         xs={3}
-        alignItems="center"
-        justifyContent="center"
+        alignItems="flex-end"
+        justifyContent="flex-end"
         display="flex"
         marginX={1}
       >
