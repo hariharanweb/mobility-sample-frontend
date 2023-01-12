@@ -193,6 +193,62 @@ const trainCatalog = {
           },
           category_id: '1A',
         },
+        {
+          id: 'TRAIN_12050',
+          descriptor: {
+            name: 'GATIMAAN EXP',
+            code: 'TRAIN_12050',
+          },
+          price: {
+            currency: 'INR',
+            minimum_value: '755',
+            maximum_value: '1485',
+          },
+          time: {
+            range: {
+              start: '2023-01-09T08:10:00+00:00',
+              end: '2023-01-09T09:50:00+00:00',
+            },
+          },
+        },
+        {
+          id: 'TRAIN_12050_CC',
+          parent_item_id: 'TRAIN_12050',
+          descriptor: {
+            name: 'GATIMAAN EXP',
+            code: 'TRAIN_12050_CC',
+          },
+          price: {
+            currency: 'INR',
+            value: '755',
+          },
+          time: {
+            range: {
+              start: '2023-01-09T08:10:00+00:00',
+              end: '2023-01-09T09:50:00+00:00',
+            },
+          },
+          category_id: 'CC',
+        },
+        {
+          id: 'TRAIN_12050_EC',
+          parent_item_id: 'TRAIN_12050',
+          descriptor: {
+            name: 'GATIMAAN EXP',
+            code: 'TRAIN_12050_EC',
+          },
+          price: {
+            currency: 'INR',
+            value: '1485',
+          },
+          time: {
+            range: {
+              start: '2023-01-09T08:10:00+00:00',
+              end: '2023-01-09T09:50:00+00:00',
+            },
+          },
+          category_id: 'EC',
+        },
       ],
     },
   ],
