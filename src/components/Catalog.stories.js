@@ -89,9 +89,106 @@ const catalog = {
     },
   ],
 };
+const trainCatalog = {
+  'bpp/descriptor': {
+    name: 'IRCTC',
+    code: 'IRCTC',
+  },
+  'bpp/providers': [
+    {
+      id: 'IRCTC',
+      descriptor: {
+        name: 'IRCTC',
+        images: [
+          'https://www.irctc.co.in/nget/assets/images/secondry-logo.png',
+        ],
+      },
+      categories: [
+        {
+          id: '3A',
+          description: '3 AC',
+        },
+        {
+          id: '2A',
+          description: '2 AC',
+        },
+        {
+          id: '1A',
+          description: '1 AC',
+        },
+      ],
+      items: [
+        {
+          id: 'TRAIN_22222',
+          descriptor: {
+            name: 'CSMT RAJDHANI',
+            code: 'TRAIN_22222',
+          },
+          price: {
+            currency: 'INR',
+            minimum_value: '825',
+            maximum_value: '1560',
+          },
+          time: {
+            timestamp: '2023-01-09T16:55:00+00:00',
+          },
+        },
+        {
+          id: 'TRAIN_22222_3A',
+          parent_item_id: 'TRAIN_22222',
+          descriptor: {
+            name: 'CSMT RAJDHANI 3A',
+            code: 'TRAIN_22222_3A',
+          },
+          price: {
+            currency: 'INR',
+            value: '825',
+          },
+          time: {
+            timestamp: '2023-01-09T16:55:00+00:00',
+          },
+          category_id: '3A',
+        },
+        {
+          id: 'TRAIN_22222_2A',
+          parent_item_id: 'TRAIN_22222',
+          descriptor: {
+            name: 'CSMT RAJDHANI 2A',
+            code: 'TRAIN_22222_2A',
+          },
+          price: {
+            currency: 'INR',
+            value: '1250',
+          },
+          time: {
+            timestamp: '2023-01-09T16:55:00+00:00',
+          },
+          category_id: '2A',
+        },
+        {
+          id: 'TRAIN_22222_1A',
+          parent_item_id: 'TRAIN_22222',
+          descriptor: {
+            name: 'CSMT RAJDHANI 1A',
+            code: 'TRAIN_22222_1A',
+          },
+          price: {
+            currency: 'INR',
+            value: '1560',
+          },
+          time: {
+            timestamp: '2023-01-09T16:55:00+00:00',
+          },
+          category_id: '1A',
+        },
+      ],
+    },
+  ],
+};
 export default {
   title: 'Catalog',
   component: Catalog,
 };
 
-export const Primary = () => <Catalog catalog={catalog}>Button</Catalog>;
+export const Primary = () => <Catalog catalog={catalog} />;
+export const ParentChild = () => <Catalog catalog={trainCatalog} />;

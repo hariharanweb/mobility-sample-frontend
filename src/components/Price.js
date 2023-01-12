@@ -1,0 +1,24 @@
+import React from 'react';
+import Typography from '@mui/material/Typography';
+
+const Price = ({ price }) => (
+  <>
+    {!!price.value && (
+    <Typography variant="body2" gutterBottom>
+      ₹&nbsp;
+        {price.value}
+    </Typography>
+    )}
+    {!!price.minimum_value && !!price.maximum_value && (
+    <Typography variant="body2" gutterBottom>
+      ₹&nbsp;
+        {price.minimum_value}
+      {' '}
+      - ₹&nbsp;
+      {price.maximum_value}
+    </Typography>
+    )}
+  </>
+);
+
+export default Price;

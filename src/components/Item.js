@@ -3,13 +3,19 @@ import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Price from './Price';
 
-const Item = ({ item, onSelectJourney }) => {
+const Item = ({
+  item, category, isParent, onSelectJourney,
+}) => {
   const onSelect = () => {
     onSelectJourney(item);
   };
+  const containerStyle = isParent ? 'item-container' : 'item-container item-with-border';
   return (
-    <Grid container className="item-container">
+    <Grid container className={containerStyle}>
+      { item.descriptor.images && item.descriptor.images.length > 0
+      && (
       <Grid
         item
         xs={2}
@@ -25,6 +31,7 @@ const Item = ({ item, onSelectJourney }) => {
           alt="taxi-icon"
         />
       </Grid>
+      )}
       <Grid
         item
         xs={4}
@@ -33,9 +40,24 @@ const Item = ({ item, onSelectJourney }) => {
         display="flex"
         paddingLeft={2}
       >
+        {isParent
+        && (
         <Typography variant="h6" gutterBottom>
           {item.descriptor.name}
         </Typography>
+        )}
+        {!isParent && category
+        && (
+        <Typography variant="h6" gutterBottom>
+          {category}
+        </Typography>
+        )}
+        {!isParent && !category
+        && (
+        <Typography variant="h6" gutterBottom>
+          {item.descriptor.name}
+        </Typography>
+        )}
       </Grid>
       <Grid
         item
@@ -44,11 +66,9 @@ const Item = ({ item, onSelectJourney }) => {
         justifyContent="left"
         display="flex"
       >
-        <Typography variant="body2" gutterBottom>
-          ₹&nbsp;
-          {item.price.value}
-        </Typography>
+        <Price price={item.price} />
       </Grid>
+      {!isParent && (
       <Grid
         item
         xs={3}
@@ -63,6 +83,7 @@ const Item = ({ item, onSelectJourney }) => {
           </Button>
         </Typography>
       </Grid>
+      )}
     </Grid>
   );
 };
