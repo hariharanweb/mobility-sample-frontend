@@ -15,11 +15,11 @@ const Header = ({ title, onBackClick }) => (
   >
     {onBackClick
     && (
-    <IconButton color="inherit" onClick={onBackClick}>
-      <ArrowBackIosNewIcon />
+    <IconButton color="inherit" onClick={onBackClick} size="small">
+      <ArrowBackIosNewIcon fontSize="inherit" />
     </IconButton>
     )}
-    <Typography variant="h5">
+    <Typography variant="h5" paddingLeft={1}>
       {title}
     </Typography>
   </Grid>

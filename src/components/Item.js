@@ -21,7 +21,7 @@ const Item = ({
         item
         xs={1}
         alignItems="center"
-        justifyContent="left"
+        justifyContent="center"
         display="flex"
         paddingLeft={2}
       >
@@ -39,23 +39,23 @@ const Item = ({
         alignItems="center"
         justifyContent="left"
         display="flex"
-        paddingLeft={2}
+        marginLeft={4}
       >
         {isParent
         && (
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6">
           {item.descriptor.name}
         </Typography>
         )}
         {!isParent && category
         && (
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6">
           {category}
         </Typography>
         )}
         {!isParent && !category
         && (
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6">
           {item.descriptor.name}
         </Typography>
         )}
