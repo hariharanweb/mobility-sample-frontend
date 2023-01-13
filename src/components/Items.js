@@ -7,19 +7,19 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Item from './Item';
 import './Items.css';
 
-const displayItem = (item, category, onSelectJourney, providerId) => (
+const displayItem = (item, category, onSelectJourney, provider) => (
   <Item
     key={item.id}
     item={item}
     onSelectJourney={onSelectJourney}
     category={category}
     isParent={false}
-    providerId={providerId}
+    provider={provider}
   />
 );
 
 const Items = ({
-  parentItem, categories, items, onSelectJourney, providerId,
+  parentItem, categories, items, onSelectJourney, provider,
 }) => (
   <Accordion className="items-accordian-container">
     <AccordionSummary
@@ -30,7 +30,7 @@ const Items = ({
       <Item
         isParent
         item={parentItem}
-        providerId={providerId}
+        provider={provider}
       />
     </AccordionSummary>
     <AccordionDetails>
@@ -38,7 +38,7 @@ const Items = ({
         const category = _.find(categories, { id: item.category_id });
         const categoryDecription = category ? category.description : item.category_id;
         return (
-          displayItem(item, categoryDecription, onSelectJourney, providerId)
+          displayItem(item, categoryDecription, onSelectJourney, provider)
         );
       })}
     </AccordionDetails>

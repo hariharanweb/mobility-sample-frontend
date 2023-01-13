@@ -11,7 +11,7 @@ const SelectJourney = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { message_id } = location.state;
+  const { message_id, provider } = location.state;
   const [bookingInformationLoaded, setbookingInformationLoaded] = React.useState(false);
   const [bookingInformation, setbookingInformation] = React.useState({});
   const [loadingJourney, setLoadingJourney] = React.useState(true);
@@ -44,6 +44,7 @@ const SelectJourney = () => {
       <Grid item xs={12}>
         <Quote
           bookingInformation={bookingInformation}
+          provider={provider}
         />
       </Grid>
     </Grid>

@@ -7,10 +7,10 @@ import './Quote.css';
 import Provider from './Provider';
 import './Item.css';
 
-const Quote = ({ bookingInformation }) => (
+const Quote = ({ bookingInformation, provider }) => (
   <Grid container paddingX={4}>
     <Grid container paddingY={2}>
-      <Provider provider={bookingInformation[0]?.message?.order?.provider} />
+      <Provider provider={provider} />
       <Grid item xs={11} display="flex" alignItems="center" paddingLeft={6}>
         <Typography variant="h6" gutterBottom>
           {bookingInformation[0]?.message?.order?.provider?.descriptor?.name}

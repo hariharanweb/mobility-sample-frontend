@@ -7,10 +7,10 @@ import Price from './Price';
 import Time from './Time';
 
 const Item = ({
-  item, category, isParent, onSelectJourney, providerId,
+  item, category, isParent, onSelectJourney, provider,
 }) => {
   const onSelect = () => {
-    onSelectJourney(item, providerId);
+    onSelectJourney(item, provider);
   };
   const containerStyle = isParent ? '' : 'item-with-border';
   return (

@@ -37,13 +37,13 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  const onSelectJourney = async (item, providerId) => {
+  const onSelectJourney = async (item, provider) => {
     const data = {
       context: ContextBuilder.getContext('select', bppUrl),
       message: {
         order: {
           provider: {
-            id: providerId,
+            id: provider.id,
           },
           items: [
             {
@@ -58,6 +58,7 @@ const SearchResult = () => {
       },
     };
     const response = await Api.post('/select', data);
+    response.provider = provider;
     if (response.message_id) {
       navigate('/select', { state: { ...response } });
     }
