@@ -1,14 +1,12 @@
 /* eslint camelcase: 0 */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { IconButton } from '@mui/material';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Api from '../api/Api';
 import Catalog from '../components/Catalog';
 import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
+import Header from '../components/Header';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -64,13 +62,6 @@ const SearchResult = () => {
   };
   const displayCatalogs = () => (
     <Grid container>
-      <Typography variant="h4" gutterBottom paddingX={4} paddingY={1}>
-        <IconButton color="black" onClick={gotoHome}>
-          <ArrowBackIosNewIcon fontSize="0.9em" />
-        </IconButton>
-        {' '}
-        Search Results
-      </Typography>
       <Grid item xs={12}>
         {searchResults.map((catalog) => (
           <Catalog catalog={catalog} onSelectJourney={onSelectJourney} />
@@ -78,7 +69,12 @@ const SearchResult = () => {
       </Grid>
     </Grid>
   );
-  return loading ? <Loader /> : displayCatalogs();
+  return (
+    <>
+      <Header title="Search Results" onBackClick={gotoHome} />
+      {loading ? <Loader /> : displayCatalogs()}
+    </>
+  );
 };
 
 export default SearchResult;
