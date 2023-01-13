@@ -1,3 +1,13 @@
-.select-vehicle-icon{
-  width:90%;
+.quote-container {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 2em;
+    border: 1px solid grey;
+    margin-bottom: 1em;
+  }
+ 
+@media only screen and (min-width: 600px) {
+    .quote-fare-breakup {
+        padding: 0 35%;
+  }
 }
