@@ -38,7 +38,7 @@ const QuoteProvider = ({ bookingInformation }) => (
           height={32}
           width={32}
           src={bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images[0]}
-          alt="taxi-icon"
+          alt="vehicle-icon"
         />
         )}
       </Grid>
