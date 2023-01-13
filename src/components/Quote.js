@@ -13,7 +13,7 @@ const Quote = ({ bookingInformation }) => (
       <Provider provider={bookingInformation[0]?.message?.order?.provider} />
       <Grid item xs={11} display="flex" alignItems="center" paddingLeft={6}>
         <Typography variant="h6" gutterBottom>
-          {bookingInformation[0]?.message?.order?.provider.descriptor.name}
+          {bookingInformation[0]?.message?.order?.provider?.descriptor?.name}
         </Typography>
       </Grid>
     </Grid>
@@ -33,12 +33,14 @@ const QuoteProvider = ({ bookingInformation }) => (
         display="flex"
         paddingLeft={5}
       >
+        {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images && (
         <img
           height={32}
           width={32}
           src={bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images[0]}
           alt="taxi-icon"
         />
+        )}
       </Grid>
       <Grid
         item
