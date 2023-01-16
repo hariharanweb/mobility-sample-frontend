@@ -29,6 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
@@ -84,6 +85,14 @@
     "pre-commit": "^1.2.2",
     "prop-types": "^15.8.1",
     "webpack": "^5.75.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/api/*.js",
+      "src/components/*.js",
+      "src/screens/*.js",
+      "!src/**/*.stories.js"
+    ]
   },
   "pre-commit": [
     "lint"
