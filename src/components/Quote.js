@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import {
-  Grid, FormControl, Button, List, ListItem, ListItemText,
+  Grid, FormControl, Button, List, ListItem, ListItemText, IconButton, InputAdornment, TextField,
 } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 import './Quote.css';
 import Provider from './Provider';
 import './Item.css';
@@ -88,6 +89,7 @@ const QuoteProvider = ({ bookingInformation }) => (
     </Grid>
     <Grid sx={{
       maxWidth: '100%',
+      minWidth: '50%',
       flexGrow: 1,
     }}
     >
@@ -122,6 +124,80 @@ const QuoteProvider = ({ bookingInformation }) => (
             </Typography>
           </ListItem>
         </List>
+      </Grid>
+    </Grid>
+    <Grid sx={{
+
+      maxWidth: '100%',
+      flexGrow: 1,
+      minWidth: '50%',
+    }}
+    >
+      <Typography
+        variant="h6"
+        fontSize="1.5em"
+        textAlign="center"
+      >
+        User Details
+      </Typography>
+      <Grid
+        className="quote-fare-breakup"
+      >
+        <TextField
+          fullWidth
+          sx={{ m: 1 }}
+          variant="standard"
+          value="name"
+          className="locationSearch-textbox"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  edge="end"
+                >
+                  <CancelIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <TextField
+          fullWidth
+          sx={{ m: 1 }}
+          variant="standard"
+          value="name"
+          className="locationSearch-textbox"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  edge="end"
+                >
+                  <CancelIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          fullWidth
+          sx={{ m: 1 }}
+          variant="standard"
+          value="name"
+          className="locationSearch-textbox"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  edge="end"
+                >
+                  <CancelIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
       </Grid>
     </Grid>
 
