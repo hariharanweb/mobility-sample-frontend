@@ -45,7 +45,7 @@ const SearchScreen = () => {
   };
   return (
     <>
-      <Header title="ONDC Sample App" />
+      <Header title="Mobililty" />
       <Grid container paddingX={4} direction="column">
         {isLoaded && (
         <Grid item marginRight={1}>

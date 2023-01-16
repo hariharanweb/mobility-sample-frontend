@@ -40,9 +40,7 @@ const providerItems = (items, categories, onSelectJourney, provider) => {
 };
 
 const bppProvider = (provider, onSelectJourney) => (
-
   <Grid container paddingX={4} key={provider.id}>
-
     <Provider provider={provider} />
     {providerItems(provider.items, provider.categories, onSelectJourney, provider)}
   </Grid>

@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 
 const Provider = ({ provider }) => (
   <div>
-    <Grid container paddingY={2}>
+    <Grid container paddingBottom={1}>
       {provider?.descriptor?.images && provider?.descriptor?.images.length > 0 && (
       <Grid item xs={2} className="provider-image">
         <img height={48} width={48} src={provider?.descriptor?.images[0]} alt="header-icon" />

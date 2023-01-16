@@ -12,6 +12,7 @@ const Header = ({ title, onBackClick }) => (
     paddingY={2}
     marginBottom={2}
     alignItems="center"
+    justify="space-between"
   >
     {onBackClick
     && (
@@ -19,9 +20,20 @@ const Header = ({ title, onBackClick }) => (
       <ArrowBackIosNewIcon fontSize="inherit" />
     </IconButton>
     )}
-    <Typography variant="h5" paddingLeft={1}>
+    <Typography inline variant="h5" paddingLeft={1}>
       {title}
     </Typography>
+    <Grid item marginLeft="auto" marginRight={4}>
+      <Typography
+        variant="body2"
+        paddingLeft={1}
+        justifyContent="flex-end"
+        color="grey"
+        align="right"
+      >
+        Powered by ONDC
+      </Typography>
+    </Grid>
   </Grid>
 );
 
