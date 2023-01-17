@@ -15,7 +15,7 @@ const InputField = ({
     if (e.target.value.match(pattern) || e.target.value.length === 0) {
       setErrorText('');
     } else {
-      setErrorText('wrong');
+      setErrorText('invalid input');
     }
   };
 

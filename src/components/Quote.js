@@ -28,6 +28,7 @@ const QuoteProvider = ({ bookingInformation }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const formatValue = (value) => value;
+
   return (
     <>
       <Grid container className="quote-container">
@@ -135,7 +136,7 @@ const QuoteProvider = ({ bookingInformation }) => {
         <Grid
           className="quote-fare-breakup"
         >
-          <InputField pattern="[a-zA-Z]" label="name" value={name} setValue={setName} formatValueFunc={formatValue} />
+          <InputField pattern="^[a-zA-Z ]+$" label="name" value={name} setValue={setName} formatValueFunc={formatValue} />
           <InputField pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]" label="email" value={email} setValue={setEmail} formatValueFunc={formatValue} />
           <InputField pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" label="phone number" value={phoneNumber} setValue={setPhoneNumber} formatValueFunc={formatValue} />
 
