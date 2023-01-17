@@ -147,6 +147,7 @@ const QuoteProvider = ({ bookingInformation }) => {
           <Button
             fullWidth
             variant="contained"
+            disabled={!(name.length > 0 && email.match('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]') && phoneNumber.length === 10)}
           >
             Confirm
           </Button>
