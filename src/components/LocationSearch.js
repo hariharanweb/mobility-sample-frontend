@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
 import { Autocomplete } from '@react-google-maps/api';
-import CancelIcon from '@mui/icons-material/Cancel';
 import './LocationSearch.css';
-import { IconButton, InputAdornment } from '@mui/material';
+import InputField from './InputField';
 
 const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
-  const [disabled, setDisabled] = useState(false);
 
   const onLoad = (data) => {
     setAutoComplete(data);
-  };
-  const onChange = (e) => {
-    setDisabled(!e.target.value.length > 0);
-    setLocation({ display: e.target.value, latLong: '' });
   };
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
@@ -32,35 +25,15 @@ const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
       onLocationChange(locationObj);
     }
   };
-  const clearTextField = () => {
-    setLocation({ display: '', latLong: '' });
-    onLocationChange({ display: '', latLong: '' });
-    setDisabled(true);
+
+  const formatLocation = (locationName) => {
+    const formattedLocation = { display: locationName, latLong: '' };
+    return formattedLocation;
   };
+
   return (
     <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-      <TextField
-        fullWidth
-        sx={{ m: 1 }}
-        label={label}
-        variant="standard"
-        value={location.display}
-        onChange={onChange}
-        className="locationSearch-textbox"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                onClick={clearTextField}
-                edge="end"
-                disabled={disabled}
-              >
-                <CancelIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+      <InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} formatValueFunc={formatLocation} updateValue={onLocationChange} />
     </Autocomplete>
   );
 };
