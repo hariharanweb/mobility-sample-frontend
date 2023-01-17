@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import LocationSearch from '../components/LocationSearch';
 import Api from '../api/Api';
-import './SearchScreen.css';
 import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
+import Header from '../components/Header';
 
 const SearchScreen = () => {
   const { isLoaded } = GooglePlacesApiLoader({
@@ -45,12 +44,11 @@ const SearchScreen = () => {
     navigate('/search', { state: { ...response } });
   };
   return (
-    <Grid container paddingX={4} direction="column">
-      <Typography variant="h4" gutterBottom paddingY={1}>
-        ONDC Sample App
-      </Typography>
-      {isLoaded && (
-        <div className="searchScreen-textFieldGroup">
+    <>
+      <Header title="Mobililty" />
+      <Grid container paddingX={4} direction="column">
+        {isLoaded && (
+        <Grid item marginRight={1}>
           <LocationSearch
             label="From"
             initialLocation={fromLocation}
@@ -61,21 +59,22 @@ const SearchScreen = () => {
             initialLocation={toLocation}
             onLocationChange={setToLocation}
           />
-        </div>
-      )}
-      <Grid item paddingY={2}>
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={onSearchClick}
-          disabled={
+        </Grid>
+        )}
+        <Grid item paddingY={2}>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={onSearchClick}
+            disabled={
             !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
           }
-        >
-          Find Rides
-        </Button>
+          >
+            Find Rides
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 
