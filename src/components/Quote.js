@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import {
-  Grid, FormControl, Button, List, ListItem, ListItemText,
+  Grid, Button, List, ListItem, ListItemText,
 } from '@mui/material';
 import './Quote.css';
 import Provider from './Provider';
@@ -34,7 +34,7 @@ const QuoteProvider = ({ bookingInformation }) => {
 
         <Grid
           item
-          xs={2}
+          xs={3}
           alignItems="center"
           justifyContent="left"
           display="flex"
@@ -64,7 +64,7 @@ const QuoteProvider = ({ bookingInformation }) => {
         </Grid>
         <Grid
           item
-          xs={2}
+          xs={4}
           alignItems="center"
           justifyContent="left"
           display="flex"
@@ -76,20 +76,6 @@ const QuoteProvider = ({ bookingInformation }) => {
             {bookingInformation[0]?.message?.order?.quote?.price?.value}
 
           </Typography>
-        </Grid>
-
-        <Grid
-          item
-          xs={3}
-          alignItems="center"
-          justifyContent="center"
-          display="flex"
-        >
-
-          <FormControl sx={{ px: 10 }} variant="filled">
-            <Button variant="contained">Confirm and Proceed</Button>
-          </FormControl>
-
         </Grid>
 
       </Grid>
@@ -154,6 +140,16 @@ const QuoteProvider = ({ bookingInformation }) => {
           <InputField label="phone number" value={phoneNumber} setValue={setPhoneNumber} formatValueFunc={formatValue} />
 
         </Grid>
+        <div
+          className="quote-form-button"
+        >
+          <Button
+            fullWidth
+            variant="contained"
+          >
+            Confirm
+          </Button>
+        </div>
       </Grid>
 
     </>

@@ -5,7 +5,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 const InputField = ({
   label, value, setValue, formatValueFunc, updateValue,
 }) => {
-  const [disabled, setDisabled] = useState(false);
+  const disabledState = !value.length > 0;
+  const [disabled, setDisabled] = useState(disabledState);
 
   const onChange = (e) => {
     setDisabled(!e.target.value.length > 0);
