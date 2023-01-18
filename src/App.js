@@ -4,6 +4,7 @@ import SearchScreen from './screens/SearchScreen';
 import SearchResult from './screens/SearchResult';
 import InvoiceScreen from './screens/InvoiceScreen';
 import SelectJourney from './screens/SelectJourney';
+import InitScreen from './screens/InitScreen';
 
 const App = () => (
   <div>
@@ -13,6 +14,7 @@ const App = () => (
         <Route path="/search" element={<SearchResult />} />
         <Route path="/invoice" element={<InvoiceScreen />} />
         <Route path="/select" element={<SelectJourney />} />
+        <Route path="/init" element={<InitScreen />} />
       </Routes>
     </BrowserRouter>
   </div>

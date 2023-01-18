@@ -5,7 +5,7 @@ import Item from './Item';
 import Items from './Items';
 import Provider from './Provider';
 
-const providerItems = (items, categories, onSelectJourney, provider) => {
+const providerItems = (items, categories, onSelectJourney, provider, fulfillments) => {
   const itemsGroupedByParent = _.groupBy(_.filter(items, (item) => !!item.parent_item_id), 'parent_item_id');
   const itemsWithoutHierarchy = items.filter(
     (item) => _.keys(itemsGroupedByParent).indexOf(item.id) < 0 && !item.parent_item_id,
@@ -20,6 +20,7 @@ const providerItems = (items, categories, onSelectJourney, provider) => {
         categories={categories}
         onSelectJourney={onSelectJourney}
         provider={provider}
+        fulfillments={fulfillments}
       />
     );
   });
@@ -29,6 +30,7 @@ const providerItems = (items, categories, onSelectJourney, provider) => {
       item={item}
       onSelectJourney={onSelectJourney}
       provider={provider}
+      fulfillments={fulfillments}
     />
   ));
   return (
@@ -39,10 +41,10 @@ const providerItems = (items, categories, onSelectJourney, provider) => {
   );
 };
 
-const bppProvider = (provider, onSelectJourney) => (
+const bppProvider = (provider, onSelectJourney, fulfillments) => (
   <Grid container paddingX={4} key={provider.id}>
     <Provider provider={provider} />
-    {providerItems(provider.items, provider.categories, onSelectJourney, provider)}
+    {providerItems(provider.items, provider.categories, onSelectJourney, provider, fulfillments)}
   </Grid>
 );
 
@@ -51,9 +53,14 @@ const Catalog = ({
   onSelectJourney,
 }) => {
   const bppProviders = catalog['bpp/providers'];
+  const fulfillments = catalog['bpp/fulfillments'];
   return (
     <div>
-      {bppProviders && bppProviders.map((provider) => bppProvider(provider, onSelectJourney))}
+      {bppProviders && bppProviders.map((provider) => bppProvider(
+        provider,
+        onSelectJourney,
+        fulfillments,
+      ))}
     </div>
   );
 };

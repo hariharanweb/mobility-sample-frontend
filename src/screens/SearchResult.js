@@ -35,7 +35,7 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  const onSelectJourney = async (item, provider) => {
+  const onSelectJourney = async (item, provider, fulfillments) => {
     const data = {
       context: ContextBuilder.getContext('select', bppUrl),
       message: {
@@ -52,6 +52,7 @@ const SearchResult = () => {
               category_id: item?.category_id,
             },
           ],
+          fulfillment: fulfillments,
         },
       },
     };
