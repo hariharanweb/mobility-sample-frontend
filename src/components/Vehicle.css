@@ -1,3 +1,7 @@
 .vehicle-registration-number {
     background: gold !important;
 }
+.vehicle-registration-number-electric {
+    background: rgb(9, 207, 144) !important;
+    color: white;
+}

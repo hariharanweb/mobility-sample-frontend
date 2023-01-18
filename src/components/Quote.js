@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import {
-  Grid, Button, List, ListItem, ListItemText,
+  Grid, Button,
 } from '@mui/material';
 import './Quote.css';
 import Provider from './Provider';
 import './Item.css';
 import InputField from './InputField';
+import PriceBreakdown from './PriceBreakdown';
 
 const Quote = ({ bookingInformation, provider, onInitJourney }) => (
   <Grid container paddingX={4}>
@@ -39,7 +40,6 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
   return (
     <>
       <Grid container className="quote-container">
-
         <Grid
           item
           xs={3}
@@ -87,43 +87,19 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
         </Grid>
 
       </Grid>
-      <Grid sx={{
-        maxWidth: '100%',
-        minWidth: '50%',
-        flexGrow: 1,
-      }}
+      <Grid
+        sx={{
+          maxWidth: '100%',
+          minWidth: '50%',
+          flexGrow: 1,
+        }}
+        paddingTop={2}
       >
-        <Typography
-          variant="h6"
-          fontSize="1.5em"
-          textAlign="center"
-        >
-          Fare Breakup
-        </Typography>
         <Grid
           className="quote-fare-breakup"
+          paddingBottom={2}
         >
-          <List>
-            {bookingInformation[0]?.message?.order?.quote?.breakup.map((product) => (
-              <ListItem key={product.name}>
-                <ListItemText primary={product.title} />
-                <Typography>
-                  {' '}
-                  ₹
-                  {' '}
-                  {product?.price?.value}
-                </Typography>
-              </ListItem>
-            ))}
-
-            <ListItem>
-              <ListItemText primary="Total" />
-              <Typography sx={{ fontWeight: 700 }}>
-                ₹
-                {bookingInformation[0]?.message?.order?.quote?.price?.value}
-              </Typography>
-            </ListItem>
-          </List>
+          <PriceBreakdown quote={bookingInformation[0]?.message?.order?.quote} />
         </Grid>
       </Grid>
       <Grid sx={{
@@ -135,7 +111,7 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
       >
         <Typography
           variant="h6"
-          fontSize="1.5em"
+          fontSize="1.2em"
           textAlign="center"
         >
           User Details

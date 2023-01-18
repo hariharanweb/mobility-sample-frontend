@@ -4,20 +4,18 @@ import './Provider.css';
 import { Typography } from '@mui/material';
 
 const Provider = ({ provider }) => (
-  <div>
-    <Grid container paddingBottom={1}>
-      {provider?.descriptor?.images && provider?.descriptor?.images.length > 0 && (
-      <Grid item xs={2} className="provider-image">
+  <Grid container paddingBottom={1} display="flex">
+    {provider?.descriptor?.images && provider?.descriptor?.images.length > 0 && (
+      <Grid item xs={1} paddingLeft={1} alignItems="flex-start">
         <img height={48} width={48} src={provider?.descriptor?.images[0]} alt="header-icon" />
       </Grid>
-      )}
-      <Grid item xs={9} display="flex" alignItems="center" paddingLeft={6}>
-        <Typography variant="h6" gutterBottom>
-          {provider.descriptor.name}
-        </Typography>
-      </Grid>
+    )}
+    <Grid item xs={11} display="flex" alignItems="center">
+      <Typography variant="h6" gutterBottom>
+        {provider.descriptor.name}
+      </Typography>
     </Grid>
-  </div>
+  </Grid>
 );
 
 export default Provider;
