@@ -4,7 +4,7 @@ import Payment from '../components/Payment';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 
-const PaymentScreen = () => {
+const InitScreen = () => {
   const loading = false;
   const displayPaymentMode = () => (
     <Grid container>
@@ -21,4 +21,4 @@ const PaymentScreen = () => {
   );
 };
 
-export default PaymentScreen;
+export default InitScreen;
