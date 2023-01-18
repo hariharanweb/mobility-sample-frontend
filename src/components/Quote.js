@@ -8,7 +8,7 @@ import Provider from './Provider';
 import './Item.css';
 import InputField from './InputField';
 
-const Quote = ({ bookingInformation, provider }) => (
+const Quote = ({ bookingInformation, provider, onInitJourney }) => (
   <Grid container paddingX={4}>
     <Grid container paddingY={2}>
       <Provider provider={provider} />
@@ -18,15 +18,22 @@ const Quote = ({ bookingInformation, provider }) => (
         </Typography>
       </Grid>
     </Grid>
-    <QuoteProvider bookingInformation={bookingInformation} />
+    <QuoteProvider bookingInformation={bookingInformation} onInitJourney={onInitJourney} />
   </Grid>
 );
 
-const QuoteProvider = ({ bookingInformation }) => {
+const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-
+  const onSubmitUserDetails = () => {
+    const userDetails = {
+      name,
+      email,
+      phone: phoneNumber,
+    };
+    onInitJourney(userDetails);
+  };
   const formatValue = (value) => value;
 
   return (
@@ -147,6 +154,7 @@ const QuoteProvider = ({ bookingInformation }) => {
         variant="contained"
         disabled={!(name.length > 0 && email.match('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]') && phoneNumber.length === 10)}
         sx={{ my: 2 }}
+        onClick={onSubmitUserDetails}
       >
         Confirm
       </Button>
