@@ -141,19 +141,15 @@ const QuoteProvider = ({ bookingInformation }) => {
           <InputField pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" label="phone number" value={phoneNumber} setValue={setPhoneNumber} formatValueFunc={formatValue} />
 
         </Grid>
-        <div
-          className="quote-form-button"
-        >
-          <Button
-            fullWidth
-            variant="contained"
-            disabled={!(name.length > 0 && email.match('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]') && phoneNumber.length === 10)}
-          >
-            Confirm
-          </Button>
-        </div>
       </Grid>
-
+      <Button
+        fullWidth
+        variant="contained"
+        disabled={!(name.length > 0 && email.match('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]') && phoneNumber.length === 10)}
+        sx={{ my: 2 }}
+      >
+        Confirm
+      </Button>
     </>
   );
 };
