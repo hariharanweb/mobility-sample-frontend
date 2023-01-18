@@ -18,7 +18,7 @@ const bookingInformation = [
       transaction_id: '47536e49-05a5-4e34-bbb3-5f882f30c2c9',
       message_id: 'ea1f839c-bb4e-4f5d-b773-468794680d87',
       timestamp: '2023-01-13T16:02:21+05:30',
-      bpp_id: 'sample_mobility_bpp',
+      bpp_id: 'sample_mobility_bpp_cabs',
       bpp_uri: 'http://localhost:3010',
     },
     message: {
