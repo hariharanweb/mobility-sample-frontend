@@ -9,7 +9,7 @@ const Header = ({ title, onBackClick }) => (
     paddingLeft={4}
     bgcolor="black"
     color="whitesmoke"
-    paddingY={2}
+    paddingY={0.5}
     marginBottom={2}
     alignItems="center"
     justify="space-between"
@@ -24,15 +24,27 @@ const Header = ({ title, onBackClick }) => (
       {title}
     </Typography>
     <Grid item marginLeft="auto" marginRight={4}>
-      <Typography
-        variant="body2"
-        paddingLeft={1}
-        justifyContent="flex-end"
-        color="grey"
-        align="right"
-      >
-        Powered by ONDC
-      </Typography>
+      <Grid container display="flex" flexDirection="column" alignItems="flex-end">
+        <Grid item>
+          <img
+            height={42}
+            width={87}
+            src="https://ondc-static-website-media.s3.ap-south-1.amazonaws.com/res/daea2fs3n/image/upload/ondc-website/image--6-/1665032253.png"
+            alt="ONDC"
+          />
+        </Grid>
+        <Grid item>
+          <Typography
+            variant="body2"
+            paddingLeft={1}
+            justifyContent="flex-end"
+            color="grey"
+            align="right"
+          >
+            Powered by ThoughtWorks
+          </Typography>
+        </Grid>
+      </Grid>
     </Grid>
   </Grid>
 );
