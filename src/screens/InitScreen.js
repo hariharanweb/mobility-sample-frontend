@@ -2,13 +2,14 @@
 /* eslint-disable camelcase */
 import React, { useCallback, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Payment from '../components/Payment';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
 
 const InitScreen = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [initResults, setInitResults] = useState([]);
   const [initResultsLoaded, setInitResultsLoaded] = useState(false);
@@ -36,9 +37,12 @@ const InitScreen = () => {
       </Grid>
     </Grid>
   );
+  const gotoHome = () => {
+    navigate('/', { state: {} });
+  };
   return (
     <>
-      <Header title="Payments" />
+      <Header title="Payments" onBackClick={gotoHome} />
       {loading ? <Loader /> : displayPaymentMode()}
     </>
   );
