@@ -1,10 +1,10 @@
-import './Item.css';
 import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Price from './Price';
 import Time from './Time';
+import './Item.css';
 
 const Item = ({
   item, category, isParent, onSelectJourney, provider, fulfillments,
@@ -91,7 +91,7 @@ const Item = ({
         alignItems="flex-end"
         justifyContent="flex-end"
         display="flex"
-        marginX={1}
+        className="select-button"
       >
         <Typography variant="subtitle2" gutterBottom>
           <Button onClick={onSelect} variant="contained">
