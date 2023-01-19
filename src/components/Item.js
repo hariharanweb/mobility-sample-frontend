@@ -43,19 +43,19 @@ const Item = ({
       >
         {isParent
         && (
-        <Typography variant="h6">
+        <Typography variant="body1">
           {item.descriptor.name}
         </Typography>
         )}
         {!isParent && category
         && (
-        <Typography variant="h6">
+        <Typography variant="body1">
           {category}
         </Typography>
         )}
         {!isParent && !category
         && (
-        <Typography variant="h6">
+        <Typography variant="body1">
           {item.descriptor.name}
         </Typography>
         )}
@@ -78,6 +78,7 @@ const Item = ({
           alignItems="center"
           justifyContent="left"
           display="flex"
+          paddingX={1}
         >
           <Time time={item.time} />
         </Grid>
