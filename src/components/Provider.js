@@ -11,7 +11,7 @@ const Provider = ({ provider }) => (
       </Grid>
     )}
     <Grid item xs={11} display="flex" alignItems="center">
-      <Typography variant="h6" gutterBottom>
+      <Typography className="provider-name" variant="h6" gutterBottom>
         {provider.descriptor.name}
       </Typography>
     </Grid>
