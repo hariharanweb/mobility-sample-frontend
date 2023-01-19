@@ -7,6 +7,7 @@ import Payment from '../components/Payment';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
+import ContextBuilder from '../utilities/ContextBuilder';
 
 const InitScreen = () => {
   const navigate = useNavigate();
@@ -15,6 +16,24 @@ const InitScreen = () => {
   const [initResultsLoaded, setInitResultsLoaded] = useState(false);
   const location = useLocation();
   const { message_id } = location.state;
+  const onConfirmJourney = async () => {
+    const data = {
+      context: ContextBuilder.getContext('confirm', initResults[0]?.context?.bpp_uri),
+      message: {
+        order: {
+          provider: {
+            id: initResults[0]?.message?.order?.provider?.id,
+          },
+          items: initResults[0]?.message?.order?.items,
+          fulfillment: initResults[0]?.message?.order?.provider?.fulfillments[0],
+        },
+      },
+    };
+    const response = await Api.post('/confirm', data);
+    if (response.message_id) {
+      navigate('/confirm', { state: { ...response } });
+    }
+  };
   const getInitResult = useCallback(async () => {
     if (!initResultsLoaded) {
       const result = await Api.get('init', { message_id });
@@ -33,7 +52,7 @@ const InitScreen = () => {
   const displayPaymentMode = () => (
     <Grid container>
       <Grid item xs={12}>
-        <Payment />
+        <Payment onConfirmPayment={onConfirmJourney} />
       </Grid>
     </Grid>
   );
