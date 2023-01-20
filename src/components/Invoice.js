@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 import './Invoice.css';
+import Agent from './Agent';
+import Vehicle from './Vehicle';
 
 const style = {
   position: 'absolute',
@@ -17,8 +19,43 @@ const style = {
 };
 
 const Invoice = ({ details }) => {
+  const [isCab, setIsCab] = useState(false);
   // eslint-disable-next-line no-console
-  console.log(details.context);
+  console.log(details.context.bpp_id);
+  useEffect(() => {
+    if (details.context.bpp_id
+      === 'sample_mobility_bpp_cabs') {
+      setIsCab(true);
+    }
+  }, []);
+
+  // eslint-disable-next-line no-console
+  console.log(details);
+
+  const cabCheck = () => {
+    if (isCab) {
+      return (
+        <div>
+          <Typography variant="body1" display="block" gutterBottom>
+            Driver Name:
+            {' '}
+            {details.message.order.fulfillment.agent.name}
+          </Typography>
+          <Typography variant="body1" display="block" gutterBottom>
+            Vehicle:
+            {' '}
+            {details.message.order.fulfillment.vehicle.category}
+            {' - '}
+            { details.message.order.fulfillment.vehicle.model}
+          </Typography>
+          <Vehicle vehicle={details.message.order.fulfillment.vehicle} />
+          <Agent agent={details.message.order.fulfillment.agent} />
+        </div>
+      );
+    }
+    return <div />;
+  };
+
   return (
     <Box container sx={style}>
       <div className="invoice-confirmation">
@@ -56,18 +93,15 @@ const Invoice = ({ details }) => {
         {' '}
         {details.message.order[0]?.context?.timestamp.substring(11, 19)}
       </Typography> */}
+      {' '}
       <Typography variant="body1" display="block" gutterBottom>
-        Driver Name:
-        {' '}
-        {details.message.order.fulfillment.agent.name}
-      </Typography>
-      <Typography variant="body1" display="block" gutterBottom>
-        Taxi Fare:
+        Fare:
         {' '}
         {details.message.order.items[0].price.currency}
         {' '}
         {details.message.order.items[0].price.value}
       </Typography>
+      {cabCheck()}
       {/* <Typography variant="body1" display="block" gutterBottom>
         Duration To Pick-up:
         {' '}
@@ -75,14 +109,6 @@ const Invoice = ({ details }) => {
         {' '}
         sec
       </Typography> */}
-
-      <Typography variant="body1" display="block" gutterBottom>
-        Vehicle:
-        {' '}
-        {details.message.order.fulfillment.vehicle.category}
-        {' - '}
-        { details.message.order.fulfillment.vehicle.model}
-      </Typography>
       {/* {/* <Typography variant="body1" display="block" gutterBottom>
         Pick-up Location:
         {' '}

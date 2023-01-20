@@ -7,8 +7,6 @@ import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
 import Invoice from '../components/Invoice';
-import Agent from '../components/Agent';
-import Vehicle from '../components/Vehicle';
 
 const ConfirmScreen = () => {
   const navigate = useNavigate();
@@ -17,6 +15,7 @@ const ConfirmScreen = () => {
   const [confirmResultsLoaded, setConfirmResultsLoaded] = useState(false);
   const location = useLocation();
   const { message_id } = location.state;
+
   const getConfirmResult = useCallback(async () => {
     if (!confirmResultsLoaded) {
       const result = await Api.get('confirm', { message_id });
@@ -32,11 +31,12 @@ const ConfirmScreen = () => {
       Api.poll(getConfirmResult, 2, 2000);
     }
   }, [getConfirmResult, loading]);
+  // eslint-disable-next-line no-console
+  console.log(confirmResults);
+
   const displayConfirmScreen = () => (
     <Grid container>
       <Invoice details={confirmResults[0]} />
-      <Vehicle vehicle={confirmResults[0].message.order.fulfillment.vehicle} />
-      <Agent agent={confirmResults[0].message.order.fulfillment.agent} />
     </Grid>
   );
   return (
