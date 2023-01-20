@@ -6,7 +6,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 const Header = ({ title, onBackClick }) => (
   <Grid
     container
-    paddingLeft={4}
+    paddingLeft={1}
     bgcolor="black"
     color="whitesmoke"
     paddingY={0.5}
@@ -20,10 +20,10 @@ const Header = ({ title, onBackClick }) => (
       <ArrowBackIosNewIcon fontSize="inherit" />
     </IconButton>
     )}
-    <Typography inline variant="h5" paddingLeft={1}>
+    <Typography inline variant="h6" paddingLeft={0.5}>
       {title}
     </Typography>
-    <Grid item marginLeft="auto" marginRight={4}>
+    <Grid item marginLeft="auto" marginRight={1}>
       <Grid container display="flex" flexDirection="column" alignItems="flex-end">
         <Grid item>
           <img

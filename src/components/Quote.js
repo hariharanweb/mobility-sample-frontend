@@ -8,6 +8,7 @@ import Provider from './Provider';
 import './Item.css';
 import InputField from './InputField';
 import PriceBreakdown from './PriceBreakdown';
+import Price from './Price';
 
 const Quote = ({ bookingInformation, provider, onInitJourney }) => (
   <Grid container paddingX={4}>
@@ -46,7 +47,7 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
           alignItems="center"
           justifyContent="left"
           display="flex"
-          paddingLeft={5}
+          paddingLeft={2}
         >
           {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images && (
           <img
@@ -63,11 +64,10 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
           alignItems="center"
           justifyContent="left"
           display="flex"
-          paddingLeft={5}
+          paddingLeft={2}
         >
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="body1" gutterBottom>
             {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
-
           </Typography>
         </Grid>
         <Grid
@@ -78,12 +78,7 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
           display="flex"
           paddingLeft={2}
         >
-          <Typography variant="body2" gutterBottom>
-
-            ₹&nbsp;
-            {bookingInformation[0]?.message?.order?.quote?.price?.value}
-
-          </Typography>
+          <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
         </Grid>
 
       </Grid>
