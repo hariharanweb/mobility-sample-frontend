@@ -1,9 +1,10 @@
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
+import './InputField.css';
 
 const InputField = ({
-  pattern, label, value, setValue, formatValueFunc, updateValue,
+  pattern, label, value, setValue, formatValueFunc, updateValue, errorMessage,
 }) => {
   const disabledState = !value.length > 0;
   const [disabled, setDisabled] = useState(disabledState);
@@ -15,7 +16,7 @@ const InputField = ({
     if (e.target.value.match(pattern) || e.target.value.length === 0) {
       setErrorText('');
     } else {
-      setErrorText('invalid input');
+      setErrorText(errorMessage);
     }
   };
 
