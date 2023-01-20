@@ -15,6 +15,7 @@ const Vehicle = ({ vehicle }) => {
       justifyContent="space-evenly"
       border="1px solid grey"
       borderRadius="0.75em"
+      my={5}
     >
       <Grid item display="flex" alignItems="center">
         <DirectionsCarRoundedIcon fontSize="large" />

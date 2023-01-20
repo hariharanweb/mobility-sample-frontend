@@ -5,7 +5,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import Typography from '@mui/material/Typography';
 
 const Agent = ({ agent }) => (
-  <Grid container alignItems="center" border="1px solid grey" borderRadius="0.75em" justifyContent="space-evenly">
+  <Grid container alignItems="center" border="1px solid grey" borderRadius="0.75em" justifyContent="space-evenly" my={5}>
     <Grid item>
       <AccountCircleIcon />
     </Grid>
