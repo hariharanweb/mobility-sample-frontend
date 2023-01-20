@@ -5,7 +5,7 @@ import Api from '../api/Api';
 import Loader from '../components/Loader';
 import Confirmation from '../components/Confirmation';
 
-const InvoiceScreen = () => {
+const ConfirmationScreen = () => {
   const location = useLocation();
   const message_id = location?.state?.message_id;
   const [order, setOrder] = useState([]);
@@ -40,4 +40,4 @@ const InvoiceScreen = () => {
   );
 };
 
-export default InvoiceScreen;
+export default ConfirmationScreen;

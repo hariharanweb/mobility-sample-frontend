@@ -6,7 +6,7 @@ import './Confirmation.css';
 import Agent from './Agent';
 import Vehicle from './Vehicle';
 
-const Invoice = ({ details }) => {
+const Confirmation = ({ details }) => {
   const [isCab, setIsCab] = useState(false);
   // eslint-disable-next-line no-console
   console.log(details.context.bpp_id);
@@ -62,4 +62,4 @@ const Invoice = ({ details }) => {
   );
 };
 
-export default Invoice;
+export default Confirmation;
