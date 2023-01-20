@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 import { Grid } from '@mui/material';
-import './Invoice.css';
+import './Confirmation.css';
 import Agent from './Agent';
 import Vehicle from './Vehicle';
 
@@ -42,7 +42,7 @@ const Invoice = ({ details }) => {
         textAlign="center"
         fontSize="2em"
       >
-        Your ride is booked.
+        Your booking is confirmed.
       </Typography>
       <Typography variant="body1" display="block" gutterBottom>
         Transaction ID:

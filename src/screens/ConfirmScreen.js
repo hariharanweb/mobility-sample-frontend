@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
-import Invoice from '../components/Invoice';
+import Confirmation from '../components/Confirmation';
 
 const ConfirmScreen = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const ConfirmScreen = () => {
 
   const displayConfirmScreen = () => (
     <Grid container>
-      <Invoice details={confirmResults[0]} />
+      <Confirmation details={confirmResults[0]} />
     </Grid>
   );
   return (

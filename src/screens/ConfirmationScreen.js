@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Api from '../api/Api';
 import Loader from '../components/Loader';
-import Invoice from '../components/Invoice';
+import Confirmation from '../components/Confirmation';
 
 const InvoiceScreen = () => {
   const location = useLocation();
@@ -31,7 +31,7 @@ const InvoiceScreen = () => {
   }, [getSelectResult, loading]);
 
   return loading ? <Loader /> : (
-    <Invoice
+    <Confirmation
       order={order}
       driverName={driverName}
       fromLocation={fromLocation}
