@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Invoice from './Invoice';
+import Confirmation from './Confirmation';
 
 export default {
-  title: 'Invoice',
-  component: Invoice,
+  title: 'Confirmation',
+  component: Confirmation,
 };
 const order = {};
 export const Primary = () => (
-  <Invoice
+  <Confirmation
     order={order}
     driverName="Venkatesh"
     fromLocation="Forum Mall"

@@ -48,7 +48,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
   </Grid>
 );
 
-const Payment = () => {
+const Payment = ({ onConfirmPayment }) => {
   const [paymentMode, setPaymentMode] = useState('');
   const onPaymentSelect = (event) => {
     setPaymentMode(event.target.value);
@@ -64,6 +64,7 @@ const Payment = () => {
           variant="contained"
           sx={{ my: 2 }}
           disabled={!(paymentMode.length > 0)}
+          onClick={onConfirmPayment}
         >
           Book Now
         </Button>
