@@ -21,6 +21,7 @@ const InitScreen = () => {
       context: ContextBuilder.getContext('confirm', initResults[0]?.context?.bpp_uri),
       message: {
         order: {
+          id: initResults[0]?.message?.order?.id,
           provider: {
             id: initResults[0]?.message?.order?.provider?.id,
           },
