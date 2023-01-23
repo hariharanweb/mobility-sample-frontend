@@ -1,0 +1,7 @@
+.track-with-border {
+    border-radius: 0.75em;
+    border: 1px solid grey;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
