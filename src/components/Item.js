@@ -7,10 +7,10 @@ import Time from './Time';
 import './Item.css';
 
 const Item = ({
-  item, category, isParent, onSelectJourney, provider, fulfillments,
+  item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl,
 }) => {
   const onSelect = () => {
-    onSelectJourney(item, provider, fulfillments);
+    onSelectJourney(item, provider, fulfillments, bppUrl);
   };
   const containerStyle = isParent ? '' : 'item-with-border';
   return (
