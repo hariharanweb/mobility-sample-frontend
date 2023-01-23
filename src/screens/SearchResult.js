@@ -15,14 +15,11 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [bppUrl, setBppUrl] = useState('');
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
       if (result && result.length > 0) {
-        const catalogs = result.flatMap((r) => r.message.catalog);
-        setBppUrl(result[0]?.context?.bpp_uri);
-        setSearchResults(catalogs);
+        setSearchResults(result);
         setLoading(false);
         setSearchResultsLoaded(true);
       }
@@ -35,7 +32,7 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  const onSelectJourney = async (item, provider, fulfillments) => {
+  const onSelectJourney = async (item, provider, fulfillments, bppUrl) => {
     const data = {
       context: ContextBuilder.getContext('select', bppUrl),
       message: {
@@ -68,8 +65,12 @@ const SearchResult = () => {
   const displayCatalogs = () => (
     <Grid container>
       <Grid item xs={12}>
-        {searchResults.map((catalog) => (
-          <Catalog catalog={catalog} onSelectJourney={onSelectJourney} />
+        {searchResults.map((bppProvider) => (
+          <Catalog
+            catalog={bppProvider.message.catalog}
+            onSelectJourney={onSelectJourney}
+            bppUrl={bppProvider.context.bpp_uri}
+          />
         ))}
       </Grid>
     </Grid>
