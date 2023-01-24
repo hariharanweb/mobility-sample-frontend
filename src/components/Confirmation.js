@@ -67,6 +67,13 @@ const Confirmation = ({ details }) => {
         Track
       </Button>
       )}
+      <Button
+        fullWidth
+        variant="contained"
+        sx={{ my: 2 }}
+      >
+        Status
+      </Button>
 
     </Grid>
   );
