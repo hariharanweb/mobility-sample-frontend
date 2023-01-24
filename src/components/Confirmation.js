@@ -58,7 +58,7 @@ const Confirmation = ({ details }) => {
         {details.message.order.items[0].price.value}
       </Typography>
       {isCab && cabCheck()}
-      {details?.message.order.fulfillment.tracking && (
+      {isCab && (
       <Button
         fullWidth
         variant="contained"
