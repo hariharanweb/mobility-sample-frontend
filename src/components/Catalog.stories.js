@@ -253,10 +253,23 @@ const trainCatalog = {
     },
   ],
 };
+const bppProviderUrl = '';
 export default {
   title: 'Catalog',
   component: Catalog,
 };
 
-export const Primary = () => <Catalog catalog={catalog} />;
-export const ParentChild = () => <Catalog catalog={trainCatalog} />;
+export const Primary = () => (
+  <Catalog
+    catalog={catalog}
+    onSelectJourney={() => {}}
+    bppUrl={bppProviderUrl}
+  />
+);
+export const ParentChild = () => (
+  <Catalog
+    catalog={trainCatalog}
+    onSelectJourney={() => {}}
+    bppUrl={bppProviderUrl}
+  />
+);
