@@ -3,34 +3,11 @@ import Typography from '@mui/material/Typography';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 import { Button, Grid } from '@mui/material';
 import './Confirmation.css';
-import { useNavigate } from 'react-router-dom';
 import Agent from './Agent';
 import Vehicle from './Vehicle';
-import ContextBuilder from '../utilities/ContextBuilder';
-import Api from '../api/Api';
 
-const Confirmation = ({ details }) => {
+const Confirmation = ({ details, onTrackVehicle }) => {
   const [isCab, setIsCab] = useState(false);
-  const navigate = useNavigate();
-
-  const onTrackVehicle = async () => {
-    const sampleContext = ContextBuilder.getContext('track', details.context.bpp_uri);
-    const data = {
-      context: {
-        ...sampleContext,
-        bpp_id: details.context.bpp_id,
-      },
-      message: {
-        order: {
-          id: details.message.order.id,
-        },
-      },
-    };
-    const response = await Api.post('/track', data);
-    if (response.message_id) {
-      navigate('/track', { state: { ...response } });
-    }
-  };
 
   useEffect(() => {
     if (details.context.bpp_id
