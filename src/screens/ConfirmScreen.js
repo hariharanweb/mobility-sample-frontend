@@ -51,8 +51,6 @@ const ConfirmScreen = () => {
       Api.poll(getConfirmResult, 2, 2000);
     }
   }, [getConfirmResult, loading]);
-  // eslint-disable-next-line no-console
-  console.log(confirmResults);
 
   const displayConfirmScreen = () => (
     <Grid container>

@@ -1,8 +1,9 @@
 import { Button, Grid } from '@mui/material';
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 import './Track.css';
 
-const Track = () => (
+const Track = (trackResult) => (
   <Grid container paddingX={4}>
     <Grid container className="track-with-border" display="flex">
       <Grid
@@ -28,6 +29,8 @@ const Track = () => (
           fullWidth
           variant="contained"
           sx={{ my: 2 }}
+          // eslint-disable-next-line react/destructuring-assignment
+          href={trackResult.trackResult[0].message.tracking.url}
         >
           Track Vehicle
         </Button>
