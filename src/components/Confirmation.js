@@ -6,7 +6,7 @@ import './Confirmation.css';
 import Agent from './Agent';
 import Vehicle from './Vehicle';
 
-const Confirmation = ({ details, onTrackVehicle }) => {
+const Confirmation = ({ details, onTrackVehicle, onCheckStatus }) => {
   const [isCab, setIsCab] = useState(false);
 
   useEffect(() => {
@@ -68,6 +68,7 @@ const Confirmation = ({ details, onTrackVehicle }) => {
         fullWidth
         variant="contained"
         sx={{ my: 2 }}
+        onClick={onCheckStatus}
       >
         Status
       </Button>

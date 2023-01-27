@@ -36,6 +36,27 @@ const ConfirmScreen = () => {
     }
   };
 
+  const onCheckStatus = async () => {
+    const sampleContext = ContextBuilder.getContext('track', confirmResults[0].context.bpp_uri);
+    const data = {
+      context: {
+        ...sampleContext,
+        bpp_id: confirmResults[0].context.bpp_id,
+      },
+      message: {
+        order: {
+          id: confirmResults[0].message.order.id,
+        },
+      },
+    };
+    const response = await Api.post('/status', data);
+    // eslint-disable-next-line no-console
+    console.log(response);
+    if (response.message_id) {
+      navigate('/status', { state: { ...response } });
+    }
+  };
+
   const getConfirmResult = useCallback(async () => {
     if (!confirmResultsLoaded) {
       const result = await Api.get('confirm', { message_id });
@@ -54,7 +75,11 @@ const ConfirmScreen = () => {
 
   const displayConfirmScreen = () => (
     <Grid container>
-      <Confirmation details={confirmResults[0]} onTrackVehicle={onTrackVehicle} />
+      <Confirmation
+        details={confirmResults[0]}
+        onTrackVehicle={onTrackVehicle}
+        onCheckStatus={onCheckStatus}
+      />
     </Grid>
   );
   return (
