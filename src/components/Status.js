@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import { Button, Grid } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
@@ -8,6 +8,14 @@ import './Track.css';
 
 const Status = (vehicleStatus) => {
   const navigate = useNavigate();
+  const [isCab, setIsCab] = useState(false);
+
+  useEffect(() => {
+    if (vehicleStatus.vehicleStatus[0].context.bpp_id
+      === 'sample_mobility_bpp_cabs') {
+      setIsCab(true);
+    }
+  }, []);
 
   const onTrackVehicle = async () => {
     const sampleContext = ContextBuilder.getContext('track', vehicleStatus.vehicleStatus[0].context.bpp_uri);
@@ -58,6 +66,7 @@ const Status = (vehicleStatus) => {
           </h3>
         </Grid>
       </Grid>
+      {isCab && (
       <Button
         fullWidth
         variant="contained"
@@ -66,6 +75,7 @@ const Status = (vehicleStatus) => {
       >
         Track
       </Button>
+      )}
     </Grid>
   );
 };
