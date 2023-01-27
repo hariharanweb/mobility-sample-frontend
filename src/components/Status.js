@@ -34,7 +34,7 @@ const Status = (vehicleStatus) => {
         <Grid
           item
           xs={4}
-          alignItems="center"
+          alignItems="top-center"
           justifyContent="left"
           display="flex"
           marginLeft={4}
@@ -44,12 +44,18 @@ const Status = (vehicleStatus) => {
             {' '}
             {vehicleStatus.vehicleStatus[0].message.order.state}
           </h3>
-          <Grid>
-            <h5>
-              OTP:
-              {vehicleStatus.vehicleStatus[0].message.order.fulfillment.start.authorization.token}
-            </h5>
-          </Grid>
+        </Grid>
+        <Grid
+          item
+          xs={4}
+          justifyContent="left"
+          display="flex"
+          marginTop={12}
+        >
+          <h3>
+            OTP:
+            {vehicleStatus.vehicleStatus[0].message.order.fulfillment.start.authorization.token}
+          </h3>
         </Grid>
       </Grid>
       <Button
