@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
 import Confirmation from '../components/Confirmation';
+import ContextBuilder from '../utilities/ContextBuilder';
 
 const ConfirmScreen = () => {
   const navigate = useNavigate();
@@ -15,6 +16,46 @@ const ConfirmScreen = () => {
   const [confirmResultsLoaded, setConfirmResultsLoaded] = useState(false);
   const location = useLocation();
   const { message_id } = location.state;
+
+  const onTrackVehicle = async () => {
+    const sampleContext = ContextBuilder.getContext('track', confirmResults[0].context.bpp_uri);
+    const data = {
+      context: {
+        ...sampleContext,
+        bpp_id: confirmResults[0].context.bpp_id,
+      },
+      message: {
+        order: {
+          id: confirmResults[0].message.order.id,
+        },
+      },
+    };
+    const response = await Api.post('/track', data);
+    if (response.message_id) {
+      navigate('/track', { state: { ...response } });
+    }
+  };
+
+  const onCheckStatus = async () => {
+    const sampleContext = ContextBuilder.getContext('track', confirmResults[0].context.bpp_uri);
+    const data = {
+      context: {
+        ...sampleContext,
+        bpp_id: confirmResults[0].context.bpp_id,
+      },
+      message: {
+        order: {
+          id: confirmResults[0].message.order.id,
+        },
+      },
+    };
+    const response = await Api.post('/status', data);
+    // eslint-disable-next-line no-console
+    console.log(response);
+    if (response.message_id) {
+      navigate('/status', { state: { ...response } });
+    }
+  };
 
   const getConfirmResult = useCallback(async () => {
     if (!confirmResultsLoaded) {
@@ -31,12 +72,14 @@ const ConfirmScreen = () => {
       Api.poll(getConfirmResult, 2, 2000);
     }
   }, [getConfirmResult, loading]);
-  // eslint-disable-next-line no-console
-  console.log(confirmResults);
 
   const displayConfirmScreen = () => (
     <Grid container>
-      <Confirmation details={confirmResults[0]} />
+      <Confirmation
+        details={confirmResults[0]}
+        onTrackVehicle={onTrackVehicle}
+        onCheckStatus={onCheckStatus}
+      />
     </Grid>
   );
   return (

@@ -6,19 +6,15 @@ import './Confirmation.css';
 import Agent from './Agent';
 import Vehicle from './Vehicle';
 
-const Confirmation = ({ details }) => {
+const Confirmation = ({ details, onTrackVehicle, onCheckStatus }) => {
   const [isCab, setIsCab] = useState(false);
-  // eslint-disable-next-line no-console
-  console.log(details.context.bpp_id);
+
   useEffect(() => {
     if (details.context.bpp_id
       === 'sample_mobility_bpp_cabs') {
       setIsCab(true);
     }
   }, []);
-
-  // eslint-disable-next-line no-console
-  console.log(details);
 
   const cabCheck = () => (
     <div>
@@ -58,15 +54,24 @@ const Confirmation = ({ details }) => {
         {details.message.order.items[0].price.value}
       </Typography>
       {isCab && cabCheck()}
-      {details?.message.order.fulfillment.tracking && (
+      {isCab && (
       <Button
         fullWidth
         variant="contained"
         sx={{ my: 2 }}
+        onClick={onTrackVehicle}
       >
         Track
       </Button>
       )}
+      <Button
+        fullWidth
+        variant="contained"
+        sx={{ my: 2 }}
+        onClick={onCheckStatus}
+      >
+        Status
+      </Button>
 
     </Grid>
   );
