@@ -1,6 +1,8 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import {
-  render, screen,
+  fireEvent,
+  render, screen, waitFor,
 } from '@testing-library/react';
 import Item from './Item';
 import '@testing-library/jest-dom';
@@ -67,5 +69,18 @@ describe('Item', () => {
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
     expect(button.textContent).toContain('Select');
+  });
+
+  it('should call onSelect function', async () => {
+    const onSelect = jest.fn();
+    render(<Item item={item} details={details} onSelectJourney={onSelect} />);
+    const button = screen.getByRole('button');
+    expect(button).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(button);
+    });
+    await waitFor(() => {
+      expect(onSelect).toHaveBeenCalled();
+    });
   });
 });
