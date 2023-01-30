@@ -31,6 +31,7 @@ const Track = (trackResult) => (
           sx={{ my: 2 }}
           // eslint-disable-next-line react/destructuring-assignment
           href={trackResult.trackResult[0].message.tracking.url}
+          target="_blank"
         >
           Track Vehicle
         </Button>
