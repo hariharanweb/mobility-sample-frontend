@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
+import ContextBuilder from '../utilities/ContextBuilder';
 import Status from '../components/Status';
 
 const StatusScreen = () => {
@@ -15,6 +16,24 @@ const StatusScreen = () => {
   const [statusResultsLoaded, setstatusResultsLoaded] = useState(false);
   const location = useLocation();
   const { message_id } = location.state;
+  const onTrackVehicle = async () => {
+    const sampleContext = ContextBuilder.getContext('track', statusResults[0]?.context?.bpp_uri, statusResults[0]?.context?.transaction_id);
+    const data = {
+      context: {
+        ...sampleContext,
+        bpp_id: statusResults[0]?.context?.bpp_id,
+      },
+      message: {
+        order: {
+          id: statusResults[0]?.message?.order?.id,
+        },
+      },
+    };
+    const response = await Api.post('/track', data);
+    if (response.message_id) {
+      navigate('/track', { state: { ...response } });
+    }
+  };
 
   const getStatusResult = useCallback(async () => {
     if (!statusResultsLoaded) {
@@ -35,7 +54,7 @@ const StatusScreen = () => {
   const displayTrack = () => (
     <Grid container>
       <Grid item xs={12}>
-        <Status vehicleStatus={statusResults} />
+        <Status vehicleStatus={statusResults} onTrackVehicle={onTrackVehicle} />
       </Grid>
     </Grid>
   );

@@ -18,7 +18,7 @@ const ConfirmScreen = () => {
   const { message_id } = location.state;
 
   const onTrackVehicle = async () => {
-    const sampleContext = ContextBuilder.getContext('track', confirmResults[0].context.bpp_uri);
+    const sampleContext = ContextBuilder.getContext('track', confirmResults[0].context.bpp_uri, confirmResults[0].context.transaction_id);
     const data = {
       context: {
         ...sampleContext,
@@ -37,7 +37,7 @@ const ConfirmScreen = () => {
   };
 
   const onCheckStatus = async () => {
-    const sampleContext = ContextBuilder.getContext('track', confirmResults[0].context.bpp_uri);
+    const sampleContext = ContextBuilder.getContext('status', confirmResults[0].context.bpp_uri, confirmResults[0].context.transaction_id);
     const data = {
       context: {
         ...sampleContext,

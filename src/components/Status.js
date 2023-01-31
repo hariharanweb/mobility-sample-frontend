@@ -1,40 +1,17 @@
 /* eslint-disable react/destructuring-assignment */
 import { Button, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Api from '../api/Api';
-import ContextBuilder from '../utilities/ContextBuilder';
 import './Track.css';
 
-const Status = (vehicleStatus) => {
-  const navigate = useNavigate();
+const Status = ({ vehicleStatus, onTrackVehicle }) => {
   const [isCab, setIsCab] = useState(false);
 
   useEffect(() => {
-    if (vehicleStatus.vehicleStatus[0].context.bpp_id
+    if (vehicleStatus[0].context.bpp_id
       === 'sample_mobility_bpp_cabs') {
       setIsCab(true);
     }
   }, []);
-
-  const onTrackVehicle = async () => {
-    const sampleContext = ContextBuilder.getContext('track', vehicleStatus.vehicleStatus[0].context.bpp_uri);
-    const data = {
-      context: {
-        ...sampleContext,
-        bpp_id: vehicleStatus.vehicleStatus[0].context.bpp_id,
-      },
-      message: {
-        order: {
-          id: vehicleStatus.vehicleStatus[0].message.order.id,
-        },
-      },
-    };
-    const response = await Api.post('/track', data);
-    if (response.message_id) {
-      navigate('/track', { state: { ...response } });
-    }
-  };
 
   return (
     <Grid container paddingX={4}>
@@ -50,7 +27,7 @@ const Status = (vehicleStatus) => {
           <h3>
             Your order status is:
             {' '}
-            {vehicleStatus.vehicleStatus[0].message.order.state}
+            {vehicleStatus[0].message.order.state}
           </h3>
         </Grid>
         <Grid
@@ -62,7 +39,7 @@ const Status = (vehicleStatus) => {
         >
           <h3>
             OTP:
-            {vehicleStatus.vehicleStatus[0].message.order.fulfillment.start.authorization.token}
+            {vehicleStatus[0].message.order.fulfillment.start.authorization.token}
           </h3>
         </Grid>
       </Grid>

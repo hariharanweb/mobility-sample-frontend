@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
-import { v4 as uuid } from 'uuid';
 
-const getContext = (action, bpp_uri) => ({
+const getContext = (action, bpp_uri, transaction_id) => ({
   action,
-  transaction_id: uuid(),
+  transaction_id,
   bpp_uri,
 });
 

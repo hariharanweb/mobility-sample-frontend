@@ -19,7 +19,7 @@ const SelectJourney = () => {
   const [loadingJourney, setLoadingJourney] = React.useState(true);
   const onInitJourney = async (userDetails) => {
     const data = {
-      context: ContextBuilder.getContext('select', bookingInformation[0]?.context?.bpp_uri),
+      context: ContextBuilder.getContext('select', bookingInformation[0]?.context?.bpp_uri, bookingInformation[0]?.context?.transaction_id),
       message: {
         order: {
           provider: bookingInformation[0]?.message?.order?.provider,
