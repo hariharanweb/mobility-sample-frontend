@@ -60,6 +60,24 @@ describe('Location Search', () => {
       screen.getByDisplayValue('Mg Road, Bangalore 560045'),
     ).toBeInTheDocument();
   });
+  it('onPlaceChangedFunction should not change location when autocomplete is null', () => {
+    render(
+      <LocationSearch
+        label="test_label"
+        initialLocation={{
+          display: 'ONDC, New Delhi',
+        }}
+        onLocationChange={() => {
+        }}
+      />,
+    );
+    act(() => {
+      onPlaceChangedFunction();
+    });
+    expect(
+      screen.getByDisplayValue('ONDC, New Delhi'),
+    ).toBeInTheDocument();
+  });
   it('clearTextField should clear location', async () => {
     render(
       <LocationSearch

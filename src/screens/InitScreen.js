@@ -18,7 +18,7 @@ const InitScreen = () => {
   const { message_id } = location.state;
   const onConfirmJourney = async () => {
     const data = {
-      context: ContextBuilder.getContext('confirm', initResults[0]?.context?.bpp_uri),
+      context: ContextBuilder.getContext('confirm', initResults[0]?.context?.bpp_uri, initResults[0]?.context?.transaction_id),
       message: {
         order: {
           id: initResults[0]?.message?.order?.id,

@@ -37,4 +37,45 @@ describe('InputField with correct type of input', () => {
       expect(screen.getByText('name should only contains alphabets and spaces')).toBeInTheDocument();
     });
   });
+
+  it('Should clear textbox value', async () => {
+    const updateValue = jest.fn();
+    render(<InputField
+      pattern="^[a-zA-Z ]+$"
+      label="name"
+      value="Nikhil"
+      setValue={() => {}}
+      formatValueFunc={() => {}}
+      updateValue={updateValue}
+      errorMessage="name should only contains alphabets and spaces"
+    />);
+    const button = screen.getByRole('button');
+    expect(button).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(button);
+    });
+    await waitFor(() => {
+      expect(updateValue).toHaveBeenCalled();
+    });
+  });
+
+  it('Should call updateValue with undefined', async () => {
+    const updateValue = jest.fn();
+    render(<InputField
+      pattern="^[a-zA-Z ]+$"
+      label="name"
+      value="Nikhil"
+      setValue={() => {}}
+      formatValueFunc={() => {}}
+      errorMessage="name should only contains alphabets and spaces"
+    />);
+    const button = screen.getByRole('button');
+    expect(button).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(button);
+    });
+    await waitFor(() => {
+      expect(updateValue).toHaveBeenCalledTimes(0);
+    });
+  });
 });

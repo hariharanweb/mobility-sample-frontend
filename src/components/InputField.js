@@ -34,6 +34,7 @@ const InputField = ({
       value={value}
       onChange={onChange}
       helperText={errorText}
+      data-testid="textBox"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

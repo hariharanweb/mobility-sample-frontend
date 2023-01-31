@@ -34,7 +34,7 @@ const SearchResult = () => {
 
   const onSelectJourney = async (item, provider, fulfillments, bppUrl) => {
     const data = {
-      context: ContextBuilder.getContext('select', bppUrl),
+      context: ContextBuilder.getContext('select', bppUrl, searchResults[0].context.transaction_id),
       message: {
         order: {
           provider: {
