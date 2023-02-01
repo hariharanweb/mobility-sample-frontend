@@ -126,6 +126,7 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
         disabled={!(name.length > 0 && email.match('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]') && phoneNumber.length === 10)}
         sx={{ my: 2 }}
         onClick={onSubmitUserDetails}
+        data-testid="confirm"
       >
         Confirm
       </Button>
