@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {
+  render, screen, act, fireEvent, waitFor,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Quote from './Quote';
 
@@ -139,11 +141,10 @@ describe('Quote', () => {
     render(<Quote bookingInformation={bookingInformation} provider={provider} />);
     expect(screen.getByAltText('vehicle-icon')).toBeInTheDocument();
   });
-  it.skip('should display button', async () => {
+  it('should display button', async () => {
     render(<Quote bookingInformation={bookingInformation} provider={provider} />);
-    const button = screen.getByRole('button');
+    const button = screen.getByTestId('confirm');
     expect(button).toBeInTheDocument();
-    expect(button.textContent).toContain('Confirm');
   });
   it('should display vehicle model', async () => {
     render(<Quote bookingInformation={bookingInformation} provider={provider} />);
@@ -158,5 +159,34 @@ describe('Quote', () => {
     expect(screen.getByText('INR 141')).toBeInTheDocument();
     expect(screen.getByText('INR 111')).toBeInTheDocument();
     expect(screen.getByText('INR 30')).toBeInTheDocument();
+  });
+
+  it('Should submit user details on button click', async () => {
+    const onInitJourney = jest.fn();
+    render(<Quote
+      bookingInformation={bookingInformation}
+      provider={provider}
+      onInitJourney={onInitJourney}
+    />);
+    const button = screen.getByTestId('confirm');
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Confirm');
+    expect(button).toBeDisabled();
+    const inputField = screen.getAllByRole('textbox');
+    expect(inputField[0]).toBeInTheDocument();
+    act(() => {
+      fireEvent.change(inputField[0], { target: { value: 'Pro' } });
+      fireEvent.change(inputField[1], { target: { value: 'p@gm.com' } });
+      fireEvent.change(inputField[2], { target: { value: '1234567890' } });
+    });
+    await waitFor(() => {
+      expect(button).not.toBeDisabled();
+    });
+    act(() => {
+      fireEvent.click(button);
+    });
+    await waitFor(() => {
+      expect(onInitJourney).toBeCalled();
+    });
   });
 });
