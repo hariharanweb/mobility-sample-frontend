@@ -16,7 +16,7 @@ const Header = ({ onBackClick }) => (
   >
     {onBackClick
     && (
-    <IconButton color="inherit" onClick={onBackClick} size="small">
+    <IconButton color="black" onClick={onBackClick} size="small">
       <ArrowBackIosNewIcon fontSize="inherit" />
     </IconButton>
     )}

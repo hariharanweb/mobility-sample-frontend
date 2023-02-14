@@ -7,6 +7,7 @@ import Catalog from '../components/Catalog';
 import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -77,8 +78,9 @@ const SearchResult = () => {
   );
   return (
     <>
-      <Header title="Search Results" onBackClick={gotoHome} />
+      <Header onBackClick={gotoHome} />
       {loading ? <Loader /> : displayCatalogs()}
+      <Footer />
     </>
   );
 };

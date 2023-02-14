@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Track from '../components/Track';
+import Footer from '../components/Footer';
 
 const TrackScreen = () => {
   const navigate = useNavigate();
@@ -48,8 +49,9 @@ const TrackScreen = () => {
 
   return (
     <>
-      <Header title="Track" onBackClick={gotoHome} />
+      <Header onBackClick={gotoHome} />
       {loading ? <Loader /> : displayTrack()}
+      <Footer />
     </>
   );
 };

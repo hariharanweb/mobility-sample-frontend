@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Api from '../api/Api';
 import Confirmation from '../components/Confirmation';
 import ContextBuilder from '../utilities/ContextBuilder';
+import Footer from '../components/Footer';
 
 const ConfirmScreen = () => {
   const navigate = useNavigate();
@@ -84,8 +85,9 @@ const ConfirmScreen = () => {
   );
   return (
     <>
-      <Header title="Confirm Order" />
+      <Header />
       {loading ? <Loader /> : displayConfirmScreen()}
+      <Footer />
     </>
   );
 };

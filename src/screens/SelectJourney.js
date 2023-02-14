@@ -8,6 +8,7 @@ import Api from '../api/Api';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import ContextBuilder from '../utilities/ContextBuilder';
+import Footer from '../components/Footer';
 
 const SelectJourney = () => {
   const location = useLocation();
@@ -70,8 +71,9 @@ const SelectJourney = () => {
   );
   return (
     <>
-      <Header title="Booking Details" onBackClick={gotoHome} />
+      <Header onBackClick={gotoHome} />
       {loadingJourney ? <Loader /> : displayQuote()}
+      <Footer />
     </>
   );
 };
