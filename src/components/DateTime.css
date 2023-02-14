@@ -1,3 +1,9 @@
+.react-date-picker__wrapper {
+    border: none;
+}
 .date-picker {
-    border: 2.5px solid #1976e9;
+    border: thin solid #1976e9;
+    padding: 4px;
+    height: 27px;
+    border-radius: 5px;
 }

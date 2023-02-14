@@ -6,7 +6,7 @@ import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 
 const style = {
-  borderRadius: '35%', margin: '20px', borderColor: '#1976e9',
+  borderRadius: '20px', marginLeft: '45px', borderColor: '#1976e9',
 };
 
 const FilterIcon = () => (

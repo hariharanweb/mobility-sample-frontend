@@ -8,6 +8,7 @@ import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 import Api from '../api/Api';
 import LocationSearch from '../components/LocationSearch';
 import DateTime from '../components/DateTime';
+import Footer from '../components/Footer';
 
 const SearchScreen = () => {
   const { isLoaded } = GooglePlacesApiLoader({
@@ -49,7 +50,7 @@ const SearchScreen = () => {
     <>
       <Header />
       <FilterIcon />
-      <Grid container paddingX={4} direction="column">
+      <Grid container paddingX={4} paddingY={2} direction="column">
         {isLoaded && (
         <Grid item marginRight={1}>
           <LocationSearch
@@ -66,10 +67,11 @@ const SearchScreen = () => {
         )}
         <Grid container paddingY={2}>
           <Grid>
-            <DateTime />
+            <DateTime fullWidth />
           </Grid>
           <Grid paddingLeft={2}>
             <Button
+              fullWidth
               variant="contained"
               onClick={onSearchClick}
               disabled={
@@ -82,6 +84,7 @@ const SearchScreen = () => {
 
         </Grid>
       </Grid>
+      <Footer />
     </>
   );
 };
