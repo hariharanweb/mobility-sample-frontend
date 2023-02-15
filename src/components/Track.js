@@ -4,7 +4,7 @@ import React from 'react';
 import './Track.css';
 
 const Track = (trackResult) => (
-  <Grid container paddingX={4}>
+  <Grid container paddingX={4} paddingY={5}>
     <Grid container className="track-with-border" display="flex">
       <Grid
         item

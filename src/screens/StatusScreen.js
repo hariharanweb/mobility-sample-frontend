@@ -53,7 +53,7 @@ const StatusScreen = () => {
   }, [getStatusResult, loading]);
 
   const displayTrack = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Grid item xs={12}>
         <Status vehicleStatus={statusResults} onTrackVehicle={onTrackVehicle} />
       </Grid>

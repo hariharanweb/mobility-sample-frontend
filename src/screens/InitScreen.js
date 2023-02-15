@@ -52,7 +52,7 @@ const InitScreen = () => {
     }
   }, [getInitResult, loading]);
   const displayPaymentMode = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Grid item xs={12}>
         <Payment onConfirmPayment={onConfirmJourney} />
       </Grid>

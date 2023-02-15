@@ -75,7 +75,7 @@ const ConfirmScreen = () => {
   }, [getConfirmResult, loading]);
 
   const displayConfirmScreen = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Confirmation
         details={confirmResults[0]}
         onTrackVehicle={onTrackVehicle}

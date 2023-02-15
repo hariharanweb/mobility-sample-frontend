@@ -55,7 +55,7 @@ const Payment = ({ onConfirmPayment }) => {
   };
   return (
 
-    <Grid container paddingX={4}>
+    <Grid container paddingX={4} paddingY={5}>
       <>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />

@@ -40,7 +40,7 @@ const TrackScreen = () => {
   }, [getTrackResult, loading]);
 
   const displayTrack = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Grid item xs={12}>
         <Track trackResult={trackResults} />
       </Grid>

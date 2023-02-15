@@ -58,7 +58,7 @@ const SelectJourney = () => {
     Api.poll(getSelectResult, 3, 1500);
   }, [getSelectResult, loadingJourney]);
   const displayQuote = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
 
       <Grid item xs={12}>
         <Quote
