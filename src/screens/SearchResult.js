@@ -64,7 +64,7 @@ const SearchResult = () => {
     navigate('/', { state: {} });
   };
   const displayCatalogs = () => (
-    <Grid container>
+    <Grid paddingX={4} paddingY={10} container>
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <Catalog
