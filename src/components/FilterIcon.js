@@ -4,13 +4,14 @@ import Button from '@mui/material/Button';
 import { Grid } from '@mui/material';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
+import './FilterIcon.css';
 
 const style = {
   borderRadius: '20px', marginLeft: '45px', borderColor: '#1976e9',
 };
 
 const FilterIcon = () => (
-  <Grid>
+  <Grid className="filter-icon">
     <ButtonGroup>
       <Button style={style}>
         <DirectionsCarFilledIcon />

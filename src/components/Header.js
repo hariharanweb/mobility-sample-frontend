@@ -7,10 +7,12 @@ const Header = ({ onBackClick }) => (
   <Grid
     container
     paddingLeft={1}
-    bgcolor="white"
-    color="whitesmoke"
     paddingY={0.5}
-    marginBottom={2}
+    bgcolor="white"
+    position="fixed"
+    top={0}
+    height="9vh"
+    zIndex={99}
     alignItems="center"
     justify="space-between"
   >
