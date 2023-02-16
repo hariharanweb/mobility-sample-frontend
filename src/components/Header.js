@@ -1,50 +1,42 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
 import { Grid, IconButton } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const Header = ({ title, onBackClick }) => (
+const Header = ({ onBackClick }) => (
   <Grid
     container
     paddingLeft={1}
-    bgcolor="black"
-    color="whitesmoke"
     paddingY={0.5}
-    marginBottom={2}
+    bgcolor="white"
+    position="fixed"
+    top={0}
+    height="9vh"
+    zIndex={99}
     alignItems="center"
     justify="space-between"
   >
     {onBackClick
     && (
-    <IconButton color="inherit" onClick={onBackClick} size="small">
+    <IconButton color="black" onClick={onBackClick} size="small">
       <ArrowBackIosNewIcon fontSize="inherit" />
     </IconButton>
     )}
-    <Typography inline variant="h6" paddingLeft={0.5}>
-      {title}
-    </Typography>
-    <Grid item marginLeft="auto" marginRight={1}>
-      <Grid container display="flex" flexDirection="column" alignItems="flex-end">
-        <Grid item>
-          <img
-            height={42}
-            width={87}
-            src="https://ondc-static-website-media.s3.ap-south-1.amazonaws.com/res/daea2fs3n/image/upload/ondc-website/image--6-/1665032253.png"
-            alt="ONDC"
-          />
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="body2"
-            paddingLeft={1}
-            justifyContent="flex-end"
-            color="grey"
-            align="right"
-          >
-            Powered by ThoughtWorks
-          </Typography>
-        </Grid>
+
+    <Grid item marginLeft={2}>
+      <img
+        height={50}
+        width={95}
+        src="https://ondc-static-website-media.s3.ap-south-1.amazonaws.com/res/daea2fs3n/image/upload/ondc-website/image--6-/1665032253.png"
+        alt="ONDC"
+      />
+    </Grid>
+    <Grid marginLeft="auto" marginRight={3}>
+
+      <Grid>
+        <AccountCircleIcon style={{ color: 'black', height: 35, width: 35 }} />
       </Grid>
+
     </Grid>
   </Grid>
 );

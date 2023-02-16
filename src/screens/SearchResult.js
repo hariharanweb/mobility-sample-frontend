@@ -7,6 +7,7 @@ import Catalog from '../components/Catalog';
 import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -63,7 +64,7 @@ const SearchResult = () => {
     navigate('/', { state: {} });
   };
   const displayCatalogs = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <Catalog
@@ -77,8 +78,9 @@ const SearchResult = () => {
   );
   return (
     <>
-      <Header title="Search Results" onBackClick={gotoHome} />
+      <Header onBackClick={gotoHome} />
       {loading ? <Loader /> : displayCatalogs()}
+      <Footer />
     </>
   );
 };

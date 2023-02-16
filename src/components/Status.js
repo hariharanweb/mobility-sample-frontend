@@ -14,7 +14,7 @@ const Status = ({ vehicleStatus, onTrackVehicle }) => {
   }, []);
 
   return (
-    <Grid container paddingX={4}>
+    <Grid container paddingX={4} paddingY={5}>
       <Grid container className="track-with-border" display="flex">
         <Grid
           item

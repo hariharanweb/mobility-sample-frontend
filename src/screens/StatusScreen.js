@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Status from '../components/Status';
+import Footer from '../components/Footer';
 
 const StatusScreen = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const StatusScreen = () => {
   }, [getStatusResult, loading]);
 
   const displayTrack = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Grid item xs={12}>
         <Status vehicleStatus={statusResults} onTrackVehicle={onTrackVehicle} />
       </Grid>
@@ -63,8 +64,9 @@ const StatusScreen = () => {
   };
   return (
     <>
-      <Header title="Status" onBackClick={gotoHome} />
+      <Header onBackClick={gotoHome} />
       {loading ? <Loader /> : displayTrack()}
+      <Footer />
     </>
   );
 };

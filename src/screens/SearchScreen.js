@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import LocationSearch from '../components/LocationSearch';
-import Api from '../api/Api';
-import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
+import FilterSection from '../components/FilterSection';
 import Header from '../components/Header';
+import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
+import Api from '../api/Api';
+import LocationSearch from '../components/LocationSearch';
+import DateTime from '../components/DateTime';
+import Footer from '../components/Footer';
 
 const SearchScreen = () => {
   const { isLoaded } = GooglePlacesApiLoader({
@@ -45,8 +48,9 @@ const SearchScreen = () => {
   };
   return (
     <>
-      <Header title="Mobililty" />
-      <Grid container paddingX={4} direction="column">
+      <Header />
+      <FilterSection />
+      <Grid container paddingX={4} paddingY={2} direction="column">
         {isLoaded && (
         <Grid item marginRight={1}>
           <LocationSearch
@@ -61,19 +65,26 @@ const SearchScreen = () => {
           />
         </Grid>
         )}
-        <Grid item paddingY={2}>
-          <Button
-            fullWidth
-            variant="contained"
-            onClick={onSearchClick}
-            disabled={
+        <Grid container paddingY={2}>
+          <Grid>
+            <DateTime fullWidth />
+          </Grid>
+          <Grid paddingLeft={2}>
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={onSearchClick}
+              disabled={
             !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
           }
-          >
-            Find Rides
-          </Button>
+            >
+              Find Rides
+            </Button>
+          </Grid>
+
         </Grid>
       </Grid>
+      <Footer />
     </>
   );
 };

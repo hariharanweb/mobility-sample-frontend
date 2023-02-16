@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import Header from '../components/Header';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
+import Footer from '../components/Footer';
 
 const InitScreen = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const InitScreen = () => {
     }
   }, [getInitResult, loading]);
   const displayPaymentMode = () => (
-    <Grid container>
+    <Grid paddingY={10} container>
       <Grid item xs={12}>
         <Payment onConfirmPayment={onConfirmJourney} />
       </Grid>
@@ -62,8 +63,9 @@ const InitScreen = () => {
   };
   return (
     <>
-      <Header title="Payments" onBackClick={gotoHome} />
+      <Header onBackClick={gotoHome} />
       {loading ? <Loader /> : displayPaymentMode()}
+      <Footer />
     </>
   );
 };
