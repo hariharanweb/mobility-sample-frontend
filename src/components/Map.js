@@ -17,7 +17,7 @@ const Mapper = ({ bppUrl, bppId }) => {
     );
   }
   return (
-    <div className="map">
+    <div className="no_map">
       Map here
     </div>
   );
