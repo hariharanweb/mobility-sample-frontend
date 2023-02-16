@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Item from './Item';
 import Items from './Items';
 import Provider from './Provider';
+import Map from './Map';
 
 const providerItems = (items, categories, onSelectJourney, provider, fulfillments, bppUrl) => {
   const itemsGroupedByParent = _.groupBy(_.filter(items, (item) => !!item.parent_item_id), 'parent_item_id');
@@ -61,17 +62,21 @@ const Catalog = ({
   catalog,
   onSelectJourney,
   bppUrl,
+  bppId,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
   return (
     <div>
-      {bppProviders && bppProviders.map((provider) => bppProvider(
-        provider,
-        onSelectJourney,
-        fulfillments,
-        bppUrl,
-      ))}
+      <Map bppUrl={bppUrl} bppId={bppId} />
+      <div>
+        {bppProviders && bppProviders.map((provider) => bppProvider(
+          provider,
+          onSelectJourney,
+          fulfillments,
+          bppUrl,
+        ))}
+      </div>
     </div>
   );
 };

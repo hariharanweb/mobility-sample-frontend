@@ -51,8 +51,6 @@ const ConfirmScreen = () => {
       },
     };
     const response = await Api.post('/status', data);
-    // eslint-disable-next-line no-console
-    console.log(response);
     if (response.message_id) {
       navigate('/status', { state: { ...response } });
     }
