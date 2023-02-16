@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import FilterIcon from '../components/FilterIcon';
+import FilterSection from '../components/FilterSection';
 import Header from '../components/Header';
 import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 import Api from '../api/Api';
@@ -51,7 +51,7 @@ const SearchScreen = () => {
     <>
       <Header />
       <Map />
-      <FilterIcon />
+      <FilterSection />
       <Grid container paddingX={4} paddingY={2} direction="column">
         {isLoaded && (
         <Grid item marginRight={1}>
