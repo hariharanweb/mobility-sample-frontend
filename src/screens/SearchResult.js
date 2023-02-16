@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Map from '../components/Map';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [mapUrl, setMapUrl] = useState('');
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -24,6 +26,8 @@ const SearchResult = () => {
         setLoading(false);
         setSearchResultsLoaded(true);
       }
+      searchResults.map((bppProvider) => (bppProvider.context.bpp_id === 'sample_mobility_bpp_cabs' ? setMapUrl(bppProvider.context.bpp_uri) : setMapUrl('')));
+      console.log(mapUrl);
     }
   }, [message_id]);
 
@@ -63,8 +67,14 @@ const SearchResult = () => {
   const gotoHome = () => {
     navigate('/', { state: {} });
   };
+
+  // searchResults.map((bppProvider) => (bppProvider.context.bpp_id === ))
   const displayCatalogs = () => (
     <Grid paddingY={10} container>
+      {searchResults.map((bppProvider) => (
+        <Map bppUrl={bppProvider.context.bpp_uri} />
+      ))}
+      <Map bppUrl={mapUrl} />
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <Catalog
