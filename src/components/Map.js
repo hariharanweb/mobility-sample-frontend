@@ -16,6 +16,9 @@ const Mapper = ({ bppUrl, bppId }) => {
       </div>
     );
   }
+  if (bppId === 'sample_mobility_bpp_trains') {
+    return <div />;
+  }
   return (
     <div className="no_map">
       Map here
