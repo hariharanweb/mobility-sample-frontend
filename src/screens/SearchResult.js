@@ -6,8 +6,6 @@ import Api from '../api/Api';
 import Catalog from '../components/Catalog';
 import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -60,12 +58,13 @@ const SearchResult = () => {
       navigate('/select', { state: { ...response } });
     }
   };
+  // eslint-disable-next-line no-unused-vars
   const gotoHome = () => {
     navigate('/', { state: {} });
   };
 
   const displayCatalogs = () => (
-    <Grid paddingY={10} container>
+    <Grid container>
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <Catalog
@@ -79,11 +78,9 @@ const SearchResult = () => {
     </Grid>
   );
   return (
-    <>
-      <Header onBackClick={gotoHome} />
+    <div>
       {loading ? <Loader /> : displayCatalogs()}
-      <Footer />
-    </>
+    </div>
   );
 };
 

@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import FilterSection from '../components/FilterSection';
-import Header from '../components/Header';
 import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 import Api from '../api/Api';
 import LocationSearch from '../components/LocationSearch';
 import DateTime from '../components/DateTime';
-import Footer from '../components/Footer';
 import Map from '../components/Map';
 
 const SearchScreen = () => {
@@ -49,7 +47,6 @@ const SearchScreen = () => {
   };
   return (
     <>
-      <Header />
       <Map />
       <FilterSection />
       <Grid container paddingX={4} paddingY={2} direction="column">
@@ -86,7 +83,6 @@ const SearchScreen = () => {
 
         </Grid>
       </Grid>
-      <Footer />
     </>
   );
 };

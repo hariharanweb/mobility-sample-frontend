@@ -5,10 +5,8 @@ import Grid from '@mui/material/Grid';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Payment from '../components/Payment';
 import Loader from '../components/Loader';
-import Header from '../components/Header';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
-import Footer from '../components/Footer';
 
 const InitScreen = () => {
   const navigate = useNavigate();
@@ -52,7 +50,7 @@ const InitScreen = () => {
     }
   }, [getInitResult, loading]);
   const displayPaymentMode = () => (
-    <Grid paddingY={10} container>
+    <Grid container>
       <Grid item xs={12}>
         <Payment onConfirmPayment={onConfirmJourney} />
       </Grid>
@@ -62,11 +60,9 @@ const InitScreen = () => {
     navigate('/', { state: {} });
   };
   return (
-    <>
-      <Header onBackClick={gotoHome} />
+    <div>
       {loading ? <Loader /> : displayPaymentMode()}
-      <Footer />
-    </>
+    </div>
   );
 };
 

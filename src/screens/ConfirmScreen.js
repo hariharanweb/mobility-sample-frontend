@@ -4,11 +4,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-import Header from '../components/Header';
 import Api from '../api/Api';
 import Confirmation from '../components/Confirmation';
 import ContextBuilder from '../utilities/ContextBuilder';
-import Footer from '../components/Footer';
 
 const ConfirmScreen = () => {
   const navigate = useNavigate();
@@ -73,7 +71,7 @@ const ConfirmScreen = () => {
   }, [getConfirmResult, loading]);
 
   const displayConfirmScreen = () => (
-    <Grid paddingY={10} container>
+    <Grid container>
       <Confirmation
         details={confirmResults[0]}
         onTrackVehicle={onTrackVehicle}
@@ -82,11 +80,9 @@ const ConfirmScreen = () => {
     </Grid>
   );
   return (
-    <>
-      <Header />
+    <div>
       {loading ? <Loader /> : displayConfirmScreen()}
-      <Footer />
-    </>
+    </div>
   );
 };
 

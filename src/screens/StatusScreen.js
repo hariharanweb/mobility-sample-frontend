@@ -4,11 +4,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-import Header from '../components/Header';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Status from '../components/Status';
-import Footer from '../components/Footer';
 
 const StatusScreen = () => {
   const navigate = useNavigate();
@@ -63,11 +61,9 @@ const StatusScreen = () => {
     navigate('/', { state: {} });
   };
   return (
-    <>
-      <Header onBackClick={gotoHome} />
+    <div>
       {loading ? <Loader /> : displayTrack()}
-      <Footer />
-    </>
+    </div>
   );
 };
 

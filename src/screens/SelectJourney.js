@@ -6,9 +6,8 @@ import moment from 'moment';
 import Quote from '../components/Quote';
 import Api from '../api/Api';
 import Loader from '../components/Loader';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import ContextBuilder from '../utilities/ContextBuilder';
-import Footer from '../components/Footer';
 
 const SelectJourney = () => {
   const location = useLocation();
@@ -51,14 +50,14 @@ const SelectJourney = () => {
       }
     }
   }, [bookingInformationLoaded, message_id]);
-  const gotoHome = () => {
-    navigate('/', { state: {} });
-  };
+  // const gotoHome = () => {
+  //   navigate('/', { state: {} });
+  // };
   React.useEffect(() => {
     Api.poll(getSelectResult, 3, 1500);
   }, [getSelectResult, loadingJourney]);
   const displayQuote = () => (
-    <Grid paddingY={10} container>
+    <Grid container>
 
       <Grid item xs={12}>
         <Quote
@@ -70,11 +69,9 @@ const SelectJourney = () => {
     </Grid>
   );
   return (
-    <>
-      <Header onBackClick={gotoHome} />
+    <div>
       {loadingJourney ? <Loader /> : displayQuote()}
-      <Footer />
-    </>
+    </div>
   );
 };
 export default SelectJourney;
