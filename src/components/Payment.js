@@ -7,7 +7,7 @@ import { Button, FormControlLabel } from '@mui/material';
 
 const containerStyle = 'item-with-border';
 
-const CashPayment = ({ onPaymentSelect, selectedValue }) => (
+const CashPayment = ({ avatar, onPaymentSelect, selectedValue }) => (
 
   <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
     <FormControlLabel
@@ -21,7 +21,13 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
           inputProps={{ 'aria-label': 'Cash' }}
         />
 )}
-      label="Pay on Cash"
+      // label="Pay on Cash"
+      label={(
+        <div className="label-content">
+          <img src={avatar} alt="i" width="40px" height="auto" style={{ marginLeft: '0px' }} />
+          <h1>Pay on Cash</h1>
+        </div>
+      )}
     />
 
   </Grid>
@@ -77,7 +83,7 @@ const Payment = ({ onConfirmPayment }) => {
 
     <Grid container paddingX={4} paddingY={5}>
       <>
-        <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
+        <CashPayment src="../images/cash.png" onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <ONDCWallet onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <Button
