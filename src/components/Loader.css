@@ -1,9 +1,17 @@
 .loader {
     /* position: absolute; */
+    display: flex;
+    /* -ms-flex-align: center; */
+    flex-direction:column;
+    /* flex-direction: row; */
+    /* align-items: center; */
+    /* flex: none; */
     width: 350px;
     height: 150px;
-    /* left: 10px;
-    top: 309px;     */
-    align-items: center;
+    top: 309px;    
     background: url(../images/loadingCar.gif);;
+}
+
+.loaderGrid {
+    left: auto;
 }

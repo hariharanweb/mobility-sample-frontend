@@ -4,8 +4,8 @@ import './Loader.css';
 // import CircularProgress from '@mui/material/CircularProgress';
 
 const Loader = () => (
-  <Grid container paddingY="25%">
-    {/* <h3>Finds perfect rides for you.</h3> */}
+  <Grid className="loaderGrid" container paddingY="35%" paddingX="5%">
+    <h3>Finds perfect rides for you.</h3>
     <div className="loader" />
   </Grid>
 );
