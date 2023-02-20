@@ -9,7 +9,7 @@ const containerStyle = 'item-with-border';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
-  <Grid container className={containerStyle} display="flex" paddingLeft={4}>
+  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="Cash"
       control={(
@@ -21,7 +21,28 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
           inputProps={{ 'aria-label': 'Cash' }}
         />
 )}
-      label="Cash"
+      label="Pay on Cash"
+    />
+
+  </Grid>
+);
+
+const ONDCWallet = ({ onPaymentSelect, selectedValue }) => (
+
+  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
+    <FormControlLabel
+      value="ONDC Wallet"
+      control={(
+        <Radio
+          checked={selectedValue === 'ONDC Wallet'}
+          value="ONDC Wallet"
+          onChange={onPaymentSelect}
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'ONDC Wallet' }}
+        />
+
+)}
+      label="ONDC Wallet"
     />
 
   </Grid>
@@ -29,7 +50,7 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
 const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
 
-  <Grid container className={containerStyle} display="flex" paddingLeft={4}>
+  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="UPI"
       control={(
@@ -40,9 +61,8 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
           name="radio-buttons"
           inputProps={{ 'aria-label': 'UPI' }}
         />
-
 )}
-      label="UPI"
+      label="Pay via UPI"
     />
 
   </Grid>
@@ -58,6 +78,7 @@ const Payment = ({ onConfirmPayment }) => {
     <Grid container paddingX={4} paddingY={5}>
       <>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
+        <ONDCWallet onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <Button
           fullWidth
