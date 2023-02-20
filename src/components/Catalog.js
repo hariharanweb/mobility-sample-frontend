@@ -66,12 +66,14 @@ const Catalog = ({
   const fulfillments = catalog['bpp/fulfillments'];
   return (
     <div>
-      {bppProviders && bppProviders.map((provider) => bppProvider(
-        provider,
-        onSelectJourney,
-        fulfillments,
-        bppUrl,
-      ))}
+      <div>
+        {bppProviders && bppProviders.map((provider) => bppProvider(
+          provider,
+          onSelectJourney,
+          fulfillments,
+          bppUrl,
+        ))}
+      </div>
     </div>
   );
 };

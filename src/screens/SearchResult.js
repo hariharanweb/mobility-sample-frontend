@@ -8,6 +8,8 @@ import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Panel from '../components/Panel';
+import Map from '../components/Map';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -63,23 +65,39 @@ const SearchResult = () => {
   const gotoHome = () => {
     navigate('/', { state: {} });
   };
+
   const displayCatalogs = () => (
     <Grid paddingY={10} container>
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
-          <Catalog
-            catalog={bppProvider.message.catalog}
-            onSelectJourney={onSelectJourney}
-            bppUrl={bppProvider.context.bpp_uri}
-          />
+          <div>
+            <Catalog
+              catalog={bppProvider.message.catalog}
+              onSelectJourney={onSelectJourney}
+              bppUrl={bppProvider.context.bpp_uri}
+              bppId={bppProvider.context.bpp_id}
+            />
+          </div>
         ))}
       </Grid>
     </Grid>
   );
+
   return (
     <>
       <Header onBackClick={gotoHome} />
-      {loading ? <Loader /> : displayCatalogs()}
+      {loading ? <Loader /> : (
+        <>
+          <Map
+            bppUrl={searchResults.filter((item) => item?.context?.bpp_id === 'sample_mobility_bpp_cabs')[0]?.context?.bpp_uri}
+            bppId="sample_mobility_bpp_cabs"
+          />
+          {' '}
+          <Panel panelChildren={displayCatalogs()} />
+          {' '}
+
+        </>
+      )}
       <Footer />
     </>
   );

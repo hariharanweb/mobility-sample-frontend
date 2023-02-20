@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import FilterSection from '../components/FilterSection';
 import Header from '../components/Header';
 import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 import Api from '../api/Api';
 import LocationSearch from '../components/LocationSearch';
 import DateTime from '../components/DateTime';
 import Footer from '../components/Footer';
+import Map from '../components/Map';
+import Panel from '../components/Panel';
 
-const SearchScreen = () => {
+const LocationSearchDrawer = () => {
   const { isLoaded } = GooglePlacesApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -46,47 +47,52 @@ const SearchScreen = () => {
     const response = await Api.post('/search', data);
     navigate('/search', { state: { ...response } });
   };
-  return (
-    <>
-      <Header />
-      <FilterSection />
-      <Grid container paddingX={4} paddingY={2} direction="column">
-        {isLoaded && (
-        <Grid item marginRight={1}>
-          <LocationSearch
-            label="From"
-            initialLocation={fromLocation}
-            onLocationChange={setFromLocation}
-          />
-          <LocationSearch
-            label="To"
-            initialLocation={toLocation}
-            onLocationChange={setToLocation}
-          />
-        </Grid>
-        )}
-        <Grid container paddingY={2}>
-          <Grid>
-            <DateTime fullWidth />
-          </Grid>
-          <Grid paddingLeft={2}>
-            <Button
-              fullWidth
-              variant="contained"
-              onClick={onSearchClick}
-              disabled={
-            !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
-          }
-            >
-              Find Rides
-            </Button>
-          </Grid>
 
-        </Grid>
+  return (
+    <Grid container paddingX={4} paddingY={2} direction="column">
+      {isLoaded && (
+      <Grid item marginRight={1}>
+        <LocationSearch
+          label="From"
+          initialLocation={fromLocation}
+          onLocationChange={setFromLocation}
+        />
+        <LocationSearch
+          label="To"
+          initialLocation={toLocation}
+          onLocationChange={setToLocation}
+        />
       </Grid>
-      <Footer />
-    </>
+      )}
+      <Grid container paddingY={2}>
+        <Grid>
+          <DateTime fullWidth />
+        </Grid>
+        <Grid paddingLeft={2}>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={onSearchClick}
+            disabled={
+      !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
+    }
+          >
+            Find Rides
+          </Button>
+        </Grid>
+
+      </Grid>
+    </Grid>
   );
 };
+
+const SearchScreen = () => (
+  <div>
+    <Header />
+    <Map />
+    <Panel panelChildren={<LocationSearchDrawer />} />
+    <Footer />
+  </div>
+);
 
 export default SearchScreen;
