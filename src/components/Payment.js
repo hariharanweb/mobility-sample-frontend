@@ -23,7 +23,7 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
-const CashPayment = ({ avatar, onPaymentSelect, selectedValue }) => (
+const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
   <Grid container className="payment-options" display="flex" paddingLeft={4}>
     <FormControlLabel
