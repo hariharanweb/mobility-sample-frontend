@@ -7,7 +7,7 @@ import { Button, FormControlLabel } from '@mui/material';
 
 const containerStyle = 'item-with-border';
 
-const CashPayment = ({ avatar, onPaymentSelect, selectedValue }) => (
+const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
   <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
     <FormControlLabel
@@ -21,11 +21,10 @@ const CashPayment = ({ avatar, onPaymentSelect, selectedValue }) => (
           inputProps={{ 'aria-label': 'Cash' }}
         />
 )}
-      // label="Pay on Cash"
       label={(
-        <div className="label-content">
-          <img src={avatar} alt="i" width="40px" height="auto" style={{ marginLeft: '0px' }} />
-          <h1>Pay on Cash</h1>
+        <div className="payment-label">
+          <img src="https://cdn-icons-png.flaticon.com/64/438/438526.png" className="img-style" alt="cash" />
+          <p className="payment-mode-name">Pay on Cash</p>
         </div>
       )}
     />
@@ -48,7 +47,12 @@ const ONDCWallet = ({ onPaymentSelect, selectedValue }) => (
         />
 
 )}
-      label="ONDC Wallet"
+      label={(
+        <div className="payment-label">
+          <img src="https://img.icons8.com/sf-regular/64/coin-wallet.png" className="img-style" alt="wallet" />
+          <p className="payment-mode-name">ONDC Wallet</p>
+        </div>
+      )}
     />
 
   </Grid>
@@ -68,7 +72,12 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
           inputProps={{ 'aria-label': 'UPI' }}
         />
 )}
-      label="Pay via UPI"
+      label={(
+        <div className="payment-label">
+          <img src="https://img.icons8.com/ios-filled/64/bhim-upi.png" className="img-style" alt="upi" />
+          <p className="payment-mode-name">Pay via UP</p>
+        </div>
+      )}
     />
 
   </Grid>
@@ -83,7 +92,7 @@ const Payment = ({ onConfirmPayment }) => {
 
     <Grid container paddingX={4} paddingY={5}>
       <>
-        <CashPayment src="../images/cash.png" onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
+        <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <ONDCWallet onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <Button

@@ -9,3 +9,17 @@
   #item {
     direction:rtl;
 }
+
+.payment-label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  width: 65vw;
+}
+
+
+.payment-mode-name {
+  padding-left: 35px;
+  font-size: large;
+  font-weight: 500;
+}
