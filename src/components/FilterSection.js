@@ -7,7 +7,7 @@ import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 import './FilterSection.css';
 
 const style = {
-  borderRadius: '20px', marginLeft: '45px', borderColor: '#1976e9',
+  borderRadius: '20px', marginLeft: '45px', borderColor: '#327B18',
 };
 
 const FilterSection = () => (
