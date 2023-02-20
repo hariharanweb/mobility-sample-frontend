@@ -1,10 +1,12 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import CircularProgress from '@mui/material/CircularProgress';
+import './Loader.css';
+// import CircularProgress from '@mui/material/CircularProgress';
 
 const Loader = () => (
-  <Grid container paddingX="47%" paddingY="25%">
-    <CircularProgress />
+  <Grid container paddingY="25%">
+    {/* <h3>Finds perfect rides for you.</h3> */}
+    <div className="loader" />
   </Grid>
 );
 

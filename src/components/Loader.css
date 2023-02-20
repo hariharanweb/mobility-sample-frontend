@@ -1,0 +1,9 @@
+.loader {
+    /* position: absolute; */
+    width: 350px;
+    height: 150px;
+    /* left: 10px;
+    top: 309px;     */
+    align-items: center;
+    background: url(../images/loadingCar.gif);;
+}
