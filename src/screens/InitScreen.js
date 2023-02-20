@@ -9,6 +9,8 @@ import Header from '../components/Header';
 import Api from '../api/Api';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Footer from '../components/Footer';
+import Panel from '../components/Panel';
+import Map from '../components/Map';
 
 const InitScreen = () => {
   const navigate = useNavigate();
@@ -52,7 +54,7 @@ const InitScreen = () => {
     }
   }, [getInitResult, loading]);
   const displayPaymentMode = () => (
-    <Grid paddingY={10} container>
+    <Grid container>
       <Grid item xs={12}>
         <Payment onConfirmPayment={onConfirmJourney} />
       </Grid>
@@ -64,7 +66,17 @@ const InitScreen = () => {
   return (
     <>
       <Header onBackClick={gotoHome} />
-      {loading ? <Loader /> : displayPaymentMode()}
+      {loading
+        ? <Loader /> : (
+          <>
+            <Map
+              bppUrl={initResults.filter((item) => item?.context?.bpp_id === 'sample_mobility_bpp_cabs')[0]?.context?.bpp_uri}
+              bppId="sample_mobility_bpp_cabs"
+            />
+            {' '}
+            <Panel panelChildren={displayPaymentMode()} />
+          </>
+        )}
       <Footer />
     </>
   );
