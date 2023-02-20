@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import Map from '../components/Map';
+import FilterSection from '../components/FilterSection';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -67,7 +68,8 @@ const SearchResult = () => {
   };
 
   const displayCatalogs = () => (
-    <Grid paddingY={10} container>
+    <Grid paddingY={3} container>
+      <FilterSection />
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <div>

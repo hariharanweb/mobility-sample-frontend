@@ -10,6 +10,7 @@ import DateTime from '../components/DateTime';
 import Footer from '../components/Footer';
 import Map from '../components/Map';
 import Panel from '../components/Panel';
+import FilterSection from '../components/FilterSection';
 
 const LocationSearchDrawer = () => {
   const { isLoaded } = GooglePlacesApiLoader({
@@ -50,6 +51,7 @@ const LocationSearchDrawer = () => {
 
   return (
     <Grid container paddingX={4} paddingY={2} direction="column">
+      <FilterSection />
       {isLoaded && (
       <Grid item marginRight={1}>
         <LocationSearch
