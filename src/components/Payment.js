@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import QuoteSummary from './QuoteSummary';
 import Panel from './Panel';
 
-const CashPayment = ({ avatar, onPaymentSelect, selectedValue }) => (
+const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
   <Grid container className="payment-options" display="flex" paddingLeft={4}>
     <FormControlLabel
