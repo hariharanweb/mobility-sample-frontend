@@ -1,7 +1,7 @@
 import React from 'react';
 import './Map.css';
 
-const Mapper = ({ bppUrl, bppId }) => {
+const Map = ({ bppUrl, bppId }) => {
   const url = `${bppUrl}/tracking`;
   if (bppId === 'sample_mobility_bpp_cabs') {
     return (
@@ -26,4 +26,4 @@ const Mapper = ({ bppUrl, bppId }) => {
   );
 };
 
-export default Mapper;
+export default Map;
