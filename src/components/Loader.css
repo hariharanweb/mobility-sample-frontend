@@ -1,0 +1,11 @@
+.loader-image {
+    width: 390px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(../images/loadingCar.gif);
+}
+
+.loader-heading {
+    text-align: center;
+}

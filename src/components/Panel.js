@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Footer from './Footer';
-import FilterSection from './FilterSection';
 
 const drawerBleeding = 56;
 
@@ -87,7 +86,6 @@ function Panel(props) {
             overflow: 'auto',
           }}
         >
-          <FilterSection />
           {panelChildren}
         </StyledBox>
         <Footer />
