@@ -32,32 +32,6 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
   </Grid>
 );
 
-const ONDCWallet = ({ onPaymentSelect, selectedValue }) => (
-
-  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
-    <FormControlLabel
-      value="ONDC Wallet"
-      control={(
-        <Radio
-          checked={selectedValue === 'ONDC Wallet'}
-          value="ONDC Wallet"
-          onChange={onPaymentSelect}
-          name="radio-buttons"
-          inputProps={{ 'aria-label': 'ONDC Wallet' }}
-        />
-
-)}
-      label={(
-        <div className="payment-label">
-          <img src="https://img.icons8.com/sf-regular/64/coin-wallet.png" className="img-style" alt="wallet" />
-          <p className="payment-mode-name">ONDC Wallet</p>
-        </div>
-      )}
-    />
-
-  </Grid>
-);
-
 const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
 
   <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
@@ -93,7 +67,6 @@ const Payment = ({ onConfirmPayment }) => {
     <Grid container paddingX={4} paddingY={5}>
       <>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
-        <ONDCWallet onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <Button
           fullWidth
