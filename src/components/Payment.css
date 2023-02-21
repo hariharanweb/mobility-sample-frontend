@@ -11,6 +11,7 @@
 .form-control {
   width: 100%;
   display: flex;
+  position: relative;
   flex-direction: row-reverse;
   justify-content: space-between;
 }

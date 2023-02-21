@@ -71,7 +71,7 @@ const Payment = ({ onConfirmPayment }) => {
   };
   return (
 
-    <Grid container paddingY={3}>
+    <Grid container paddingX={4} paddingY={5} display="flex">
       <>
         <div className="payment-info">
           <InfoOutlinedIcon style={{ fontSize: 'large' }} />
