@@ -43,7 +43,7 @@ const Item = ({
         marginLeft={4}
       >
         <div>
-          <Typography variant="body1">
+          <Typography variant="body1" style={{ color: 'grey' }}>
             <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
             Ride
           </Typography>
@@ -87,7 +87,16 @@ const Item = ({
         justifyContent="center"
         display="flex"
       >
-        <Price price={item.price} />
+        <div>
+          <Typography variant="body1" style={{ color: 'grey' }}>
+            <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+            Fare
+          </Typography>
+          <Typography variant="body1">
+            <Price price={item.price} />
+          </Typography>
+        </div>
+
       </Grid>
       {
         item.time
