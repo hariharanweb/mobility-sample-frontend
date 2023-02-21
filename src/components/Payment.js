@@ -6,8 +6,6 @@ import { Button, FormControlLabel } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { QuoteSummary } from './Quote';
 
-const containerStyle = 'item-with-border';
-
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
   <Grid container className="payment-options" id="item" display="flex" paddingLeft={4}>
