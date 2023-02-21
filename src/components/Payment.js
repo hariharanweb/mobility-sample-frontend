@@ -98,6 +98,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
           position: 'absolute',
           top: -drawerBleeding,
           borderTopLeftRadius: 8,
+          borderTopRightRadius: 8,
           right: 0,
           left: 0,
         }}
