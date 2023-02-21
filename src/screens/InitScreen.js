@@ -56,7 +56,7 @@ const InitScreen = () => {
   const displayPaymentMode = () => (
     <Grid container>
       <Grid item xs={12}>
-        <Payment onConfirmPayment={onConfirmJourney} />
+        <Payment onConfirmPayment={onConfirmJourney} initResults={initResults} />
       </Grid>
     </Grid>
   );

@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
+import { QuoteSummary } from './Quote';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
@@ -64,14 +65,15 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
   </Grid>
 );
 
-const Payment = ({ onConfirmPayment }) => {
+const Payment = ({ onConfirmPayment, initResults }) => {
   const [paymentMode, setPaymentMode] = useState('');
   const onPaymentSelect = (event) => {
     setPaymentMode(event.target.value);
   };
   return (
 
-    <Grid container paddingY={3}>
+    <Grid container paddingY={5} display="flex">
+      <QuoteSummary bookingInformation={initResults} />
       <>
         <div className="payment-info">
           <InfoOutlinedIcon style={{ fontSize: 'large' }} />
