@@ -3,8 +3,8 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
-import { QuoteSummary } from './Quote';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { QuoteSummary } from './Quote';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
