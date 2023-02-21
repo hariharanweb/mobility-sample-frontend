@@ -74,6 +74,25 @@ const Item = ({
         display="flex"
         // marginLeft={2}
       >
+        <div>
+          <Typography variant="body1">
+            <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+            Ride
+          </Typography>
+          <Typography variant="body1">
+            27min
+          </Typography>
+        </div>
+
+      </Grid>
+      <Grid
+        item
+        xs={2}
+        alignItems="center"
+        justifyContent="left"
+        display="flex"
+        marginLeft={2}
+      >
         {isParent
         && (
         <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '600' }}>
