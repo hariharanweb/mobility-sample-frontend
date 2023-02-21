@@ -75,7 +75,7 @@ const Item = ({
         // marginLeft={2}
       >
         <div>
-          <Typography variant="body1">
+          <Typography variant="body1" style={{ color: 'grey' }}>
             <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
             Ride
           </Typography>
