@@ -37,8 +37,8 @@ const QuoteSummary = ({ bookingInformation }) => (
     >
       {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images && (
       <img
-        height={32}
-        width={32}
+        height={52}
+        width={52}
         src={bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images[0]}
         alt="vehicle-icon"
       />
@@ -50,7 +50,8 @@ const QuoteSummary = ({ bookingInformation }) => (
       alignItems="center"
       justifyContent="left"
       display="flex"
-      paddingLeft={2}
+      paddingLeft="20%"
+      color="#000"
     >
       <Typography variant="body1" gutterBottom>
         {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
@@ -62,7 +63,7 @@ const QuoteSummary = ({ bookingInformation }) => (
       alignItems="center"
       justifyContent="left"
       display="flex"
-      paddingLeft={2}
+      paddingLeft="25%"
     >
       <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
     </Grid>
