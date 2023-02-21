@@ -25,6 +25,51 @@ const Quote = ({ bookingInformation, provider, onInitJourney }) => (
   </Grid>
 );
 
+const QuoteSummary = ({ bookingInformation }) => (
+  <Grid container className="quote-container">
+    <Grid
+      item
+      xs={3}
+      alignItems="center"
+      justifyContent="left"
+      display="flex"
+      paddingLeft={2}
+    >
+      {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images && (
+      <img
+        height={32}
+        width={32}
+        src={bookingInformation[0]?.message?.order?.items[0]?.descriptor?.images[0]}
+        alt="vehicle-icon"
+      />
+      )}
+    </Grid>
+    <Grid
+      item
+      xs={4}
+      alignItems="center"
+      justifyContent="left"
+      display="flex"
+      paddingLeft={2}
+    >
+      <Typography variant="body1" gutterBottom>
+        {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
+      </Typography>
+    </Grid>
+    <Grid
+      item
+      xs={4}
+      alignItems="center"
+      justifyContent="left"
+      display="flex"
+      paddingLeft={2}
+    >
+      <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
+    </Grid>
+
+  </Grid>
+);
+
 const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -94,4 +139,7 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
   );
 };
 
-export default Quote;
+export {
+  Quote,
+  QuoteSummary,
+};
