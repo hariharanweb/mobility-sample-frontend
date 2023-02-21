@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import Price from './Price';
 import Time from './Time';
 import './Item.css';
@@ -15,7 +16,7 @@ const Item = ({
   const containerStyle = isParent ? '' : 'item-with-border';
   return (
     <Grid container className={containerStyle} display="flex">
-      { item.descriptor.images && item.descriptor.images.length > 0
+      { provider?.descriptor?.images && provider?.descriptor?.images.length > 0
       && (
       <Grid
         item
@@ -28,18 +29,37 @@ const Item = ({
         <img
           height={32}
           width={32}
-          src={item.descriptor.images[0]}
+          src={provider?.descriptor?.images[0]}
           alt="taxi-icon"
         />
       </Grid>
       )}
       <Grid
         item
-        xs={4}
+        xs={2}
         alignItems="center"
         justifyContent="left"
         display="flex"
         marginLeft={4}
+      >
+        <div>
+          <Typography variant="body1">
+            <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+            Ride
+          </Typography>
+          <Typography variant="body1">
+            27min
+          </Typography>
+        </div>
+
+      </Grid>
+      <Grid
+        item
+        xs={2}
+        alignItems="center"
+        justifyContent="left"
+        display="flex"
+        marginLeft={2}
       >
         {isParent
         && (
