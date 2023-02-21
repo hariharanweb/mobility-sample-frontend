@@ -3,14 +3,14 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
-
-const containerStyle = 'item-with-border';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
-  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
+  <Grid container className="payment-options" id="item" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="Cash"
+      className="form-control"
       control={(
         <Radio
           checked={selectedValue === 'Cash'}
@@ -22,7 +22,10 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 )}
       label={(
         <div className="payment-label">
-          <img src="https://cdn-icons-png.flaticon.com/64/438/438526.png" className="img-style" alt="cash" />
+          <div className="img-style">
+            <img src="https://cdn-icons-png.flaticon.com/64/438/438526.png" alt="cash" />
+          </div>
+
           <p className="payment-mode-name">Pay on Cash</p>
         </div>
       )}
@@ -33,9 +36,10 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
 const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
 
-  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
+  <Grid container className="payment-options" id="item" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="UPI"
+      className="form-control"
       control={(
         <Radio
           checked={selectedValue === 'UPI'}
@@ -46,9 +50,13 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
         />
 )}
       label={(
+
         <div className="payment-label">
-          <img src="https://img.icons8.com/ios-filled/64/bhim-upi.png" className="img-style" alt="upi" />
-          <p className="payment-mode-name">Pay via UP</p>
+          <div className="img-style">
+            <img src="https://img.icons8.com/ios-filled/64/bhim-upi.png" alt="upi" />
+          </div>
+
+          <p className="payment-mode-name">Pay on Cash</p>
         </div>
       )}
     />
@@ -63,8 +71,12 @@ const Payment = ({ onConfirmPayment }) => {
   };
   return (
 
-    <Grid container paddingX={4} paddingY={5}>
+    <Grid container paddingY={3}>
       <>
+        <div className="payment-info">
+          <InfoOutlinedIcon style={{ fontSize: 'large' }} />
+          Payment Method
+        </div>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <Button
