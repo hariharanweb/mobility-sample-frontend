@@ -4,7 +4,27 @@ import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { styled } from '@mui/material/styles';
+import { grey } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { QuoteSummary } from './Quote';
+
+const drawerBleeding = 56;
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+}));
+
+const Puller = styled(Box)(({ theme }) => ({
+  width: 30,
+  height: 6,
+  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
+  borderRadius: 3,
+  position: 'absolute',
+  top: 8,
+  left: 'calc(50% - 15px)',
+}));
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
@@ -72,8 +92,23 @@ const Payment = ({ onConfirmPayment, initResults }) => {
   };
   return (
 
-    <Grid container paddingX={4} paddingY={5} display="flex">
-      <QuoteSummary bookingInformation={initResults} />
+    <Grid container paddingY={5} display="flex">
+      <StyledBox
+        sx={{
+          position: 'absolute',
+          top: -drawerBleeding,
+          borderTopLeftRadius: 8,
+          borderTopRightRadius: 8,
+          visibility: 'visible',
+          right: 0,
+          left: 0,
+        }}
+      >
+        <Puller />
+        <Typography sx={{ p: 2, color: 'text.secondary' }}>
+          <QuoteSummary bookingInformation={initResults} />
+        </Typography>
+      </StyledBox>
       <>
         <div className="payment-info">
           <InfoOutlinedIcon style={{ fontSize: 'large' }} />
