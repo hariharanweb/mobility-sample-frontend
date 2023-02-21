@@ -7,8 +7,7 @@ import { Button, FormControlLabel } from '@mui/material';
 const containerStyle = 'item-with-border';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
-
-  <Grid container className={containerStyle} id="item" display="flex" paddingLeft={4}>
+  <Grid container className={containerStyle} id="item" paddingLeft={4} display="flex">
     <FormControlLabel
       value="Cash"
       control={(
@@ -63,7 +62,7 @@ const Payment = ({ onConfirmPayment }) => {
   };
   return (
 
-    <Grid container paddingX={4} paddingY={5}>
+    <Grid container paddingX={4} paddingY={5} display="flex">
       <>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />

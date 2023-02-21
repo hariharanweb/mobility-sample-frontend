@@ -6,14 +6,19 @@
     padding-bottom: 0.5em;
   }
 
+  #item {
+    direction:rtl;
+    width: 100%;
+    justify-content: end;
+  }
+
 .css-1x2q1ov-MuiGrid-root {
   padding: 0 !important;
 }
 .payment-label {
   display: flex;
+  position: relative;
   flex-direction: row-reverse;
-  justify-content: space-around;
-  width: 65vw;
 }
 
 .payment-mode-name {
