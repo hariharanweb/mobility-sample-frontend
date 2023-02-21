@@ -77,7 +77,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
             <img src="https://img.icons8.com/ios-filled/64/bhim-upi.png" alt="upi" />
           </div>
 
-          <p className="payment-mode-name">Pay on Cash</p>
+          <p className="payment-mode-name">Pay via UPI</p>
         </div>
       )}
     />
@@ -98,8 +98,6 @@ const Payment = ({ onConfirmPayment, initResults }) => {
           position: 'absolute',
           top: -drawerBleeding,
           borderTopLeftRadius: 8,
-          borderTopRightRadius: 8,
-          visibility: 'visible',
           right: 0,
           left: 0,
         }}
@@ -111,7 +109,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
       </StyledBox>
       <>
         <div className="payment-info">
-          <InfoOutlinedIcon style={{ fontSize: 'large' }} />
+          <InfoOutlinedIcon style={{ fontSize: 'large', marginRight: '20px' }} />
           Payment Method
         </div>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
