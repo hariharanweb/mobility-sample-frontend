@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
+import { QuoteSummary } from './Quote';
 
 const containerStyle = 'item-with-border';
 
@@ -55,7 +56,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
   </Grid>
 );
 
-const Payment = ({ onConfirmPayment }) => {
+const Payment = ({ onConfirmPayment, initResults }) => {
   const [paymentMode, setPaymentMode] = useState('');
   const onPaymentSelect = (event) => {
     setPaymentMode(event.target.value);
@@ -63,6 +64,7 @@ const Payment = ({ onConfirmPayment }) => {
   return (
 
     <Grid container paddingX={4} paddingY={5} display="flex">
+      <QuoteSummary bookingInformation={initResults} />
       <>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
         <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
