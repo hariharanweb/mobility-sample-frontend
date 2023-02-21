@@ -11,7 +11,9 @@
   flex-direction: row-reverse;
   justify-content: space-between;
 }
-.payment-label {
+
+.form-control {
+  width: 100%;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -56,4 +58,12 @@
   bottom: 0;
   width: 100%;
   height: 56px;
+}
+
+.payment-info {
+  font-size: 12px;
+  display: flex;
+  width: 35%;
+  justify-content: space-around;
+  padding-bottom: 1em;
 }
