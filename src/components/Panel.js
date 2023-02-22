@@ -76,7 +76,7 @@ function Panel(props) {
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}> Search </Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>Search </Typography>
         </StyledBox>
         <StyledBox
           sx={{
