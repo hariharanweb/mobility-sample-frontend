@@ -3,6 +3,8 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
+import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
+import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
 import Price from './Price';
 import Time from './Time';
 import './Item.css';
@@ -75,9 +77,15 @@ const Item = ({
         )}
         {!isParent && !category
         && (
-        <Typography variant="body1">
-          {item.descriptor.name}
-        </Typography>
+          <div>
+            <Typography variant="body1" style={{ color: 'grey' }}>
+              <DirectionsCarOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+              vehicle
+            </Typography>
+            <Typography variant="body1">
+              {item.descriptor.name}
+            </Typography>
+          </div>
         )}
       </Grid>
       <Grid
@@ -89,7 +97,7 @@ const Item = ({
       >
         <div>
           <Typography variant="body1" style={{ color: 'grey' }}>
-            <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+            <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
             Fare
           </Typography>
           <Typography variant="body1">
