@@ -87,7 +87,7 @@ const Item = ({
       </Grid>
       <Grid
         item
-        xs={2}
+        xs={2.3}
         alignItems="center"
         justifyContent="left"
         display="flex"
