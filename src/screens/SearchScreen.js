@@ -80,6 +80,7 @@ const LocationSearchDrawer = ({ toggleDrawer, openPanel }) => {
               onLocationChange={setFromLocation}
               swapped={swapped}
               onSwapped={setSwapped}
+              isPanelOpen={openPanel}
             />
           ) : null}
           {openPanel
@@ -94,6 +95,7 @@ const LocationSearchDrawer = ({ toggleDrawer, openPanel }) => {
             toggleDrawer={toggleDrawer}
             swapped={swapped}
             onSwapped={setSwapped}
+            isPanelOpen={openPanel}
           />
         </Grid>
         )}

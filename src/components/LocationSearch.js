@@ -4,7 +4,7 @@ import './LocationSearch.css';
 import InputField from './InputField';
 
 const LocationSearch = ({
-  label, initialLocation, onLocationChange, toggleDrawer, swapped, onSwapped,
+  label, initialLocation, onLocationChange, toggleDrawer, swapped, onSwapped, isPanelOpen,
 }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
@@ -39,9 +39,15 @@ const LocationSearch = ({
   };
 
   return (
-    <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-      <InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} formatValueFunc={formatLocation} updateValue={onLocationChange} toggleDrawer={toggleDrawer} />
-    </Autocomplete>
+    <div>
+      {isPanelOpen ? (
+        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+          <InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} formatValueFunc={formatLocation} updateValue={onLocationChange} toggleDrawer={toggleDrawer} />
+        </Autocomplete>
+      ) : (<InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} toggleDrawer={toggleDrawer} />
+      )}
+    </div>
+
   );
 };
 
