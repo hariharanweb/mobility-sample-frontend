@@ -6,11 +6,20 @@ import './Time.css';
 const formattedTime = (time) => moment(time).format('hh:mm');
 
 const Time = ({ time }) => (
-  <Typography className="time" variant="overline" gutterBottom>
-    {formattedTime(time.range.start)}
+  <>
+    {!!time.duration && (
+    <Typography variant="overline" gutterBottom>
+        {time.duration}
+    </Typography>
+    )}
+    {!!time.range && (
+    <Typography className="time" variant="overline" gutterBottom>
+      {formattedTime(time.range.start)}
     &nbsp;-&nbsp;
-    {formattedTime(time.range.end)}
-  </Typography>
+      {formattedTime(time.range.end)}
+    </Typography>
+    )}
+  </>
 );
 
 export default Time;
