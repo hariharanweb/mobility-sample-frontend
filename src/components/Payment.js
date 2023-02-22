@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
@@ -74,7 +73,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
 
         <div className="payment-label">
           <div className="img-style">
-            <img src="https://img.icons8.com/ios-filled/64/bhim-upi.png" alt="upi" />
+            <img height="60px" width="65px" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/upi_logo_icon_169316.png" alt="upi" />
           </div>
 
           <p className="payment-mode-name">Pay via UPI</p>
@@ -110,7 +109,6 @@ const Payment = ({ onConfirmPayment, initResults }) => {
       </StyledBox>
       <>
         <div className="payment-info">
-          <InfoOutlinedIcon style={{ fontSize: 'large', marginRight: '20px' }} />
           Payment Method
         </div>
         <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
