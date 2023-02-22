@@ -84,7 +84,6 @@ const Item = ({
           </Typography>
         </div>
 
-      </Grid>
       <Grid
         item
         xs={2.3}
