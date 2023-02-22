@@ -36,25 +36,41 @@ const Item = ({
         />
       </Grid>
       )}
-      <Grid
-        item
-        xs={1.7}
-        alignItems="center"
-        justifyContent="left"
-        display="flex"
-        marginLeft={4}
-      >
-        <div>
-          <Typography variant="body1" style={{ color: 'grey' }}>
-            <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
-            Ride
-          </Typography>
-          <Typography variant="body1">
-            27min
-          </Typography>
-        </div>
+      {
+        item.time ? (
+          <Grid
+            item
+            xs={1}
+            alignItems="center"
+            justifyContent="left"
+            display="flex"
+            paddingX={1}
+          >
+            <Time time={item.time} />
+          </Grid>
+        ) : (
+          <Grid
+            item
+            xs={1.7}
+            alignItems="center"
+            justifyContent="left"
+            display="flex"
+            marginLeft={4}
+          >
+            <div>
+              <Typography variant="body1" style={{ color: 'grey' }}>
+                <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+                Ride
+              </Typography>
+              <Typography variant="body1">
+                27min
+              </Typography>
+            </div>
 
-      </Grid>
+          </Grid>
+        )
+      }
+
       <Grid
         item
         xs={2.3}
@@ -106,21 +122,6 @@ const Item = ({
         </div>
 
       </Grid>
-      {
-        item.time
-        && (
-        <Grid
-          item
-          xs={1}
-          alignItems="center"
-          justifyContent="left"
-          display="flex"
-          paddingX={1}
-        >
-          <Time time={item.time} />
-        </Grid>
-        )
-      }
       {!isParent && (
       <Grid
         item
