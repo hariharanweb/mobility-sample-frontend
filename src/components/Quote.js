@@ -3,6 +3,9 @@ import Typography from '@mui/material/Typography';
 import {
   Grid, Button,
 } from '@mui/material';
+import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
+import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
+import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
 import './Quote.css';
 import Provider from './Provider';
 import './Item.css';
@@ -46,26 +49,61 @@ const QuoteSummary = ({ bookingInformation }) => (
     </Grid>
     <Grid
       item
-      xs={4}
+      xs={3}
       alignItems="center"
       justifyContent="left"
       display="flex"
-      paddingLeft="20%"
+      paddingLeft="7%"
       color="#000"
     >
-      <Typography variant="body1" gutterBottom>
-        {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
-      </Typography>
+      <div>
+        <Typography variant="body1" style={{ color: 'grey' }}>
+          <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+          Ride
+        </Typography>
+        <Typography variant="body1" style={{ fontSize: 'medium' }}>
+          27 mins
+        </Typography>
+      </div>
     </Grid>
     <Grid
       item
-      xs={4}
+      xs={3.5}
       alignItems="center"
       justifyContent="left"
       display="flex"
-      paddingLeft="25%"
+      paddingLeft="7%"
+      color="#000"
     >
-      <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
+      <div>
+        <Typography variant="body1" style={{ color: 'grey' }}>
+          <DirectionsCarOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+          Vehicle
+        </Typography>
+        <Typography variant="body1" style={{ fontSize: 'medium' }}>
+          {bookingInformation[0]?.message?.order?.items[0]?.descriptor?.name}
+        </Typography>
+      </div>
+    </Grid>
+    <Grid
+      item
+      xs={2.5}
+      alignItems="center"
+      justifyContent="left"
+      display="flex"
+      paddingLeft="5%"
+      color="red"
+      fontWeight="800"
+    >
+      <div>
+        <Typography variant="body1" style={{ color: 'grey' }}>
+          <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+          Fare
+        </Typography>
+        <Typography style={{ fontSize: '25px' }}>
+          <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
+        </Typography>
+      </div>
     </Grid>
 
   </Grid>
