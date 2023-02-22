@@ -42,7 +42,7 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 )}
       label={(
         <div className="payment-label">
-          <div className="img-style">
+          <div className="payment-mode-icon">
             <img src="https://cdn-icons-png.flaticon.com/64/438/438526.png" alt="cash" />
           </div>
 
@@ -72,7 +72,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
       label={(
 
         <div className="payment-label">
-          <div className="img-style">
+          <div className="payment-mode-icon">
             <img height="60px" width="65px" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/upi_logo_icon_169316.png" alt="upi" />
           </div>
 
