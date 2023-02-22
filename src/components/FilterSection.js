@@ -11,7 +11,7 @@ const style = {
 };
 
 const FilterSection = () => (
-  <Grid className="filter-icon">
+  <Grid className="filter-icon" paddingTop={2}>
     <ButtonGroup>
       <Button style={style}>
         <DirectionsCarFilledIcon />
