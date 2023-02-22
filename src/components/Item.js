@@ -18,7 +18,7 @@ const Item = ({
   const containerStyle = isParent ? '' : 'item-with-border';
   return (
     <Grid container className={containerStyle} display="flex">
-      { provider?.descriptor?.images && provider?.descriptor?.images.length > 0
+      { item.descriptor.images && item.descriptor.images.length > 0
       && (
       <Grid
         item
@@ -31,7 +31,7 @@ const Item = ({
         <img
           height={32}
           width={32}
-          src={provider?.descriptor?.images[0]}
+          src={item.descriptor.images[0]}
           alt="taxi-icon"
         />
       </Grid>
