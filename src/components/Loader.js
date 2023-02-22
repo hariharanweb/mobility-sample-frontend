@@ -4,7 +4,7 @@ import './Loader.css';
 import Panel from './Panel';
 
 const LoaderScreen = () => (
-  <Grid container display="flex" flexDirection="column">
+  <Grid container className="loader">
     <h3 className="loader-heading">Finds perfect rides for you.</h3>
     <div className="loader-image" />
   </Grid>
