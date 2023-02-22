@@ -4,7 +4,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import './InputField.css';
 
 const InputField = ({
-  pattern, label, value, setValue, formatValueFunc, updateValue, errorMessage, toggleDrawer,
+  pattern, label, value, setValue, formatValueFunc, updateValue, errorMessage,
 }) => {
   const disabledState = !value.length > 0;
   const [disabled, setDisabled] = useState(disabledState);
@@ -30,10 +30,9 @@ const InputField = ({
       fullWidth
       sx={{ m: 1 }}
       label={label}
-      variant="outlined"
+      variant="standard"
       value={value}
       onChange={onChange}
-      onClick={toggleDrawer}
       helperText={errorText}
       data-testid="textBox"
       InputProps={{

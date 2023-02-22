@@ -4,25 +4,18 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Api from '../api/Api';
 import Catalog from '../components/Catalog';
+import Loader from '../components/Loader';
 import ContextBuilder from '../utilities/ContextBuilder';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import Map from '../components/Map';
-import SearchResultLoader from '../components/SearchResultLoader';
-import LocationTracer from '../components/LocationTracer';
+import FilterSection from '../components/FilterSection';
 
 const SearchResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [openPanel, setOpenPanel] = useState(true);
-  const toggleDrawer = () => {
-    setOpenPanel(true);
-  };
-  const closeDrawer = () => {
-    setOpenPanel(false);
-  };
-  const { message_id, locationMap } = location.state;
+  const { message_id } = location.state;
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -75,8 +68,8 @@ const SearchResult = () => {
   };
 
   const displayCatalogs = () => (
-    <Grid container>
-      <LocationTracer locationMap={locationMap} isSearchResult />
+    <Grid paddingY={3} container>
+      <FilterSection />
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <div>
@@ -95,20 +88,14 @@ const SearchResult = () => {
   return (
     <>
       <Header onBackClick={gotoHome} />
-      {loading ? <SearchResultLoader locationMap={locationMap} /> : (
+      {loading ? <Loader /> : (
         <>
           <Map
             bppUrl={searchResults.filter((item) => item?.context?.bpp_id === 'sample_mobility_bpp_cabs')[0]?.context?.bpp_uri}
             bppId="sample_mobility_bpp_cabs"
           />
           {' '}
-          <Panel
-            panelChildren={displayCatalogs()}
-            open={openPanel}
-            toggleDrawer={toggleDrawer}
-            closeDrawer={closeDrawer}
-            openDrawerHeight="350px"
-          />
+          <Panel panelChildren={displayCatalogs()} />
           {' '}
 
         </>

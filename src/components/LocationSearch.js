@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 import './LocationSearch.css';
 import InputField from './InputField';
 
-const LocationSearch = ({
-  label, initialLocation, onLocationChange, toggleDrawer, swapped, onSwapped,
-}) => {
+const LocationSearch = ({ label, initialLocation, onLocationChange }) => {
   const [location, setLocation] = useState(initialLocation);
   const [autocomplete, setAutoComplete] = useState(null);
-  useEffect(() => {
-    if (swapped) {
-      setLocation(initialLocation);
-      onSwapped(false);
-    }
-  }, [swapped]);
+
   const onLoad = (data) => {
     setAutoComplete(data);
   };
@@ -40,7 +33,7 @@ const LocationSearch = ({
 
   return (
     <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-      <InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} formatValueFunc={formatLocation} updateValue={onLocationChange} toggleDrawer={toggleDrawer} />
+      <InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} formatValueFunc={formatLocation} updateValue={onLocationChange} />
     </Autocomplete>
   );
 };
