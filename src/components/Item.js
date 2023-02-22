@@ -37,18 +37,8 @@ const Item = ({
       </Grid>
       )}
       {
-        item.time ? (
-          <Grid
-            item
-            xs={1}
-            alignItems="center"
-            justifyContent="left"
-            display="flex"
-            paddingX={1}
-          >
-            <Time time={item.time} />
-          </Grid>
-        ) : (
+        item.time
+        && (
           <Grid
             item
             xs={1.7}
@@ -63,7 +53,7 @@ const Item = ({
                 Ride
               </Typography>
               <Typography variant="body1">
-                27min
+                <Time time={item.time} />
               </Typography>
             </div>
 
