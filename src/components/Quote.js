@@ -92,18 +92,14 @@ const QuoteSummary = ({ bookingInformation }) => (
       justifyContent="left"
       display="flex"
       paddingLeft="5%"
-      color="red"
-
     >
       <div>
         <Typography variant="body1" style={{ color: 'grey' }}>
-          <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+          <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px' }} />
           Fare
         </Typography>
         <Typography>
-          <b>
-            <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
-          </b>
+          <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
         </Typography>
       </div>
     </Grid>

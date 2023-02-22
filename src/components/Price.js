@@ -1,17 +1,16 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import './Price.css';
 
 const Price = ({ price }) => (
   <>
     {!!price.value && (
-    <Typography className="price" variant="body1">
+    <Typography variant="body1" style={{ fontSize: 'medium', fontWeight: '1000', color: 'red' }}>
       ₹&nbsp;
         {price.value}
     </Typography>
     )}
     {!!price.minimum_value && !!price.maximum_value && (
-    <Typography className="price" variant="body1">
+    <Typography variant="body1" style={{ fontSize: 'medium', fontWeight: '1000', color: 'red' }}>
       ₹
       {price.minimum_value}
       &nbsp;-&nbsp;
