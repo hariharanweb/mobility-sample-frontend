@@ -78,7 +78,7 @@ const SearchResult = () => {
     navigate('/', { state: {} });
   };
 
-  const drawerBleeding = 56;
+  // const drawerBleeding = 56;
 
   const StyledBox = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
@@ -99,7 +99,7 @@ const SearchResult = () => {
       <StyledBox
         sx={{
           position: 'absolute',
-          top: -drawerBleeding,
+          top: -130,
           borderTopLeftRadius: 8,
           borderTopRightRadius: 8,
           right: 0,
@@ -142,7 +142,7 @@ const SearchResult = () => {
             open={openPanel}
             toggleDrawer={toggleDrawer}
             closeDrawer={closeDrawer}
-            openDrawerHeight="350px"
+            openDrawerHeight="380px"
           />
           {' '}
 
