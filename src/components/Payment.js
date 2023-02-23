@@ -27,7 +27,7 @@ const Puller = styled(Box)(({ theme }) => ({
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
-  <Grid container className="payment-options" id="item" display="flex" paddingLeft={4}>
+  <Grid container className="payment-options" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="Cash"
       className="form-control"
@@ -56,7 +56,7 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
 const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
 
-  <Grid container className="payment-options" id="item" display="flex" paddingLeft={4}>
+  <Grid container className="payment-options" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="UPI"
       className="form-control"
