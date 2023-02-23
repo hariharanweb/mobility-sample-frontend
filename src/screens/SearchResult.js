@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-// import { Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Box } from '@mui/system';
 import { styled } from '@mui/material/styles';
@@ -14,7 +14,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import Map from '../components/Map';
-import { Typography } from '@mui/material';
 import LocationTracer from '../components/LocationTracer';
 // import FilterSection from '../components/FilterSection';
 

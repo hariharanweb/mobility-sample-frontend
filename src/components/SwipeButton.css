@@ -1,0 +1,19 @@
+.searchScreen-swapIconButton{
+    float: right; 
+     font-size: 37px;
+     width: 69px;
+     height: 12px;
+ }
+ .searchScreen-swapIcon{
+     border-radius: 50%;
+     width: 34px;
+     height: 41px;
+         float: right; 
+         font-size: 36px;
+         width: 69px;
+         background: #fff;
+     border: 1px solid grey;
+     text-align: center;
+     z-index: 1299;
+     }
+     
