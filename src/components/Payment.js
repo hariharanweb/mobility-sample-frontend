@@ -91,7 +91,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
   };
   return (
 
-    <Grid container paddingY={5} display="flex">
+    <Grid container display="flex">
       <StyledBox
         sx={{
           position: 'absolute',
