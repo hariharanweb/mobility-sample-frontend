@@ -116,7 +116,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
         <Button
           fullWidth
           variant="contained"
-          sx={{ my: 2 }}
+          sx={{ my: 2, paddingBottom: 7 }}
           disabled={!(paymentMode.length > 0)}
           onClick={onConfirmPayment}
         >
