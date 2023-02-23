@@ -94,7 +94,4 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
   );
 };
 
-export {
-  Quote,
-  QuoteSummary,
-};
+export default Quote;

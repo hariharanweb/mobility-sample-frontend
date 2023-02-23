@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { QuoteSummary } from './Quote';
+import QuoteSummary from './QuoteSummary';
 
 const drawerBleeding = 56;
 
@@ -116,7 +116,6 @@ const Payment = ({ onConfirmPayment, initResults }) => {
         <Button
           fullWidth
           variant="contained"
-          sx={{ my: 2 }}
           disabled={!(paymentMode.length > 0)}
           onClick={onConfirmPayment}
         >

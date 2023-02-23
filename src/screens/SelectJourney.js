@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import moment from 'moment';
-import { Quote } from '../components/Quote';
+import Quote from '../components/Quote';
 import Api from '../api/Api';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
