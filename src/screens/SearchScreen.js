@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -9,34 +10,25 @@ import Api from '../api/Api';
 import LocationSearch from '../components/LocationSearch';
 import DateTime from '../components/DateTime';
 import Footer from '../components/Footer';
-import Map from '../components/Map';
 import Panel from '../components/Panel';
 import './SearchScreen.css';
 import FilterSection from '../components/FilterSection';
 import SwipeButton from '../components/SwipeButton';
+import Map from '../components/Map';
 
-const LocationSearchDrawer = ({ toggleDrawer, openPanel }) => {
-  const { isLoaded } = GooglePlacesApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
-  });
-
+const LocationSearchDrawer = ({
+  toggleDrawer,
+  openPanel,
+  isLoaded,
+  fromLocation,
+  toLocation,
+  swapped,
+  setSwapped,
+  onSwapLocation,
+  setFromLocation,
+  setToLocation,
+}) => {
   const navigate = useNavigate();
-  const [fromLocation, setFromLocation] = useState({
-    display: 'Forum Mall',
-    latLong: '12.9372469,77.6109981',
-  });
-  const [toLocation, setToLocation] = useState({
-    display: 'Garuda Mall',
-    latLong: '12.9702626,77.6099629',
-  });
-  const [swapped, setSwapped] = useState(false);
-  const onSwapLocation = () => {
-    setSwapped(true);
-    setFromLocation(toLocation);
-    setToLocation(fromLocation);
-  };
   const onSearchClick = async () => {
     const data = {
       intent: {
@@ -63,12 +55,16 @@ const LocationSearchDrawer = ({ toggleDrawer, openPanel }) => {
         location: toLocation.display,
       },
     ];
+    response.locations = {
+      originLocation: fromLocation,
+      destinationLocation: toLocation,
+    };
     navigate('/search', { state: { ...response } });
   };
 
   return (
 
-    <>
+    <Grid container paddingTop="29px">
       <FilterSection />
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
@@ -119,11 +115,16 @@ const LocationSearchDrawer = ({ toggleDrawer, openPanel }) => {
 
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
 const SearchScreen = () => {
+  const { isLoaded } = GooglePlacesApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ['places'],
+  });
   const [openPanel, setOpenPanel] = useState(false);
   const toggleDrawer = () => {
     setOpenPanel(true);
@@ -131,17 +132,46 @@ const SearchScreen = () => {
   const closeDrawer = () => {
     setOpenPanel(false);
   };
+  const [fromLocation, setFromLocation] = useState({
+    display: 'Forum Mall',
+    latLong: '12.9372469,77.6109981',
+  });
+  const [toLocation, setToLocation] = useState({
+    display: 'Garuda Mall',
+    latLong: '12.9702626,77.6099629',
+  });
+  const [swapped, setSwapped] = useState(false);
+  const onSwapLocation = () => {
+    setSwapped(true);
+    setFromLocation(toLocation);
+    setToLocation(fromLocation);
+  };
   return (
     <div>
       <Header />
-      <Map />
+      {isLoaded && (
+      <Map
+        openPanel={openPanel}
+        showMarker
+        originLocation={fromLocation}
+        destinationLocation={toLocation}
+      />
+      )}
       <Panel
-        drawerHeight={150}
-        openDrawerHeight="50%"
+        drawerHeight={!openPanel ? 200 : 20}
+        openDrawerHeight="70%"
         panelChildren={(
           <LocationSearchDrawer
+            fromLocation={fromLocation}
+            toLocation={toLocation}
             toggleDrawer={toggleDrawer}
+            swapped={swapped}
+            setSwapped={setSwapped}
             openPanel={openPanel}
+            isLoaded={isLoaded}
+            onSwapLocation={onSwapLocation}
+            setFromLocation={setFromLocation}
+            setToLocation={setToLocation}
           />
 )}
         open={openPanel}

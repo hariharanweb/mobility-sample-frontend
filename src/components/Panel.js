@@ -23,7 +23,7 @@ const Puller = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
   borderRadius: 3,
   position: 'absolute',
-  top: 8,
+  top: 19,
   left: 'calc(50% - 15px)',
 }));
 
@@ -45,6 +45,7 @@ function Panel(props) {
         }}
       />
       <SwipeableDrawer
+        variant="persistent"
         anchor="bottom"
         open={open}
         onOpen={toggleDrawer}

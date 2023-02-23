@@ -4,7 +4,10 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import './InputField.css';
 
 const InputField = ({
-  pattern, label, value, setValue, formatValueFunc, updateValue, errorMessage, toggleDrawer,
+  pattern,
+  label,
+  value,
+  setValue, formatValueFunc, updateValue, errorMessage, toggleDrawer, isPanelOpen,
 }) => {
   const disabledState = !value.length > 0;
   const [disabled, setDisabled] = useState(disabledState);
@@ -28,7 +31,10 @@ const InputField = ({
   return (
     <TextField
       fullWidth
-      sx={{ m: 1 }}
+      sx={{
+        m: 1,
+        marginBottom: !isPanelOpen ? '36px' : '0px',
+      }}
       label={label}
       variant="outlined"
       value={value}

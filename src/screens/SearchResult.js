@@ -11,6 +11,7 @@ import Panel from '../components/Panel';
 import Map from '../components/Map';
 import Loader from '../components/Loader';
 import LocationTracer from '../components/LocationTracer';
+import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -22,7 +23,12 @@ const SearchResult = () => {
   const closeDrawer = () => {
     setOpenPanel(false);
   };
-  const { message_id, locationMap } = location.state;
+  const { message_id, locationMap, locations } = location.state;
+  const { isLoaded } = GooglePlacesApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ['places'],
+  });
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -95,19 +101,30 @@ const SearchResult = () => {
   return (
     <>
       <Header onBackClick={gotoHome} />
-      {loading ? <Loader /> : (
+      {loading ? (
+        <Loader
+          isLoaded={isLoaded}
+          destinationLocation={locations.destinationLocation}
+          originLocation={locations.originLocation}
+        />
+      ) : (
         <>
+          {isLoaded && (
           <Map
-            bppUrl={searchResults.filter((item) => item?.context?.bpp_id === 'sample_mobility_bpp_cabs')[0]?.context?.bpp_uri}
-            bppId="sample_mobility_bpp_cabs"
+            openPanel={openPanel}
+            showMarker={false}
+            destinationLocation={locations.destinationLocation}
+            originLocation={locations.originLocation}
           />
+          )}
           {' '}
           <Panel
             panelChildren={displayCatalogs()}
             open={openPanel}
             toggleDrawer={toggleDrawer}
             closeDrawer={closeDrawer}
-            openDrawerHeight="350px"
+            openDrawerHeight="428px"
+            drawerHeight={70}
           />
           {' '}
 
