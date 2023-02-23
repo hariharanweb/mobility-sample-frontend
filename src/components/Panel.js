@@ -58,9 +58,9 @@ function Panel(props) {
         <StyledBox
           className="panel-styledbox"
           paddingX={2}
-          height="100%"
+          height="15%"
           sx={{
-            top: -drawerBleeding,
+            top: -40,
           }}
         >
           <Puller />
