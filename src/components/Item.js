@@ -2,12 +2,14 @@ import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import TrainIcon from '@mui/icons-material/Train';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
 import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
 import Price from './Price';
 import Time from './Time';
 import './Item.css';
+import './Time.css';
 
 const Item = ({
   item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl,
@@ -19,36 +21,37 @@ const Item = ({
   return (
     <Grid container className={containerStyle} display="flex">
       { item.descriptor.images && item.descriptor.images.length > 0
-      && (
-      <Grid
-        item
-        xs={1}
-        alignItems="center"
-        justifyContent="center"
-        display="flex"
-        paddingLeft={2}
-      >
-        <img
-          height={32}
-          width={32}
-          src={item.descriptor.images[0]}
-          alt="taxi-icon"
-        />
-      </Grid>
-      )}
+        ? (
+          <Grid
+            item
+            xs={1}
+            alignItems="center"
+            justifyContent="center"
+            display="flex"
+            paddingLeft={2}
+          >
+            <img
+              height={32}
+              width={32}
+              src={item.descriptor.images[0]}
+              alt="taxi-icon"
+            />
+          </Grid>
+        ) : (
+          <TrainIcon />
+        )}
       {
         item.time
         && (
           <Grid
             item
-            xs={1.7}
             alignItems="center"
             justifyContent="left"
             display="flex"
             marginLeft={4}
           >
             <div>
-              <Typography variant="body1" style={{ color: 'grey' }}>
+              <Typography className="time" variant="body1" style={{ color: 'grey' }}>
                 <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
                 Ride
               </Typography>
@@ -63,7 +66,7 @@ const Item = ({
 
       <Grid
         item
-        xs={2.3}
+        xs={!isParent && !category ? 2.3 : 0}
         alignItems="center"
         justifyContent="left"
         display="flex"
@@ -85,10 +88,10 @@ const Item = ({
         && (
           <div>
             <Typography variant="body1" style={{ color: 'grey' }}>
-              <DirectionsCarOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
-              vehicle
+              <DirectionsCarOutlinedIcon style={{ fontSize: 'medium', marginRight: '3px', color: 'grey' }} />
+              Vehicle
             </Typography>
-            <Typography variant="body1">
+            <Typography variant="subtitle2">
               {item.descriptor.name}
             </Typography>
           </div>
@@ -96,7 +99,7 @@ const Item = ({
       </Grid>
       <Grid
         item
-        xs={2}
+        xs={!isParent && !category ? 2 : 4}
         alignItems="center"
         justifyContent="center"
         display="flex"
