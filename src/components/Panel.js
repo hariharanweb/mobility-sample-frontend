@@ -1,15 +1,12 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Footer from './Footer';
-
-const drawerBleeding = 56;
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
@@ -32,12 +29,15 @@ const Puller = styled(Box)(({ theme }) => ({
 }));
 
 function Panel(props) {
-  const { panelChildren } = props;
-  const [open, setOpen] = React.useState(true);
+  const {
+    panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight,
+  } = props;
+  const drawerBleeding = drawerHeight || 50;
+  // const [open, setOpen] = React.useState(true);
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+  // const toggleDrawer = (newOpen) => () => {
+  //   setOpen(newOpen);
+  // };
 
   return (
     <Root>
@@ -45,34 +45,31 @@ function Panel(props) {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(50% - ${drawerBleeding}px)`,
+            height: openDrawerHeight,
             overflow: 'visible',
           },
         }}
       />
-      <Box sx={{ textAlign: 'center', pt: 1 }}>
+      {/* <Box sx={{ textAlign: 'center', pt: 1 }}>
         <Button onClick={toggleDrawer(true)}>Open</Button>
-      </Box>
+      </Box> */}
       <SwipeableDrawer
         anchor="bottom"
         open={open}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
+        onOpen={toggleDrawer}
         swipeAreaWidth={drawerBleeding}
         disableSwipeToOpen={false}
+        allowSwipeInChildren
         ModalProps={{
           keepMounted: true,
         }}
       >
         <StyledBox
+          className="panel-styledbox"
+          paddingX={2}
+          height="15%"
           sx={{
-            position: 'absolute',
-            top: -drawerBleeding,
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
-            visibility: 'visible',
-            right: 0,
-            left: 0,
+            top: -40,
           }}
         >
           <Puller />

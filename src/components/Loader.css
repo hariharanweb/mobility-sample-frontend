@@ -1,11 +1,26 @@
-.loader-image {
-    width: 390px;
-    height: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    background: url(../images/loadingCar.gif);
+.loader {
+    display: flex;
+    flex-direction: column !important;
+    width: 100%;
+    height: 100%;
 }
 
 .loader-heading {
     text-align: center;
 }
+
+.loader-image {
+    width: 175px;
+    height: 87px;
+    margin-left: 30%;
+    background: url(../images/loadingCar.gif);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@media only screen and (min-width: 700px) {
+    .loader-image {
+        margin-left: 45%;
+  }
+}
+
