@@ -107,12 +107,12 @@ const SearchResult = () => {
         }}
       >
         <Puller />
-        <Typography sx={{ p: 2, color: 'text.secondary' }}>
+        <Typography sx={{ color: 'text.secondary' }}>
           <LocationTracer locationMap={locationMap} isSearchResult />
         </Typography>
       </StyledBox>
 
-      <Grid item xs={12}>
+      <Grid item xs={12} marginTop="12%">
         {searchResults.map((bppProvider) => (
           <div>
             <Catalog
