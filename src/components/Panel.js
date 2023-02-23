@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Footer from './Footer';
+import './Panel.css';
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
@@ -33,12 +33,6 @@ function Panel(props) {
     panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight,
   } = props;
   const drawerBleeding = drawerHeight || 50;
-  // const [open, setOpen] = React.useState(true);
-
-  // const toggleDrawer = (newOpen) => () => {
-  //   setOpen(newOpen);
-  // };
-
   return (
     <Root>
       <CssBaseline />
@@ -50,9 +44,6 @@ function Panel(props) {
           },
         }}
       />
-      {/* <Box sx={{ textAlign: 'center', pt: 1 }}>
-        <Button onClick={toggleDrawer(true)}>Open</Button>
-      </Box> */}
       <SwipeableDrawer
         anchor="bottom"
         open={open}
@@ -83,7 +74,6 @@ function Panel(props) {
         >
           {panelChildren}
         </StyledBox>
-        <Footer />
       </SwipeableDrawer>
     </Root>
   );
