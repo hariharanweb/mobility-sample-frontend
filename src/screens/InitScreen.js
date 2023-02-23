@@ -18,6 +18,13 @@ const InitScreen = () => {
   const [initResults, setInitResults] = useState([]);
   const [initResultsLoaded, setInitResultsLoaded] = useState(false);
   const location = useLocation();
+  const [openPanel, setOpenPanel] = useState(true);
+  const toggleDrawer = () => {
+    setOpenPanel(true);
+  };
+  const closeDrawer = () => {
+    setOpenPanel(false);
+  };
   const { message_id } = location.state;
   const onConfirmJourney = async () => {
     const data = {
@@ -74,7 +81,13 @@ const InitScreen = () => {
               bppId="sample_mobility_bpp_cabs"
             />
             {' '}
-            <Panel panelChildren={displayPaymentMode()} />
+            <Panel
+              panelChildren={displayPaymentMode()}
+              open={openPanel}
+              toggleDrawer={toggleDrawer}
+              closeDrawer={closeDrawer}
+              openDrawerHeight="350px"
+            />
           </>
         )}
       <Footer />
