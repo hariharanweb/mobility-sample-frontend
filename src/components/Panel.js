@@ -2,6 +2,7 @@ import React from 'react';
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -57,12 +58,20 @@ function Panel(props) {
         <StyledBox
           className="panel-styledbox"
           paddingX={2}
-          height="100%"
+          height="15%"
           sx={{
-            top: -drawerBleeding,
+            top: -40,
           }}
         >
           <Puller />
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>Search </Typography>
+        </StyledBox>
+        <StyledBox
+          sx={{
+            height: '100%',
+            overflow: 'auto',
+          }}
+        >
           {panelChildren}
         </StyledBox>
       </SwipeableDrawer>
