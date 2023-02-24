@@ -50,7 +50,7 @@ const Item = ({
             alignItems="center"
             justifyContent="left"
             display="flex"
-            // marginLeft={4}
+            marginLeft={1}
           >
             <div display="flex">
               <Typography style={{ color: 'grey', fontSize: 'small' }}>
@@ -68,29 +68,11 @@ const Item = ({
 
       <Grid
         item
-        xs={!isParent && !category ? 2.3 : 0}
+        xs={2}
         alignItems="center"
         justifyContent="center"
         display="flex"
         // marginLeft={2}
-      >
-        <div>
-          <Typography variant="body1" style={{ color: 'grey' }}>
-            <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
-            Ride
-          </Typography>
-          <Typography variant="body1">
-            27min
-          </Typography>
-        </div>
-
-      <Grid
-        item
-        xs={2.3}
-        alignItems="center"
-        justifyContent="left"
-        display="flex"
-        marginLeft={2}
       >
         {isParent
         && (
@@ -119,7 +101,7 @@ const Item = ({
       </Grid>
       <Grid
         item
-        xs={!isParent && !category ? 2 : 4}
+        xs={!isParent && !category ? 1 : 4}
         alignItems="center"
         justifyContent="center"
         display="flex"
