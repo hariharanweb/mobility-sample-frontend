@@ -3,27 +3,9 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { grey } from '@mui/material/colors';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import QuoteSummary from './QuoteSummary';
-
-const drawerBleeding = 56;
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
-}));
-
-const Puller = styled(Box)(({ theme }) => ({
-  width: 30,
-  height: 6,
-  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
-  borderRadius: 3,
-  position: 'absolute',
-  top: 8,
-  left: 'calc(50% - 15px)',
-}));
+import Panel from './Panel';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 
@@ -84,7 +66,35 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
   </Grid>
 );
 
+const LoaderScreen = ({
+  onConfirmPayment, initResults, onPaymentSelect, paymentMode,
+}) => (
+  <div>
+    <Typography sx={{ p: 2, color: 'text.secondary' }}>
+      <QuoteSummary bookingInformation={initResults} />
+    </Typography>
+    <div className="payment-info">
+      Payment Method
+    </div>
+    <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
+    <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
+    <Button
+      fullWidth
+      variant="contained"
+      disabled={!(paymentMode.length > 0)}
+      onClick={onConfirmPayment}
+      className="book-now-button"
+    >
+      Book Now
+    </Button>
+  </div>
+);
+
 const Payment = ({ onConfirmPayment, initResults }) => {
+  const [openPanel, setOpenPanel] = useState(true);
+  const toggleDrawer = () => {
+    setOpenPanel(true);
+  };
   const [paymentMode, setPaymentMode] = useState('');
   const onPaymentSelect = (event) => {
     setPaymentMode(event.target.value);
@@ -92,37 +102,21 @@ const Payment = ({ onConfirmPayment, initResults }) => {
   return (
 
     <Grid container paddingY={5} display="flex">
-      <StyledBox
-        sx={{
-          position: 'absolute',
-          top: -drawerBleeding,
-          borderTopLeftRadius: 8,
-          borderTopRightRadius: 8,
-          right: 0,
-          left: 0,
-        }}
-      >
-        <Puller />
-        <Typography sx={{ p: 2, color: 'text.secondary' }}>
-          <QuoteSummary bookingInformation={initResults} />
-        </Typography>
-      </StyledBox>
-      <>
-        <div className="payment-info">
-          Payment Method
-        </div>
-        <CashPayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
-        <OnlinePayment onPaymentSelect={onPaymentSelect} selectedValue={paymentMode} />
-        <Button
-          fullWidth
-          variant="contained"
-          disabled={!(paymentMode.length > 0)}
-          onClick={onConfirmPayment}
-          className="book-now-button"
-        >
-          Book Now
-        </Button>
-      </>
+      <Panel
+        panelChildren={(
+
+          <LoaderScreen
+            onConfirmPayment={onConfirmPayment}
+            initResults={initResults}
+            onPaymentSelect={onPaymentSelect}
+            paymentMode={paymentMode}
+          />
+)}
+        open={openPanel}
+        toggleDrawer={toggleDrawer}
+        openDrawerHeight="428px"
+      />
+
     </Grid>
   );
 };
