@@ -29,9 +29,10 @@ const Puller = styled(Box)(({ theme }) => ({
 
 function Panel(props) {
   const {
-    panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight,
+    panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight, panelHeight,
   } = props;
   const drawerBleeding = drawerHeight || 50;
+  const height = panelHeight || '100%';
   return (
     <Root>
       <CssBaseline />
@@ -57,7 +58,7 @@ function Panel(props) {
         <StyledBox
           className="panel-styledbox"
           paddingX={2}
-          height="100%"
+          height={height}
           sx={{
             top: -drawerBleeding,
           }}

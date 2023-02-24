@@ -116,6 +116,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
         open={openPanel}
         toggleDrawer={toggleDrawer}
         openDrawerHeight="428px"
+        panelHeight="112%"
       />
 
     </Grid>
