@@ -8,3 +8,21 @@
   padding-bottom: 0.5em;
   width: 100%;
 }
+
+.train-icon {
+  display: flex;
+  margin-top: 12px;
+}
+
+.icon {
+  font-size: small !important;
+  color: grey;
+}
+
+@media only screen and (min-width: 700px) {
+  .icon {
+    font-size: small !important;
+    color: grey;
+    margin-left: 2;
+  }
+}
