@@ -2,10 +2,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-import { Typography } from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { Box } from '@mui/system';
-import { styled } from '@mui/material/styles';
 import Api from '../api/Api';
 import Catalog from '../components/Catalog';
 import ContextBuilder from '../utilities/ContextBuilder';
@@ -13,7 +9,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import Map from '../components/Map';
-import SearchResultLoader from '../components/SearchResultLoader';
+import Loader from '../components/Loader';
 import LocationTracer from '../components/LocationTracer';
 
 const SearchResult = () => {
@@ -78,41 +74,10 @@ const SearchResult = () => {
     navigate('/', { state: {} });
   };
 
-  const drawerBleeding = 56;
-
-  const StyledBox = styled(Box)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
-  }));
-
-  const Puller = styled(Box)(({ theme }) => ({
-    width: 30,
-    height: 6,
-    backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
-    borderRadius: 3,
-    position: 'absolute',
-    top: 8,
-    left: 'calc(50% - 15px)',
-  }));
-
   const displayCatalogs = () => (
     <Grid container>
-      <StyledBox
-        sx={{
-          position: 'absolute',
-          top: -drawerBleeding,
-          borderTopLeftRadius: 8,
-          borderTopRightRadius: 8,
-          right: 0,
-          left: 0,
-        }}
-      >
-        <Puller />
-        <Typography sx={{ color: 'text.secondary' }}>
-          <LocationTracer locationMap={locationMap} isSearchResult />
-        </Typography>
-      </StyledBox>
-
-      <Grid item xs={12} marginTop="12%">
+      <LocationTracer locationMap={locationMap} isSearchResult />
+      <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <div>
             <Catalog
@@ -130,7 +95,7 @@ const SearchResult = () => {
   return (
     <>
       <Header onBackClick={gotoHome} />
-      {loading ? <SearchResultLoader locationMap={locationMap} /> : (
+      {loading ? <Loader /> : (
         <>
           <Map
             bppUrl={searchResults.filter((item) => item?.context?.bpp_id === 'sample_mobility_bpp_cabs')[0]?.context?.bpp_uri}
