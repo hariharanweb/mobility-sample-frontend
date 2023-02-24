@@ -75,12 +75,8 @@ const SearchResult = () => {
   };
 
   const displayCatalogs = () => (
-<<<<<<< HEAD
     <Grid container>
       <LocationTracer locationMap={locationMap} isSearchResult />
-=======
-    <Grid paddingY={3} container>
->>>>>>> 6e2049e (Add. search result)
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <div>
