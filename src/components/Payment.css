@@ -1,7 +1,60 @@
-.item-with-border {
-    border-radius: 0.75em;
-    border: 1px solid grey;
-    margin-bottom: 0.5em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-  }
+.payment-options {
+  border: 0.5px solid #ECEBEB;;
+  border-left: 0px;
+  border-right: 0px;
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.payment-label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.payment-mode-icon {
+  width: 25%;
+  margin-bottom: 21px;
+  margin-top: 21px;
+}
+
+.payment-mode-name {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  padding-left:15%;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  width: 55vw;
+}
+
+.payment-info {
+  font-size: 12px;
+  padding-left: 10px;
+  display: flex;
+  width: 35%;
+  justify-content: flex-start;
+  padding-bottom: 12px;
+}
+
+.cash-payment {
+  padding-left: 50px;
+}
+
+.book-now-button {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 56px;
+}
