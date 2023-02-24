@@ -138,7 +138,6 @@ const SearchScreen = () => {
       <Panel
         drawerHeight={150}
         openDrawerHeight="50%"
-        paddingBotton="7%"
         panelChildren={(
           <LocationSearchDrawer
             toggleDrawer={toggleDrawer}

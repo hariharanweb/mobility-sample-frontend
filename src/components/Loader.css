@@ -6,16 +6,20 @@
 }
 
 .loader-heading {
+    margin-top: 48px;
     text-align: center;
 }
 
 .loader-image {
-    width: 175px;
-    height: 87px;
-    margin-left: 30%;
-    background: url(../images/loadingCar.gif);
+    margin-top: 69px;
+    width: 174px;
+    height: 80px;
+    margin-left: 81px;
     background-repeat: no-repeat;
     background-size: contain;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (min-width: 700px) {
