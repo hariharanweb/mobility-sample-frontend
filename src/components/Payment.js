@@ -103,10 +103,9 @@ const Payment = ({ onConfirmPayment, initResults }) => {
   };
   return (
 
-    <Grid container paddingY={5} display="flex">
+    <Grid>
       <Panel
         panelChildren={(
-
           <LoaderScreen
             onConfirmPayment={onConfirmPayment}
             initResults={initResults}
