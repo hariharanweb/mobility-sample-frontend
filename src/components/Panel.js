@@ -29,7 +29,7 @@ const Puller = styled(Box)(({ theme }) => ({
 
 function Panel(props) {
   const {
-    panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight, panelHeight,
+    panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight, panelHeight, isPullerPresent,
   } = props;
   const drawerBleeding = drawerHeight || 50;
   const height = panelHeight || '100%';
@@ -64,7 +64,7 @@ function Panel(props) {
             top: -drawerBleeding,
           }}
         >
-          <Puller />
+          {isPullerPresent ? <Puller /> : null}
           {panelChildren}
         </StyledBox>
       </SwipeableDrawer>

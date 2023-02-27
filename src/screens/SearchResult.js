@@ -127,6 +127,7 @@ const SearchResult = () => {
             openDrawerHeight="435px"
             drawerHeight={70}
             panelHeight="112%"
+            isPullerPresent={false}
           />
           {' '}
 

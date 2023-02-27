@@ -105,6 +105,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
 
     <Grid>
       <Panel
+        isPullerPresent={false}
         panelChildren={(
           <LoaderScreen
             onConfirmPayment={onConfirmPayment}

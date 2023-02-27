@@ -159,6 +159,7 @@ const SearchScreen = () => {
       <Panel
         drawerHeight={!openPanel ? 200 : 20}
         openDrawerHeight="70%"
+        isPullerPresent
         panelChildren={(
           <LocationSearchDrawer
             fromLocation={fromLocation}
