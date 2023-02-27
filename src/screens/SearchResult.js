@@ -124,8 +124,9 @@ const SearchResult = () => {
             open={openPanel}
             toggleDrawer={toggleDrawer}
             closeDrawer={closeDrawer}
-            openDrawerHeight="428px"
+            openDrawerHeight="435px"
             drawerHeight={70}
+            panelHeight="112%"
           />
           {' '}
 

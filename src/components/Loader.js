@@ -34,6 +34,7 @@ const Loader = ({
         open={openPanel}
         toggleDrawer={toggleDrawer}
         openDrawerHeight="428px"
+        drawerHeight={70}
       />
     </>
   );
