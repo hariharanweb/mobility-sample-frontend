@@ -107,7 +107,7 @@ const SearchResult = () => {
             open={openPanel}
             toggleDrawer={toggleDrawer}
             closeDrawer={closeDrawer}
-            openDrawerHeight="350px"
+            openDrawerHeight="428px"
           />
           {' '}
 
