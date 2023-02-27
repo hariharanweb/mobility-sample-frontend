@@ -14,7 +14,7 @@ const Price = ({ price }) => (
       &nbsp;₹
       {price.minimum_value}
       &nbsp;-&nbsp;
-      ₹
+      &nbsp;₹
       {price.maximum_value}
     </Typography>
     )}
