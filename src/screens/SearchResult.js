@@ -72,6 +72,7 @@ const SearchResult = () => {
     };
     const response = await Api.post('/select', data);
     response.provider = provider;
+    response.locations = locations;
     if (response.message_id) {
       navigate('/select', { state: { ...response } });
     }

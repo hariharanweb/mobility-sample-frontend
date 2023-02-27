@@ -11,9 +11,15 @@ import ContextBuilder from '../utilities/ContextBuilder';
 import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import Map from '../components/Map';
+import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 
 const InitScreen = () => {
   const navigate = useNavigate();
+  const { isLoaded } = GooglePlacesApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ['places'],
+  });
   const [loading, setLoading] = useState(true);
   const [initResults, setInitResults] = useState([]);
   const [initResultsLoaded, setInitResultsLoaded] = useState(false);
@@ -25,7 +31,7 @@ const InitScreen = () => {
   const closeDrawer = () => {
     setOpenPanel(false);
   };
-  const { message_id } = location.state;
+  const { message_id, locations } = location.state;
   const onConfirmJourney = async () => {
     const data = {
       context: ContextBuilder.getContext('confirm', initResults[0]?.context?.bpp_uri, initResults[0]?.context?.transaction_id),
@@ -74,11 +80,19 @@ const InitScreen = () => {
     <>
       <Header onBackClick={gotoHome} />
       {loading
-        ? <Loader /> : (
+        ? (
+          <Loader
+            isLoaded={isLoaded}
+            destinationLocation={locations.destinationLocation}
+            originLocation={locations.originLocation}
+          />
+        ) : (
           <>
             <Map
-              bppUrl={initResults.filter((item) => item?.context?.bpp_id === 'sample_mobility_bpp_cabs')[0]?.context?.bpp_uri}
-              bppId="sample_mobility_bpp_cabs"
+              openPanel={openPanel}
+              showMarker={false}
+              destinationLocation={locations.destinationLocation}
+              originLocation={locations.originLocation}
             />
             {' '}
             <Panel
