@@ -10,8 +10,8 @@ const style = {
   borderRadius: '20px', marginLeft: '45px', borderColor: '#327B18',
 };
 
-const FilterSection = () => (
-  <Grid className="filter-icon" paddingTop={2}>
+const FilterSection = ({ openPanel }) => (
+  <Grid className="filter-icon" paddingTop={openPanel ? 2 : 3}>
     <ButtonGroup>
       <Button style={style}>
         <DirectionsCarFilledIcon />

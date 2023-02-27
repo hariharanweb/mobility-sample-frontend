@@ -14,7 +14,7 @@ const SelectJourney = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { message_id, provider } = location.state;
+  const { message_id, provider, locations } = location.state;
   const [bookingInformationLoaded, setbookingInformationLoaded] = React.useState(false);
   const [bookingInformation, setbookingInformation] = React.useState({});
   const [loadingJourney, setLoadingJourney] = React.useState(true);
@@ -37,6 +37,7 @@ const SelectJourney = () => {
       },
     };
     const response = await Api.post('/init', data);
+    response.locations = locations;
     if (response.message_id) {
       navigate('/init', { state: { ...response } });
     }

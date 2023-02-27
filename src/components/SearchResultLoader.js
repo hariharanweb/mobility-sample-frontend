@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LocationTracer from './LocationTracer';
+import Map from './Map';
 import Panel from './Panel';
 
 const SearchResultLoader = ({ locationMap }) => {
@@ -11,14 +12,16 @@ const SearchResultLoader = ({ locationMap }) => {
     setOpenPanel(false);
   };
   return (
-    <Panel
-      panelChildren={<LocationTracer locationMap={locationMap} />}
-      open={openPanel}
-      toggleDrawer={toggleDrawer}
-      closeDrawer={closeDrawer}
-      openDrawerHeight="350px"
-    />
-
+    <>
+      <Map height="70%" />
+      <Panel
+        panelChildren={<LocationTracer locationMap={locationMap} />}
+        open={openPanel}
+        toggleDrawer={toggleDrawer}
+        closeDrawer={closeDrawer}
+        openDrawerHeight="416px"
+      />
+    </>
   );
 };
 export default SearchResultLoader;
