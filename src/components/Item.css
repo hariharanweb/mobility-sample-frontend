@@ -1,11 +1,7 @@
 .item-with-border {
-  border: 0.5px solid grey;
+  border: 0.5px solid #ECEBEB;;
   border-left: 0px;
   border-right: 0px;
-  border-top: 0px;
-  margin-bottom: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
   width: 100%;
 }
 
