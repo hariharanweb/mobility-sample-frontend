@@ -18,13 +18,13 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const Puller = styled(Box)(({ theme }) => ({
-  width: 30,
-  height: 6,
+  width: '105px',
+  height: '4px',
   backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
-  borderRadius: 3,
+  borderRadius: '5px',
   position: 'absolute',
-  top: 19,
-  left: 'calc(50% - 15px)',
+  top: '19px',
+  left: '127px',
 }));
 
 function Panel(props) {

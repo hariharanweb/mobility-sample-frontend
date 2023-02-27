@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -65,7 +64,7 @@ const LocationSearchDrawer = ({
   return (
 
     <Grid container paddingTop="29px">
-      <FilterSection />
+      <FilterSection openPanel={openPanel} />
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
         <Grid item marginRight={1} paddingTop={1}>
