@@ -44,7 +44,7 @@ const providerItems = (items, categories, onSelectJourney, provider, fulfillment
 };
 
 const bppProvider = (provider, onSelectJourney, fulfillments, bppUrl) => (
-  <Grid container paddingX={4} key={provider.id}>
+  <Grid container key={provider.id}>
     <Provider provider={provider} />
     {providerItems(
       provider.items,
