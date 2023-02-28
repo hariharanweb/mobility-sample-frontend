@@ -16,25 +16,25 @@ const DateTime = () => {
   };
 
   return (
-    <div className="date-picker">
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DesktopDatePicker
-          label="Date"
-          inputFormat="MM/DD/YYYY"
-          value={value}
-          onChange={onChange}
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DesktopDatePicker
+        label="Date"
+        inputFormat="MM/DD/YYYY"
+        value={value}
+        onChange={onChange}
+        className="date-picker"
         // eslint-disable-next-line react/jsx-props-no-spreading
-          renderInput={(params) => <TextField {...params} />}
-        />
-        <TimePicker
-          label="Time"
-          value={timeValue}
-          onChange={handleChange}
+        renderInput={(params) => <TextField {...params} />}
+      />
+      <TimePicker
+        label="Time"
+        value={timeValue}
+        onChange={handleChange}
+        className="date-picker"
         // eslint-disable-next-line react/jsx-props-no-spreading
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
-    </div>
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider>
   );
 };
 

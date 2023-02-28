@@ -94,25 +94,24 @@ const LocationSearchDrawer = ({
           />
         </Grid>
         )}
-        <Grid container paddingY={2}>
-          <Grid>
-            <DateTime fullWidth />
-          </Grid>
-          <Grid paddingLeft={1}>
-            <Button
-              className="searchScreen-search-button"
-              variant="contained"
-              onClick={onSearchClick}
-              disabled={
+        <Grid paddingY={2}>
+          <DateTime fullWidth />
+        </Grid>
+        <Grid paddingLeft={1}>
+          <Button
+            className="searchScreen-search-button"
+            variant="contained"
+            fullWidth
+            onClick={onSearchClick}
+            disabled={
       !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
     }
-              endIcon={<ArrowForwardIcon />}
-            >
-              Search
-            </Button>
-          </Grid>
-
+            endIcon={<ArrowForwardIcon />}
+          >
+            Search
+          </Button>
         </Grid>
+
       </Grid>
     </Grid>
   );
