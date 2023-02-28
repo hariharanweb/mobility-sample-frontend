@@ -22,6 +22,7 @@ const DateTime = () => {
       />
       <DesktopTimePicker
         label="Time"
+        inputFormat="hh:mm"
         value={value}
         onChange={onChange}
         className="date-picker"
