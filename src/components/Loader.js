@@ -6,10 +6,8 @@ import Map from './Map';
 
 const LoaderScreen = () => (
   <Grid container className="loader">
-    <h3 className="loader-heading">Finds perfect rides for you.</h3>
-    <div className="loader-image">
-      <img src="./loadingCar.gif" alt="loading-icon" />
-    </div>
+    <h3 className="loader-heading">Finding perfect rides for you.</h3>
+    <img src="./loadingCar.gif" alt="loading-icon" className="loader-image" />
   </Grid>
 );
 const Loader = ({
@@ -35,6 +33,7 @@ const Loader = ({
         toggleDrawer={toggleDrawer}
         openDrawerHeight="428px"
         drawerHeight={70}
+        isPullerPresent={false}
       />
     </>
   );
