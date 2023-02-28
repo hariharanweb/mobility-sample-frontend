@@ -3,12 +3,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import dayjs from 'dayjs';
 import './DateTime.css';
 import { TextField } from '@mui/material';
 
 const DateTime = () => {
-  const [value, onChange] = useState(dayjs());
+  const [value, onChange] = useState(null);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
