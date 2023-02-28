@@ -9,11 +9,6 @@ import { TextField } from '@mui/material';
 
 const DateTime = () => {
   const [value, onChange] = useState(dayjs());
-  const [timeValue, setTimeValue] = useState(dayjs('21:11:54'));
-
-  const handleChange = (newValue) => {
-    setTimeValue(newValue);
-  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -28,8 +23,8 @@ const DateTime = () => {
       />
       <TimePicker
         label="Time"
-        value={timeValue}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         className="date-picker"
         // eslint-disable-next-line react/jsx-props-no-spreading
         renderInput={(params) => <TextField {...params} />}
