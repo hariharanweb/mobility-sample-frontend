@@ -1,0 +1,16 @@
+.myLocationButton-locationIconButton{
+       float: right; 
+        width: 69px;
+        height: 12px;
+    }
+    .myLocationButton-locationIcon{
+        border-radius: 50%;
+            float: right; 
+            padding: 4px;
+            font-size: 36px;
+            background: #327B18;
+        border: 1px solid #327B18;
+        color: #fff;
+        text-align: center;
+        z-index: 1299;
+        }
