@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import './DateTime.css';
 import { TextField } from '@mui/material';
 
@@ -20,7 +20,7 @@ const DateTime = () => {
         // eslint-disable-next-line react/jsx-props-no-spreading
         renderInput={(params) => <TextField {...params} />}
       />
-      <TimePicker
+      <DesktopTimePicker
         label="Time"
         value={value}
         onChange={onChange}
