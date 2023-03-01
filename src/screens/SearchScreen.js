@@ -14,6 +14,7 @@ import './SearchScreen.css';
 import FilterSection from '../components/FilterSection';
 import SwipeButton from '../components/SwipeButton';
 import Map from '../components/Map';
+import LoaderScreen from '../components/CarLoader';
 
 const LocationSearchDrawer = ({
   toggleDrawer,
@@ -125,11 +126,9 @@ const SearchScreen = () => {
     libraries: ['places'],
   });
   const [openPanel, setOpenPanel] = useState(false);
+  const [isMapPresent, setisMapPresent] = useState(false);
   const toggleDrawer = () => {
     setOpenPanel(true);
-  };
-  const closeDrawer = () => {
-    setOpenPanel(false);
   };
   const [fromLocation, setFromLocation] = useState({
     display: 'Forum Mall',
@@ -145,6 +144,7 @@ const SearchScreen = () => {
     setFromLocation(toLocation);
     setToLocation(fromLocation);
   };
+  const panelHeightSearchScreen = !openPanel ? 200 : 20;
   return (
     <div>
       <Header />
@@ -154,13 +154,15 @@ const SearchScreen = () => {
         showMarker
         originLocation={fromLocation}
         destinationLocation={toLocation}
+        setOriginLocation={setFromLocation}
+        setisMapPresent={setisMapPresent}
       />
       )}
       <Panel
-        drawerHeight={!openPanel ? 200 : 20}
-        openDrawerHeight="70%"
-        isPullerPresent
-        panelChildren={(
+        drawerHeight={isMapPresent ? panelHeightSearchScreen : 20}
+        openDrawerHeight={isMapPresent ? '70%' : '30%'}
+        isPullerPresent={!!isMapPresent}
+        panelChildren={isMapPresent ? (
           <LocationSearchDrawer
             fromLocation={fromLocation}
             toLocation={toLocation}
@@ -173,11 +175,12 @@ const SearchScreen = () => {
             setFromLocation={setFromLocation}
             setToLocation={setToLocation}
           />
-)}
-        open={openPanel}
+        ) : (<LoaderScreen />)}
+        open={isMapPresent ? openPanel : true}
         toggleDrawer={toggleDrawer}
-        closeDrawer={closeDrawer}
+        isTransitionPresent={isMapPresent}
       />
+
       <Footer />
     </div>
   );

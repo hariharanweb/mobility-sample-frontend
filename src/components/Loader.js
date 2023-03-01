@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
 import './Loader.css';
 import Panel from './Panel';
 import Map from './Map';
+import LoaderScreen from './CarLoader';
 
-const LoaderScreen = () => (
-  <Grid container className="loader">
-    <h3 className="loader-heading">Finding perfect rides for you.</h3>
-    <img src="./loadingCar.gif" alt="loading-icon" className="loader-image" />
-  </Grid>
-);
 const Loader = ({
   isLoaded, destinationLocation, originLocation,
 }) => {

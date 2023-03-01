@@ -3,6 +3,7 @@ import {
 } from '@react-google-maps/api';
 import React, { useState } from 'react';
 import './Map.css';
+import MyLocationButton from './MyLocationButton';
 
 const DirectionsMap = ({
   responseMap, directionsCallBack, origin, destination,
@@ -22,25 +23,21 @@ const DirectionsMap = ({
   </>
 );
 const Map = ({
-  openPanel, showMarker, originLocation, destinationLocation,
+  openPanel, showMarker, originLocation, destinationLocation, setOriginLocation, setisMapPresent,
 }) => {
   const origin = originLocation?.display;
   const destination = destinationLocation?.display;
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   const [responseMap, setResponseMap] = useState(null);
   const [isResponse, setIsResponse] = useState(false);
+  const [isMapLoaded, setisMapLoaded] = useState(false);
+  const [map, setMap] = useState(null);
   const mapContainerStyle = {
-    height: (!openPanel && '800px') || '400px',
+    height: (!openPanel && '750px') || '400px',
     width: '100%',
   };
-  const originLocationLatLong = originLocation?.latLong;
-  const center = {
-    lat: Number(originLocationLatLong.split(',')[0]),
-    lng: Number(originLocationLatLong.split(',')[1]),
-  };
-
-  const position = {
-    lat: Number(originLocationLatLong.split(',')[0]),
-    lng: Number(originLocationLatLong.split(',')[1]),
+  const onPanLocation = () => {
+    map.panTo({ lat: currentLocation?.lat, lng: currentLocation?.lng });
   };
   const directionsCallBack = (response) => {
     if (isResponse === false && response != null && response.status === 'OK') {
@@ -48,19 +45,41 @@ const Map = ({
       setIsResponse(true);
     }
   };
-
+  const onMapLoad = (mapLoaded) => {
+    setMap(mapLoaded);
+    navigator?.geolocation.getCurrentPosition(
+      ({ coords: { latitude: lat, longitude: lng } }) => {
+        const pos = { lat, lng };
+        setCurrentLocation(pos);
+        const positionString = `${lat},${lng}`;
+        const fromLocation = {
+          display: positionString,
+          latLong: positionString,
+        };
+        setOriginLocation(fromLocation);
+        if (showMarker) {
+          setisMapPresent(true);
+          setisMapLoaded(true);
+        }
+      },
+    );
+  };
   return (
     <GoogleMap
       id="marker-example"
       mapContainerStyle={mapContainerStyle}
       zoom={15}
-      center={center}
+      center={currentLocation}
+      onLoad={(mapLoaded) => onMapLoad(mapLoaded)}
     >
+      <MyLocationButton onPanLocation={onPanLocation} />
       {showMarker ? (
-        <MarkerF
-          position={position}
-          visible
-        />
+        isMapLoaded && (
+          <MarkerF
+            position={currentLocation}
+            visible
+          />
+        )
       ) : (
         <DirectionsMap
           responseMap={responseMap}
