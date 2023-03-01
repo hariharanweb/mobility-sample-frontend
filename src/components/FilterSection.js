@@ -14,12 +14,12 @@ const ToggleButton = styled(MuiToggleButton)(({ selectedColor }) => ({
   },
 }));
 
-const FilterSection = ({ openPanel, setProvider }) => {
+const FilterSection = ({ openPanel, setCategory }) => {
   const [enable, setEnable] = useState(null);
-  const handleAlignment = (event, newAlignment) => {
-    setEnable(newAlignment);
-    setProvider(newAlignment);
-    console.log(`provider:${newAlignment}`);
+  const handleCategory = (event, selectedCategory) => {
+    setEnable(selectedCategory);
+    setCategory(selectedCategory);
+    console.log(`provider:${selectedCategory}`);
   };
 
   const style = {
@@ -31,7 +31,7 @@ const FilterSection = ({ openPanel, setProvider }) => {
 
   return (
     <Grid className="filter-icon" paddingTop={openPanel ? 2 : 3}>
-      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleAlignment} className="filter-options">
+      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleCategory} className="filter-options">
         <ToggleButton value="cabs" style={style} selectedColor="#327B18">
           <DirectionsCarFilledIcon />
           {' '}

@@ -26,12 +26,12 @@ const LocationSearchDrawer = ({
   onSwapLocation,
   setFromLocation,
   setToLocation,
-  provider,
-  setProvider,
+  category,
+  setCategory,
 }) => {
   const navigate = useNavigate();
   const onSearchClick = async () => {
-    console.log(provider);
+    console.log(category);
     const data = {
       intent: {
         fulfillment: {
@@ -67,7 +67,7 @@ const LocationSearchDrawer = ({
   return (
 
     <Grid container paddingTop="29px">
-      <FilterSection openPanel={openPanel} setProvider={setProvider} />
+      <FilterSection openPanel={openPanel} setCategory={setCategory} />
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
         <Grid item marginRight={1} paddingTop={1}>
@@ -142,7 +142,7 @@ const SearchScreen = () => {
     latLong: '12.9702626,77.6099629',
   });
   const [swapped, setSwapped] = useState(false);
-  const [provider, setProvider] = useState('');
+  const [category, setCategory] = useState('');
   const onSwapLocation = () => {
     setSwapped(true);
     setFromLocation(toLocation);
@@ -174,8 +174,8 @@ const SearchScreen = () => {
             onSwapLocation={onSwapLocation}
             setFromLocation={setFromLocation}
             setToLocation={setToLocation}
-            provider={provider}
-            setProvider={setProvider}
+            category={category}
+            setCategory={setCategory}
           />
 )}
         open={openPanel}
