@@ -12,7 +12,7 @@ const style = {
   borderColor: '#327B18',
 };
 
-const FilterSection = ({ openPanel }) => {
+const FilterSection = ({ openPanel, setProvider }) => {
   const [enableCabs, setEnableCabs] = useState(false);
   const [buttonClassCabs, setButtonClassCabs] = useState('button');
 
@@ -22,11 +22,13 @@ const FilterSection = ({ openPanel }) => {
   const showCabs = () => {
     setEnableCabs(!enableCabs);
     setButtonClassCabs(enableCabs ? '' : 'clicked-button');
+    setProvider('cabs');
   };
 
   const showTrains = () => {
     setEnableTrain(!enableTrain);
     setButtonClassTrain(enableTrain ? '' : 'clicked-button');
+    setProvider('trains');
   };
 
   return (
