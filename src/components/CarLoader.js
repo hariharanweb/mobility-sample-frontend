@@ -1,10 +1,10 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 
-const LoaderScreen = () => (
+const LoaderScreen = ({ isTextAbsent }) => (
   <Grid container className="loader">
-    <h3 className="loader-heading">Finding perfect rides for you.</h3>
-    <img src="./loadingCar.gif" alt="loading-icon" className="loader-image" />
+    {isTextAbsent ? <div className="loader-heading" /> : <h3 className="loader-heading">Finding perfect rides for you.</h3>}
+    {isTextAbsent ? <img src="./loadingCar.gif" alt="loading-icon" className="loader-image" style={{ marginTop: '25%' }} /> : <img src="./loadingCar.gif" alt="loading-icon" className="loader-image" />}
   </Grid>
 );
 export default LoaderScreen;

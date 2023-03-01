@@ -175,7 +175,7 @@ const SearchScreen = () => {
             setFromLocation={setFromLocation}
             setToLocation={setToLocation}
           />
-        ) : (<LoaderScreen />)}
+        ) : (<LoaderScreen isTextAbsent />)}
         open={isMapPresent ? openPanel : true}
         toggleDrawer={toggleDrawer}
         isTransitionPresent={isMapPresent}
