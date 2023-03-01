@@ -31,7 +31,7 @@ const LocationSearchDrawer = ({
 }) => {
   const navigate = useNavigate();
   const onSearchClick = async () => {
-    console.log(category);
+    // console.log(category);
     const data = {
       intent: {
         fulfillment: {
@@ -45,6 +45,9 @@ const LocationSearchDrawer = ({
               gps: toLocation.latLong,
             },
           },
+        },
+        category: {
+          id: category,
         },
       },
     };

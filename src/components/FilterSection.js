@@ -19,7 +19,6 @@ const FilterSection = ({ openPanel, setCategory }) => {
   const handleCategory = (event, selectedCategory) => {
     setEnable(selectedCategory);
     setCategory(selectedCategory);
-    console.log(`provider:${selectedCategory}`);
   };
 
   const style = {
