@@ -38,6 +38,12 @@ const Map = ({
   };
   const onPanLocation = () => {
     map.panTo({ lat: currentLocation?.lat, lng: currentLocation?.lng });
+    const currentPositionString = `${currentLocation?.lat},${currentLocation?.lng}`;
+    const fromLocationCoordinates = {
+      display: currentPositionString,
+      latLong: currentPositionString,
+    };
+    setOriginLocation(fromLocationCoordinates);
   };
   const directionsCallBack = (response) => {
     if (isResponse === false && response != null && response.status === 'OK') {
