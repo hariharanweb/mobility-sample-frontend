@@ -1,10 +1,10 @@
 .filter-icon {
-    width: 100%;
-    margin-bottom: 4%;
+  width: 100%;
+  margin-bottom: 4%;
 }
 
-.clicked-button {
-  background-color: green !important;
-  color: white !important;
+.filter-options {
+width: 100%;
+display: flex;
+justify-content: space-evenly;
 }
-

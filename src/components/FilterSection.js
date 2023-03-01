@@ -1,49 +1,47 @@
 import React, { useState } from 'react';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+import MuiToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { Grid } from '@mui/material';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 import './FilterSection.css';
+import { styled } from '@mui/material/styles';
 
-const style = {
-  borderRadius: '20px',
-  marginLeft: '45px',
-  borderColor: '#327B18',
-};
+const ToggleButton = styled(MuiToggleButton)(({ selectedColor }) => ({
+  '&.Mui-selected, &.Mui-selected:hover': {
+    color: 'white',
+    backgroundColor: selectedColor,
+  },
+}));
 
 const FilterSection = ({ openPanel, setProvider }) => {
-  const [enableCabs, setEnableCabs] = useState(false);
-  const [buttonClassCabs, setButtonClassCabs] = useState('button');
-
-  const [enableTrain, setEnableTrain] = useState(false);
-  const [buttonClassTrain, setButtonClassTrain] = useState('button');
-
-  const showCabs = () => {
-    setEnableCabs(!enableCabs);
-    setButtonClassCabs(enableCabs ? '' : 'clicked-button');
-    setProvider('cabs');
+  const [enable, setEnable] = useState(null);
+  const handleAlignment = (event, newAlignment) => {
+    setEnable(newAlignment);
+    setProvider(newAlignment);
+    console.log(`provider:${newAlignment}`);
   };
 
-  const showTrains = () => {
-    setEnableTrain(!enableTrain);
-    setButtonClassTrain(enableTrain ? '' : 'clicked-button');
-    setProvider('trains');
+  const style = {
+    borderRadius: '20px',
+    borderColor: '#327B18',
+    width: '94px',
+    height: '39px',
   };
 
   return (
     <Grid className="filter-icon" paddingTop={openPanel ? 2 : 3}>
-      <ButtonGroup>
-        <Button style={style} onClick={showCabs} className={buttonClassCabs}>
+      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleAlignment} className="filter-options">
+        <ToggleButton value="cabs" style={style} selectedColor="#327B18">
           <DirectionsCarFilledIcon />
           {' '}
           Cabs
-        </Button>
-        <Button style={style} onClick={showTrains} className={buttonClassTrain}>
+        </ToggleButton>
+        <ToggleButton value="trains" style={style} selectedColor="#327B18">
           <DirectionsSubwayIcon />
           Trains
-        </Button>
-      </ButtonGroup>
+        </ToggleButton>
+      </ToggleButtonGroup>
     </Grid>
   );
 };
