@@ -69,14 +69,20 @@ const Map = ({
       id="marker-example"
       mapContainerStyle={mapContainerStyle}
       zoom={15}
-      center={currentLocation}
+      center={{
+        lat: Number(originLocation?.latLong.split(',')[0]),
+        lng: Number(originLocation?.latLong.split(',')[1]),
+      }}
       onLoad={(mapLoaded) => onMapLoad(mapLoaded)}
     >
       <MyLocationButton onPanLocation={onPanLocation} />
       {showMarker ? (
         isMapLoaded && (
           <MarkerF
-            position={currentLocation}
+            position={{
+              lat: Number(originLocation?.latLong.split(',')[0]),
+              lng: Number(originLocation?.latLong.split(',')[1]),
+            }}
             visible
           />
         )

@@ -131,8 +131,8 @@ const SearchScreen = () => {
     setOpenPanel(true);
   };
   const [fromLocation, setFromLocation] = useState({
-    display: 'Forum Mall',
-    latLong: '12.9372469,77.6109981',
+    display: '',
+    latLong: '',
   });
   const [toLocation, setToLocation] = useState({
     display: 'Garuda Mall',
