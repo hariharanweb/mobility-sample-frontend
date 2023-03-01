@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Loader.css';
 import Panel from './Panel';
 import Map from './Map';
-import LoaderScreen from './CarLoader';
+import CarLoader from './CarLoader';
 
 const Loader = ({
   isLoaded, destinationLocation, originLocation,
@@ -22,7 +22,7 @@ const Loader = ({
       />
       )}
       <Panel
-        panelChildren={<LoaderScreen />}
+        panelChildren={<CarLoader />}
         open={openPanel}
         toggleDrawer={toggleDrawer}
         openDrawerHeight="428px"

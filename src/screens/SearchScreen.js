@@ -14,7 +14,7 @@ import './SearchScreen.css';
 import FilterSection from '../components/FilterSection';
 import SwipeButton from '../components/SwipeButton';
 import Map from '../components/Map';
-import LoaderScreen from '../components/CarLoader';
+import CarLoader from '../components/CarLoader';
 
 const LocationSearchDrawer = ({
   toggleDrawer,
@@ -175,7 +175,7 @@ const SearchScreen = () => {
             setFromLocation={setFromLocation}
             setToLocation={setToLocation}
           />
-        ) : (<LoaderScreen isTextAbsent />)}
+        ) : (<CarLoader isTextAbsent />)}
         open={isMapPresent ? openPanel : true}
         toggleDrawer={toggleDrawer}
         isTransitionPresent={isMapPresent}
