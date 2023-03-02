@@ -29,15 +29,21 @@ const LocationSearchDrawer = ({
   setToLocation,
   category,
   setCategory,
+  dateTime,
+  setDateTime,
 }) => {
   const navigate = useNavigate();
   const onSearchClick = async () => {
+    console.log(dateTime);
     const data = {
       intent: {
         fulfillment: {
           start: {
             location: {
               gps: fromLocation.latLong,
+            },
+            time: {
+              timestamp: dateTime,
             },
           },
           end: {
@@ -101,7 +107,7 @@ const LocationSearchDrawer = ({
         </Grid>
         )}
         <Grid paddingY={2}>
-          <DateTime fullWidth />
+          <DateTime fullWidth setDateTime={setDateTime} />
         </Grid>
         <Grid paddingLeft={1}>
           <Button
@@ -144,6 +150,7 @@ const SearchScreen = () => {
   });
   const [swapped, setSwapped] = useState(false);
   const [category, setCategory] = useState('');
+  const [dateTime, setDateTime] = useState(null);
   const onSwapLocation = () => {
     setSwapped(true);
     setFromLocation(toLocation);
@@ -181,6 +188,8 @@ const SearchScreen = () => {
             setToLocation={setToLocation}
             category={category}
             setCategory={setCategory}
+            dateTime={dateTime}
+            setDateTime={setDateTime}
           />
         ) : (<CarLoader isTextAbsent />)}
         open={isMapPresent ? openPanel : true}
