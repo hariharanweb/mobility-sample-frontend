@@ -19,7 +19,6 @@ const DateTime = ({ setDateTime }) => {
         label="Date Time"
         inputFormat="MM/DD/YYYY hh:mm"
         value={value}
-        // setDateTime{value}
         onChange={onChange}
         fullWidth
         className="date-picker"
