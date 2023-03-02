@@ -26,14 +26,14 @@ const Item = ({
     <Card sx={{ maxWidth: 600 }} className="cardStyle">
       <CardActionArea>
         <CardContent onClick={onSelect}>
-          <Grid container className={containerStyle} display="flex" gap={2} sx={{ backgroundColor: buttonEnabled ? 'while' : 'rgba(50, 123, 24, 0.1)' }}>
+          <Grid container className={containerStyle} display="flex" gap={10} sx={{ backgroundColor: buttonEnabled ? 'white' : 'rgba(50, 123, 24, 0.1)' }}>
             { item.descriptor.images && item.descriptor.images.length > 0
               ? (
                 <Grid
                   item
-                  xs={1}
+                  xs={2}
                   alignItems="center"
-                  justifyContent="center"
+                  // justifyContent="center"
                   display="flex"
                   paddingLeft={2}
                   marginRight={1}
@@ -55,15 +55,15 @@ const Item = ({
         && (
           <Grid
             item
-            // xs={2.5}
+            xs={2.5}
             alignItems="center"
-            justifyContent="left"
+            // justifyContent="left"
             display="flex"
             paddingLeft="4%"
             marginTop="5px"
             color="#000"
             height="60px"
-            width="90px"
+            width="65px"
           >
             <div>
               <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
@@ -80,11 +80,12 @@ const Item = ({
 
             <Grid
               item
-              // xs={2.5}
+              xs={3.5}
               alignItems="center"
-              justifyContent="left"
+              justifyContent="center"
               display="flex"
-              // paddingLeft="1%"
+              paddingLeft="2%"
+              paddingRight="3%"
               color="#000"
               height="60px"
               width="90px"
@@ -103,7 +104,10 @@ const Item = ({
         )}
               {!isParent && !category
         && (
-          <div>
+          <div style={{
+            alignContent: 'center', marginLeft: '15px', paddingTop: '6px',
+          }}
+          >
             <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
               <DirectionsCarOutlinedIcon style={{
                 fontSize: 'small', marginRight: '2px', color: 'grey',
@@ -111,7 +115,7 @@ const Item = ({
               />
               Vehicle
             </Typography>
-            <Typography variant="body1" style={{ fontSize: 'medium', fontWeight: '500' }}>
+            <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500' }}>
               {item.descriptor.name}
             </Typography>
           </div>
@@ -121,17 +125,18 @@ const Item = ({
               item
               xs={1.5}
               alignItems="center"
-              justifyContent="center"
+              // justifyContent="center"
               display="flex"
               paddingTop="10px"
-              paddingLeft="3%"
+              paddingLeft="8%"
+              height="70px"
             >
               <div>
                 <Typography style={{ color: 'grey', fontSize: 'small' }}>
                   <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', color: 'grey' }} />
                   Fare
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" style={{ fontSize: 'small', paddingLeft: '5%' }}>
                   <Price price={item.price} />
                 </Typography>
               </div>
