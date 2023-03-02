@@ -3,10 +3,11 @@
   border-left: 0px;
   border-right: 0px;
   width: 100%;
+  gap: 5px !important;
 }
 
 .parent-item {
-  gap: 2.5px !important;
+  gap: 10px !important;
 }
 
 .train-icon {
@@ -16,6 +17,7 @@
 
 .cardStyle {
   box-shadow: none !important;
+  width: 100% !important;
 }
 
 .icon {
@@ -25,7 +27,6 @@
 
 .vehicle {
   padding-right: 20px;
-  background-color: aqua;
 }
 
 @media only screen and (min-width: 700px) {
