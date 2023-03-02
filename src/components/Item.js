@@ -25,7 +25,7 @@ const Item = ({
   return (
     <Card sx={{ maxWidth: 600 }} className="cardStyle">
       <CardActionArea>
-        <CardContent onClick={onSelect}>
+        <CardContent onClick={onSelect} style={{ padding: '0px' }}>
           <Grid container className={containerStyle} display="flex" gap={10} sx={{ backgroundColor: buttonEnabled ? 'white' : 'rgba(50, 123, 24, 0.1)' }}>
             { item.descriptor.images && item.descriptor.images.length > 0
               ? (
@@ -60,6 +60,7 @@ const Item = ({
             // justifyContent="left"
             display="flex"
             paddingLeft="4%"
+            paddingBottom="5px"
             marginTop="6px"
             color="#000"
             height="60px"
@@ -70,7 +71,7 @@ const Item = ({
                 <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }} />
                 Ride
               </Typography>
-              <Typography variant="body1" style={{ fontSize: 'medium' }}>
+              <Typography variant="body1" style={{ fontSize: 'medium', paddingLeft: '3px' }}>
                 <Time time={item.time} />
               </Typography>
             </div>
@@ -84,8 +85,9 @@ const Item = ({
               alignItems="center"
               justifyContent="center"
               display="flex"
-              paddingLeft="2%"
+              paddingLeft="4%"
               paddingRight="3%"
+              paddingBottom="5px"
               color="#000"
               height="60px"
               width="90px"
@@ -125,7 +127,7 @@ const Item = ({
               />
               Vehicle
             </Typography>
-            <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500' }}>
+            <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500', paddingLeft: '3px' }}>
               {item.descriptor.name}
             </Typography>
           </div>
@@ -138,6 +140,7 @@ const Item = ({
               // justifyContent="center"
               display="flex"
               paddingTop="8px"
+              paddingBottom="5px"
               paddingLeft="8%"
               height="70px"
             >
