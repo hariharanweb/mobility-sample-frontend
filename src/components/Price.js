@@ -17,7 +17,6 @@ const Price = ({ price }) => (
     <Typography
       variant="subtitle2"
       height="50px"
-      width="60px"
       align="center"
     >
       ₹
