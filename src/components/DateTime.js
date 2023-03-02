@@ -5,13 +5,18 @@ import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker
 import './DateTime.css';
 import { TextField } from '@mui/material';
 
-const DateTime = () => {
-  const [value, onChange] = useState(null);
+const DateTime = ({ setDateTime }) => {
+  const [value, setValue] = useState(new Date().toISOString());
+
+  const onChange = () => {
+    setValue(value);
+    setDateTime(value);
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDateTimePicker
-        label="Date Time picker"
+        label="Date Time"
         inputFormat="MM/DD/YYYY hh:mm"
         value={value}
         onChange={onChange}
