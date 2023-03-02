@@ -5,7 +5,15 @@ import Item from './Item';
 import Items from './Items';
 import Provider from './Provider';
 
-const providerItems = (items, categories, onSelectJourney, provider, fulfillments, bppUrl) => {
+const providerItems = (
+  items,
+  categories,
+  onSelectJourney,
+  provider,
+  fulfillments,
+  bppUrl,
+  keyState,
+) => {
   const itemsGroupedByParent = _.groupBy(_.filter(items, (item) => !!item.parent_item_id), 'parent_item_id');
   const itemsWithoutHierarchy = items.filter(
     (item) => _.keys(itemsGroupedByParent).indexOf(item.id) < 0 && !item.parent_item_id,
@@ -22,17 +30,20 @@ const providerItems = (items, categories, onSelectJourney, provider, fulfillment
         provider={provider}
         fulfillments={fulfillments}
         bppUrl={bppUrl}
+        keyState={keyState}
       />
     );
   });
   const individualItems = itemsWithoutHierarchy.map((item) => (
     <Item
+      key={item.id}
       isParent={false}
       item={item}
       onSelectJourney={onSelectJourney}
       provider={provider}
       fulfillments={fulfillments}
       bppUrl={bppUrl}
+      keyState={keyState}
     />
   ));
   return (
@@ -43,7 +54,13 @@ const providerItems = (items, categories, onSelectJourney, provider, fulfillment
   );
 };
 
-const bppProvider = (provider, onSelectJourney, fulfillments, bppUrl) => (
+const bppProvider = (
+  provider,
+  onSelectJourney,
+  fulfillments,
+  bppUrl,
+  keyState,
+) => (
   <Grid container key={provider.id}>
     <Provider provider={provider} />
     {providerItems(
@@ -53,6 +70,7 @@ const bppProvider = (provider, onSelectJourney, fulfillments, bppUrl) => (
       provider,
       fulfillments,
       bppUrl,
+      keyState,
     )}
   </Grid>
 );
@@ -61,6 +79,7 @@ const Catalog = ({
   catalog,
   onSelectJourney,
   bppUrl,
+  keyState,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
@@ -72,6 +91,7 @@ const Catalog = ({
           onSelectJourney,
           fulfillments,
           bppUrl,
+          keyState,
         ))}
       </div>
     </div>
