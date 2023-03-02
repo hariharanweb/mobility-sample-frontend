@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import dayjs from 'dayjs';
+import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker';
 import './DateTime.css';
 import { TextField } from '@mui/material';
 
 const DateTime = () => {
-  const [value, onChange] = useState(dayjs());
+  const [value, onChange] = useState(null);
+
   return (
-    <div className="date-picker">
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DesktopDatePicker
-          label="Date"
-          inputFormat="MM/DD/YYYY"
-          value={value}
-          onChange={onChange}
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DesktopDateTimePicker
+        label="Date Time picker"
+        inputFormat="MM/DD/YYYY hh:mm"
+        value={value}
+        onChange={onChange}
+        fullWidth
+        className="date-picker"
         // eslint-disable-next-line react/jsx-props-no-spreading
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
-    </div>
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider>
   );
 };
 

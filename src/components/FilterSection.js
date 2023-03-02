@@ -1,29 +1,48 @@
-import React from 'react';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import MuiToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { Grid } from '@mui/material';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 import './FilterSection.css';
+import { styled } from '@mui/material/styles';
 
-const style = {
-  borderRadius: '20px', marginLeft: '45px', borderColor: '#327B18',
+const ToggleButton = styled(MuiToggleButton)(({ selectedColor }) => ({
+  '&.Mui-selected, &.Mui-selected:hover': {
+    color: 'white',
+    backgroundColor: selectedColor,
+  },
+}));
+
+const FilterSection = ({ openPanel, setCategory }) => {
+  const [enable, setEnable] = useState(null);
+  const handleCategory = (event, selectedCategory) => {
+    setEnable(selectedCategory);
+    setCategory(selectedCategory);
+  };
+
+  const style = {
+    borderRadius: '20px',
+    borderColor: '#327B18',
+    width: '94px',
+    height: '39px',
+  };
+
+  return (
+    <Grid className="filter-icon" paddingTop={openPanel ? 2 : 3}>
+      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleCategory} className="filter-options">
+        <ToggleButton value="cabs" style={style} selectedColor="#327B18">
+          <DirectionsCarFilledIcon />
+          {' '}
+          Cabs
+        </ToggleButton>
+        <ToggleButton value="trains" style={style} selectedColor="#327B18">
+          <DirectionsSubwayIcon />
+          Trains
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Grid>
+  );
 };
-
-const FilterSection = ({ openPanel }) => (
-  <Grid className="filter-icon" paddingTop={openPanel ? 2 : 3}>
-    <ButtonGroup>
-      <Button style={style}>
-        <DirectionsCarFilledIcon />
-        {' '}
-        Cabs
-      </Button>
-      <Button style={style}>
-        <DirectionsSubwayIcon />
-        Trains
-      </Button>
-    </ButtonGroup>
-  </Grid>
-);
 
 export default FilterSection;

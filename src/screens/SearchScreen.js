@@ -27,6 +27,8 @@ const LocationSearchDrawer = ({
   onSwapLocation,
   setFromLocation,
   setToLocation,
+  category,
+  setCategory,
 }) => {
   const navigate = useNavigate();
   const onSearchClick = async () => {
@@ -43,6 +45,9 @@ const LocationSearchDrawer = ({
               gps: toLocation.latLong,
             },
           },
+        },
+        category: {
+          id: category,
         },
       },
     };
@@ -65,7 +70,7 @@ const LocationSearchDrawer = ({
   return (
 
     <Grid container paddingTop="29px">
-      <FilterSection openPanel={openPanel} />
+      <FilterSection openPanel={openPanel} setCategory={setCategory} />
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
         <Grid item marginRight={1} paddingTop={1}>
@@ -95,25 +100,24 @@ const LocationSearchDrawer = ({
           />
         </Grid>
         )}
-        <Grid container paddingY={2}>
-          <Grid>
-            <DateTime fullWidth />
-          </Grid>
-          <Grid paddingLeft={1}>
-            <Button
-              className="searchScreen-search-button"
-              variant="contained"
-              onClick={onSearchClick}
-              disabled={
+        <Grid paddingY={2}>
+          <DateTime fullWidth />
+        </Grid>
+        <Grid paddingLeft={1}>
+          <Button
+            className="searchScreen-search-button"
+            variant="contained"
+            fullWidth
+            onClick={onSearchClick}
+            disabled={
       !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
     }
-              endIcon={<ArrowForwardIcon />}
-            >
-              Search
-            </Button>
-          </Grid>
-
+            endIcon={<ArrowForwardIcon />}
+          >
+            Search
+          </Button>
         </Grid>
+
       </Grid>
     </Grid>
   );
@@ -139,6 +143,7 @@ const SearchScreen = () => {
     latLong: '12.9702626,77.6099629',
   });
   const [swapped, setSwapped] = useState(false);
+  const [category, setCategory] = useState('');
   const onSwapLocation = () => {
     setSwapped(true);
     setFromLocation(toLocation);
@@ -174,6 +179,8 @@ const SearchScreen = () => {
             onSwapLocation={onSwapLocation}
             setFromLocation={setFromLocation}
             setToLocation={setToLocation}
+            category={category}
+            setCategory={setCategory}
           />
         ) : (<CarLoader isTextAbsent />)}
         open={isMapPresent ? openPanel : true}
