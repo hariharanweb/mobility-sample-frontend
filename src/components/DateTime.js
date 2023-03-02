@@ -9,7 +9,6 @@ const DateTime = ({ setDateTime }) => {
   const [value, setValue] = useState(new Date().toISOString());
 
   const onChange = () => {
-    console.log(value);
     setValue(value);
     setDateTime(value);
   };

@@ -34,7 +34,6 @@ const LocationSearchDrawer = ({
 }) => {
   const navigate = useNavigate();
   const onSearchClick = async () => {
-    console.log(dateTime);
     const data = {
       intent: {
         fulfillment: {
