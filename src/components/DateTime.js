@@ -6,10 +6,11 @@ import './DateTime.css';
 import { TextField } from '@mui/material';
 
 const DateTime = ({ setDateTime }) => {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(new Date().toISOString());
 
-  const onChange = (event, dateTimeValue) => {
-    setValue(dateTimeValue);
+  const onChange = () => {
+    console.log(value);
+    setValue(value);
     setDateTime(value);
   };
 
