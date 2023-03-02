@@ -9,7 +9,7 @@ const Price = ({ price }) => (
       height="30px"
       width="60px"
     >
-      ₹&nbsp;&nbsp;
+      ₹
       {price.value}
     </Typography>
     )}
