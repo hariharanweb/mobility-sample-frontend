@@ -14,26 +14,36 @@ import './Item.css';
 import './Time.css';
 
 const Item = ({
-  item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl,
+  key, item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl, keyState,
 }) => {
+  const [keySelectedState, setKeySelectedState] = useState(false);
   const [buttonEnabled, setButtonEnabled] = useState(true);
   const onSelect = () => {
     setButtonEnabled(!buttonEnabled);
-    onSelectJourney(item, provider, fulfillments, bppUrl, buttonEnabled);
+    setKeySelectedState(!keySelectedState);
+    onSelectJourney(
+      item,
+      provider,
+      fulfillments,
+      bppUrl,
+      buttonEnabled,
+      setKeySelectedState,
+      keySelectedState,
+    );
   };
   const containerStyle = isParent ? 'parent-item' : 'item-with-border';
+  const deselectedStateStyle = buttonEnabled ? 'white' : 'rgba(50, 123, 24, 0.1)';
   return (
-    <Card sx={{ maxWidth: 600 }} className="cardStyle">
+    <Card sx={{ maxWidth: 600 }} className="cardStyle" key={key}>
       <CardActionArea>
-        <CardContent onClick={onSelect} style={{ padding: '0px' }}>
-          <Grid container className={containerStyle} display="flex" gap={10} sx={{ backgroundColor: buttonEnabled ? 'white' : 'rgba(50, 123, 24, 0.1)' }}>
+        <CardContent onClick={onSelect} style={{ padding: '0px' }} key={key}>
+          <Grid container className={containerStyle} display="flex" gap={10} sx={{ backgroundColor: keyState !== item?.id ? 'white' : deselectedStateStyle }}>
             { item.descriptor.images && item.descriptor.images.length > 0
               ? (
                 <Grid
                   item
                   xs={2}
                   alignItems="center"
-                  // justifyContent="center"
                   display="flex"
                   paddingLeft={2}
                   marginRight={1}
@@ -57,7 +67,6 @@ const Item = ({
             item
             xs={2.5}
             alignItems="center"
-            // justifyContent="left"
             display="flex"
             paddingLeft="4%"
             paddingBottom="5px"
@@ -137,7 +146,6 @@ const Item = ({
               item
               xs={1.5}
               alignItems="center"
-              // justifyContent="center"
               display="flex"
               paddingTop="8px"
               paddingBottom="5px"

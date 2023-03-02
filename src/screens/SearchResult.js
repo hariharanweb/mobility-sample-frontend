@@ -19,6 +19,7 @@ const SearchResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openPanel, setOpenPanel] = useState(true);
+  const [keyState, setKeyState] = useState('');
   const toggleDrawer = () => {
     setOpenPanel(true);
   };
@@ -82,8 +83,18 @@ const SearchResult = () => {
     }
   };
 
-  const onSelectJourney = async (item, provider, fulfillments, bppUrl, buttonEnabled) => {
+  const onSelectJourney = async (
+    item,
+    provider,
+    fulfillments,
+    bppUrl,
+    buttonEnabled,
+    setKeySelectedState,
+    keySelectedState,
+  ) => {
     setButtonState(!buttonEnabled);
+    setKeySelectedState(!keySelectedState);
+    setKeyState(item?.id);
     setinfo({
       item,
       provider,
@@ -107,6 +118,7 @@ const SearchResult = () => {
               onSelectJourney={onSelectJourney}
               bppUrl={bppProvider.context.bpp_uri}
               bppId={bppProvider.context.bpp_id}
+              keyState={keyState}
             />
           </div>
         ))}
