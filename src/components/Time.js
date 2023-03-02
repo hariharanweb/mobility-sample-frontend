@@ -13,7 +13,10 @@ const Time = ({ time }) => (
     )}
     {!!time.range && (
     <Typography variant="body1" gutterBottom style={{ fontSize: 'small', fontWeight: '600' }}>
-      {`${formattedTime(time.range.start)} - ${formattedTime(time.range.end)}`}
+      {formattedTime(time.range.start)}
+      &nbsp;-
+      {' '}
+      {formattedTime(time.range.end)}
     </Typography>
     )}
   </>
