@@ -60,7 +60,7 @@ const Item = ({
             // justifyContent="left"
             display="flex"
             paddingLeft="4%"
-            marginTop="5px"
+            marginTop="6px"
             color="#000"
             height="60px"
             width="65px"
@@ -92,13 +92,23 @@ const Item = ({
             >
               {isParent
         && (
-        <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '600' }}>
+        <Typography
+          variant="body1"
+          style={{
+            fontSize: 'small', fontWeight: '600', marginLeft: '10px', paddingTop: '20px', marginTop: '5px',
+          }}
+        >
           {item.descriptor.name}
         </Typography>
         )}
               {!isParent && category
         && (
-        <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '600' }}>
+        <Typography
+          variant="body1"
+          style={{
+            fontSize: 'small', fontWeight: '600', marginLeft: '10px', paddingTop: '20px', marginTop: '5px',
+          }}
+        >
           {category}
         </Typography>
         )}
@@ -127,7 +137,7 @@ const Item = ({
               alignItems="center"
               // justifyContent="center"
               display="flex"
-              paddingTop="10px"
+              paddingTop="8px"
               paddingLeft="8%"
               height="70px"
             >

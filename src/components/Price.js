@@ -16,14 +16,13 @@ const Price = ({ price }) => (
     {!!price.minimum_value && !!price.maximum_value && (
     <Typography
       variant="subtitle2"
-      height="60px"
+      height="50px"
       width="60px"
       align="center"
     >
       ₹
       {price.minimum_value}
-      {' '}
-      -
+      &nbsp;-
       ₹
       {price.maximum_value}
     </Typography>
