@@ -1,7 +1,6 @@
 import Grid from '@mui/material/Grid';
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
-
 import TrainIcon from '@mui/icons-material/Train';
 import { CardActionArea } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -17,8 +16,9 @@ import './Time.css';
 const Item = ({
   item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl,
 }) => {
+  const [buttonEnabled, setButtonEnabled] = useState(true);
   const onSelect = () => {
-    const buttonEnabled = false;
+    setButtonEnabled(!buttonEnabled);
     onSelectJourney(item, provider, fulfillments, bppUrl, buttonEnabled);
   };
   const containerStyle = isParent ? 'parent-item' : 'item-with-border';
@@ -26,7 +26,7 @@ const Item = ({
     <Card sx={{ maxWidth: 600 }} className="cardStyle">
       <CardActionArea>
         <CardContent onClick={onSelect}>
-          <Grid container className={containerStyle} display="flex" gap={2}>
+          <Grid container className={containerStyle} display="flex" gap={2} sx={{ backgroundColor: buttonEnabled ? 'while' : 'rgba(50, 123, 24, 0.1)' }}>
             { item.descriptor.images && item.descriptor.images.length > 0
               ? (
                 <Grid

@@ -76,7 +76,7 @@ const SearchResult = () => {
   };
 
   const onSelectJourney = async (item, provider, fulfillments, bppUrl, buttonEnabled) => {
-    setButtonState(buttonEnabled);
+    setButtonState(!buttonEnabled);
     setinfo({
       item,
       provider,
