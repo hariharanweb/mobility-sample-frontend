@@ -17,7 +17,7 @@ const DateTime = ({ setDateTime }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDateTimePicker
-        label="Date Time picker"
+        label="Date Time"
         inputFormat="MM/DD/YYYY hh:mm"
         value={value}
         // setDateTime{value}
