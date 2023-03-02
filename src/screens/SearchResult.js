@@ -1,6 +1,7 @@
 /* eslint camelcase: 0 */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Api from '../api/Api';
 import Catalog from '../components/Catalog';
@@ -32,6 +33,8 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [buttonState, setButtonState] = useState(true);
+  const [info, setinfo] = useState({});
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -49,34 +52,45 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  const onSelectJourney = async (item, provider, fulfillments, bppUrl) => {
+  const onBookRide = async () => {
     const data = {
-      context: ContextBuilder.getContext('select', bppUrl, searchResults[0].context.transaction_id),
+      context: ContextBuilder.getContext('select', info?.bppUrl, searchResults[0].context.transaction_id),
       message: {
         order: {
           provider: {
-            id: provider.id,
+            id: info?.provider.id,
           },
           items: [
             {
-              id: item?.id,
-              fulfillment_id: item?.fulfillment_id,
-              descriptor: item?.descriptor,
-              price: item?.price,
-              category_id: item?.category_id,
+              id: info?.item?.id,
+              fulfillment_id: info?.item?.fulfillment_id,
+              descriptor: info?.item?.descriptor,
+              price: info?.item?.price,
+              category_id: info?.item?.category_id,
             },
           ],
-          fulfillment: fulfillments,
+          fulfillment: info?.fulfillments,
         },
       },
     };
     const response = await Api.post('/select', data);
-    response.provider = provider;
+    response.provider = info?.provider;
     response.locations = locations;
     if (response.message_id) {
       navigate('/select', { state: { ...response } });
     }
   };
+
+  const onSelectJourney = async (item, provider, fulfillments, bppUrl, buttonEnabled) => {
+    setButtonState(buttonEnabled);
+    setinfo({
+      item,
+      provider,
+      fulfillments,
+      bppUrl,
+    });
+  };
+
   const gotoHome = () => {
     navigate('/', { state: {} });
   };
@@ -95,6 +109,9 @@ const SearchResult = () => {
             />
           </div>
         ))}
+        <div>
+          <Button disabled={buttonState} onClick={onBookRide}> Book Ride </Button>
+        </div>
       </Grid>
     </Grid>
   );
