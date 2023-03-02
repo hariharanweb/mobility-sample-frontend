@@ -3,6 +3,7 @@
   border-left: 0px;
   border-right: 0px;
   width: 100%;
+  gap: 5px !important;
 }
 
 .parent-item {
