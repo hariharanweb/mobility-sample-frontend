@@ -122,7 +122,7 @@ const SearchResult = () => {
             />
           </div>
         ))}
-        <Grid>
+        <Grid py={1}>
           <Button
             className="book-ride-button"
             variant="contained"
