@@ -13,6 +13,7 @@ import Map from '../components/Map';
 import Loader from '../components/Loader';
 import LocationTracer from '../components/LocationTracer';
 import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
+import './SearchResult.css';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -109,9 +110,17 @@ const SearchResult = () => {
             />
           </div>
         ))}
-        <div>
-          <Button disabled={buttonState} onClick={onBookRide}> Book Ride </Button>
-        </div>
+        <Grid>
+          <Button
+            className="book-ride-button"
+            variant="contained"
+            fullWidth
+            disabled={buttonState}
+            onClick={onBookRide}
+          >
+            Book Ride
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
