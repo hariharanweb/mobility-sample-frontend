@@ -26,7 +26,7 @@ const Item = ({
     <Card sx={{ maxWidth: 600 }} className="cardStyle">
       <CardActionArea>
         <CardContent onClick={onSelect}>
-          <Grid container className={containerStyle} display="flex" gap={2} sx={{ px: '10px', py: '23px', color: 'text.secondary' }}>
+          <Grid container className={containerStyle} display="flex" gap={2}>
             { item.descriptor.images && item.descriptor.images.length > 0
               ? (
                 <Grid
@@ -37,6 +37,8 @@ const Item = ({
                   display="flex"
                   paddingLeft={2}
                   marginRight={1}
+                  height="60px"
+                  width="90px"
                 >
                   <img
                     height={32}
@@ -53,16 +55,19 @@ const Item = ({
         && (
           <Grid
             item
-            xs={3}
+            // xs={2.5}
             alignItems="center"
             justifyContent="left"
             display="flex"
-            paddingLeft="7%"
+            paddingLeft="4%"
+            marginTop="5px"
             color="#000"
+            height="60px"
+            width="90px"
           >
             <div>
-              <Typography variant="body1" style={{ color: 'grey' }}>
-                <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+              <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
+                <AccessTimeOutlinedIcon style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }} />
                 Ride
               </Typography>
               <Typography variant="body1" style={{ fontSize: 'medium' }}>
@@ -75,12 +80,14 @@ const Item = ({
 
             <Grid
               item
-              xs={3.5}
+              // xs={2.5}
               alignItems="center"
               justifyContent="left"
               display="flex"
-              paddingLeft="7%"
+              // paddingLeft="1%"
               color="#000"
+              height="60px"
+              width="90px"
             >
               {isParent
         && (
@@ -90,18 +97,21 @@ const Item = ({
         )}
               {!isParent && category
         && (
-        <Typography variant="body1">
+        <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '600' }}>
           {category}
         </Typography>
         )}
               {!isParent && !category
         && (
           <div>
-            <Typography variant="body1" style={{ color: 'grey' }}>
-              <DirectionsCarOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
+            <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
+              <DirectionsCarOutlinedIcon style={{
+                fontSize: 'small', marginRight: '2px', color: 'grey',
+              }}
+              />
               Vehicle
             </Typography>
-            <Typography variant="body1" style={{ fontSize: 'medium' }}>
+            <Typography variant="body1" style={{ fontSize: 'medium', fontWeight: '500' }}>
               {item.descriptor.name}
             </Typography>
           </div>
@@ -113,11 +123,12 @@ const Item = ({
               alignItems="center"
               justifyContent="center"
               display="flex"
-              paddingLeft="2%"
+              paddingTop="10px"
+              paddingLeft="3%"
             >
               <div>
-                <Typography variant="body1" style={{ color: 'grey' }}>
-                  <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }} />
+                <Typography style={{ color: 'grey', fontSize: 'small' }}>
+                  <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', color: 'grey' }} />
                   Fare
                 </Typography>
                 <Typography variant="body1">
