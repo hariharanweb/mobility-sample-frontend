@@ -1,8 +1,5 @@
 .loader {
-    display: flex;
-    flex-direction: column !important;
-    width: 100%;
-    height: 100%;
+    justify-content: center;
 }
 
 .loader-heading {
@@ -11,15 +8,9 @@
 }
 
 .loader-image {
-    margin-top: 69px;
+    margin-top: 33px;
     width: 174px;
     height: 80px;
-    margin-left: 81px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    align-items: center;
-    display: flex;
-    justify-content: center;
 }
 
 @media only screen and (min-width: 700px) {

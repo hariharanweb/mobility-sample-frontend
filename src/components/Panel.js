@@ -29,7 +29,10 @@ const Puller = styled(Box)(({ theme }) => ({
 
 function Panel(props) {
   const {
-    panelChildren, open, toggleDrawer, openDrawerHeight, drawerHeight, panelHeight,
+    panelChildren,
+    open,
+    toggleDrawer,
+    openDrawerHeight, drawerHeight, panelHeight, isPullerPresent, isTransitionPresent,
   } = props;
   const drawerBleeding = drawerHeight || 50;
   const height = panelHeight || '100%';
@@ -55,6 +58,8 @@ function Panel(props) {
         ModalProps={{
           keepMounted: true,
         }}
+        transitionDuration={isTransitionPresent ? { appear: 500, enter: 300, exit: 5 }
+          : 5}
       >
         <StyledBox
           className="panel-styledbox"
@@ -64,7 +69,7 @@ function Panel(props) {
             top: -drawerBleeding,
           }}
         >
-          <Puller />
+          {isPullerPresent ? <Puller /> : null}
           {panelChildren}
         </StyledBox>
       </SwipeableDrawer>

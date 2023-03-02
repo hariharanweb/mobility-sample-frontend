@@ -13,7 +13,8 @@ const LocationSearch = ({
       setLocation(initialLocation);
       onSwapped(false);
     }
-  }, [swapped]);
+    setLocation(initialLocation);
+  }, [swapped, initialLocation]);
   const onLoad = (data) => {
     setAutoComplete(data);
   };

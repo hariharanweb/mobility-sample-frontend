@@ -101,6 +101,7 @@ const InitScreen = () => {
               toggleDrawer={toggleDrawer}
               closeDrawer={closeDrawer}
               openDrawerHeight="350px"
+              isPullerPresent={false}
             />
           </>
         )}
