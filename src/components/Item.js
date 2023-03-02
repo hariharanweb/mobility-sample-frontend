@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
+
 import TrainIcon from '@mui/icons-material/Train';
 import { CardActionArea } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -26,7 +26,7 @@ const Item = ({
     <Card sx={{ maxWidth: 600 }} className="cardStyle">
       <CardActionArea>
         <CardContent onClick={onSelect}>
-          <Grid container className={containerStyle} display="flex" gap={2}>
+          <Grid container className={containerStyle} display="flex" gap={2} sx={{ px: '10px', py: '23px', color: 'text.secondary' }}>
             { item.descriptor.images && item.descriptor.images.length > 0
               ? (
                 <Grid
@@ -96,9 +96,9 @@ const Item = ({
         )}
               {!isParent && !category
         && (
-          <div className="vehicle">
-            <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
-              <DirectionsCarOutlinedIcon className="icon" />
+          <div>
+            <Typography variant="body1" style={{ color: 'grey' }}>
+              <DirectionsCarOutlinedIcon style={{ fontSize: 'small', marginRight: '7px', color: 'grey' }} />
               Vehicle
             </Typography>
             <Typography variant="body1" style={{ fontSize: 'medium' }}>
@@ -109,13 +109,14 @@ const Item = ({
             </Grid>
             <Grid
               item
-              xs={!isParent && !category ? 1 : 4}
+              xs={1.5}
               alignItems="center"
               justifyContent="center"
               display="flex"
+              paddingLeft="2%"
             >
               <div>
-                <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
+                <Typography variant="body1" style={{ color: 'grey' }}>
                   <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }} />
                   Fare
                 </Typography>
@@ -125,21 +126,6 @@ const Item = ({
               </div>
 
             </Grid>
-            {!isParent && (
-              <Grid
-                item
-                alignItems="flex-end"
-                justifyContent="flex-end"
-                display="flex"
-                className="select-button"
-              >
-                {/* <Typography variant="subtitle2" gutterBottom>
-                  <Button onClick={onSelect} variant="contained">
-                    Select
-                  </Button>
-                </Typography> */}
-              </Grid>
-            )}
           </Grid>
         </CardContent>
       </CardActionArea>
