@@ -19,10 +19,10 @@ const Price = ({ price }) => (
       height="50px"
       align="center"
     >
-      ₹
+      ₹&nbsp;
       {price.minimum_value}
       &nbsp;-
-      ₹
+      ₹&nbsp;
       {price.maximum_value}
     </Typography>
     )}
