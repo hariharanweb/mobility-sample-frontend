@@ -19,6 +19,9 @@ const item = {
     currency: 'INR',
     value: '111',
   },
+  time: {
+    duration: '00:45',
+  },
   category_id: 'FAKE_TAXI_CATEGORY_ID',
   tags: {
     NameOfModel: 'Nexon',
@@ -27,14 +30,11 @@ const item = {
     VehicleType: 'Premium Taxi',
   },
 };
-const handleClose = () => {};
 const onSelectJourney = () => {};
-const details = {
-  showModal: false,
-  bookingInformation: {},
-  bookingResponse: {},
-  loadingJourney: false,
-  handleClose,
-  onSelectJourney,
-};
-export const Primary = () => <Item item={item} details={details} />;
+export const Primary = () => (
+  <Item
+    item={item}
+    isParent={false}
+    onSelectJourney={onSelectJourney}
+  />
+);
