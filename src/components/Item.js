@@ -152,6 +152,7 @@ const Item = ({
         <div>
           <Typography style={{ color: 'grey', fontSize: 'small' }}>
             <CurrencyRupeeOutlinedIcon style={{ fontSize: 'small', color: 'grey' }} />
+            {' '}
             Fare
           </Typography>
           <Typography variant="body1" style={{ fontSize: 'small', paddingLeft: '5%' }}>
