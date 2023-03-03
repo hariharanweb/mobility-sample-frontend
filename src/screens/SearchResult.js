@@ -89,9 +89,9 @@ const SearchResult = () => {
     provider,
     fulfillments,
     bppUrl,
-    buttonEnabled,
+    selected,
   ) => {
-    setButtonState(!buttonEnabled);
+    setButtonState(!selected);
     setKeyState(item.id);
     console.log(`the key state is ${item.id} ${keyState}`);
     setinfo({
