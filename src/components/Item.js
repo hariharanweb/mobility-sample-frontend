@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Grid from '@mui/material/Grid';
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import TrainIcon from '@mui/icons-material/Train';
 // import { CardActionArea } from '@mui/material';
@@ -15,16 +15,12 @@ import './Item.css';
 import './Time.css';
 
 const Item = ({
-  item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl,
+  item, category, isParent, onItemSelect, isSelected,
 }) => {
-  const [selected, setSeleted] = useState(false);
   const onSelect = () => {
-    setSeleted(!selected);
-    onSelectJourney(
+    if (isParent) return;
+    onItemSelect(
       item,
-      provider,
-      fulfillments,
-      bppUrl,
     );
   };
   const containerStyle = isParent ? 'parent-item' : 'item-with-border';
@@ -37,7 +33,7 @@ const Item = ({
       style={{ padding: '0px' }}
       onClick={onSelect}
       key={item.id}
-      backgroundColor={selected ? 'rgba(50, 123, 24, 0.1)' : 'white'}
+      backgroundColor={isSelected ? 'rgba(50, 123, 24, 0.1)' : 'white'}
     >
       { item.descriptor.images && item.descriptor.images.length > 0
         ? (

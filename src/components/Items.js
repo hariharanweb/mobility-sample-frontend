@@ -10,27 +10,24 @@ import './Items.css';
 const displayItem = (
   item,
   category,
-  onSelectJourney,
-  provider,
-  fulfillments,
-  bppUrl,
-  keyState,
-) => (
-  <Item
-    keyState={keyState}
-    key={item.id}
-    item={item}
-    onSelectJourney={onSelectJourney}
-    category={category}
-    isParent={false}
-    provider={provider}
-    fulfillments={fulfillments}
-    bppUrl={bppUrl}
-  />
-);
+  onItemSelect,
+  selectedItemId,
+  isSelectedProvider,
+) => {
+  const isSelected = isSelectedProvider && selectedItemId === item.id;
+  return (
+    <Item
+      item={item}
+      onItemSelect={onItemSelect}
+      category={category}
+      isParent={false}
+      isSelected={isSelected}
+    />
+  );
+};
 
 const Items = ({
-  parentItem, categories, items, onSelectJourney, provider, fulfillments, bppUrl, keyState,
+  parentItem, categories, items, onItemSelect, selectedItemId, isSelectedProvider,
 }) => (
   <Accordion className="items-accordian-container">
     <AccordionSummary
@@ -42,9 +39,6 @@ const Items = ({
         key={parentItem.id}
         isParent
         item={parentItem}
-        provider={provider}
-        fulfillments={fulfillments}
-        bppUrl={bppUrl}
       />
     </AccordionSummary>
     <AccordionDetails>
@@ -55,11 +49,9 @@ const Items = ({
           displayItem(
             item,
             categoryDecription,
-            onSelectJourney,
-            provider,
-            fulfillments,
-            bppUrl,
-            keyState,
+            onItemSelect,
+            selectedItemId,
+            isSelectedProvider,
           )
         );
       })}

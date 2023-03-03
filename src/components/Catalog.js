@@ -12,8 +12,17 @@ const providerItems = (
   provider,
   fulfillments,
   bppUrl,
-  keyState,
+  selectedItemId,
+  selectedProviderId,
 ) => {
+  const handleItemSelect = (item) => {
+    onSelectJourney(
+      item,
+      provider,
+      fulfillments,
+      bppUrl,
+    );
+  };
   const itemsGroupedByParent = _.groupBy(_.filter(items, (item) => !!item.parent_item_id), 'parent_item_id');
   const itemsWithoutHierarchy = items.filter(
     (item) => _.keys(itemsGroupedByParent).indexOf(item.id) < 0 && !item.parent_item_id,
@@ -21,31 +30,31 @@ const providerItems = (
   const groupedItems = _.keys(itemsGroupedByParent).map((parentItemId) => {
     const parentItem = items.find((item) => item.id === parentItemId);
     const childItems = itemsGroupedByParent[parentItemId];
+    const isSelectedProvider = provider.id === selectedProviderId;
     return (
       <Items
         parentItem={parentItem}
         items={childItems}
         categories={categories}
-        onSelectJourney={onSelectJourney}
-        provider={provider}
-        fulfillments={fulfillments}
-        bppUrl={bppUrl}
-        keyState={keyState}
+        onItemSelect={handleItemSelect}
+        selectedItemId={selectedItemId}
+        isSelectedProvider={isSelectedProvider}
       />
     );
   });
-  const individualItems = itemsWithoutHierarchy.map((item) => (
-    <Item
-      key={item.id}
-      isParent={false}
-      item={item}
-      onSelectJourney={onSelectJourney}
-      provider={provider}
-      fulfillments={fulfillments}
-      bppUrl={bppUrl}
-      keyState={keyState}
-    />
-  ));
+  const individualItems = itemsWithoutHierarchy.map((item) => {
+    const isSelected = provider.id === selectedProviderId
+    && selectedItemId === item.id;
+    return (
+      <Item
+        key={item.id}
+        isParent={false}
+        item={item}
+        onItemSelect={handleItemSelect}
+        isSelected={isSelected}
+      />
+    );
+  });
   return (
     <>
       {groupedItems}
@@ -59,7 +68,8 @@ const bppProvider = (
   onSelectJourney,
   fulfillments,
   bppUrl,
-  keyState,
+  selectedItemId,
+  selectedProviderId,
 ) => (
   <Grid container key={provider.id}>
     <Provider provider={provider} />
@@ -70,7 +80,8 @@ const bppProvider = (
       provider,
       fulfillments,
       bppUrl,
-      keyState,
+      selectedItemId,
+      selectedProviderId,
     )}
   </Grid>
 );
@@ -79,7 +90,8 @@ const Catalog = ({
   catalog,
   onSelectJourney,
   bppUrl,
-  keyState,
+  selectedItemId,
+  selectedProviderId,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
@@ -91,7 +103,8 @@ const Catalog = ({
           onSelectJourney,
           fulfillments,
           bppUrl,
-          keyState,
+          selectedItemId,
+          selectedProviderId,
         ))}
       </div>
     </div>
