@@ -16,19 +16,15 @@ import './Time.css';
 const Item = ({
   key, item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl, keyState,
 }) => {
-  const [keySelectedState, setKeySelectedState] = useState(false);
   const [buttonEnabled, setButtonEnabled] = useState(true);
   const onSelect = () => {
     setButtonEnabled(!buttonEnabled);
-    setKeySelectedState(!keySelectedState);
     onSelectJourney(
       item,
       provider,
       fulfillments,
       bppUrl,
       buttonEnabled,
-      setKeySelectedState,
-      keySelectedState,
     );
   };
   const containerStyle = isParent ? 'parent-item' : 'item-with-border';
