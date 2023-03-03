@@ -1,11 +1,7 @@
-/* eslint-disable no-console */
 import Grid from '@mui/material/Grid';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import TrainIcon from '@mui/icons-material/Train';
-// import { CardActionArea } from '@mui/material';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
 import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
@@ -21,6 +17,7 @@ const Item = ({
     if (isParent) return;
     onItemSelect(
       item,
+      !isSelected,
     );
   };
   const containerStyle = isParent ? 'parent-item' : 'item-with-border';

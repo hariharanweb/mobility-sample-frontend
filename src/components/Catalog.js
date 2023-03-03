@@ -15,12 +15,13 @@ const providerItems = (
   selectedItemId,
   selectedProviderId,
 ) => {
-  const handleItemSelect = (item) => {
+  const handleItemSelect = (item, isSelected) => {
     onSelectJourney(
       item,
       provider,
       fulfillments,
       bppUrl,
+      isSelected,
     );
   };
   const itemsGroupedByParent = _.groupBy(_.filter(items, (item) => !!item.parent_item_id), 'parent_item_id');

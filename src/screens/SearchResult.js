@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint camelcase: 0 */
 import React, { useCallback, useEffect, useState } from 'react';
@@ -20,7 +21,6 @@ const SearchResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openPanel, setOpenPanel] = useState(true);
-  const [keyState, setKeyState] = useState('');
   const toggleDrawer = () => {
     setOpenPanel(true);
   };
@@ -36,8 +36,9 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [buttonState, setButtonState] = useState(true);
   const [info, setinfo] = useState({});
+  const [selectedProviderId, setSelectedProviderId] = useState();
+  const [selectedItemId, setSelectedItemId] = useState();
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -84,22 +85,26 @@ const SearchResult = () => {
     }
   };
 
-  const onSelectJourney = async (
+  const onSelectJourney = (
     item,
     provider,
     fulfillments,
     bppUrl,
-    selected,
+    isSelected,
   ) => {
-    setButtonState(!selected);
-    setKeyState(item.id);
-    console.log(`the key state is ${item.id} ${keyState}`);
-    setinfo({
-      item,
-      provider,
-      fulfillments,
-      bppUrl,
-    });
+    if (isSelected) {
+      setSelectedItemId(item.id);
+      setSelectedProviderId(provider.id);
+      setinfo({
+        item,
+        provider,
+        fulfillments,
+        bppUrl,
+      });
+    } else {
+      setSelectedItemId(null);
+      setSelectedProviderId(null);
+    }
   };
 
   const gotoHome = () => {
@@ -116,8 +121,8 @@ const SearchResult = () => {
               catalog={bppProvider.message.catalog}
               onSelectJourney={onSelectJourney}
               bppUrl={bppProvider.context.bpp_uri}
-              bppId={bppProvider.context.bpp_id}
-              keyState={keyState}
+              selectedProviderId={selectedProviderId}
+              selectedItemId={selectedItemId}
             />
           </div>
         ))}
@@ -126,7 +131,7 @@ const SearchResult = () => {
             className="book-ride-button"
             variant="contained"
             fullWidth
-            disabled={buttonState}
+            disabled={!selectedItemId && !selectedProviderId}
             onClick={onBookRide}
           >
             Book Ride
