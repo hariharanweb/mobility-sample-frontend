@@ -1,5 +1,6 @@
 import React from 'react';
 import RouteDetails from './RouteDetails';
+import './RouteDetails.css';
 
 export default {
   title: 'RouteDetails',
