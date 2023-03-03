@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint camelcase: 0 */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -91,7 +92,8 @@ const SearchResult = () => {
     buttonEnabled,
   ) => {
     setButtonState(!buttonEnabled);
-    setKeyState(item?.id);
+    setKeyState(item.id);
+    console.log(`the key state is ${item.id} ${keyState}`);
     setinfo({
       item,
       provider,
