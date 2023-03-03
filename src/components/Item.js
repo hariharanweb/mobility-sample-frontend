@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Grid from '@mui/material/Grid';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
@@ -14,26 +15,30 @@ import './Item.css';
 import './Time.css';
 
 const Item = ({
-  key, item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl, keyState,
+  item, category, isParent, onSelectJourney, provider, fulfillments, bppUrl,
 }) => {
-  const [buttonEnabled, setButtonEnabled] = useState(true);
+  const [selected, setSeleted] = useState(false);
   const onSelect = () => {
-    setButtonEnabled(!buttonEnabled);
+    setSeleted(!selected);
     onSelectJourney(
       item,
       provider,
       fulfillments,
       bppUrl,
-      buttonEnabled,
     );
   };
   const containerStyle = isParent ? 'parent-item' : 'item-with-border';
-  const deselectedStateStyle = buttonEnabled ? 'white' : 'rgba(50, 123, 24, 0.1)';
   return (
-  // <Card sx={{ maxWidth: 600 }} className="cardStyle" key={key}>
-  // {/* <CardActionArea> */}
-  // {/* <CardContent onClick={onSelect} style={{ padding: '0px' }} key={key}> */}
-    <Grid container className={containerStyle} display="flex" gap={10} style={{ padding: '0px' }} onClick={onSelect} key={key} sx={{ backgroundColor: keyState !== item?.id ? 'white' : deselectedStateStyle }}>
+    <Grid
+      container
+      className={containerStyle}
+      display="flex"
+      gap={10}
+      style={{ padding: '0px' }}
+      onClick={onSelect}
+      key={item.id}
+      backgroundColor={selected ? 'rgba(50, 123, 24, 0.1)' : 'white'}
+    >
       { item.descriptor.images && item.descriptor.images.length > 0
         ? (
           <Grid
@@ -132,7 +137,7 @@ const Item = ({
               />
               Vehicle
             </Typography>
-            <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500', paddingLeft: '3px' }}>
+            <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500', paddingLeft: '1px' }}>
               {item.descriptor.name}
             </Typography>
           </div>
@@ -160,9 +165,6 @@ const Item = ({
 
       </Grid>
     </Grid>
-  // </CardContent>
-  // {/* </CardActionArea> */}
-  // </Card>
   );
 };
 export default Item;
