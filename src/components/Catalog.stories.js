@@ -253,7 +253,6 @@ const trainCatalog = {
     },
   ],
 };
-const bppProviderUrl = '';
 export default {
   title: 'Catalog',
   component: Catalog,
@@ -263,13 +262,15 @@ export const Primary = () => (
   <Catalog
     catalog={catalog}
     onSelectJourney={() => {}}
-    bppUrl={bppProviderUrl}
+    selectedItemId="FAKE_SUV_ID"
+    selectedProviderId="FAKE_TAXI"
   />
 );
 export const ParentChild = () => (
   <Catalog
     catalog={trainCatalog}
     onSelectJourney={() => {}}
-    bppUrl={bppProviderUrl}
+    selectedItemId="TRAIN_12050_CC"
+    selectedProviderId="IRCTC"
   />
 );

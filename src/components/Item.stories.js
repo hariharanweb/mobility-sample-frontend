@@ -23,18 +23,20 @@ const item = {
     duration: '00:45',
   },
   category_id: 'FAKE_TAXI_CATEGORY_ID',
-  tags: {
-    NameOfModel: 'Nexon',
-    Make: 'Tata',
-    FuelType: 'Petrol',
-    VehicleType: 'Premium Taxi',
-  },
 };
-const onSelectJourney = () => {};
+const onItemSelect = () => {};
 export const Primary = () => (
   <Item
     item={item}
     isParent={false}
-    onSelectJourney={onSelectJourney}
+    onItemSelect={onItemSelect}
+  />
+);
+export const SelectedItem = () => (
+  <Item
+    item={item}
+    isParent={false}
+    isSelected
+    onItemSelect={onItemSelect}
   />
 );
