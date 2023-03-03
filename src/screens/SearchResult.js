@@ -21,6 +21,7 @@ const SearchResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openPanel, setOpenPanel] = useState(true);
+  const [keyState, setKeyState] = useState('');
   const toggleDrawer = () => {
     setOpenPanel(true);
   };
