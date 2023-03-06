@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import MuiToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 import './FilterSection.css';
 import { styled } from '@mui/material/styles';
 
-const ToggleButton = styled(MuiToggleButton)(({ selectedColor }) => ({
+const ToggleButton = styled(MuiToggleButton)(() => ({
   '&.Mui-selected, &.Mui-selected:hover': {
     color: 'white',
-    backgroundColor: selectedColor,
+    backgroundColor: '#327B18',
   },
 }));
 
@@ -22,23 +23,21 @@ const FilterSection = ({ openPanel, setCategory }) => {
   };
 
   const style = {
-    borderRadius: '20px',
+    borderRadius: '3em',
     borderColor: '#327B18',
-    width: '94px',
-    height: '39px',
+    textTransform: 'none',
   };
 
   return (
-    <Grid className="filter-icon" paddingTop={openPanel ? 2 : 3}>
-      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleCategory} className="filter-options">
-        <ToggleButton value="cabs" style={style} selectedColor="#327B18">
-          <DirectionsCarFilledIcon />
-          {' '}
-          Cabs
+    <Grid className="filter-section" paddingTop={openPanel ? 2 : 3}>
+      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleCategory} className="toggle-button-group">
+        <ToggleButton value="cabs" style={style}>
+          <DirectionsCarFilledIcon color="primary" fontSize="small" />
+          <Typography className="toggle-button-value" color="primary">Cabs</Typography>
         </ToggleButton>
-        <ToggleButton value="trains" style={style} selectedColor="#327B18">
-          <DirectionsSubwayIcon />
-          Trains
+        <ToggleButton value="trains" style={style}>
+          <DirectionsSubwayIcon color="primary" fontSize="small" />
+          <Typography className="toggle-button-value" color="primary">Trains</Typography>
         </ToggleButton>
       </ToggleButtonGroup>
     </Grid>

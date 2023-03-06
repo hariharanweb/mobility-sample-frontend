@@ -9,7 +9,7 @@ const InputField = ({
   value,
   setValue, formatValueFunc, updateValue, errorMessage, toggleDrawer, isPanelOpen,
 }) => {
-  const disabledState = !value.length > 0;
+  const disabledState = !(value && value.length > 0);
   const [disabled, setDisabled] = useState(disabledState);
   const [errorText, setErrorText] = useState('');
 

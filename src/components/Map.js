@@ -9,7 +9,7 @@ const DirectionsMap = ({
   responseMap, directionsCallBack, origin, destination,
 }) => (
   <>
-    {origin !== '' && destination !== '' && (
+    {origin && destination && (
     <DirectionsService
       options={{
         destination,

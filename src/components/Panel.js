@@ -52,6 +52,7 @@ function Panel(props) {
         anchor="bottom"
         open={open}
         onOpen={toggleDrawer}
+        onClose={() => {}}
         swipeAreaWidth={drawerBleeding}
         disableSwipeToOpen={false}
         allowSwipeInChildren

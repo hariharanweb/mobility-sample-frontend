@@ -73,37 +73,36 @@ const LocationSearchDrawer = ({
   };
 
   return (
-
     <Grid container paddingTop="29px">
       <FilterSection openPanel={openPanel} setCategory={setCategory} />
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
-        <Grid item marginRight={1} paddingTop={1}>
-          {openPanel ? (
+          <Grid item marginRight={1} paddingTop={1}>
+            {openPanel ? (
+              <LocationSearch
+                label="From"
+                initialLocation={fromLocation}
+                onLocationChange={setFromLocation}
+                swapped={swapped}
+                onSwapped={setSwapped}
+                isPanelOpen={openPanel}
+              />
+            ) : null}
+            {openPanel
+              ? (
+                <SwipeButton onSwapLocation={onSwapLocation} />
+              )
+              : null}
             <LocationSearch
-              label="From"
-              initialLocation={fromLocation}
-              onLocationChange={setFromLocation}
+              label="Where do you want to go ?"
+              initialLocation={toLocation}
+              onLocationChange={setToLocation}
+              toggleDrawer={toggleDrawer}
               swapped={swapped}
               onSwapped={setSwapped}
               isPanelOpen={openPanel}
             />
-          ) : null}
-          {openPanel
-            ? (
-              <SwipeButton onSwapLocation={onSwapLocation} />
-            )
-            : null}
-          <LocationSearch
-            label="Where do you want to go ?"
-            initialLocation={toLocation}
-            onLocationChange={setToLocation}
-            toggleDrawer={toggleDrawer}
-            swapped={swapped}
-            onSwapped={setSwapped}
-            isPanelOpen={openPanel}
-          />
-        </Grid>
+          </Grid>
         )}
         <Grid paddingY={2}>
           <DateTime fullWidth setDateTime={setDateTime} />
@@ -115,8 +114,8 @@ const LocationSearchDrawer = ({
             fullWidth
             onClick={onSearchClick}
             disabled={
-      !!(fromLocation.display.length === 0 || toLocation.display.length === 0)
-    }
+              !(fromLocation && toLocation)
+            }
             endIcon={<ArrowForwardIcon />}
           >
             Search
@@ -140,8 +139,8 @@ const SearchScreen = () => {
     setOpenPanel(true);
   };
   const [fromLocation, setFromLocation] = useState({
-    display: '',
-    latLong: '',
+    display: 'ThoughtWorks',
+    latLong: '12.9298819961062, 77.62865178465772',
   });
   const [toLocation, setToLocation] = useState({
     display: 'Garuda Mall',
@@ -160,14 +159,14 @@ const SearchScreen = () => {
     <div>
       <Header />
       {isLoaded && (
-      <Map
-        openPanel={openPanel}
-        showMarker
-        originLocation={fromLocation}
-        destinationLocation={toLocation}
-        setOriginLocation={setFromLocation}
-        setisMapPresent={setisMapPresent}
-      />
+        <Map
+          openPanel={openPanel}
+          showMarker
+          originLocation={fromLocation}
+          destinationLocation={toLocation}
+          setOriginLocation={setFromLocation}
+          setisMapPresent={setisMapPresent}
+        />
       )}
       <Panel
         drawerHeight={isMapPresent ? panelHeightSearchScreen : 20}
