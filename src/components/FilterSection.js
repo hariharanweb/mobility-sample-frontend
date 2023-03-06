@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MuiToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Grid from '@mui/material/Grid';
@@ -15,11 +15,9 @@ const ToggleButton = styled(MuiToggleButton)(() => ({
   },
 }));
 
-const FilterSection = ({ openPanel, setCategory }) => {
-  const [enable, setEnable] = useState(null);
-  const handleCategory = (event, selectedCategory) => {
-    setEnable(selectedCategory);
-    setCategory(selectedCategory);
+const FilterSection = ({ category, onCategoryChange }) => {
+  const handleCategory = (_, selectedCategory) => {
+    onCategoryChange(selectedCategory);
   };
 
   const style = {
@@ -29,15 +27,15 @@ const FilterSection = ({ openPanel, setCategory }) => {
   };
 
   return (
-    <Grid className="filter-section" paddingTop={openPanel ? 2 : 3}>
-      <ToggleButtonGroup exclusive color="primary" value={enable} onChange={handleCategory} className="toggle-button-group">
+    <Grid className="filter-section">
+      <ToggleButtonGroup exclusive color="primary" value={category} onChange={handleCategory} className="toggle-button-group">
         <ToggleButton value="cabs" style={style}>
-          <DirectionsCarFilledIcon color="primary" fontSize="small" />
-          <Typography className="toggle-button-value" color="primary">Cabs</Typography>
+          <DirectionsCarFilledIcon color={category === 'cabs' ? 'white' : 'primary'} fontSize="small" />
+          <Typography color={category === 'cabs' ? 'white' : 'primary'} paddingX="8px">Cabs</Typography>
         </ToggleButton>
         <ToggleButton value="trains" style={style}>
-          <DirectionsSubwayIcon color="primary" fontSize="small" />
-          <Typography className="toggle-button-value" color="primary">Trains</Typography>
+          <DirectionsSubwayIcon color={category === 'trains' ? 'white' : 'primary'} fontSize="small" />
+          <Typography color={category === 'trains' ? 'white' : 'primary'} paddingX="8px">Trains</Typography>
         </ToggleButton>
       </ToggleButtonGroup>
     </Grid>

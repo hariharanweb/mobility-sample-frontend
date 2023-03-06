@@ -73,8 +73,10 @@ const LocationSearchDrawer = ({
   };
 
   return (
-    <Grid container paddingTop="29px">
-      <FilterSection openPanel={openPanel} setCategory={setCategory} />
+    <Grid container paddingTop={4}>
+      <Grid paddingTop={1} container direction="row" alignContent="center">
+        <FilterSection category={category} onCategoryChange={setCategory} />
+      </Grid>
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
           <Grid item marginRight={1} paddingTop={1}>
