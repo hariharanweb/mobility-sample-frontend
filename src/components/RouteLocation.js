@@ -12,7 +12,20 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Divider from '@mui/material/Divider';
+import CircleIcon from '@mui/icons-material/Circle';
 import RouteStops from './RouteStops';
+import './RouteLocation.css';
+
+const CustomStepIcon = () => (
+  <div>
+    <CircleIcon sx={{
+      color: '#bdbdbd',
+      borderRadius: '50%',
+      backgroundColor: '#bdbdbd',
+    }}
+    />
+  </div>
+);
 
 const RouteLocation = ({ step }) => {
   const [open, setOpen] = React.useState(false);
@@ -29,17 +42,17 @@ const RouteLocation = ({ step }) => {
 
         >
           <Divider variant="inset" />
-          <StepLabel>{step.startLocation.descriptor.name}</StepLabel>
+          <StepLabel StepIconComponent={CustomStepIcon}>
+            {step.startLocation.descriptor.name}
+          </StepLabel>
           <Divider variant="inset" />
           <StepContent>
-            <Typography>{step.routeName}</Typography>
+            <Typography sx={{ fontWeight: 'bold' }}>{step.routeName}</Typography>
             <ListItemButton onClick={handleClick}>
               <p>
-                Duration :
                 {step.stops.length}
                 {' '}
-                stops : Platform 1
-                {' '}
+                stops
               </p>
               <ListItemText primary={step.description} />
               {open ? <ExpandLess /> : <ExpandMore />}
@@ -55,9 +68,11 @@ const RouteLocation = ({ step }) => {
         </Step>
 
         <Step key={step}>
-          <Divider variant="inset" />
-          <StepLabel>{step.endLocation.descriptor.name}</StepLabel>
-          <Divider variant="inset" />
+          {/* <Divider variant="inset" /> */}
+          <StepLabel StepIconComponent={CustomStepIcon} sx={{ borderColor: 'black' }}>
+            {step.endLocation.descriptor.name}
+          </StepLabel>
+          {/* <Divider variant="inset" /> */}
         </Step>
       </Stepper>
     </Box>
