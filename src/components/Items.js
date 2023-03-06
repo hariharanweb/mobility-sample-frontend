@@ -7,21 +7,27 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Item from './Item';
 import './Items.css';
 
-const displayItem = (item, category, onSelectJourney, provider, fulfillments, bppUrl) => (
-  <Item
-    key={item.id}
-    item={item}
-    onSelectJourney={onSelectJourney}
-    category={category}
-    isParent={false}
-    provider={provider}
-    fulfillments={fulfillments}
-    bppUrl={bppUrl}
-  />
-);
+const displayItem = (
+  item,
+  category,
+  onItemSelect,
+  selectedItemId,
+  isSelectedProvider,
+) => {
+  const isSelected = isSelectedProvider && selectedItemId === item.id;
+  return (
+    <Item
+      item={item}
+      onItemSelect={onItemSelect}
+      category={category}
+      isParent={false}
+      isSelected={isSelected}
+    />
+  );
+};
 
 const Items = ({
-  parentItem, categories, items, onSelectJourney, provider, fulfillments, bppUrl,
+  parentItem, categories, items, onItemSelect, selectedItemId, isSelectedProvider,
 }) => (
   <Accordion className="items-accordian-container">
     <AccordionSummary
@@ -30,11 +36,9 @@ const Items = ({
       id="panel1a-header"
     >
       <Item
+        key={parentItem.id}
         isParent
         item={parentItem}
-        provider={provider}
-        fulfillments={fulfillments}
-        bppUrl={bppUrl}
       />
     </AccordionSummary>
     <AccordionDetails>
@@ -42,7 +46,13 @@ const Items = ({
         const category = _.find(categories, { id: item.category_id });
         const categoryDecription = category ? category.description : item.category_id;
         return (
-          displayItem(item, categoryDecription, onSelectJourney, provider, fulfillments, bppUrl)
+          displayItem(
+            item,
+            categoryDecription,
+            onItemSelect,
+            selectedItemId,
+            isSelectedProvider,
+          )
         );
       })}
     </AccordionDetails>

@@ -7,13 +7,24 @@ const formattedTime = (time) => moment(time).format('hh:mm');
 const Time = ({ time }) => (
   <>
     {!!time.duration && (
-    <Typography variant="subtitle2" gutterBottom>
+    <Typography
+      variant="subtitle2"
+      width="90px"
+      gutterBottom
+    >
         {time.duration}
     </Typography>
     )}
     {!!time.range && (
-    <Typography variant="body1" gutterBottom style={{ fontSize: 'small', fontWeight: '600' }}>
-      {`${formattedTime(time.range.start)} - ${formattedTime(time.range.end)}`}
+    <Typography
+      width="80px"
+      gutterBottom
+      style={{ fontSize: 'small', fontWeight: '600' }}
+    >
+      {formattedTime(time.range.start)}
+      &nbsp;-
+      {' '}
+      {formattedTime(time.range.end)}
     </Typography>
     )}
   </>

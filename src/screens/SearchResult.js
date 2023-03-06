@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 /* eslint camelcase: 0 */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Api from '../api/Api';
 import Catalog from '../components/Catalog';
@@ -12,6 +15,7 @@ import Map from '../components/Map';
 import Loader from '../components/Loader';
 import LocationTracer from '../components/LocationTracer';
 import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
+import './SearchResult.css';
 
 const SearchResult = () => {
   const location = useLocation();
@@ -32,6 +36,9 @@ const SearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [info, setinfo] = useState({});
+  const [selectedProviderId, setSelectedProviderId] = useState();
+  const [selectedItemId, setSelectedItemId] = useState();
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -49,34 +56,57 @@ const SearchResult = () => {
     }
   }, [getSearchResult, loading]);
 
-  const onSelectJourney = async (item, provider, fulfillments, bppUrl) => {
+  const onBookRide = async () => {
     const data = {
-      context: ContextBuilder.getContext('select', bppUrl, searchResults[0].context.transaction_id),
+      context: ContextBuilder.getContext('select', info?.bppUrl, searchResults[0].context.transaction_id),
       message: {
         order: {
           provider: {
-            id: provider.id,
+            id: info?.provider.id,
           },
           items: [
             {
-              id: item?.id,
-              fulfillment_id: item?.fulfillment_id,
-              descriptor: item?.descriptor,
-              price: item?.price,
-              category_id: item?.category_id,
+              id: info?.item?.id,
+              fulfillment_id: info?.item?.fulfillment_id,
+              descriptor: info?.item?.descriptor,
+              price: info?.item?.price,
+              category_id: info?.item?.category_id,
             },
           ],
-          fulfillment: fulfillments,
+          fulfillment: info?.fulfillments,
         },
       },
     };
     const response = await Api.post('/select', data);
-    response.provider = provider;
+    response.provider = info?.provider;
     response.locations = locations;
     if (response.message_id) {
       navigate('/select', { state: { ...response } });
     }
   };
+
+  const onSelectJourney = (
+    item,
+    provider,
+    fulfillments,
+    bppUrl,
+    isSelected,
+  ) => {
+    if (isSelected) {
+      setSelectedItemId(item.id);
+      setSelectedProviderId(provider.id);
+      setinfo({
+        item,
+        provider,
+        fulfillments,
+        bppUrl,
+      });
+    } else {
+      setSelectedItemId(null);
+      setSelectedProviderId(null);
+    }
+  };
+
   const gotoHome = () => {
     navigate('/', { state: {} });
   };
@@ -91,10 +121,22 @@ const SearchResult = () => {
               catalog={bppProvider.message.catalog}
               onSelectJourney={onSelectJourney}
               bppUrl={bppProvider.context.bpp_uri}
-              bppId={bppProvider.context.bpp_id}
+              selectedProviderId={selectedProviderId}
+              selectedItemId={selectedItemId}
             />
           </div>
         ))}
+        <Grid py={1}>
+          <Button
+            className="book-ride-button"
+            variant="contained"
+            fullWidth
+            disabled={!selectedItemId && !selectedProviderId}
+            onClick={onBookRide}
+          >
+            Book Ride
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
