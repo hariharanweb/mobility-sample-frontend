@@ -5,40 +5,28 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 // import StepContent from '@mui/material/StepContent';
 // import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
+import CircleIcon from '@mui/icons-material/Circle';
 
-const RouteLine = ({ stops, startLocation, endLocation }) => (
-// console.log('stops here:');
-// console.log(stops);
-// console.log(startLocation);
-// console.log(endLocation);
-// const steps = [
-//   {
-//     label: 'Station 1',
-//     description: 'Time',
-//   },
-//   {
-//     label: 'Station 2',
-//     description:
-//           '',
-//   },
-//   {
-//     label: 'Station 3',
-//     description: 'change here for yellow line',
-//   },
-// ];
-
-  //   const [activeStep, setActiveStep] = React.useState(0);
+const CustomStepIcon = () => (
   <div>
-    <Stepper activeStep={0} orientation="vertical">
+    <CircleIcon sx={{
+      color: '#bdbdbd',
+      borderRadius: '50%',
+    }}
+    />
+  </div>
+);
+const RouteLine = ({ stops, startLocation, endLocation }) => (
+  <div>
+    <Stepper orientation="vertical">
       <Step key={startLocation}>
-        <StepLabel>{startLocation}</StepLabel>
-
+        <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{startLocation}</b></StepLabel>
       </Step>
 
       {stops.map((stop, index) => (
         <Step key={stops[index]?.descriptor?.name}>
-          <StepLabel>
+          <StepLabel StepIconComponent={CustomStepIcon}>
             {stops[index]?.descriptor?.name}
           </StepLabel>
           {/* <StepContent>
@@ -47,16 +35,10 @@ const RouteLine = ({ stops, startLocation, endLocation }) => (
         </Step>
       ))}
       <Step key={endLocation}>
-        <StepLabel
-          optional={
-            <Typography variant="caption">Change here for yellow line</Typography>
-              }
-        >
-          {endLocation}
+        <StepLabel StepIconComponent={CustomStepIcon}>
+          <b>{endLocation}</b>
         </StepLabel>
-        {/* <StepContent>
-              <Typography>{step.description}</Typography>
-            </StepContent> */}
+
       </Step>
     </Stepper>
   </div>
