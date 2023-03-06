@@ -52,7 +52,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     if (loading) {
-      Api.poll(getSearchResult, 4, 2000);
+      Api.poll(getSearchResult, process.env.NUMBER_OF_TIMES_POLL, process.env.POLLING_TIME_GAP);
     }
   }, [getSearchResult, loading]);
 
