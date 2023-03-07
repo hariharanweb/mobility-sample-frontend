@@ -1,4 +1,4 @@
-.panel-styledbox{
+.panel-styledbox {
     position: absolute;
     padding-bottom: 2;
     border-top-left-radius: 20px;
@@ -6,6 +6,10 @@
     visibility: visible;
     right: 0;
     left: 0;
-    overflow-y:auto;
+    overflow-y: auto;
     overflow-x: clip;
+}
+
+.panel-container {
+    height: '100%'
 }

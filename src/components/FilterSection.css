@@ -8,13 +8,3 @@
   display: flex;
   justify-content: space-evenly;
 }
-
-.toggle-button {
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
-.toggle-button-value {
-  padding-left: 8px;
-  padding-right: 8px;
-}
