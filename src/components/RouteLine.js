@@ -1,11 +1,7 @@
 import React from 'react';
-// import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-// import StepContent from '@mui/material/StepContent';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import useCollapse from 'react-collapsed';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -14,7 +10,8 @@ import Divider from '@mui/material/Divider';
 import './RouteLine.css';
 
 const CustomStepIcon = () => (
-  <div>
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+    {/* <div>{timeval}</div> */}
     <CircleIcon sx={{
       color: '#bdbdbd',
       borderRadius: '50%',
@@ -22,15 +19,21 @@ const CustomStepIcon = () => (
     />
   </div>
 );
-const RouteLine = ({ stops, startLocation, endLocation }) => {
+
+const RouteLine = ({
+  stops, startLocation, endLocation,
+}) => {
+  // console.log((stops[0].time.timestamp).substring(11, 16));
+
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+
   return (
     <div>
       <Stepper orientation="vertical">
         <Step key={startLocation}>
           <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{startLocation}</b></StepLabel>
         </Step>
-        <Divider className='divider' variant="inset" />
+        <Divider className="divider" variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
         <Step className="header" {...getToggleProps()}>
           {isExpanded ? (
@@ -51,18 +54,18 @@ const RouteLine = ({ stops, startLocation, endLocation }) => {
             </div>
           )}
         </Step>
-        <Divider className='divider' variant="inset" />
+        <Divider className="divider" variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
         <div {...getCollapseProps()}>
+
           <div className="content">
-            {stops.map((stop, index) => (
-              <Step key={stops[index]?.descriptor?.name}>
+            {stops.map((stop) => (
+
+              <Step key={stop.descriptor.name}>
+                {(stop.time.timestamp).substring(11, 16)}
                 <StepLabel StepIconComponent={CustomStepIcon}>
-                  {stops[index]?.descriptor?.name}
+                  {stop.descriptor.name}
                 </StepLabel>
-                {/* <StepContent>
-              <Typography>{stops.description}</Typography>
-            </StepContent> */}
               </Step>
             ))}
           </div>
