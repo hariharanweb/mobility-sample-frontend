@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import './Panel.css';
+import { grey } from '@mui/material/colors';
 
 const Puller = styled(Box)(() => ({
   width: '25%',
@@ -13,6 +14,7 @@ const Puller = styled(Box)(() => ({
   position: 'absolute',
   top: '1em',
   left: '36%',
+  backgroundColor: grey[400],
 }));
 
 const Panel = ({
