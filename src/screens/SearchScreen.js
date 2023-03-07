@@ -79,7 +79,7 @@ const LocationSearchDrawer = ({
       </Grid>
       <Grid container direction="column" paddingTop={0.5}>
         {isLoaded && (
-          <Grid item marginRight={1} paddingTop={1}>
+          <Grid item paddingTop={1}>
             {openPanel ? (
               <LocationSearch
                 label="From"
@@ -106,10 +106,10 @@ const LocationSearchDrawer = ({
             />
           </Grid>
         )}
-        <Grid paddingY={2}>
-          <DateTime fullWidth setDateTime={setDateTime} />
+        <Grid paddingY={2} display="flex" flex={1}>
+          <DateTime setDateTime={setDateTime} />
         </Grid>
-        <Grid paddingLeft={1}>
+        <Grid>
           <Button
             className="searchScreen-search-button"
             variant="contained"

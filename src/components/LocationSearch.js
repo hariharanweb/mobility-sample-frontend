@@ -43,9 +43,26 @@ const LocationSearch = ({
     <div>
       {isPanelOpen ? (
         <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-          <InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} formatValueFunc={formatLocation} updateValue={onLocationChange} toggleDrawer={toggleDrawer} isPanelOpen={isPanelOpen} />
+          <InputField
+            className="locationSearch-textbox"
+            label={label}
+            value={location.display}
+            setValue={setLocation}
+            formatValueFunc={formatLocation}
+            updateValue={onLocationChange}
+            toggleDrawer={toggleDrawer}
+            isPanelOpen={isPanelOpen}
+          />
         </Autocomplete>
-      ) : (<InputField className="locationSearch-textbox" label={label} value={location.display} setValue={setLocation} toggleDrawer={toggleDrawer} isPanelOpen={isPanelOpen} />
+      ) : (
+        <InputField
+          className="locationSearch-textbox"
+          label={label}
+          value={location.display}
+          setValue={setLocation}
+          toggleDrawer={toggleDrawer}
+          isPanelOpen={isPanelOpen}
+        />
       )}
     </div>
 

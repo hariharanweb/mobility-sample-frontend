@@ -32,7 +32,6 @@ const InputField = ({
     <TextField
       fullWidth
       sx={{
-        m: 1,
         marginBottom: !isPanelOpen ? '36px' : '0px',
       }}
       label={label}
