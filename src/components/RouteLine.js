@@ -10,6 +10,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import useCollapse from 'react-collapsed';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Divider from '@mui/material/Divider';
 import './RouteLine.css';
 
 const CustomStepIcon = () => (
@@ -29,6 +30,7 @@ const RouteLine = ({ stops, startLocation, endLocation }) => {
         <Step key={startLocation}>
           <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{startLocation}</b></StepLabel>
         </Step>
+        <Divider className='divider' variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
         <Step className="header" {...getToggleProps()}>
           {isExpanded ? (
@@ -40,6 +42,7 @@ const RouteLine = ({ stops, startLocation, endLocation }) => {
             <div className="show-hide-station">
               <p className="show-station-text">
                 Show
+                {' '}
                 {stops.length}
                 {' '}
                 stops
@@ -48,6 +51,7 @@ const RouteLine = ({ stops, startLocation, endLocation }) => {
             </div>
           )}
         </Step>
+        <Divider className='divider' variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
         <div {...getCollapseProps()}>
           <div className="content">
