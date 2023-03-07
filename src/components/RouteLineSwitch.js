@@ -1,5 +1,4 @@
 import React from 'react';
-import './RouteLineSwitch.css';
 
 const RoutLineSwitch = () => (
   <div className="route-line-switch">
