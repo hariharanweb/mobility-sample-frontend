@@ -107,7 +107,7 @@ const LocationSearchDrawer = ({
           </Grid>
         )}
         <Grid paddingY={2} display="flex" flex={1}>
-          <DateTime setDateTime={setDateTime} />
+          <DateTime onDateTimeChange={setDateTime} dateTime={dateTime} />
         </Grid>
         <Grid>
           <Button
@@ -150,7 +150,7 @@ const SearchScreen = () => {
   });
   const [swapped, setSwapped] = useState(false);
   const [category, setCategory] = useState('');
-  const [dateTime, setDateTime] = useState(null);
+  const [dateTime, setDateTime] = useState(new Date().toISOString());
   const onSwapLocation = () => {
     setSwapped(true);
     setFromLocation(toLocation);
@@ -196,7 +196,6 @@ const SearchScreen = () => {
         toggleDrawer={toggleDrawer}
         isTransitionPresent={isMapPresent}
       />
-
       <Footer />
     </div>
   );
