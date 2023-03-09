@@ -24,6 +24,22 @@ const RouteLine = ({
   routeDetail,
 }) => {
   // console.log((stops[0].time.timestamp).substring(11, 16));
+  console.log(routeDetail);
+  var t1 = routeDetail.frequency[0].times[0];
+  var t2= routeDetail.frequency[0].times[1];
+  // console.log(routeDetail.frequency[0].times[0]);
+  // console.log(routeDetail.frequency[0].times[1]);
+  // var diffInMillis = new Date(t2).getHours() - new Date(t1).getHours()
+  // var diffInMins = new Date(t2).getMinutes() - new Date(t1).getMinutes()
+  // console.log(diffInMillis);
+  // console.log(diffInMins);
+  // console.log(new Date(diffInMillis).toUTCString());
+//   var date = new Date(diffInMillis * 1000);
+// // Hours part from the timestamp
+//   var hours = date.getHours();
+// // Minutes part from the timestamp
+//   var minutes =  date.getMinutes();
+//   console.log(hours + ":" + minutes);
 
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
@@ -31,7 +47,16 @@ const RouteLine = ({
     <div>
       <Stepper orientation="vertical">
         <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
-          <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{routeDetail.startLocation.descriptor.name}</b></StepLabel>
+          <StepLabel StepIconComponent={CustomStepIcon}>
+            <div className='station-information start-station'>
+            <b>
+              {routeDetail.startLocation.descriptor.name}
+            </b> 
+            <p className="show-station-details frequency">
+            every {new Date(t2).getHours() - new Date(t1).getHours()} hour
+            </p>
+            </div>
+            </StepLabel>
         </Step>
         <Divider className="divider" variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
