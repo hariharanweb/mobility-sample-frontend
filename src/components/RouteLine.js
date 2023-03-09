@@ -57,14 +57,23 @@ const RouteLine = ({ routeDetail }) => {
         </Step>
         <Divider variant="inset" />
         <Grid onClick={handleClick} display="flex" paddingLeft="21%">
-          <p className="show-station-details">
-            show
-            {' '}
-            {routeDetail.stops.length}
-            {' '}
-            stops
-          </p>
-          {open ? <ExpandLess className="show-station-icon" /> : <ExpandMore className="show-station-icon" />}
+        {open ? (
+            <Grid display="flex">
+              <p className="show-station-details">Hide stops</p>
+              <ExpandLess className="show-station-icon" />
+            </Grid>
+          ) : (
+            <Grid display="flex">
+              <p className="show-station-details">
+                Show
+                {' '}
+                {routeDetail.stops.length}
+                {' '}
+                stops
+              </p>
+              <ExpandMore className="show-station-icon" />
+            </Grid>
+          )}
         </Grid>
         <Divider variant="inset" />
         <Collapse in={open} timeout="auto" unmountOnExit>
