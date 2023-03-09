@@ -3,10 +3,10 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import CircleIcon from '@mui/icons-material/Circle';
-import useCollapse from 'react-collapsed';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import './RouteLine.css';
 import { Grid } from '@mui/material';
 
@@ -18,9 +18,9 @@ const CustomStepIcon = () => (
   </Grid>
 );
 
-const RouteLine = ({
-  routeDetail,
-}) => {
+const RouteLine = ({ routeDetail }) => {
+  const [open, setOpen] = React.useState(false);
+
   const getFrequency = () => {
     const t1 = routeDetail.frequency[0].times[0];
     const t2 = routeDetail.frequency[0].times[1];
@@ -33,7 +33,10 @@ const RouteLine = ({
     }
     return `${diffInMinutes} min`;
   };
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <Grid>
@@ -53,33 +56,18 @@ const RouteLine = ({
           </StepLabel>
         </Step>
         <Divider variant="inset" />
-        {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Step {...getToggleProps()}>
-          {isExpanded ? (
-            <Grid display="flex" paddingLeft="17%">
-              <p className="show-station-details">Hide stops</p>
-              <ExpandLessIcon className="show-station-icon" />
-            </Grid>
-          ) : (
-            <Grid display="flex" paddingLeft="17%">
-              <p className="show-station-details">
-                Show
-                {' '}
-                {routeDetail.stops.length}
-                {' '}
-                stops
-              </p>
-              <ExpandMoreIcon className="show-station-icon" />
-            </Grid>
-          )}
-        </Step>
+        <Grid onClick={handleClick} display="flex" paddingLeft="21%">
+          <p className="show-station-details">
+            {routeDetail.stops.length}
+            {' '}
+            stops
+          </p>
+          {open ? <ExpandLess className="show-station-icon" /> : <ExpandMore className="show-station-icon" />}
+        </Grid>
         <Divider variant="inset" />
-        {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Grid {...getCollapseProps()}>
-
+        <Collapse in={open} timeout="auto" unmountOnExit>
           <Grid className="content">
             {routeDetail.stops.map((stop) => (
-
               <Step key={stop.descriptor.name}>
                 <Grid display="flex">
                   <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
@@ -92,12 +80,11 @@ const RouteLine = ({
               </Step>
             ))}
           </Grid>
-        </Grid>
+        </Collapse>
         <Step key={routeDetail.endLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
             <b>{routeDetail.endLocation.descriptor.name}</b>
           </StepLabel>
-
         </Step>
       </Stepper>
     </Grid>
