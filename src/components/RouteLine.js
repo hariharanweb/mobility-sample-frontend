@@ -11,8 +11,8 @@ import './RouteLine.css';
 import { Grid } from '@mui/material';
 
 const CustomStepIcon = () => (
-  <Grid display='flex' flexDirection='row' alignItems='center'>
-    <CircleIcon 
+  <Grid display="flex" flexDirection="row" alignItems="center">
+    <CircleIcon
       color="disabled"
     />
   </Grid>
@@ -40,7 +40,7 @@ const RouteLine = ({
       <Stepper orientation="vertical">
         <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
-            <Grid display='flex' marginTop="9px" color="rgba(0, 0, 0, 0.6)">
+            <Grid display="flex" marginTop="9px" color="rgba(0, 0, 0, 0.6)">
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
@@ -81,7 +81,7 @@ const RouteLine = ({
             {routeDetail.stops.map((stop) => (
 
               <Step key={stop.descriptor.name}>
-                <Grid display='flex'>
+                <Grid display="flex">
                   <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
                     {(stop.time.timestamp).substring(11, 16)}
                   </Grid>

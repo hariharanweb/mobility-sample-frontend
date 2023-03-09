@@ -1,12 +1,13 @@
+import { Grid } from '@mui/material';
 import React from 'react';
 import RouteLine from './RouteLine';
 
 const RouteDetails = ({ routeDetails }) => (
-  <div className="route-details-section">
+  <Grid padding="5px" width="100vw">
     {routeDetails.map((routeDetail) => (
       <RouteLine routeDetail={routeDetail} />
     ))}
-  </div>
+  </Grid>
 );
 
 export default RouteDetails;
