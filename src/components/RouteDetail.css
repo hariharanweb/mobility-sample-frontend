@@ -14,6 +14,11 @@
     min-height: 0.5em !important; */
 /* } */
 
+.MuiStepConnector-lineVertical{
+    margin-left: 2.2em !important;
+    min-height: 0.5em !important;
+}
+
 .stops-icon {
     width: 15px !important;
 }
