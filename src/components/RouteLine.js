@@ -30,7 +30,7 @@ const RouteLine = ({
   return (
     <div>
       <Stepper orientation="vertical">
-        <Step key={startLocation}>
+        <Step key={startLocation} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{startLocation}</b></StepLabel>
         </Step>
         <Divider className="divider" variant="inset" />
@@ -38,12 +38,12 @@ const RouteLine = ({
         <Step className="header" {...getToggleProps()}>
           {isExpanded ? (
             <div className="show-hide-station">
-              <p className="show-station-text">Hide stops</p>
+              <p className="show-station-details">Hide stops</p>
               <ExpandLessIcon className="show-station-icon" />
             </div>
           ) : (
             <div className="show-hide-station">
-              <p className="show-station-text">
+              <p className="show-station-details">
                 Show
                 {' '}
                 {stops.length}
@@ -62,21 +62,26 @@ const RouteLine = ({
             {stops.map((stop) => (
 
               <Step key={stop.descriptor.name}>
-                {(stop.time.timestamp).substring(11, 16)}
-                <StepLabel StepIconComponent={CustomStepIcon}>
-                  {stop.descriptor.name}
-                </StepLabel>
+                <div className="station-information">
+                  <div className="station-timing show-station-details">
+                    {(stop.time.timestamp).substring(11, 16)}
+                  </div>
+                  <StepLabel StepIconComponent={CustomStepIcon}>
+                    {stop.descriptor.name}
+                  </StepLabel>
+                </div>
               </Step>
             ))}
           </div>
         </div>
-
-        <Step key={endLocation}>
+        {/* <div className="start-end-station"> */}
+        <Step key={endLocation} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
             <b>{endLocation}</b>
           </StepLabel>
 
         </Step>
+        {/* </div> */}
       </Stepper>
     </div>
   );

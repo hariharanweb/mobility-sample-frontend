@@ -12,18 +12,31 @@
     padding-top: 3%;
 }
 
-.show-station-text {
+.show-station-details {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.43;
-    color: '#000';
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .divider {
     margin-left: 65px !important;
 }
 
+.station-information {
+    display: flex;
+}
+
+.station-timing {
+    padding-top: 10px;
+    padding-right: 7px;
+}
+
 .css-8t49rw-MuiStepConnector-line {
-    margin-left: 35px !important;
+    margin-left: 42px !important;
+}
+
+.start-end-station {
+    padding-left: 42px;
 }
