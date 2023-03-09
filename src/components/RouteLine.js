@@ -24,9 +24,9 @@ const RouteLine = ({
   routeDetail,
 }) => {
   // console.log((stops[0].time.timestamp).substring(11, 16));
-  console.log(routeDetail);
-  const t1 = routeDetail.frequency[0].times[0];
-  const t2 = routeDetail.frequency[0].times[1];
+  // console.log(routeDetail);
+  // const t1 = routeDetail.frequency[0].times[0];
+  // const t2 = routeDetail.frequency[0].times[1];
   // console.log(routeDetail.frequency[0].times[0]);
   // console.log(routeDetail.frequency[0].times[1]);
   // var diffInMillis = new Date(t2).getHours() - new Date(t1).getHours()
@@ -40,7 +40,19 @@ const RouteLine = ({
   // // Minutes part from the timestamp
   //   var minutes =  date.getMinutes();
   //   console.log(hours + ":" + minutes);
-
+  // new Date(t2).getHours() - new Date(t1).getHours()
+  const getFrequency = () => {
+    const t1 = routeDetail.frequency[0].times[0];
+    const t2 = routeDetail.frequency[0].times[1];
+    const diffInHours = new Date(t2).getHours() - new Date(t1).getHours();
+    const diffInMinutes = new Date(t2).getMinutes() - new Date(t1).getMinutes();
+    if (diffInHours > 0 && diffInMinutes > 0) {
+      return `${diffInHours} hour ${diffInMinutes} min`;
+    } if (diffInHours > 0) {
+      return `${diffInHours} hour`;
+    }
+    return `${diffInMinutes} min`;
+  };
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   return (
@@ -55,9 +67,7 @@ const RouteLine = ({
               <p className="show-station-details frequency">
                 every
                 {' '}
-                {new Date(t2).getHours() - new Date(t1).getHours()}
-                {' '}
-                hour
+                {getFrequency()}
               </p>
             </div>
           </StepLabel>
