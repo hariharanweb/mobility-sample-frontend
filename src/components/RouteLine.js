@@ -21,7 +21,7 @@ const CustomStepIcon = () => (
 );
 
 const RouteLine = ({
-  stops, startLocation, endLocation,
+  routeDetail,
 }) => {
   // console.log((stops[0].time.timestamp).substring(11, 16));
 
@@ -30,8 +30,8 @@ const RouteLine = ({
   return (
     <div>
       <Stepper orientation="vertical">
-        <Step key={startLocation} className="start-end-station">
-          <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{startLocation}</b></StepLabel>
+        <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
+          <StepLabel StepIconComponent={CustomStepIcon}><b style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{routeDetail.startLocation.descriptor.name}</b></StepLabel>
         </Step>
         <Divider className="divider" variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -46,7 +46,7 @@ const RouteLine = ({
               <p className="show-station-details">
                 Show
                 {' '}
-                {stops.length}
+                {routeDetail.stops.length}
                 {' '}
                 stops
               </p>
@@ -59,7 +59,7 @@ const RouteLine = ({
         <div {...getCollapseProps()}>
 
           <div className="content">
-            {stops.map((stop) => (
+            {routeDetail.stops.map((stop) => (
 
               <Step key={stop.descriptor.name}>
                 <div className="station-information">
@@ -75,9 +75,9 @@ const RouteLine = ({
           </div>
         </div>
         {/* <div className="start-end-station"> */}
-        <Step key={endLocation} className="start-end-station">
+        <Step key={routeDetail.endLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
-            <b>{endLocation}</b>
+            <b>{routeDetail.endLocation.descriptor.name}</b>
           </StepLabel>
 
         </Step>
