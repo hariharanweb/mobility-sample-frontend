@@ -58,6 +58,8 @@ const RouteLine = ({ routeDetail }) => {
         <Divider variant="inset" />
         <Grid onClick={handleClick} display="flex" paddingLeft="21%">
           <p className="show-station-details">
+            show
+            {' '}
             {routeDetail.stops.length}
             {' '}
             stops
