@@ -39,7 +39,7 @@ const RouteLine = ({ routeDetail }) => {
   };
 
   return (
-    <Grid>
+    <Grid paddingBottom="20px">
       <Stepper orientation="vertical">
         <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
@@ -47,7 +47,7 @@ const RouteLine = ({ routeDetail }) => {
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
-              <Grid paddingLeft="30px" marginTop="0px" fontSize="0.8rem" className="show-station-details">
+              <Grid paddingLeft="30px" fontSize="0.8rem" className="show-station-details">
                 every
                 {' '}
                 {getFrequency()}

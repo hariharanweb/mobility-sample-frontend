@@ -11,7 +11,12 @@
 }
 
 .css-8t49rw-MuiStepConnector-line {
-    margin-left: 42px !important;
+    margin-left: 37px !important;
+    min-height: 8px !important;
+}
+
+.css-1db085k-MuiSvgIcon-root {
+    width: 15px !important;
 }
 
 .start-end-station {

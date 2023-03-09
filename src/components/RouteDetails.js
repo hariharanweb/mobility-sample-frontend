@@ -3,7 +3,7 @@ import React from 'react';
 import RouteLine from './RouteLine';
 
 const RouteDetails = ({ routeDetails }) => (
-  <Grid padding="5px" width="100vw">
+  <Grid>
     {routeDetails.map((routeDetail) => (
       <RouteLine routeDetail={routeDetail} />
     ))}
