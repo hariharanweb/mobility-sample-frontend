@@ -7,18 +7,18 @@
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.43;
-    color: rgba(0, 0, 0, 0.6);
+    color: #00000099; 
 }
 
 .css-8t49rw-MuiStepConnector-line {
-    margin-left: 37px !important;
-    min-height: 8px !important;
+    margin-left: 2.3em !important;
+    min-height: 0.5em !important;
 }
 
-.css-1db085k-MuiSvgIcon-root {
+.stops-icon {
     width: 15px !important;
 }
 
 .start-end-station {
-    padding-left: 42px;
+    padding-left: 2.425em;
 }

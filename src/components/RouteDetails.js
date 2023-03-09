@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import RouteLine from './RouteLine';
+import RouteDetail from './RouteDetail';
 
 const RouteDetails = ({ routeDetails }) => (
   <Grid>
     {routeDetails.map((routeDetail) => (
-      <RouteLine routeDetail={routeDetail} />
+      <RouteDetail routeDetail={routeDetail} />
     ))}
   </Grid>
 );

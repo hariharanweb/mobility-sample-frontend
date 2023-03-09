@@ -7,18 +7,20 @@ import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import './RouteLine.css';
+import './RouteDetail.css';
+import moment from 'moment';
 import { Grid } from '@mui/material';
 
 const CustomStepIcon = () => (
   <Grid display="flex" flexDirection="row" alignItems="center">
     <CircleIcon
+      className="stops-icon"
       color="disabled"
     />
   </Grid>
 );
 
-const RouteLine = ({ routeDetail }) => {
+const RouteDetail = ({ routeDetail }) => {
   const [open, setOpen] = React.useState(false);
 
   const getFrequency = () => {
@@ -43,11 +45,11 @@ const RouteLine = ({ routeDetail }) => {
       <Stepper orientation="vertical">
         <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
-            <Grid display="flex" color="rgba(0, 0, 0, 0.6)">
+            <Grid display="flex" color="#00000099">
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
-              <Grid paddingLeft="30px" fontSize="0.8rem" className="show-station-details">
+              <Grid paddingLeft="1.875em" fontSize="0.8rem" className="show-station-details">
                 every
                 {' '}
                 {getFrequency()}
@@ -77,12 +79,12 @@ const RouteLine = ({ routeDetail }) => {
         </Grid>
         <Divider variant="inset" />
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <Grid className="content">
+          <Grid>
             {routeDetail.stops.map((stop) => (
               <Step key={stop.descriptor.name}>
                 <Grid display="flex">
                   <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
-                    {(stop.time.timestamp).substring(11, 16)}
+                    {moment(stop.time.timestamp).format('HH:mm')}
                   </Grid>
                   <StepLabel StepIconComponent={CustomStepIcon}>
                     {stop.descriptor.name}
@@ -101,4 +103,4 @@ const RouteLine = ({ routeDetail }) => {
     </Grid>
   );
 };
-export default RouteLine;
+export default RouteDetail;
