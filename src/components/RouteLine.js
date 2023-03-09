@@ -57,7 +57,7 @@ const RouteLine = ({ routeDetail }) => {
         </Step>
         <Divider variant="inset" />
         <Grid onClick={handleClick} display="flex" paddingLeft="21%">
-        {open ? (
+          {open ? (
             <Grid display="flex">
               <p className="show-station-details">Hide stops</p>
               <ExpandLess className="show-station-icon" />
