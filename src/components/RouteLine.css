@@ -1,21 +1,7 @@
-.show-station-details {
-    display: flex;
-    /* justify-items: ; */
-}
-
-.show-hide-station {
-    display: flex;
-    padding-left: 17%;
-}
-
 .show-station-icon {
     padding-top: 4%;
 }
 
-.start-station {
-    margin-top: 9px;
-    color: rgba(0, 0, 0, 0.6);
-}
 
 .show-station-details {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -23,25 +9,6 @@
     font-size: 0.875rem;
     line-height: 1.43;
     color: rgba(0, 0, 0, 0.6);
-}
-
-.frequency {
-    padding-left: 30px;
-    margin-top: 0px;
-    font-size: 0.8rem;
-}
-
-.divider {
-    margin-left: 65px !important;
-}
-
-.station-information {
-    display: flex;
-}
-
-.station-timing {
-    padding-top: 10px;
-    padding-right: 7px;
 }
 
 .css-8t49rw-MuiStepConnector-line {

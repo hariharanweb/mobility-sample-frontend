@@ -8,39 +8,19 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Divider from '@mui/material/Divider';
 import './RouteLine.css';
+import { Grid } from '@mui/material';
 
 const CustomStepIcon = () => (
-  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-    {/* <div>{timeval}</div> */}
-    <CircleIcon sx={{
-      color: '#bdbdbd',
-      borderRadius: '50%',
-    }}
+  <Grid display='flex' flexDirection='row' alignItems='center'>
+    <CircleIcon 
+      color="disabled"
     />
-  </div>
+  </Grid>
 );
 
 const RouteLine = ({
   routeDetail,
 }) => {
-  // console.log((stops[0].time.timestamp).substring(11, 16));
-  // console.log(routeDetail);
-  // const t1 = routeDetail.frequency[0].times[0];
-  // const t2 = routeDetail.frequency[0].times[1];
-  // console.log(routeDetail.frequency[0].times[0]);
-  // console.log(routeDetail.frequency[0].times[1]);
-  // var diffInMillis = new Date(t2).getHours() - new Date(t1).getHours()
-  // var diffInMins = new Date(t2).getMinutes() - new Date(t1).getMinutes()
-  // console.log(diffInMillis);
-  // console.log(diffInMins);
-  // console.log(new Date(diffInMillis).toUTCString());
-  //   var date = new Date(diffInMillis * 1000);
-  // // Hours part from the timestamp
-  //   var hours = date.getHours();
-  // // Minutes part from the timestamp
-  //   var minutes =  date.getMinutes();
-  //   console.log(hours + ":" + minutes);
-  // new Date(t2).getHours() - new Date(t1).getHours()
   const getFrequency = () => {
     const t1 = routeDetail.frequency[0].times[0];
     const t2 = routeDetail.frequency[0].times[1];
@@ -56,32 +36,32 @@ const RouteLine = ({
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
   return (
-    <div>
+    <Grid>
       <Stepper orientation="vertical">
         <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
-            <div className="station-information start-station">
+            <Grid display='flex' marginTop="9px" color="rgba(0, 0, 0, 0.6)">
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
-              <p className="show-station-details frequency">
+              <Grid paddingLeft="30px" marginTop="0px" fontSize="0.8rem" className="show-station-details">
                 every
                 {' '}
                 {getFrequency()}
-              </p>
-            </div>
+              </Grid>
+            </Grid>
           </StepLabel>
         </Step>
-        <Divider className="divider" variant="inset" />
+        <Divider variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Step className="header" {...getToggleProps()}>
+        <Step {...getToggleProps()}>
           {isExpanded ? (
-            <div className="show-hide-station">
+            <Grid display="flex" paddingLeft="17%">
               <p className="show-station-details">Hide stops</p>
               <ExpandLessIcon className="show-station-icon" />
-            </div>
+            </Grid>
           ) : (
-            <div className="show-hide-station">
+            <Grid display="flex" paddingLeft="17%">
               <p className="show-station-details">
                 Show
                 {' '}
@@ -90,39 +70,37 @@ const RouteLine = ({
                 stops
               </p>
               <ExpandMoreIcon className="show-station-icon" />
-            </div>
+            </Grid>
           )}
         </Step>
-        <Divider className="divider" variant="inset" />
+        <Divider variant="inset" />
         {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
-        <div {...getCollapseProps()}>
+        <Grid {...getCollapseProps()}>
 
-          <div className="content">
+          <Grid className="content">
             {routeDetail.stops.map((stop) => (
 
               <Step key={stop.descriptor.name}>
-                <div className="station-information">
-                  <div className="station-timing show-station-details">
+                <Grid display='flex'>
+                  <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
                     {(stop.time.timestamp).substring(11, 16)}
-                  </div>
+                  </Grid>
                   <StepLabel StepIconComponent={CustomStepIcon}>
                     {stop.descriptor.name}
                   </StepLabel>
-                </div>
+                </Grid>
               </Step>
             ))}
-          </div>
-        </div>
-        {/* <div className="start-end-station"> */}
+          </Grid>
+        </Grid>
         <Step key={routeDetail.endLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
             <b>{routeDetail.endLocation.descriptor.name}</b>
           </StepLabel>
 
         </Step>
-        {/* </div> */}
       </Stepper>
-    </div>
+    </Grid>
   );
 };
 export default RouteLine;
