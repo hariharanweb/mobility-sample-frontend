@@ -43,7 +43,7 @@ const RouteLine = ({ routeDetail }) => {
       <Stepper orientation="vertical">
         <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
           <StepLabel StepIconComponent={CustomStepIcon}>
-            <Grid display="flex" marginTop="9px" color="rgba(0, 0, 0, 0.6)">
+            <Grid display="flex" color="rgba(0, 0, 0, 0.6)">
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
