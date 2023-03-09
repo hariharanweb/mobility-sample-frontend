@@ -11,8 +11,13 @@ import './RouteDetail.css';
 import moment from 'moment';
 import { Grid } from '@mui/material';
 
-const CustomStepIcon = () => (
+const CustomStepIcon = ({ stop }) => (
   <Grid display="flex" flexDirection="row" alignItems="center">
+    { stop && stop.time && (
+    <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
+      {moment(stop.time.timestamp).format('HH:mm')}
+    </Grid>
+    )}
     <CircleIcon
       className="stops-icon"
       color="disabled"
@@ -83,9 +88,9 @@ const RouteDetail = ({ routeDetail }) => {
             {routeDetail.stops.map((stop) => (
               <Step key={stop.descriptor.name}>
                 <Grid display="flex">
-                  <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
+                  {/* <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
                     {moment(stop.time.timestamp).format('HH:mm')}
-                  </Grid>
+                  </Grid> */}
                   <StepLabel StepIconComponent={CustomStepIcon}>
                     {stop.descriptor.name}
                   </StepLabel>

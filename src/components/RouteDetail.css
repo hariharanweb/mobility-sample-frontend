@@ -1,19 +1,18 @@
 .show-station-icon {
-    padding-top: 13%;
+    padding-top: 15%;
 }
 
 .show-station-details {
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     line-height: 1.43;
     color: #00000099; 
 }
 
-.css-8t49rw-MuiStepConnector-line {
-    margin-left: 2.3em !important;
-    min-height: 0.5em !important;
-}
+/* .css-8t49rw-MuiStepConnector-line { */
+    /* margin-left: 2.2em !important;
+    min-height: 0.5em !important; */
+/* } */
 
 .stops-icon {
     width: 15px !important;
