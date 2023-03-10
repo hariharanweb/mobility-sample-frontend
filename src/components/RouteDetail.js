@@ -32,13 +32,24 @@ const RouteDetail = ({ routeDetail }) => {
   };
 
   const getFrequency = () => {
-    let interval = 'every ';
-    const freq = moment.duration(routeDetail.frequency[0]?.frequency);
-    const durationInMillisecond = moment(freq.asMilliseconds()).utc();
-    const hr = durationInMillisecond.hours();
-    if (hr !== 0) interval += `${durationInMillisecond.hours()} hours `;
-    const min = durationInMillisecond.minutes();
-    if (min !== 0) interval += `${durationInMillisecond.minutes()} minutes `;
+    let interval = '';
+    if (routeDetail?.frequency[0]?.frequency) {
+      interval += 'every ';
+      const freq = moment.duration(routeDetail.frequency[0]?.frequency);
+      const durationInMillisecond = moment(freq.asMilliseconds()).utc();
+      const hr = durationInMillisecond.hours();
+      if (hr !== 0) interval += `${durationInMillisecond.hours()} hours `;
+      const min = durationInMillisecond.minutes();
+      if (min !== 0) interval += `${durationInMillisecond.minutes()} minutes `;
+    } else if (routeDetail?.frequency[0]?.times) {
+      interval += 'next at ';
+      routeDetail.frequency[0].times.map((time, index) => {
+        const nextTime = moment(time).utc().format('HH:mm a');
+        interval += `${nextTime}`;
+        if (index !== routeDetail.frequency[0].times.length - 1) interval += ', ';
+        return interval;
+      });
+    }
     return interval;
   };
 
