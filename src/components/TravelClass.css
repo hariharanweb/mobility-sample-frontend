@@ -1,0 +1,64 @@
+.travelClass {
+    margin: 0 2%;
+    width: 32%;
+    left: 4%;
+    top: 1%;
+    background: #EFF6FE;
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+
+.travelClass-leftGrid {
+    padding: 8%;
+}
+
+.travelClass-rightGrid {
+    padding: 16% 20% 0 0;
+}
+
+.travelClass-name {
+    font-weight: 600;
+    font-size: 0.6rem;
+}
+
+.travelClass-price {
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.travelClass-seperator {
+    border: 0.5px solid #5182BF;
+}
+
+.travelClass-availability {
+    margin-top: 0.3em;
+    font-weight: 500;
+    font-size: 0.6rem;
+    color: #5182BF;
+}
+
+.travelClass-grid {
+    display: flex;
+    padding: 6%;
+}
+
+.travelClass-travelClassDetails {
+    display: flex;
+    order: 1;
+    justify-content: flex-start;
+    width: 48%;
+}
+
+.travelClass-travelClassSeperator {
+    display: flex;
+    order: 2;
+    justify-content: space-around;
+    width: 10%;
+}
+
+.travelClass-travelClassPrice {
+    display: flex;
+    order: 3;
+    justify-content: flex-end;
+    width: 52%;
+}
