@@ -14,6 +14,9 @@ const providerItems = (
   selectedItemId,
   selectedProviderId,
 ) => {
+  const [selectedTrain, setSelectedTrain] = useState();
+  const [selectedTravelClassId, setSelectedTravelClassId] = useState();
+  // const [typeItem,setType]=useState();
   const handleItemSelect = (item, isSelected) => {
     onSelectJourney(
       item,
@@ -23,16 +26,17 @@ const providerItems = (
       isSelected,
     );
   };
+  // console.log('-here2------', selectedTrain, selectedTravelClassId);
   const Items = items.map((item) => {
     const isSelected = provider.id === selectedProviderId
     && selectedItemId === item.id;
-    const [selectedTravelClassId, setSelectedTravelClassId] = useState();
     const handleTravelClassSelect = (travelClass, isTravelClassSelected) => {
       if (isTravelClassSelected) {
         setSelectedTravelClassId(travelClass.travel_class_id);
-      } else {
+      } else if (!isTravelClassSelected || selectedTrain !== item.id) {
         setSelectedTravelClassId(null);
       }
+      setSelectedTrain(item.id);
       handleItemSelect(item, isTravelClassSelected);
     };
     return (
@@ -49,6 +53,7 @@ const providerItems = (
           selectedTravelClassId={selectedTravelClassId}
           travelClassList={item?.travelClass}
           onTravelClassSelect={handleTravelClassSelect}
+
         />
         )}
       </>
