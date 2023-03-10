@@ -6,12 +6,8 @@
 }
 
 .MuiStepConnector-lineVertical{
-    margin-left: 2.2em !important;
+    margin-left: 2.2em;
     min-height: 0.5em !important;
-}
-
-.stops-icon {
-    width: 15px !important;
 }
 
 .start-end-station {

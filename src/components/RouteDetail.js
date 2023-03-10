@@ -20,7 +20,7 @@ const CustomStepIcon = (stopTimings, isStop) => (
       </Typography>
     )}
     <CircleIcon
-      className="stops-icon"
+      fontSize='inherit'
       color="disabled"
     />
   </Grid>
