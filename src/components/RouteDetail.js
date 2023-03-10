@@ -20,7 +20,7 @@ const CustomStepIcon = (stopTimings, isStop) => (
       </Typography>
     )}
     <CircleIcon
-      fontSize='inherit'
+      fontSize="inherit"
       color="disabled"
     />
   </Grid>
@@ -30,16 +30,22 @@ const CustomStepIcon = (stopTimings, isStop) => (
 const RouteDetail = ({ routeDetail }) => {
   const [open, setOpen] = React.useState(false);
   const getFrequency = () => {
-    const t1 = routeDetail.frequency[0].times[0];
-    const t2 = routeDetail.frequency[0].times[1];
-    const diffInHours = new Date(t2).getHours() - new Date(t1).getHours();
-    const diffInMinutes = new Date(t2).getMinutes() - new Date(t1).getMinutes();
-    if (diffInHours > 0 && diffInMinutes > 0) {
-      return `${diffInHours} hour ${diffInMinutes} min`;
-    } if (diffInHours > 0) {
-      return `${diffInHours} hour`;
-    }
-    return `${diffInMinutes} min`;
+    // const t1 = moment(routeDetail.frequency[0].times[0]);
+    // const t2 = moment(routeDetail.frequency[0].times[1]);
+    // console.log(t1);
+    // console.log(t2);
+    // var a = moment([2007, 0, 29]);
+    // var b = moment([2007, 0, 28]);
+    // console.log(t2.diff(t1).format('HH:mm'));
+    // console.log(t2.diff(t1, 'minutes'));
+    // const diffInHours = 1;// t2.diff(t1, 'hours');
+    // const diffInMinutes = 60;// t2.diff(t1, 'minutes');
+    // if (diffInHours > 1 && diffInMinutes > 0) {
+    //   return `${diffInHours} hour ${diffInMinutes} min`;
+    // } if (diffInHours > 1) {
+    //   return `${diffInHours} hour`;
+    // }
+    // return `${diffInMinutes} min`;
   };
   const handleClick = () => {
     setOpen(!open);
