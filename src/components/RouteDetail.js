@@ -30,6 +30,18 @@ const RouteDetail = ({ routeDetail }) => {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  const getFrequency = () => {
+    let interval = 'every ';
+    const freq = moment.duration(routeDetail.frequency[0]?.frequency);
+    const durationInMillisecond = moment(freq.asMilliseconds()).utc();
+    const hr = durationInMillisecond.hours();
+    if (hr !== 0) interval += `${durationInMillisecond.hours()} hours `;
+    const min = durationInMillisecond.minutes();
+    if (min !== 0) interval += `${durationInMillisecond.minutes()} minutes `;
+    return interval;
+  };
+
   return (
     <Grid>
       <Stepper orientation="vertical">
@@ -39,6 +51,9 @@ const RouteDetail = ({ routeDetail }) => {
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
+              <Grid paddingLeft="5em" fontSize="0.8rem" className="show-station-details">
+                {getFrequency()}
+              </Grid>
             </Grid>
           </StepLabel>
         </Step>
