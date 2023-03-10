@@ -1,15 +1,12 @@
 .show-station-details {
-    font-weight: 400;
-    font-size: 0.8rem;
-    line-height: 1.43;
     color: #00000099; 
 }
 
 .MuiStepConnector-lineVertical{
     margin-left: 2.2em;
-    min-height: 0.5em !important;
+    min-height: 0.4em !important;
 }
 
 .start-end-station {
-    padding-left: 2.5em;
+    padding-left: 2.4em;
 }

@@ -12,10 +12,9 @@ import moment from 'moment';
 import { Grid, Typography } from '@mui/material';
 
 const CustomStepIcon = (stopTimings, isStop) => (
-
   <Grid display="flex" flexDirection="row" alignItems="center">
     {isStop && (
-      <Typography variant="body2" paddingRight="0.3em" className="show-station-details">
+      <Typography variant="body2" paddingRight="0.2em" className="show-station-details">
         {moment(stopTimings).format('HH:mm')}
       </Typography>
     )}
@@ -24,29 +23,10 @@ const CustomStepIcon = (stopTimings, isStop) => (
       color="disabled"
     />
   </Grid>
-
 );
 
 const RouteDetail = ({ routeDetail }) => {
   const [open, setOpen] = React.useState(false);
-  const getFrequency = () => {
-    // const t1 = moment(routeDetail.frequency[0].times[0]);
-    // const t2 = moment(routeDetail.frequency[0].times[1]);
-    // console.log(t1);
-    // console.log(t2);
-    // var a = moment([2007, 0, 29]);
-    // var b = moment([2007, 0, 28]);
-    // console.log(t2.diff(t1).format('HH:mm'));
-    // console.log(t2.diff(t1, 'minutes'));
-    // const diffInHours = 1;// t2.diff(t1, 'hours');
-    // const diffInMinutes = 60;// t2.diff(t1, 'minutes');
-    // if (diffInHours > 1 && diffInMinutes > 0) {
-    //   return `${diffInHours} hour ${diffInMinutes} min`;
-    // } if (diffInHours > 1) {
-    //   return `${diffInHours} hour`;
-    // }
-    // return `${diffInMinutes} min`;
-  };
   const handleClick = () => {
     setOpen(!open);
   };
@@ -59,16 +39,11 @@ const RouteDetail = ({ routeDetail }) => {
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
-              <Grid paddingLeft="5em" fontSize="0.8rem" className="show-station-details">
-                every
-                {' '}
-                {getFrequency()}
-              </Grid>
             </Grid>
           </StepLabel>
         </Step>
         <Divider variant="inset" />
-        <Grid onClick={handleClick} display="flex" paddingLeft="21%">
+        <Grid onClick={handleClick} display="flex" paddingLeft="20%">
           {open ? (
             <Grid display="flex" marginY="1em">
               <Typography variant="subtitle2" className="show-station-details">Hide stops</Typography>
@@ -108,7 +83,6 @@ const RouteDetail = ({ routeDetail }) => {
         </Step>
       </Stepper>
     </Grid>
-
   );
 };
 export default RouteDetail;
