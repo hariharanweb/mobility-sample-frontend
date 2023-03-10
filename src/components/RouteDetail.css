@@ -1,18 +1,9 @@
-.show-station-icon {
-    padding-top: 12%;
-}
-
 .show-station-details {
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1.43;
     color: #00000099; 
 }
-
-/* .css-8t49rw-MuiStepConnector-line { */
-    /* margin-left: 2.2em !important;
-    min-height: 0.5em !important; */
-/* } */
 
 .MuiStepConnector-lineVertical{
     margin-left: 2.2em !important;

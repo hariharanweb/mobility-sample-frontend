@@ -9,23 +9,21 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import './RouteDetail.css';
 import moment from 'moment';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
-const CustomStepIcon = (stopTimings,isStop) => (
-  
+const CustomStepIcon = (stopTimings, isStop) => (
+
   <Grid display="flex" flexDirection="row" alignItems="center">
     {isStop && (
-      <Grid paddingX="5px" className="show-station-details">
-    {moment(stopTimings).format('HH:mm')}
-    </Grid>
-    )
-  }
+      <Typography variant="body2" paddingRight="0.3em" className="show-station-details">
+        {moment(stopTimings).format('HH:mm')}
+      </Typography>
+    )}
     <CircleIcon
       className="stops-icon"
       color="disabled"
     />
   </Grid>
-
 
 );
 
@@ -49,13 +47,13 @@ const RouteDetail = ({ routeDetail }) => {
   return (
     <Grid>
       <Stepper orientation="vertical">
-      <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
-          <StepLabel StepIconComponent={()=>CustomStepIcon(null,false)}>
-            <Grid display="flex" color="rgba(0, 0, 0, 0.6)">
+        <Step key={routeDetail.startLocation.descriptor.name} className="start-end-station">
+          <StepLabel StepIconComponent={() => CustomStepIcon(null, false)}>
+            <Grid display="flex" color="#00000099">
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
-              <Grid paddingLeft="30px" marginTop="0px" fontSize="0.8rem" className="show-station-details">
+              <Grid paddingLeft="5em" fontSize="0.8rem" className="show-station-details">
                 every
                 {' '}
                 {getFrequency()}
@@ -65,20 +63,20 @@ const RouteDetail = ({ routeDetail }) => {
         </Step>
         <Divider variant="inset" />
         <Grid onClick={handleClick} display="flex" paddingLeft="21%">
-        {open ? (
-            <Grid display="flex">
-              <p className="show-station-details">Hide stops</p>
+          {open ? (
+            <Grid display="flex" marginY="1em">
+              <Typography variant="subtitle2" className="show-station-details">Hide stops</Typography>
               <ExpandLess className="show-station-icon" />
             </Grid>
           ) : (
-            <Grid display="flex">
-              <p className="show-station-details">
+            <Grid display="flex" marginY="1em">
+              <Typography variant="subtitle2" className="show-station-details">
                 Show
                 {' '}
                 {routeDetail.stops.length}
                 {' '}
                 stops
-              </p>
+              </Typography>
               <ExpandMore className="show-station-icon" />
             </Grid>
           )}
@@ -89,7 +87,7 @@ const RouteDetail = ({ routeDetail }) => {
             {routeDetail.stops.map((stop) => (
               <Step key={stop.descriptor.name}>
                 <Grid display="flex">
-                  <StepLabel StepIconComponent={()=>CustomStepIcon(stop.time.timestamp,true)}>
+                  <StepLabel StepIconComponent={() => CustomStepIcon(stop.time.timestamp, true)}>
                     {stop.descriptor.name}
                   </StepLabel>
                 </Grid>
@@ -98,7 +96,7 @@ const RouteDetail = ({ routeDetail }) => {
           </Grid>
         </Collapse>
         <Step key={routeDetail.endLocation.descriptor.name} className="start-end-station">
-          <StepLabel StepIconComponent={()=>CustomStepIcon(null,false)}>
+          <StepLabel StepIconComponent={() => CustomStepIcon(null, false)}>
             <b>{routeDetail.endLocation.descriptor.name}</b>
           </StepLabel>
         </Step>
