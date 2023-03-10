@@ -51,7 +51,7 @@ const RouteDetail = ({ routeDetail }) => {
               <b>
                 {routeDetail.startLocation.descriptor.name}
               </b>
-              <Grid paddingLeft="5em" fontSize="0.8rem" className="show-station-details">
+              <Grid paddingLeft="6em" fontSize="0.8rem" className="show-station-details">
                 {getFrequency()}
               </Grid>
             </Grid>
