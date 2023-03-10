@@ -15,12 +15,13 @@ const CustomStepIcon = (stopTimings,isStop) => (
   
   <Grid display="flex" flexDirection="row" alignItems="center">
     {isStop && (
-      <Grid paddingTop="10px" paddingRight="7px" className="show-station-details">
+      <Grid paddingX="5px" className="show-station-details">
     {moment(stopTimings).format('HH:mm')}
     </Grid>
     )
   }
     <CircleIcon
+      className="stops-icon"
       color="disabled"
     />
   </Grid>
@@ -88,7 +89,6 @@ const RouteDetail = ({ routeDetail }) => {
             {routeDetail.stops.map((stop) => (
               <Step key={stop.descriptor.name}>
                 <Grid display="flex">
-                  
                   <StepLabel StepIconComponent={()=>CustomStepIcon(stop.time.timestamp,true)}>
                     {stop.descriptor.name}
                   </StepLabel>
