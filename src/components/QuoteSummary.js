@@ -77,7 +77,7 @@ const QuoteSummary = ({ bookingInformation }) => (
           Fare
         </Typography>
         <Typography>
-          <Price price={bookingInformation[0]?.message?.order?.quote?.price} />
+          <Price price={bookingInformation[0]?.message?.order?.quote?.price} variant="medium" />
         </Typography>
       </div>
     </Grid>

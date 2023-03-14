@@ -12,4 +12,4 @@ const price = {
   maximum_value: '1485',
 };
 
-export const Primary = () => <Price price={price} />;
+export const Primary = () => <Price price={price} variant="medium" />;
