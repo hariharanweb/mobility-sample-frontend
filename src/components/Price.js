@@ -1,24 +1,50 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import PriceTypography from './PriceTypography';
 
-const Price = ({ price }) => (
+const variantStyles = {
+  medium: {
+    height: '30px',
+    width: '60px',
+    textVariant: 'subtitle2',
+    fontWeight: 'default',
+  },
+  small: {
+    height: 'default',
+    width: 'default',
+    textVariant: 'caption',
+    fontWeight: 600,
+  },
+  large: {
+    height: '50px',
+    width: '70px',
+    textVariant: 'subtitle1',
+    fontWeight: 700,
+  },
+};
+const Price = ({ price, variant }) => (
   <>
     {!!price.value && (
-    <PriceTypography value={price.value} height="30px" width="60px" />
+      <Typography
+        variant={variantStyles[variant].textVariant}
+        height={variantStyles[variant].height}
+        width={variantStyles[variant].width}
+      >
+        ₹
+        {price.value}
+      </Typography>
     )}
     {!!price.minimum_value && !!price.maximum_value && (
-    <Typography
-      variant="subtitle2"
-      height="50px"
-      align="center"
-    >
-      ₹
-      {price.minimum_value}
-      &nbsp;-
-      ₹
-      {price.maximum_value}
-    </Typography>
+      <Typography
+        variant={variantStyles[variant].textVariant}
+        height={variantStyles[variant].height}
+        align="center"
+      >
+        ₹
+        {price.minimum_value}
+        &nbsp;-
+        ₹
+        {price.maximum_value}
+      </Typography>
     )}
   </>
 );

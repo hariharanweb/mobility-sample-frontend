@@ -152,7 +152,7 @@ const Item = ({
             Fare
           </Typography>
           <Typography variant="body1" style={{ fontSize: 'small', paddingLeft: '5%' }}>
-            <Price price={item.price} />
+            <Price price={item.price} variant="medium" />
           </Typography>
         </div>
 

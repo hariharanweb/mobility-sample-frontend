@@ -1,5 +1,5 @@
 import React from 'react';
-import PriceTypography from './PriceTypography';
+import Price from './Price';
 import './TravelClass.css';
 
 const TravelClassDetails = ({ travelClassName, availability }) => (
@@ -11,7 +11,7 @@ const TravelClassDetails = ({ travelClassName, availability }) => (
 );
 const TravelClassPrice = ({ fareDetails }) => (
   <div className="travelClass-rightGrid">
-    <PriceTypography value={fareDetails?.price?.value} variant="caption" fontWeight={600} />
+    <Price price={fareDetails?.price} variant="small" />
 
   </div>
 
