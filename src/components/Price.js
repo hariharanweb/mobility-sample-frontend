@@ -3,8 +3,6 @@ import Typography from '@mui/material/Typography';
 
 const variantStyles = {
   medium: {
-    height: '30px',
-    width: '60px',
     textVariant: 'subtitle2',
     fontWeight: 'default',
   },
@@ -15,19 +13,16 @@ const variantStyles = {
     fontWeight: 600,
   },
   large: {
-    height: '50px',
-    width: '70px',
     textVariant: 'subtitle1',
     fontWeight: 700,
   },
 };
-const Price = ({ price, variant }) => (
+const Price = ({ price, variant = 'medium' }) => (
   <>
     {!!price.value && (
       <Typography
         variant={variantStyles[variant].textVariant}
-        height={variantStyles[variant].height}
-        width={variantStyles[variant].width}
+        fontWeight={variantStyles[variant].fontWeight}
       >
         ₹
         {price.value}
@@ -36,7 +31,6 @@ const Price = ({ price, variant }) => (
     {!!price.minimum_value && !!price.maximum_value && (
       <Typography
         variant={variantStyles[variant].textVariant}
-        height={variantStyles[variant].height}
         align="center"
       >
         ₹

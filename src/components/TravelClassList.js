@@ -1,13 +1,22 @@
 import React from 'react';
+import { Grid } from '@mui/material';
 import TravelClass from './TravelClass';
-import './TravelClassList.css';
 
 const TravelClassList = ({ travelClassList }) => (
-  <div className="travelClassList-scrollmenu">
+  <Grid
+    className="travelClassList-scrollmenu"
+    direction="row"
+    display="flex"
+    flexWrap="nowrap"
+    overflow="auto"
+    whiteSpace="nowrap"
+  >
     {travelClassList.map((travelClass) => (
-      <TravelClass travelClass={travelClass} />
+      <Grid item paddingRight="1rem">
+        <TravelClass travelClass={travelClass} />
+      </Grid>
     ))}
-  </div>
+  </Grid>
 );
 
 export default TravelClassList;
