@@ -2,8 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import Grid from '@mui/material/Grid';
 import Item from './Item';
-import Items from './Items';
 import Provider from './Provider';
+import TravelClassList from './TravelClassList';
 
 const providerItems = (
   items,
@@ -28,37 +28,25 @@ const providerItems = (
   const itemsWithoutHierarchy = items.filter(
     (item) => _.keys(itemsGroupedByParent).indexOf(item.id) < 0 && !item.parent_item_id,
   );
-  const groupedItems = _.keys(itemsGroupedByParent).map((parentItemId) => {
-    const parentItem = items.find((item) => item.id === parentItemId);
-    const childItems = itemsGroupedByParent[parentItemId];
-    const isSelectedProvider = provider.id === selectedProviderId;
-    return (
-      <Items
-        parentItem={parentItem}
-        items={childItems}
-        categories={categories}
-        onItemSelect={handleItemSelect}
-        selectedItemId={selectedItemId}
-        isSelectedProvider={isSelectedProvider}
-      />
-    );
-  });
   const individualItems = itemsWithoutHierarchy.map((item) => {
     const isSelected = provider.id === selectedProviderId
     && selectedItemId === item.id;
     return (
-      <Item
-        key={item.id}
-        isParent={false}
-        item={item}
-        onItemSelect={handleItemSelect}
-        isSelected={isSelected}
-      />
+      <>
+        <Item
+          key={item.id}
+          isParent={false}
+          item={item}
+          onItemSelect={handleItemSelect}
+          isSelected={isSelected}
+        />
+        {item?.travelClass && <TravelClassList travelClassList={item?.travelClass} />}
+      </>
     );
   });
   return (
     <>
-      {groupedItems}
+      {' '}
       {individualItems}
     </>
   );
