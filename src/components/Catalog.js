@@ -1,5 +1,4 @@
-import React from 'react';
-import _ from 'lodash';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Item from './Item';
 import Provider from './Provider';
@@ -24,30 +23,41 @@ const providerItems = (
       isSelected,
     );
   };
-  const itemsGroupedByParent = _.groupBy(_.filter(items, (item) => !!item.parent_item_id), 'parent_item_id');
-  const itemsWithoutHierarchy = items.filter(
-    (item) => _.keys(itemsGroupedByParent).indexOf(item.id) < 0 && !item.parent_item_id,
-  );
-  const individualItems = itemsWithoutHierarchy.map((item) => {
+  const Items = items.map((item) => {
     const isSelected = provider.id === selectedProviderId
     && selectedItemId === item.id;
+    const [selectedTravelClassId, setSelectedTravelClassId] = useState();
+    const handleTravelClassSelect = (travelClass, isTravelClassSelected) => {
+      if (isTravelClassSelected) {
+        setSelectedTravelClassId(travelClass.travel_class_id);
+      } else {
+        setSelectedTravelClassId(null);
+      }
+      handleItemSelect(item, isTravelClassSelected);
+    };
     return (
       <>
         <Item
           key={item.id}
-          isParent={false}
           item={item}
           onItemSelect={handleItemSelect}
-          isSelected={isSelected}
+          isSelected={!item.travelClass && isSelected}
+          isParent={item.travelClass}
         />
-        {item?.travelClass && <TravelClassList travelClassList={item?.travelClass} />}
+        {item?.travelClass && (
+        <TravelClassList
+          selectedTravelClassId={selectedTravelClassId}
+          travelClassList={item?.travelClass}
+          onTravelClassSelect={handleTravelClassSelect}
+        />
+        )}
       </>
     );
   });
   return (
     <>
       {' '}
-      {individualItems}
+      {Items}
     </>
   );
 };

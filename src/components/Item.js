@@ -11,16 +11,17 @@ import './Item.css';
 import './Time.css';
 
 const Item = ({
-  item, category, isParent, onItemSelect, isSelected,
+  item, onItemSelect, isSelected,
 }) => {
   const onSelect = () => {
-    if (isParent) return;
-    onItemSelect(
-      item,
-      !isSelected,
-    );
+    if (!item.travelClass) {
+      onItemSelect(
+        item,
+        !isSelected,
+      );
+    }
   };
-  const containerStyle = isParent ? 'parent-item' : 'item-with-border';
+  const containerStyle = 'item-with-border';
   return (
     <Grid
       container
@@ -95,46 +96,21 @@ const Item = ({
         height="60px"
         width="90px"
       >
-        {isParent
-        && (
-        <Typography
-          variant="body1"
-          style={{
-            fontSize: 'small', fontWeight: '600', marginLeft: '10px', paddingTop: '20px', marginTop: '5px',
-          }}
+        <div style={{
+          alignContent: 'center', marginLeft: '15px', paddingTop: '6px',
+        }}
         >
-          {item.descriptor.name}
-        </Typography>
-        )}
-        {!isParent && category
-        && (
-        <Typography
-          variant="body1"
-          style={{
-            fontSize: 'small', fontWeight: '600', marginLeft: '10px', paddingTop: '20px', marginTop: '5px',
-          }}
-        >
-          {category}
-        </Typography>
-        )}
-        {!isParent && !category
-        && (
-          <div style={{
-            alignContent: 'center', marginLeft: '15px', paddingTop: '6px',
-          }}
-          >
-            <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
-              <DirectionsCarOutlinedIcon style={{
-                fontSize: 'small', marginRight: '2px', color: 'grey',
-              }}
-              />
-              Vehicle
-            </Typography>
-            <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500', paddingLeft: '1px' }}>
-              {item.descriptor.name}
-            </Typography>
-          </div>
-        )}
+          <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
+            <DirectionsCarOutlinedIcon style={{
+              fontSize: 'small', marginRight: '2px', color: 'grey',
+            }}
+            />
+            Vehicle
+          </Typography>
+          <Typography variant="body1" style={{ fontSize: 'small', fontWeight: '500', paddingLeft: '1px' }}>
+            {item.descriptor.name}
+          </Typography>
+        </div>
       </Grid>
       <Grid
         item
