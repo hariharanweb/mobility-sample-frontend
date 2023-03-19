@@ -2,7 +2,9 @@ import React from 'react';
 import { Grid, Divider, Typography } from '@mui/material';
 import Price from './Price';
 
-const TravelClass = ({ travelClass, onTravelClassSelect, isTravelClassSelected }) => {
+const TravelClass = ({
+  travelClass, isTravelClassSelected, onTravelClassSelect,
+}) => {
   const onSelectTravelClass = () => {
     onTravelClassSelect(
       travelClass,

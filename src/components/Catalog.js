@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
+import React from 'react';
 import Item from './Item';
 import Provider from './Provider';
-import TravelClassList from './TravelClassList';
 
 const providerItems = (
   items,
@@ -13,50 +12,35 @@ const providerItems = (
   bppUrl,
   selectedItemId,
   selectedProviderId,
+  selectedTravelClassId,
+  setSelectedTravelClassId,
 ) => {
-  const [selectedTrain, setSelectedTrain] = useState();
-  const [selectedTravelClassId, setSelectedTravelClassId] = useState();
-  // const [typeItem,setType]=useState();
-  const handleItemSelect = (item, isSelected) => {
+  const handleOnClick = (itemSelected, travelClassItem, isItemSelected) => {
+    itemSelected.travelClass && isItemSelected
+      ? setSelectedTravelClassId(travelClassItem.travel_class_id)
+      : setSelectedTravelClassId(null);
+
     onSelectJourney(
-      item,
+      itemSelected,
       provider,
       fulfillments,
       bppUrl,
-      isSelected,
+      isItemSelected,
     );
   };
-  // console.log('-here2------', selectedTrain, selectedTravelClassId);
+
   const Items = items.map((item) => {
     const isSelected = provider.id === selectedProviderId
-    && selectedItemId === item.id;
-    const handleTravelClassSelect = (travelClass, isTravelClassSelected) => {
-      if (isTravelClassSelected) {
-        setSelectedTravelClassId(travelClass.travel_class_id);
-      } else if (!isTravelClassSelected || selectedTrain !== item.id) {
-        setSelectedTravelClassId(null);
-      }
-      setSelectedTrain(item.id);
-      handleItemSelect(item, isTravelClassSelected);
-    };
-    return (
-      <>
-        <Item
-          key={item.id}
-          item={item}
-          onItemSelect={handleItemSelect}
-          isSelected={!item.travelClass && isSelected}
-          isParent={item.travelClass}
-        />
-        {item?.travelClass && (
-        <TravelClassList
-          selectedTravelClassId={selectedTravelClassId}
-          travelClassList={item?.travelClass}
-          onTravelClassSelect={handleTravelClassSelect}
+   && selectedItemId === item.id;
 
-        />
-        )}
-      </>
+    return (
+      <Item
+        key={item.id}
+        item={item}
+        onItemSelect={handleOnClick}
+        isSelected={!item.travelClass && isSelected}
+        selectedTravelClassId={selectedTravelClassId}
+      />
     );
   });
   return (
@@ -67,51 +51,39 @@ const providerItems = (
   );
 };
 
-const bppProvider = (
-  provider,
-  onSelectJourney,
-  fulfillments,
-  bppUrl,
-  selectedItemId,
-  selectedProviderId,
-) => (
-  <Grid container key={provider.id}>
-    <Provider provider={provider} />
-    {providerItems(
-      provider.items,
-      provider.categories,
-      onSelectJourney,
-      provider,
-      fulfillments,
-      bppUrl,
-      selectedItemId,
-      selectedProviderId,
-    )}
-  </Grid>
-);
-
 const Catalog = ({
   catalog,
   onSelectJourney,
   bppUrl,
   selectedItemId,
   selectedProviderId,
+  selectedTravelClassId,
+  setSelectedTravelClassId,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
   return (
+
     <div>
-      <div>
-        {bppProviders && bppProviders.map((provider) => bppProvider(
-          provider,
-          onSelectJourney,
-          fulfillments,
-          bppUrl,
-          selectedItemId,
-          selectedProviderId,
-        ))}
-      </div>
+      {bppProviders.map((provider) => (
+        <Grid container key={provider.id}>
+          <Provider provider={provider} />
+          {providerItems(
+            provider.items,
+            provider.categories,
+            onSelectJourney,
+            provider,
+            fulfillments,
+            bppUrl,
+            selectedItemId,
+            selectedProviderId,
+            selectedTravelClassId,
+            setSelectedTravelClassId,
+          )}
+        </Grid>
+      ))}
     </div>
+
   );
 };
 
