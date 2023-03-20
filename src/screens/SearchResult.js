@@ -3,6 +3,7 @@
 /* eslint camelcase: 0 */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import _ from 'lodash';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Api from '../api/Api';
@@ -39,6 +40,7 @@ const SearchResult = () => {
   const [info, setinfo] = useState({});
   const [selectedProviderId, setSelectedProviderId] = useState();
   const [selectedItemId, setSelectedItemId] = useState();
+  const [selectedTravelClassId, setSelectedTravelClassId] = useState();
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -58,7 +60,11 @@ const SearchResult = () => {
 
   const onBookRide = async () => {
     const data = {
-      context: ContextBuilder.getContext('select', info?.bppUrl, searchResults[0].context.transaction_id),
+      context: ContextBuilder.getContext(
+        'select',
+        info?.bppUrl,
+        searchResults[0].context.transaction_id,
+      ),
       message: {
         order: {
           provider: {
@@ -85,13 +91,7 @@ const SearchResult = () => {
     }
   };
 
-  const onSelectJourney = (
-    item,
-    provider,
-    fulfillments,
-    bppUrl,
-    isSelected,
-  ) => {
+  const onSelectJourney = (item, provider, fulfillments, bppUrl, isSelected) => {
     if (isSelected) {
       setSelectedItemId(item.id);
       setSelectedProviderId(provider.id);
@@ -117,13 +117,19 @@ const SearchResult = () => {
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <div>
+            { _.has(bppProvider.message.catalog, 'bpp/providers') && (
             <Catalog
               catalog={bppProvider.message.catalog}
-              onSelectJourney={onSelectJourney}
               bppUrl={bppProvider.context.bpp_uri}
-              selectedProviderId={selectedProviderId}
-              selectedItemId={selectedItemId}
+              {...{
+                onSelectJourney,
+                selectedProviderId,
+                selectedItemId,
+                selectedTravelClassId,
+                setSelectedTravelClassId,
+              }}
             />
+            )}
           </div>
         ))}
         <Grid py={1}>
@@ -172,7 +178,6 @@ const SearchResult = () => {
             isPullerPresent={false}
           />
           {' '}
-
         </>
       )}
       <Footer />
