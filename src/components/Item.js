@@ -27,12 +27,11 @@ const Item = ({
       onItemSelect(item, travelClassItem, isTravelClassSelected);
     }
   };
-  const containerStyle = 'item-with-border';
+
   return (
     <Box width={1}>
       <Grid
         container
-        className={containerStyle}
         onClick={onSelect}
         key={item.id}
         backgroundColor={isSelected ? 'rgba(50, 123, 24, 0.1)' : 'white'}
@@ -75,17 +74,17 @@ const Item = ({
           height="60px"
           width="65px"
         >
-          <div>
-            <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
+          <Grid>
+            <Typography variant="body1" color="grey" fontSize="small">
               <AccessTimeOutlined
                 style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }}
               />
               Ride
             </Typography>
-            <Typography variant="body1" style={{ fontSize: 'medium', paddingLeft: '3px' }}>
+            <Typography variant="body1" fontSize="medium" paddingLeft="3px">
               <Time time={item.time} />
             </Typography>
-          </div>
+          </Grid>
         </Grid>
         )}
 
@@ -102,14 +101,14 @@ const Item = ({
           height="60px"
           width="90px"
         >
-          <div
+          <Grid
             style={{
               alignContent: 'center',
               marginLeft: '15px',
               paddingTop: '6px',
             }}
           >
-            <Typography variant="body1" style={{ color: 'grey', fontSize: 'small' }}>
+            <Typography variant="body1" color="grey" fontSize="small">
               <DirectionsCarOutlined
                 style={{
                   fontSize: 'small',
@@ -121,11 +120,13 @@ const Item = ({
             </Typography>
             <Typography
               variant="body1"
-              style={{ fontSize: 'small', fontWeight: '500', paddingLeft: '1px' }}
+              fontSize="small"
+              fontWeight="500"
+              paddingLeft="1px"
             >
               {item.descriptor.name}
             </Typography>
-          </div>
+          </Grid>
         </Grid>
         <Grid
           item
@@ -137,18 +138,17 @@ const Item = ({
           paddingLeft="8%"
           height="70px"
         >
-          <div>
-            <Typography style={{ color: 'grey', fontSize: 'small' }}>
+          <Grid>
+            <Typography color="grey" fontSize="small">
               <CurrencyRupeeOutlined style={{ fontSize: 'small', color: 'grey' }} />
               Fare
             </Typography>
-            <Typography variant="body1" style={{ fontSize: 'small', paddingLeft: '5%' }}>
+            <Typography variant="body1" fontSize="small" paddingLeft="5%">
               <Price price={item.price} variant="medium" />
             </Typography>
-          </div>
+          </Grid>
         </Grid>
       </Grid>
-      ,
       {item.travelClass && (
       <Box>
         <TravelClassList

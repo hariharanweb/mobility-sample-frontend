@@ -43,12 +43,7 @@ const providerItems = (
       />
     );
   });
-  return (
-    <>
-      {' '}
-      {Items}
-    </>
-  );
+  return Items;
 };
 
 const Catalog = ({
