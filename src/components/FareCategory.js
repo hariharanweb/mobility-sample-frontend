@@ -14,22 +14,12 @@ const FareCategory = ({ fareCategory }) => {
     setCount(count - 1);
   };
   return (
-    <Grid container backgroundColor="#EFF6FE" paddingY="10px">
-      <Grid
-        item
-        direction="column"
-        textAlign="center"
-        width="50%"
-      >
+    <Grid container paddingY="10px">
+      <Grid item direction="column" textAlign="center" width="50%">
         <Typography>{fareCategory.fare_category_name}</Typography>
         <Price price={fareCategory.price} variant="small" />
       </Grid>
-      <Grid
-        item
-        width="50%"
-        textAlign="center"
-        paddingY="2%"
-      >
+      <Grid item width="50%" textAlign="center" paddingY="6px">
         <ButtonGroup
           size="small"
           aria-label="small outlined button group"
@@ -37,7 +27,7 @@ const FareCategory = ({ fareCategory }) => {
           color="info"
         >
           <Button onClick={handleIncrement}>+</Button>
-          <Button disabled variant="text" style={{ color: "black" }}>
+          <Button disabled variant="text" style={{ color: 'black' }}>
             {count}
           </Button>
           <Button onClick={handleDecrement}>-</Button>

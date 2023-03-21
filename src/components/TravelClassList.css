@@ -1,0 +1,6 @@
+.travelClassList {
+  -ms-overflow-style: none;
+}
+.travelClassList::-webkit-scrollbar {
+  display: none;
+}

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import TravelClass from './TravelClass';
+import FareCategoryList from './FareCategoryList';
+import './TravelClassList.css';
 
 const TravelClassList = ({ travelClassList, selectedTravelClassId, onTravelClassSelect }) => (
   <Grid
+    className="travelClassList"
     direction="row"
     display="flex"
     flexWrap="nowrap"
@@ -21,6 +24,9 @@ const TravelClassList = ({ travelClassList, selectedTravelClassId, onTravelClass
             onTravelClassSelect={onTravelClassSelect}
             isTravelClassSelected={isTravelClassSelected}
           />
+          {isTravelClassSelected && (
+            <FareCategoryList fareCategoryList={travelClass.fare_categories} />
+          )}
         </Grid>
       );
     })}
