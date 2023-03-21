@@ -14,24 +14,20 @@ const providerItems = (
   selectedProviderId,
   selectedTravelClassId,
   setSelectedTravelClassId,
+  fareCategoryList,
+  setFareCategoryList,
 ) => {
   const handleOnClick = (itemSelected, travelClassItem, isItemSelected) => {
     itemSelected.travelClass && isItemSelected
-      ? setSelectedTravelClassId(travelClassItem.travel_class_id)
-      : setSelectedTravelClassId(null);
+      ? (setSelectedTravelClassId(travelClassItem.travel_class_id),
+      setFareCategoryList(travelClassItem.fare_categories))
+      : (setSelectedTravelClassId(null), setFareCategoryList([]));
 
-    onSelectJourney(
-      itemSelected,
-      provider,
-      fulfillments,
-      bppUrl,
-      isItemSelected,
-    );
+    onSelectJourney(itemSelected, provider, fulfillments, bppUrl, isItemSelected);
   };
 
   const Items = items.map((item) => {
-    const isSelected = provider.id === selectedProviderId
-   && selectedItemId === item.id;
+    const isSelected = provider.id === selectedProviderId && selectedItemId === item.id;
 
     return (
       <Item
@@ -40,6 +36,7 @@ const providerItems = (
         onItemSelect={handleOnClick}
         isSelected={!item.travelClass && isSelected}
         selectedTravelClassId={selectedTravelClassId}
+        fareCategoryList={fareCategoryList}
       />
     );
   });
@@ -54,11 +51,12 @@ const Catalog = ({
   selectedProviderId,
   selectedTravelClassId,
   setSelectedTravelClassId,
+  fareCategoryList,
+  setFareCategoryList,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
   return (
-
     <div>
       {bppProviders.map((provider) => (
         <Grid container key={provider.id}>
@@ -74,11 +72,12 @@ const Catalog = ({
             selectedProviderId,
             selectedTravelClassId,
             setSelectedTravelClassId,
+            fareCategoryList,
+            setFareCategoryList,
           )}
         </Grid>
       ))}
     </div>
-
   );
 };
 

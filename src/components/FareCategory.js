@@ -14,7 +14,7 @@ const FareCategory = ({ fareCategory }) => {
     setCount(count - 1);
   };
   return (
-    <Grid container paddingY="10px">
+    <Grid container paddingY="10px" backgroundColor="#ededed">
       <Grid item direction="column" textAlign="center" width="50%">
         <Typography>{fareCategory.fare_category_name}</Typography>
         <Price price={fareCategory.price} variant="small" />

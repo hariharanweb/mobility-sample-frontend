@@ -19,6 +19,7 @@ const Item = ({
   isSelected,
   selectedTravelClassId,
   onItemSelect,
+  fareCategoryList,
 }) => {
   const onSelect = (travelClassItem, isTravelClassSelected) => {
     if (!item.travelClass) {
@@ -62,30 +63,30 @@ const Item = ({
           </Grid>
         )}
         {item.time && (
-        <Grid
-          item
-          xs={2.5}
-          alignItems="center"
-          display="flex"
-          paddingLeft="4%"
-          paddingBottom="5px"
-          marginTop="6px"
-          color="#000"
-          height="60px"
-          width="65px"
-        >
-          <Grid>
-            <Typography variant="body1" color="grey" fontSize="small">
-              <AccessTimeOutlined
-                style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }}
-              />
-              Ride
-            </Typography>
-            <Typography variant="body1" fontSize="medium" paddingLeft="3px">
-              <Time time={item.time} />
-            </Typography>
+          <Grid
+            item
+            xs={2.5}
+            alignItems="center"
+            display="flex"
+            paddingLeft="4%"
+            paddingBottom="5px"
+            marginTop="6px"
+            color="#000"
+            height="60px"
+            width="65px"
+          >
+            <Grid>
+              <Typography variant="body1" color="grey" fontSize="small">
+                <AccessTimeOutlined
+                  style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }}
+                />
+                Ride
+              </Typography>
+              <Typography variant="body1" fontSize="medium" paddingLeft="3px">
+                <Time time={item.time} />
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
         )}
 
         <Grid
@@ -118,12 +119,7 @@ const Item = ({
               />
               Vehicle
             </Typography>
-            <Typography
-              variant="body1"
-              fontSize="small"
-              fontWeight="500"
-              paddingLeft="1px"
-            >
+            <Typography variant="body1" fontSize="small" fontWeight="500" paddingLeft="1px">
               {item.descriptor.name}
             </Typography>
           </Grid>
@@ -150,13 +146,14 @@ const Item = ({
         </Grid>
       </Grid>
       {item.travelClass && (
-      <Box>
-        <TravelClassList
-          selectedTravelClassId={selectedTravelClassId}
-          travelClassList={item.travelClass}
-          onTravelClassSelect={onSelect}
-        />
-      </Box>
+        <Box>
+          <TravelClassList
+            selectedTravelClassId={selectedTravelClassId}
+            travelClassList={item.travelClass}
+            onTravelClassSelect={onSelect}
+            fareCategoryList={fareCategoryList}
+          />
+        </Box>
       )}
     </Box>
   );

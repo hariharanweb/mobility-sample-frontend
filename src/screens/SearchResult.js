@@ -41,6 +41,7 @@ const SearchResult = () => {
   const [selectedProviderId, setSelectedProviderId] = useState();
   const [selectedItemId, setSelectedItemId] = useState();
   const [selectedTravelClassId, setSelectedTravelClassId] = useState();
+  const [fareCategoryList, setFareCategoryList] = useState([]);
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -117,18 +118,20 @@ const SearchResult = () => {
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
           <div>
-            { _.has(bppProvider.message.catalog, 'bpp/providers') && (
-            <Catalog
-              catalog={bppProvider.message.catalog}
-              bppUrl={bppProvider.context.bpp_uri}
-              {...{
-                onSelectJourney,
-                selectedProviderId,
-                selectedItemId,
-                selectedTravelClassId,
-                setSelectedTravelClassId,
-              }}
-            />
+            {_.has(bppProvider.message.catalog, 'bpp/providers') && (
+              <Catalog
+                catalog={bppProvider.message.catalog}
+                bppUrl={bppProvider.context.bpp_uri}
+                {...{
+                  onSelectJourney,
+                  selectedProviderId,
+                  selectedItemId,
+                  selectedTravelClassId,
+                  setSelectedTravelClassId,
+                  fareCategoryList,
+                  setFareCategoryList,
+                }}
+              />
             )}
           </div>
         ))}
@@ -159,12 +162,12 @@ const SearchResult = () => {
       ) : (
         <>
           {isLoaded && (
-          <Map
-            openPanel={openPanel}
-            showMarker={false}
-            destinationLocation={locations.destinationLocation}
-            originLocation={locations.originLocation}
-          />
+            <Map
+              openPanel={openPanel}
+              showMarker={false}
+              destinationLocation={locations.destinationLocation}
+              originLocation={locations.originLocation}
+            />
           )}
           {' '}
           <Panel
