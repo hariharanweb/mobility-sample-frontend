@@ -108,6 +108,13 @@ const SearchResult = () => {
     }
   };
 
+  const onSelectTravelClass = (item, travelClassItem, isSelected) => {
+    item.travelClass && isSelected
+      ? (setSelectedTravelClassId(travelClassItem.travel_class_id),
+      setFareCategoryList(travelClassItem.fare_categories))
+      : (setSelectedTravelClassId(null), setFareCategoryList([]));
+  };
+
   const gotoHome = () => {
     navigate('/', { state: {} });
   };
@@ -127,9 +134,8 @@ const SearchResult = () => {
                   selectedProviderId,
                   selectedItemId,
                   selectedTravelClassId,
-                  setSelectedTravelClassId,
+                  onSelectTravelClass,
                   fareCategoryList,
-                  setFareCategoryList,
                 }}
               />
             )}

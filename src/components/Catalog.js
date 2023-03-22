@@ -13,17 +13,12 @@ const providerItems = (
   selectedItemId,
   selectedProviderId,
   selectedTravelClassId,
-  setSelectedTravelClassId,
+  onSelectTravelClass,
   fareCategoryList,
-  setFareCategoryList,
 ) => {
   const handleOnClick = (itemSelected, travelClassItem, isItemSelected) => {
-    itemSelected.travelClass && isItemSelected
-      ? (setSelectedTravelClassId(travelClassItem.travel_class_id),
-      setFareCategoryList(travelClassItem.fare_categories))
-      : (setSelectedTravelClassId(null), setFareCategoryList([]));
-
     onSelectJourney(itemSelected, provider, fulfillments, bppUrl, isItemSelected);
+    onSelectTravelClass(itemSelected, travelClassItem, isItemSelected);
   };
 
   const Items = items.map((item) => {
@@ -50,9 +45,8 @@ const Catalog = ({
   selectedItemId,
   selectedProviderId,
   selectedTravelClassId,
-  setSelectedTravelClassId,
+  onSelectTravelClass,
   fareCategoryList,
-  setFareCategoryList,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
@@ -71,9 +65,8 @@ const Catalog = ({
             selectedItemId,
             selectedProviderId,
             selectedTravelClassId,
-            setSelectedTravelClassId,
+            onSelectTravelClass,
             fareCategoryList,
-            setFareCategoryList,
           )}
         </Grid>
       ))}
