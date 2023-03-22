@@ -30,7 +30,7 @@ const TravelClassList = ({
         {travelClassList.map((travelClass) => {
           const isTravelClassSelected = travelClass.travel_class_id === selectedTravelClassId;
           return (
-            <Grid item paddingRight="1rem">
+            <Grid item paddingRight="1rem" key={travelClass.travel_class_id}>
               <TravelClass
                 travelClass={travelClass}
                 onTravelClassSelect={onTravelClassSelect}

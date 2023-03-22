@@ -13,12 +13,12 @@ const providerItems = (
   selectedItemId,
   selectedProviderId,
   selectedTravelClassId,
-  onSelectTravelClass,
+  onTravelClassSelect,
   fareCategoryList,
 ) => {
   const handleOnClick = (itemSelected, travelClassItem, isItemSelected) => {
     onSelectJourney(itemSelected, provider, fulfillments, bppUrl, isItemSelected);
-    onSelectTravelClass(itemSelected, travelClassItem, isItemSelected);
+    onTravelClassSelect(itemSelected, travelClassItem, isItemSelected);
   };
 
   const Items = items.map((item) => {
@@ -45,7 +45,7 @@ const Catalog = ({
   selectedItemId,
   selectedProviderId,
   selectedTravelClassId,
-  onSelectTravelClass,
+  onTravelClassSelect,
   fareCategoryList,
 }) => {
   const bppProviders = catalog['bpp/providers'];
@@ -65,7 +65,7 @@ const Catalog = ({
             selectedItemId,
             selectedProviderId,
             selectedTravelClassId,
-            onSelectTravelClass,
+            onTravelClassSelect,
             fareCategoryList,
           )}
         </Grid>

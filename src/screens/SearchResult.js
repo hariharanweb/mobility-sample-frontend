@@ -108,7 +108,7 @@ const SearchResult = () => {
     }
   };
 
-  const onSelectTravelClass = (item, travelClassItem, isSelected) => {
+  const onTravelClassSelect = (item, travelClassItem, isSelected) => {
     item.travelClass && isSelected
       ? (setSelectedTravelClassId(travelClassItem.travel_class_id),
       setFareCategoryList(travelClassItem.fare_categories))
@@ -124,7 +124,7 @@ const SearchResult = () => {
       <LocationTracer locationMap={locationMap} isSearchResult />
       <Grid item xs={12}>
         {searchResults.map((bppProvider) => (
-          <div>
+          <div key={bppProvider.context.bpp_id}>
             {_.has(bppProvider.message.catalog, 'bpp/providers') && (
               <Catalog
                 catalog={bppProvider.message.catalog}
@@ -134,7 +134,7 @@ const SearchResult = () => {
                   selectedProviderId,
                   selectedItemId,
                   selectedTravelClassId,
-                  onSelectTravelClass,
+                  onTravelClassSelect,
                   fareCategoryList,
                 }}
               />
