@@ -12,7 +12,6 @@ import TravelClassList from './TravelClassList';
 import Price from './Price';
 import Time from './Time';
 import './Item.css';
-import './Time.css';
 
 const Item = ({
   item,
@@ -47,7 +46,7 @@ const Item = ({
             marginRight={1}
             height="60px"
           >
-            <img height={32} width={32} src={item.descriptor.images[0]} alt="taxi-icon" />
+            <img height={32} width={32} src={item.descriptor.images[0]} alt="item-icon" />
           </Grid>
         ) : (
           <Grid
@@ -82,13 +81,10 @@ const Item = ({
                 />
                 Ride
               </Typography>
-              <Typography variant="body1" fontSize="medium" paddingLeft="3px">
-                <Time time={item.time} />
-              </Typography>
+              <Time time={item.time} />
             </Grid>
           </Grid>
         )}
-
         <Grid
           item
           xs={3.5}
@@ -139,9 +135,7 @@ const Item = ({
               <CurrencyRupeeOutlined style={{ fontSize: 'small', color: 'grey' }} />
               Fare
             </Typography>
-            <Typography variant="body1" fontSize="small" paddingLeft="5%">
-              <Price price={item.price} variant="medium" />
-            </Typography>
+            <Price price={item.price} variant="medium" />
           </Grid>
         </Grid>
       </Grid>
