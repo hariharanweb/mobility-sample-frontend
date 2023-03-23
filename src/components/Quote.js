@@ -74,9 +74,9 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
         <Grid
           className="quote-fare-breakup"
         >
-          <InputField pattern="^[a-zA-Z ]+$" label="name" value={name} setValue={setName} formatValueFunc={formatValue} errorMessage="name should only contains alphabets and spaces" />
-          <InputField pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]" label="email" value={email} setValue={setEmail} formatValueFunc={formatValue} errorMessage="invalid email address" />
-          <InputField pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" label="phone number" value={phoneNumber} setValue={setPhoneNumber} formatValueFunc={formatValue} errorMessage="invalid phone number" />
+          <InputField pattern="^[a-zA-Z ]+$" label="name" value={name} setValue={setName} formatValueFunc={formatValue} errorMessage="name should only contains alphabets and spaces" isSelectScreen />
+          <InputField pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]" label="email" value={email} setValue={setEmail} formatValueFunc={formatValue} errorMessage="invalid email address" isSelectScreen />
+          <InputField pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" label="phone number" value={phoneNumber} setValue={setPhoneNumber} formatValueFunc={formatValue} errorMessage="invalid phone number" isSelectScreen />
 
         </Grid>
       </Grid>
