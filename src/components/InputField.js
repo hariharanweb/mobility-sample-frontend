@@ -13,7 +13,6 @@ const InputField = ({
   errorMessage,
   toggleDrawer,
   isPanelOpen,
-  isSelectScreen,
 }) => {
   const disabledState = !(value && value.length > 0);
   const [disabled, setDisabled] = useState(disabledState);
@@ -34,20 +33,11 @@ const InputField = ({
     if (updateValue) updateValue(formatValueFunc(''));
     setDisabled(true);
   };
-  const spacing = () => {
-    if (!isPanelOpen) {
-      if (isSelectScreen) {
-        return { marginBottom: '2%' };
-      }
-      return { marginBottom: '36px' };
-    }
-    return { marginBottom: '0px' };
-  };
 
   return (
     <TextField
       fullWidth
-      sx={spacing}
+      sx={{ marginBottom: !isPanelOpen ? '36px' : '0px' }}
       label={label}
       variant="outlined"
       value={value}
