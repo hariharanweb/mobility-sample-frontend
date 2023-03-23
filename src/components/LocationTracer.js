@@ -64,7 +64,7 @@ function ColorlibStepDotIcon(props) {
   );
 }
 const LocationTracer = ({ locationMap, isSearchResult }) => {
-  const activeStep = [1];
+  const activeStep = 1;
   return (
     <Grid container paddingX="5%" paddingTop="10%" paddingBottom="2%">
       <Stepper activeStep={activeStep} orientation="vertical">

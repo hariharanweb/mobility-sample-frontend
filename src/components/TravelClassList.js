@@ -15,8 +15,9 @@ const TravelClassList = ({
     displayFareCategoryList = fareCategoryList.length === 0 ? 'none' : 'block';
   };
   return (
-    <Grid direction="column">
+    <Grid container direction="column">
       <Grid
+        container
         className="travelClassList"
         direction="row"
         display="flex"

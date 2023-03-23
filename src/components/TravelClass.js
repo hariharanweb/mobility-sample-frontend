@@ -18,9 +18,11 @@ const TravelClass = ({ travelClass, isTravelClassSelected, onTravelClassSelect }
       flexWrap="nowrap"
       onClick={onSelectTravelClass}
     >
-      <Grid item direction="column" textAlign="center" paddingX="8px">
-        <Typography fontWeight={600}>{travelClass?.travel_class_name}</Typography>
-        <Typography fontWeight={500}>{travelClass?.availability}</Typography>
+      <Grid item textAlign="center" paddingX="8px">
+        <Grid container direction="column">
+          <Typography fontWeight={600}>{travelClass?.travel_class_name}</Typography>
+          <Typography fontWeight={500}>{travelClass?.availability}</Typography>
+        </Grid>
       </Grid>
       <Divider orientation="vertical" flexItem color="#5182BF" />
       <Grid item alignSelf="center" paddingX="8px">
