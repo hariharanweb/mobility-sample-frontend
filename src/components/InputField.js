@@ -34,7 +34,7 @@ const InputField = ({
     if (updateValue) updateValue(formatValueFunc(''));
     setDisabled(true);
   };
-  const spaceing = () => {
+  const spacing = () => {
     if (!isPanelOpen) {
       if (isSelectScreen) {
         return { marginBottom: '2%' };
@@ -47,7 +47,7 @@ const InputField = ({
   return (
     <TextField
       fullWidth
-      sx={spaceing}
+      sx={spacing}
       label={label}
       variant="outlined"
       value={value}
