@@ -23,27 +23,21 @@ const DirectionsMap = ({
   </>
 );
 const Map = ({
-  openPanel, showMarker, originLocation, destinationLocation, setOriginLocation, setisMapPresent,
+  openPanel,
+  showMarker,
+  originLocation,
+  destinationLocation,
+  onMapLoaded,
+  onMyLocationClick,
 }) => {
   const origin = originLocation?.display;
   const destination = destinationLocation?.display;
-  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   const [responseMap, setResponseMap] = useState(null);
   const [isResponse, setIsResponse] = useState(false);
   const [isMapLoaded, setisMapLoaded] = useState(false);
-  const [map, setMap] = useState(null);
   const mapContainerStyle = {
     height: (!openPanel && '750px') || '400px',
     width: '100%',
-  };
-  const onPanLocation = () => {
-    map.panTo({ lat: currentLocation?.lat, lng: currentLocation?.lng });
-    const currentPositionString = `${currentLocation?.lat},${currentLocation?.lng}`;
-    const fromLocationCoordinates = {
-      display: currentPositionString,
-      latLong: currentPositionString,
-    };
-    setOriginLocation(fromLocationCoordinates);
   };
   const directionsCallBack = (response) => {
     if (isResponse === false && response != null && response.status === 'OK') {
@@ -51,24 +45,11 @@ const Map = ({
       setIsResponse(true);
     }
   };
-  const onMapLoad = (mapLoaded) => {
-    setMap(mapLoaded);
-    navigator?.geolocation.getCurrentPosition(
-      ({ coords: { latitude: lat, longitude: lng } }) => {
-        const pos = { lat, lng };
-        setCurrentLocation(pos);
-        const positionString = `${lat},${lng}`;
-        const fromLocation = {
-          display: positionString,
-          latLong: positionString,
-        };
-        setOriginLocation(fromLocation);
-        if (showMarker) {
-          setisMapPresent(true);
-          setisMapLoaded(true);
-        }
-      },
-    );
+  const onMapLoad = () => {
+    if (showMarker) {
+      onMapLoaded(true);
+      setisMapLoaded(true);
+    }
   };
   return (
     <GoogleMap
@@ -81,7 +62,7 @@ const Map = ({
       }}
       onLoad={(mapLoaded) => onMapLoad(mapLoaded)}
     >
-      <MyLocationButton onPanLocation={onPanLocation} />
+      <MyLocationButton onMyLocationClick={onMyLocationClick} />
       {showMarker ? (
         isMapLoaded && (
           <MarkerF

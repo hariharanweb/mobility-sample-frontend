@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -15,6 +15,7 @@ import FilterSection from '../components/FilterSection';
 import SwipeButton from '../components/SwipeButton';
 import Map from '../components/Map';
 import CarLoader from '../components/CarLoader';
+import LocationService from '../utilities/LocationService';
 
 const LocationSearchDrawer = ({
   toggleDrawer,
@@ -151,12 +152,38 @@ const SearchScreen = () => {
   const [swapped, setSwapped] = useState(false);
   const [category, setCategory] = useState('');
   const [dateTime, setDateTime] = useState(new Date().toISOString());
+  const [currentLocation, setCurrentLocation] = useState();
   const onSwapLocation = () => {
     setSwapped(true);
     setFromLocation(toLocation);
     setToLocation(fromLocation);
   };
   const panelHeightSearchScreen = !openPanel ? 200 : 20;
+
+  useEffect(() => {
+    LocationService.getCurrentLocation().then((location) => {
+      if (!currentLocation) {
+        setCurrentLocation(location);
+        setFromLocation({
+          display: `${location.lat}, ${location.lng}`,
+          latLong: `${location.lat}, ${location.lng}`,
+        });
+      }
+    });
+  }, [currentLocation]);
+
+  const handleMyLocationClick = () => {
+    LocationService.getCurrentLocation().then((location) => {
+      if (!currentLocation) {
+        setCurrentLocation(location);
+        setFromLocation({
+          display: `${location.lat}, ${location.lng}`,
+          latLong: `${location.lat}, ${location.lng}`,
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <Header />
@@ -166,8 +193,8 @@ const SearchScreen = () => {
           showMarker
           originLocation={fromLocation}
           destinationLocation={toLocation}
-          setOriginLocation={setFromLocation}
-          setisMapPresent={setisMapPresent}
+          onMapLoaded={() => setisMapPresent(true)}
+          onMyLocationClick={handleMyLocationClick}
         />
       )}
       <Panel
