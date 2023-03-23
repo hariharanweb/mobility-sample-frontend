@@ -7,7 +7,12 @@ const InputField = ({
   pattern,
   label,
   value,
-  setValue, formatValueFunc, updateValue, errorMessage, toggleDrawer, isPanelOpen,
+  setValue,
+  formatValueFunc,
+  updateValue,
+  errorMessage,
+  toggleDrawer,
+  isPanelOpen,
 }) => {
   const disabledState = !(value && value.length > 0);
   const [disabled, setDisabled] = useState(disabledState);
@@ -28,12 +33,11 @@ const InputField = ({
     if (updateValue) updateValue(formatValueFunc(''));
     setDisabled(true);
   };
+
   return (
     <TextField
       fullWidth
-      sx={{
-        marginBottom: !isPanelOpen ? '36px' : '0px',
-      }}
+      sx={{ marginBottom: !isPanelOpen ? '36px' : '0px' }}
       label={label}
       variant="outlined"
       value={value}
@@ -44,11 +48,7 @@ const InputField = ({
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton
-              onClick={clearTextField}
-              edge="end"
-              disabled={disabled}
-            >
+            <IconButton onClick={clearTextField} edge="end" disabled={disabled}>
               <CancelIcon />
             </IconButton>
           </InputAdornment>
