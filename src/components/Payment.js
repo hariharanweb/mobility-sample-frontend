@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
-import Typography from '@mui/material/Typography';
 import QuoteSummary from './QuoteSummary';
 import Panel from './Panel';
 
@@ -70,9 +69,7 @@ const LoaderScreen = ({
   onConfirmPayment, initResults, onPaymentSelect, paymentMode,
 }) => (
   <div>
-    <Typography sx={{ px: '20px', py: '23px', color: 'text.secondary' }}>
-      <QuoteSummary bookingInformation={initResults} />
-    </Typography>
+    <QuoteSummary bookingInformation={initResults} />
     <div className="payment-info">
       Payment Method
     </div>

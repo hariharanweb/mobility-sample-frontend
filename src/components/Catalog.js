@@ -1,3 +1,4 @@
+import { Divider } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import React from 'react';
 import Item from './Item';
@@ -25,14 +26,21 @@ const providerItems = (
     const isSelected = provider.id === selectedProviderId && selectedItemId === item.id;
 
     return (
-      <Item
-        key={item.id}
-        item={item}
-        onItemSelect={handleOnClick}
-        isSelected={!item.travelClass && isSelected}
-        selectedTravelClassId={selectedTravelClassId}
-        fareCategoryList={fareCategoryList}
-      />
+      <Grid container direction="column">
+        <Grid item>
+          <Item
+            key={item.id}
+            item={item}
+            onItemSelect={handleOnClick}
+            isSelected={!item.travelClass && isSelected}
+            selectedTravelClassId={selectedTravelClassId}
+            fareCategoryList={fareCategoryList}
+          />
+        </Grid>
+        <Grid item>
+          <Divider variant="middle" />
+        </Grid>
+      </Grid>
     );
   });
   return Items;

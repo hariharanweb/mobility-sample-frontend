@@ -38,7 +38,6 @@ const Item = ({
         justifyContent="space-around"
         alignItems="center"
         paddingY={1}
-        borderBottom="0.5px solid #ECEBEB;"
       >
         {item.descriptor.images && item.descriptor.images.length > 0 ? (
           <Grid
