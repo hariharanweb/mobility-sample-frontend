@@ -29,34 +29,32 @@ const Item = ({
   };
 
   return (
-    <Box width={1}>
+    <>
       <Grid
         container
         onClick={onSelect}
         key={item.id}
         backgroundColor={isSelected ? 'rgba(50, 123, 24, 0.1)' : 'white'}
+        justifyContent="space-around"
+        alignItems="center"
+        paddingY={1}
+        borderBottom="0.5px solid #ECEBEB;"
       >
         {item.descriptor.images && item.descriptor.images.length > 0 ? (
           <Grid
             item
-            xs={2}
             alignItems="center"
             display="flex"
-            paddingLeft={2}
             marginRight={1}
-            height="60px"
           >
             <img height={32} width={32} src={item.descriptor.images[0]} alt="item-icon" />
           </Grid>
         ) : (
           <Grid
             item
-            xs={2}
             alignItems="center"
             display="flex"
-            paddingLeft={2}
             marginRight={1}
-            height="60px"
           >
             <Train className="train-icon" />
           </Grid>
@@ -64,52 +62,41 @@ const Item = ({
         {item.time && (
           <Grid
             item
-            xs={2.5}
             alignItems="center"
             display="flex"
-            paddingLeft="4%"
-            paddingBottom="5px"
-            marginTop="6px"
-            color="#000"
-            height="60px"
-            width="65px"
           >
-            <Grid>
-              <Typography variant="body1" color="grey" fontSize="small">
-                <AccessTimeOutlined
-                  style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }}
-                />
-                Ride
-              </Typography>
-              <Time time={item.time} />
+            <Grid container direction="column">
+              <Grid item>
+                <Typography variant="body1" color="grey" fontSize="small">
+                  <AccessTimeOutlined
+                    style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }}
+                  />
+                  Ride
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Time time={item.time} />
+              </Grid>
             </Grid>
           </Grid>
         )}
         <Grid
           item
-          xs={3.5}
           alignItems="center"
           justifyContent="center"
           display="flex"
-          paddingLeft="4%"
-          paddingRight="3%"
-          paddingBottom="5px"
-          color="#000"
-          height="60px"
-          width="90px"
         >
           <Grid
-            style={{
-              alignContent: 'center',
-              marginLeft: '15px',
-              paddingTop: '6px',
-            }}
+            container
+            justifyContent="center"
+            display="flex"
+            direction="column"
           >
             <Typography variant="body1" color="grey" fontSize="small">
               <DirectionsCarOutlined
                 style={{
                   fontSize: 'small',
-                  marginRight: '2px',
+                  marginRight: '3px',
                   color: 'grey',
                 }}
               />
@@ -122,17 +109,15 @@ const Item = ({
         </Grid>
         <Grid
           item
-          xs={1.5}
-          alignItems="center"
-          display="flex"
-          paddingTop="8px"
-          paddingBottom="5px"
-          paddingLeft="8%"
-          height="70px"
         >
-          <Grid>
-            <Typography color="grey" fontSize="small">
-              <CurrencyRupeeOutlined style={{ fontSize: 'small', color: 'grey' }} />
+          <Grid
+            container
+            justifyContent="center"
+            display="flex"
+            direction="column"
+          >
+            <Typography color="grey" fontSize="small" variant="body1">
+              <CurrencyRupeeOutlined style={{ fontSize: 'small', marginRight: '3px', color: 'grey' }} />
               Fare
             </Typography>
             <Price price={item.price} variant="medium" />
@@ -149,7 +134,7 @@ const Item = ({
           />
         </Box>
       )}
-    </Box>
+    </>
   );
 };
 export default Item;

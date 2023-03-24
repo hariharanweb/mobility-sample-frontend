@@ -78,6 +78,7 @@ const SearchResult = () => {
               descriptor: info?.item?.descriptor,
               price: info?.item?.price,
               category_id: info?.item?.category_id,
+              time: info?.item?.time,
             },
           ],
           fulfillment: info?.fulfillments,

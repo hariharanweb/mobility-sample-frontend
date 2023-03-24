@@ -9,7 +9,6 @@ const Time = ({ time }) => (
     {!!time.duration && (
     <Typography
       variant="subtitle2"
-      width="90px"
       gutterBottom
     >
         {time.duration}
@@ -17,7 +16,6 @@ const Time = ({ time }) => (
     )}
     {!!time.range && (
     <Typography
-      width="80px"
       gutterBottom
       style={{ fontSize: 'small', fontWeight: '600' }}
     >

@@ -24,7 +24,7 @@ const Price = ({ price, variant = 'medium' }) => (
         variant={variantStyles[variant].textVariant}
         fontWeight={variantStyles[variant].fontWeight}
       >
-        ₹
+        ₹&nbsp;
         {price.value}
       </Typography>
     )}
