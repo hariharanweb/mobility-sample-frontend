@@ -1,11 +1,11 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import {
   fireEvent,
-  render, screen, waitFor,
+  render, screen,
 } from '@testing-library/react';
 import Item from './Item';
 import '@testing-library/jest-dom';
+
 describe('Item', () => {
   let item;
   beforeEach(() => {
