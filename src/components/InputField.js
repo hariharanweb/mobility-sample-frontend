@@ -8,7 +8,7 @@ const InputField = ({
   label,
   value,
   setValue,
-  formatValueFunc,
+  formatValueFunc = (v) => v,
   updateValue,
   errorMessage,
   toggleDrawer,

@@ -3,10 +3,9 @@ import Typography from '@mui/material/Typography';
 import { Grid, Button } from '@mui/material';
 import './Quote.css';
 import Provider from './Provider';
-import './Item.css';
 import InputField from './InputField';
+import Item from './Item';
 import PriceBreakdown from './PriceBreakdown';
-import QuoteSummary from './QuoteSummary';
 
 const Quote = ({ bookingInformation, provider, onInitJourney }) => (
   <Grid container paddingX={4}>
@@ -41,7 +40,7 @@ const QuoteProvider = ({ bookingInformation, onInitJourney }) => {
 
   return (
     <>
-      <QuoteSummary bookingInformation={bookingInformation} />
+      <Item item={bookingInformation[0]?.message?.order?.items[0]} />
       <Grid
         sx={{
           maxWidth: '100%',

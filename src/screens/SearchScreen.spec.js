@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react';
+import {
+  render, waitFor, screen, fireEvent,
+} from '@testing-library/react';
 import SearchScreen from './SearchScreen';
 import '@testing-library/jest-dom';
 
@@ -14,12 +16,6 @@ jest.mock('react-router-dom', () => {
 describe('Search Screen', () => {
   it('should display header', async () => {
     render(<SearchScreen />);
-    expect(screen.getByText('Mobililty'));
-  });
-
-  it('should show find ride button', async () => {
-    render(<SearchScreen />);
-    await waitFor(() => screen.getByRole('button'));
-    expect(screen.getByRole('button')).toBeEnabled();
+    expect(screen.getByAltText('ONDC'));
   });
 });

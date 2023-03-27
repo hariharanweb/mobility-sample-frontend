@@ -3,11 +3,10 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import './Payment.css';
 import { Button, FormControlLabel } from '@mui/material';
-import QuoteSummary from './QuoteSummary';
+import Item from './Item';
 import Panel from './Panel';
 
 const CashPayment = ({ onPaymentSelect, selectedValue }) => (
-
   <Grid container className="payment-options" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="Cash"
@@ -20,7 +19,7 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
           name="radio-buttons"
           inputProps={{ 'aria-label': 'Cash' }}
         />
-)}
+      )}
       label={(
         <div className="payment-label">
           <div className="payment-mode-icon">
@@ -36,7 +35,6 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
 );
 
 const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
-
   <Grid container className="payment-options" display="flex" paddingLeft={4}>
     <FormControlLabel
       value="UPI"
@@ -49,7 +47,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
           name="radio-buttons"
           inputProps={{ 'aria-label': 'UPI' }}
         />
-)}
+      )}
       label={(
 
         <div className="payment-label">
@@ -69,7 +67,7 @@ const LoaderScreen = ({
   onConfirmPayment, initResults, onPaymentSelect, paymentMode,
 }) => (
   <div>
-    <QuoteSummary bookingInformation={initResults} />
+    <Item item={initResults[0]?.message?.order?.items[0]} />
     <div className="payment-info">
       Payment Method
     </div>
@@ -99,7 +97,6 @@ const Payment = ({ onConfirmPayment, initResults }) => {
     setPaymentMode(event.target.value);
   };
   return (
-
     <Grid>
       <Panel
         isPullerPresent={false}
@@ -110,7 +107,7 @@ const Payment = ({ onConfirmPayment, initResults }) => {
             onPaymentSelect={onPaymentSelect}
             paymentMode={paymentMode}
           />
-)}
+        )}
         open={openPanel}
         toggleDrawer={toggleDrawer}
         openDrawerHeight="428px"

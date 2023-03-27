@@ -69,7 +69,7 @@ describe('Item', () => {
   it('Should display Fare', () => {
     render(<Item item={item} />);
     expect(screen.queryByText('Fare')).toBeInTheDocument();
-    expect(screen.getByText('₹111')).toBeInTheDocument();
+    expect(screen.getByText('₹ 111')).toBeInTheDocument();
   });
 
   it('Should select item on click', () => {

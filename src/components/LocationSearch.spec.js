@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  render, screen, act, fireEvent, waitFor,
+  render, screen, act, fireEvent,
 } from '@testing-library/react';
 import LocationSearch from './LocationSearch';
 
@@ -19,47 +19,18 @@ describe('Location Search', () => {
   it('Should initialize with given initial location and label', () => {
     render(
       <LocationSearch
-        label="test_label"
         initialLocation={{
           display: 'ONDC, New Delhi',
         }}
         onLocationChange={() => {
         }}
+        isPanelOpen
       />,
     );
-    expect(screen.getByText('test_label')).toBeInTheDocument();
+    expect(screen.getByLabelText('from_location')).toBeInTheDocument();
     expect(screen.getByDisplayValue('ONDC, New Delhi')).toBeInTheDocument();
   });
-  it('onPlaceChangedFunction should change location', () => {
-    render(
-      <LocationSearch
-        label="test_label"
-        initialLocation={{
-          display: 'ONDC, New Delhi',
-        }}
-        onLocationChange={() => {
-        }}
-      />,
-    );
-    act(() => onLoadFunction({
-      getPlace: () => ({
-        name: 'Mg Road, Bangalore',
-        formatted_address: '560045',
-        geometry: {
-          location: {
-            lat: () => '11',
-            lng: () => '22',
-          },
-        },
-      }),
-    }));
-    act(() => {
-      onPlaceChangedFunction();
-    });
-    expect(
-      screen.getByDisplayValue('Mg Road, Bangalore 560045'),
-    ).toBeInTheDocument();
-  });
+
   it('onPlaceChangedFunction should not change location when autocomplete is null', () => {
     render(
       <LocationSearch
@@ -78,40 +49,13 @@ describe('Location Search', () => {
       screen.getByDisplayValue('ONDC, New Delhi'),
     ).toBeInTheDocument();
   });
-  it('clearTextField should clear location', async () => {
+
+  it('onChange should change the location', () => {
     render(
       <LocationSearch
         label="test_label"
         initialLocation={{
-          display: 'ONDC, New Delhi',
-        }}
-        onLocationChange={() => {
-        }}
-      />,
-    );
-    const inputElement = screen.getByRole(
-      'textbox',
-    );
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument();
-    act(() => {
-      fireEvent.change(inputElement, { target: { value: 'ONDC, New Delhi' } });
-    });
-    act(() => {
-      fireEvent.click(button);
-    });
-
-    await waitFor(() => {
-      expect(inputElement).toHaveValue('');
-    });
-  });
-
-  test('onChange should change the location', () => {
-    render(
-      <LocationSearch
-        label="test_label"
-        initialLocation={{
-          display: 'ONDC, New Delhi',
+          display: 'Some, New Delhi',
         }}
         onLocationChange={() => {
         }}

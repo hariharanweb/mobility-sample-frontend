@@ -37,7 +37,7 @@ const providerItems = (
             fareCategoryList={fareCategoryList}
           />
         </Grid>
-        <Grid item>
+        <Grid item marginX="-1em">
           <Divider variant="middle" />
         </Grid>
       </Grid>

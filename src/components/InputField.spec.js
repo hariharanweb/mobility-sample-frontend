@@ -7,8 +7,14 @@ import InputField from './InputField';
 
 describe('InputField with correct type of input', () => {
   it('Should display placeholder', () => {
-    render(<InputField pattern="^[a-zA-Z ]+$" label="name" value="Nikhil" setValue="" formatValueFunc="Nikhil" errorMessage="name should only contains alphabets and spaces" />);
-    expect(screen.getByText('name')).toBeInTheDocument();
+    render(<InputField
+      pattern="^[a-zA-Z ]+$"
+      label="name"
+      value="Nikhil"
+      setValue=""
+      errorMessage="name should only contains alphabets and spaces"
+    />);
+    expect(screen.getByLabelText('name')).toBeInTheDocument();
   });
 
   it('Should display textbox', () => {

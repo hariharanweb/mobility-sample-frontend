@@ -139,7 +139,7 @@ describe('Quote', () => {
   };
   it('should display vehicle icon', async () => {
     render(<Quote bookingInformation={bookingInformation} provider={provider} />);
-    expect(screen.getByAltText('vehicle-icon')).toBeInTheDocument();
+    expect(screen.getByAltText('item-icon')).toBeInTheDocument();
   });
   it('should display button', async () => {
     render(<Quote bookingInformation={bookingInformation} provider={provider} />);
@@ -154,7 +154,6 @@ describe('Quote', () => {
     render(<Quote bookingInformation={bookingInformation} provider={provider} />);
     expect(screen.getByText('Fare Breakup')).toBeInTheDocument();
     expect(screen.getByText('Tax')).toBeInTheDocument();
-    expect(screen.getByText('Fare')).toBeInTheDocument();
     expect(screen.getByText('Total')).toBeInTheDocument();
     expect(screen.getByText('INR 141')).toBeInTheDocument();
     expect(screen.getByText('INR 111')).toBeInTheDocument();
