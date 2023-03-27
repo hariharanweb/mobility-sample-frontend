@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import './SearchScreen.css';
 import FilterSection from '../components/FilterSection';
-import SwipeButton from '../components/SwipeButton';
+import SwapButton from '../components/SwapButton';
 import Map from '../components/Map';
 import CarLoader from '../components/CarLoader';
 import LocationService from '../utilities/LocationService';
@@ -93,7 +93,7 @@ const LocationSearchDrawer = ({
             ) : null}
             {openPanel
               ? (
-                <SwipeButton onSwapLocation={onSwapLocation} />
+                <SwapButton onSwapLocation={onSwapLocation} />
               )
               : null}
             <LocationSearch

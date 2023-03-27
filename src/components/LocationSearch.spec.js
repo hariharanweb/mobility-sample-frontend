@@ -5,13 +5,11 @@ import {
 import LocationSearch from './LocationSearch';
 
 let onPlaceChangedFunction;
-let onLoadFunction;
 jest.mock('@react-google-maps/api', () => ({
   Autocomplete: ({
-    onPlaceChanged, onLoad, children,
+    onPlaceChanged, children,
   }) => {
     onPlaceChangedFunction = onPlaceChanged;
-    onLoadFunction = onLoad;
     return <div>{children}</div>;
   },
 }));

@@ -24,7 +24,7 @@ const Confirmation = ({ details, onTrackVehicle, onCheckStatus }) => {
   );
 
   return (
-    <Grid fullWidth sx={{ width: 1, px: 5 }}>
+    <Grid sx={{ width: 1, px: 5 }}>
       <div className="invoice-confirmation">
         <CheckCircleSharpIcon
           className="invoice-successIcon"

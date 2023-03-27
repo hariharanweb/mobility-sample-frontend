@@ -21,7 +21,7 @@ const Time = ({ time }) => (
     >
       {formattedTime(time.range.start)}
       &nbsp;-
-      {' '}
+      &nbsp;
       {formattedTime(time.range.end)}
     </Typography>
     )}

@@ -29,11 +29,11 @@ const FilterSection = ({ category, onCategoryChange }) => {
   return (
     <Grid className="filter-section">
       <ToggleButtonGroup exclusive color="primary" value={category} onChange={handleCategory} className="toggle-button-group">
-        <ToggleButton value="cabs" style={style}>
+        <ToggleButton value="cabs" style={style} data-testid="cabs">
           <DirectionsCarFilledIcon color={category === 'cabs' ? 'white' : 'primary'} fontSize="small" />
           <Typography color={category === 'cabs' ? 'white' : 'primary'} paddingX="8px">Cabs</Typography>
         </ToggleButton>
-        <ToggleButton value="trains" style={style}>
+        <ToggleButton value="trains" style={style} data-testid="trains">
           <DirectionsSubwayIcon color={category === 'trains' ? 'white' : 'primary'} fontSize="small" />
           <Typography color={category === 'trains' ? 'white' : 'primary'} paddingX="8px">Trains</Typography>
         </ToggleButton>

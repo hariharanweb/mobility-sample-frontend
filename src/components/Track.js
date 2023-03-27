@@ -2,7 +2,7 @@ import { Button, Grid } from '@mui/material';
 import React from 'react';
 import './Track.css';
 
-const Track = (trackResult) => (
+const Track = ({ trackResult }) => (
   <Grid container paddingX={4} paddingY={5}>
     <Grid container className="track-with-border" display="flex">
       <Grid
@@ -29,7 +29,7 @@ const Track = (trackResult) => (
           variant="contained"
           sx={{ my: 2 }}
           // eslint-disable-next-line react/destructuring-assignment
-          href={trackResult.trackResult[0].message.tracking.url}
+          href={trackResult[0].message.tracking.url}
           target="_blank"
         >
           Track Vehicle

@@ -33,10 +33,10 @@ const Price = ({ price, variant = 'medium' }) => (
         variant={variantStyles[variant].textVariant}
         align="center"
       >
-        ₹
+        ₹&nbsp;
         {price.minimum_value}
-        &nbsp;-
-        ₹
+        &nbsp;-&nbsp;
+        ₹&nbsp;
         {price.maximum_value}
       </Typography>
     )}

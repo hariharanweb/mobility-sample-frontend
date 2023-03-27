@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 import React, { useCallback, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
