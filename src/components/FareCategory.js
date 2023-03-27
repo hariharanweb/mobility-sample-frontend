@@ -16,7 +16,7 @@ const FareCategory = ({ fareCategory }) => {
   return (
     <Grid container padding="10px" backgroundColor="#ffff">
       <Grid item paddingX="20px" textAlign="left" width="50%">
-        <Grid conatiner direction="column">
+        <Grid container direction="column">
           <Typography>{fareCategory.fare_category_name}</Typography>
           <Price price={fareCategory.price} variant="small" />
         </Grid>

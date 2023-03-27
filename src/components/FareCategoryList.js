@@ -5,7 +5,7 @@ import FareCategory from './FareCategory';
 const FareCategoryList = ({ fareCategoryList }) => (
   <Grid>
     {fareCategoryList.map((fareCategory) => (
-      <Grid item paddingRight="1rem">
+      <Grid item paddingRight="1rem" key={fareCategory.fare_category_id}>
         <FareCategory fareCategory={fareCategory} />
       </Grid>
     ))}
