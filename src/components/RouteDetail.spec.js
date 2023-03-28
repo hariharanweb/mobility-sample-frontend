@@ -132,4 +132,13 @@ describe('Route Detail', () => {
     render(<RouteDetail routeDetail={routeWithISOFrequency} />);
     expect(screen.getByText('every 1 hours')).toBeInTheDocument();
   });
+
+  it('Should not display frequency if not available', () => {
+    const routeWithoutFrequency = {
+      ...routeDetail,
+      frequency: [],
+    };
+    render(<RouteDetail routeDetail={routeWithoutFrequency} />);
+    expect(screen.queryByText('every 1 hours')).not.toBeInTheDocument();
+  });
 });
