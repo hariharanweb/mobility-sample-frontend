@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  render, waitFor, screen, fireEvent,
+  render, screen,
 } from '@testing-library/react';
 import SearchScreen from './SearchScreen';
 import '@testing-library/jest-dom';

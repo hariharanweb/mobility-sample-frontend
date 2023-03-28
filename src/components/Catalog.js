@@ -15,7 +15,6 @@ const providerItems = (
   selectedProviderId,
   selectedTravelClassId,
   onTravelClassSelect,
-  fareCategoryList,
 ) => {
   const handleOnClick = (itemSelected, travelClassItem, isItemSelected) => {
     onSelectJourney(itemSelected, provider, fulfillments, bppUrl, isItemSelected);
@@ -34,7 +33,6 @@ const providerItems = (
             onItemSelect={handleOnClick}
             isSelected={!item.travelClass && isSelected}
             selectedTravelClassId={selectedTravelClassId}
-            fareCategoryList={fareCategoryList}
           />
         </Grid>
         <Grid item marginX="-1em">
@@ -54,7 +52,6 @@ const Catalog = ({
   selectedProviderId,
   selectedTravelClassId,
   onTravelClassSelect,
-  fareCategoryList,
 }) => {
   const bppProviders = catalog['bpp/providers'];
   const fulfillments = catalog['bpp/fulfillments'];
@@ -74,7 +71,6 @@ const Catalog = ({
             selectedProviderId,
             selectedTravelClassId,
             onTravelClassSelect,
-            fareCategoryList,
           )}
         </Grid>
       ))}

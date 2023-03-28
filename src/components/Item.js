@@ -18,7 +18,6 @@ const Item = ({
   isSelected,
   selectedTravelClassId,
   onItemSelect,
-  fareCategoryList,
 }) => {
   const onSelect = (travelClassItem, isTravelClassSelected) => {
     if (!item.travelClass) {
@@ -129,7 +128,6 @@ const Item = ({
             selectedTravelClassId={selectedTravelClassId}
             travelClassList={item.travelClass}
             onTravelClassSelect={onSelect}
-            fareCategoryList={fareCategoryList}
           />
         </Box>
       )}
