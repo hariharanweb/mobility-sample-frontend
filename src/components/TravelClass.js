@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Grid, Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -47,7 +46,10 @@ const TravelClass = ({ travelClass, isTravelClassSelected, onTravelClassSelect }
         id={id}
         open={open}
         anchorEl={anchorEl}
-        style={{ zIndex: '1300' }}
+        style={{
+          zIndex: '1300', position: 'fixed', bottom: 'unset', right: 'unset', top: 'unset', left: 'unset',
+        }}
+        placement="bottom"
       >
         <Box
           sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}
