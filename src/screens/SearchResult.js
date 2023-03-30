@@ -39,7 +39,6 @@ const SearchResult = () => {
   const [selectedProviderId, setSelectedProviderId] = useState();
   const [selectedItemId, setSelectedItemId] = useState();
   const [selectedTravelClassId, setSelectedTravelClassId] = useState();
-  const [fareCategoryList, setFareCategoryList] = useState([]);
   const getSearchResult = useCallback(async () => {
     if (!searchResultsLoaded) {
       const result = await Api.get('search', { message_id });
@@ -109,9 +108,8 @@ const SearchResult = () => {
 
   const onTravelClassSelect = (item, travelClassItem, isSelected) => {
     item.travelClass && isSelected
-      ? (setSelectedTravelClassId(travelClassItem.travel_class_id),
-      setFareCategoryList(travelClassItem.fare_categories))
-      : (setSelectedTravelClassId(null), setFareCategoryList([]));
+      ? setSelectedTravelClassId(travelClassItem.travel_class_id)
+      : setSelectedTravelClassId(null);
   };
 
   const gotoHome = () => {
@@ -134,7 +132,6 @@ const SearchResult = () => {
                   selectedItemId,
                   selectedTravelClassId,
                   onTravelClassSelect,
-                  fareCategoryList,
                 }}
               />
             )}
