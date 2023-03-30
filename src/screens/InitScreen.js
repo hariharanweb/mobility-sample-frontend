@@ -10,15 +10,9 @@ import ContextBuilder from '../utilities/ContextBuilder';
 import Footer from '../components/Footer';
 import Panel from '../components/Panel';
 import Map from '../components/Map';
-import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 
-const InitScreen = () => {
+const InitScreen = ({ isMapsLoaded }) => {
   const navigate = useNavigate();
-  const { isLoaded } = GooglePlacesApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
-  });
   const [loading, setLoading] = useState(true);
   const [initResults, setInitResults] = useState([]);
   const [initResultsLoaded, setInitResultsLoaded] = useState(false);
@@ -81,7 +75,7 @@ const InitScreen = () => {
       {loading
         ? (
           <Loader
-            isLoaded={isLoaded}
+            isLoaded={isMapsLoaded}
             destinationLocation={locations.destinationLocation}
             originLocation={locations.originLocation}
           />

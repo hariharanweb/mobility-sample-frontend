@@ -9,6 +9,9 @@ import InitScreen from './screens/InitScreen';
 import ConfirmScreen from './screens/ConfirmScreen';
 import TrackScreen from './screens/TrackScreen';
 import StatusScreen from './screens/StatusScreen';
+import GooglePlacesApiLoader from './api/googlePlacesApiLoader';
+
+const libraries = ['places'];
 
 const theme = createTheme({
   palette: {
@@ -17,22 +20,29 @@ const theme = createTheme({
     },
   },
 });
-const App = () => (
-  <div>
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SearchScreen />} />
-          <Route path="/search" element={<SearchResult />} />
-          <Route path="/select" element={<SelectJourney />} />
-          <Route path="/init" element={<InitScreen />} />
-          <Route path="/confirm" element={<ConfirmScreen />} />
-          <Route path="/track" element={<TrackScreen />} />
-          <Route path="/status" element={<StatusScreen />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
-  </div>
-);
+const App = () => {
+  const { isLoaded } = GooglePlacesApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries,
+  });
+  return (
+    <div>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SearchScreen isMapsLoaded={isLoaded} />} />
+            <Route path="/search" element={<SearchResult isMapsLoaded={isLoaded} />} />
+            <Route path="/select" element={<SelectJourney />} />
+            <Route path="/init" element={<InitScreen isMapsLoaded={isLoaded} />} />
+            <Route path="/confirm" element={<ConfirmScreen />} />
+            <Route path="/track" element={<TrackScreen />} />
+            <Route path="/status" element={<StatusScreen />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </div>
+  );
+};
 
 export default App;

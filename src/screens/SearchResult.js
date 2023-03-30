@@ -13,10 +13,9 @@ import Panel from '../components/Panel';
 import Map from '../components/Map';
 import Loader from '../components/Loader';
 import LocationTracer from '../components/LocationTracer';
-import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 import './SearchResult.css';
 
-const SearchResult = () => {
+const SearchResult = ({ isMapsLoaded }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openPanel, setOpenPanel] = useState(true);
@@ -27,11 +26,6 @@ const SearchResult = () => {
     setOpenPanel(false);
   };
   const { message_id, locationMap, locations } = location.state;
-  const { isLoaded } = GooglePlacesApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
-  });
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -157,13 +151,13 @@ const SearchResult = () => {
       <Header onBackClick={gotoHome} />
       {loading ? (
         <Loader
-          isLoaded={isLoaded}
+          isLoaded={isMapsLoaded}
           destinationLocation={locations.destinationLocation}
           originLocation={locations.originLocation}
         />
       ) : (
         <>
-          {isLoaded && (
+          {isMapsLoaded && (
             <Map
               openPanel={openPanel}
               showMarker={false}

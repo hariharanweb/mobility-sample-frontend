@@ -1,7 +1,4 @@
 import { useJsApiLoader } from '@react-google-maps/api';
 
-const GooglePlacesApiLoader = (data) => {
-  const result = useJsApiLoader(data);
-  return result;
-};
+const GooglePlacesApiLoader = (data) => useJsApiLoader(data);
 export default GooglePlacesApiLoader;

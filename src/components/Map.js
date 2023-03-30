@@ -51,15 +51,19 @@ const Map = ({
       setisMapLoaded(true);
     }
   };
+  const center = originLocation?.latLong ? {
+    lat: Number(originLocation?.latLong?.split(',')[0]),
+    lng: Number(originLocation?.latLong?.split(',')[1]),
+  } : {
+    lat: 12.929034984578037,
+    lng: 77.62866251104393,
+  };
   return (
     <GoogleMap
       id="marker-example"
       mapContainerStyle={mapContainerStyle}
       zoom={15}
-      center={{
-        lat: Number(originLocation?.latLong.split(',')[0]),
-        lng: Number(originLocation?.latLong.split(',')[1]),
-      }}
+      center={center}
       onLoad={(mapLoaded) => onMapLoad(mapLoaded)}
     >
       <MyLocationButton onMyLocationClick={onMyLocationClick} />

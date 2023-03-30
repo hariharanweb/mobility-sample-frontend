@@ -20,15 +20,12 @@ const providerItems = (
     onSelectJourney(itemSelected, provider, fulfillments, bppUrl, isItemSelected);
     onTravelClassSelect(itemSelected, travelClassItem, isItemSelected);
   };
-
-  const Items = items.map((item) => {
+  return items.map((item) => {
     const isSelected = provider.id === selectedProviderId && selectedItemId === item.id;
-
     return (
-      <Grid container direction="column">
+      <Grid container direction="column" key={item.id}>
         <Grid item>
           <Item
-            key={item.id}
             item={item}
             onItemSelect={handleOnClick}
             isSelected={!item.travelClass && isSelected}
@@ -41,7 +38,6 @@ const providerItems = (
       </Grid>
     );
   });
-  return Items;
 };
 
 const Catalog = ({

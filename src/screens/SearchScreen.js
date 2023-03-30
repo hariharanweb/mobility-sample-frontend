@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Header from '../components/Header';
-import GooglePlacesApiLoader from '../api/googlePlacesApiLoader';
 import Api from '../api/Api';
 import LocationSearch from '../components/LocationSearch';
 import DateTime from '../components/DateTime';
@@ -20,7 +19,6 @@ import LocationService from '../utilities/LocationService';
 const LocationSearchDrawer = ({
   toggleDrawer,
   openPanel,
-  isLoaded,
   fromLocation,
   toLocation,
   swapped,
@@ -32,6 +30,7 @@ const LocationSearchDrawer = ({
   setCategory,
   dateTime,
   setDateTime,
+  isMapsLoaded,
 }) => {
   const navigate = useNavigate();
   const onSearchClick = async () => {
@@ -79,7 +78,7 @@ const LocationSearchDrawer = ({
         <FilterSection category={category} onCategoryChange={setCategory} />
       </Grid>
       <Grid container direction="column" paddingTop={0.5}>
-        {isLoaded && (
+        {isMapsLoaded && (
           <Grid item paddingTop={1}>
             {openPanel ? (
               <LocationSearch
@@ -130,12 +129,7 @@ const LocationSearchDrawer = ({
   );
 };
 
-const SearchScreen = () => {
-  const { isLoaded } = GooglePlacesApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ['places'],
-  });
+const SearchScreen = ({ isMapsLoaded }) => {
   const [openPanel, setOpenPanel] = useState(false);
   const [isMapPresent, setisMapPresent] = useState(false);
   const toggleDrawer = () => {
@@ -187,7 +181,7 @@ const SearchScreen = () => {
   return (
     <div>
       <Header />
-      {isLoaded && (
+      {isMapsLoaded && (
         <Map
           openPanel={openPanel}
           showMarker
@@ -209,7 +203,7 @@ const SearchScreen = () => {
             swapped={swapped}
             setSwapped={setSwapped}
             openPanel={openPanel}
-            isLoaded={isLoaded}
+            isMapsLoaded={isMapsLoaded}
             onSwapLocation={onSwapLocation}
             setFromLocation={setFromLocation}
             setToLocation={setToLocation}
