@@ -149,35 +149,27 @@ const SearchResult = ({ isMapsLoaded }) => {
   return (
     <>
       <Header onBackClick={gotoHome} />
+      {isMapsLoaded && (
+      <Map
+        openPanel={openPanel}
+        showMarker={false}
+        destinationLocation={locations.destinationLocation}
+        originLocation={locations.originLocation}
+      />
+      )}
       {loading ? (
-        <Loader
-          isLoaded={isMapsLoaded}
-          destinationLocation={locations.destinationLocation}
-          originLocation={locations.originLocation}
-        />
+        <Loader />
       ) : (
-        <>
-          {isMapsLoaded && (
-            <Map
-              openPanel={openPanel}
-              showMarker={false}
-              destinationLocation={locations.destinationLocation}
-              originLocation={locations.originLocation}
-            />
-          )}
-          {' '}
-          <Panel
-            panelChildren={displayCatalogs()}
-            open={openPanel}
-            toggleDrawer={toggleDrawer}
-            closeDrawer={closeDrawer}
-            openDrawerHeight="435px"
-            drawerHeight={70}
-            panelHeight="112%"
-            isPullerPresent={false}
-          />
-          {' '}
-        </>
+        <Panel
+          panelChildren={displayCatalogs()}
+          open={openPanel}
+          toggleDrawer={toggleDrawer}
+          closeDrawer={closeDrawer}
+          openDrawerHeight="435px"
+          drawerHeight={70}
+          panelHeight="112%"
+          isPullerPresent={false}
+        />
       )}
       <Footer />
     </>

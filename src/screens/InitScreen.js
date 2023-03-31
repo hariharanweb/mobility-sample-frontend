@@ -72,6 +72,15 @@ const InitScreen = ({ isMapsLoaded }) => {
   return (
     <>
       <Header onBackClick={gotoHome} />
+      {isMapsLoaded
+        && (
+        <Map
+          openPanel={openPanel}
+          showMarker={false}
+          destinationLocation={locations.destinationLocation}
+          originLocation={locations.originLocation}
+        />
+        )}
       {loading
         ? (
           <Loader
@@ -80,23 +89,14 @@ const InitScreen = ({ isMapsLoaded }) => {
             originLocation={locations.originLocation}
           />
         ) : (
-          <>
-            <Map
-              openPanel={openPanel}
-              showMarker={false}
-              destinationLocation={locations.destinationLocation}
-              originLocation={locations.originLocation}
-            />
-            {' '}
-            <Panel
-              panelChildren={displayPaymentMode()}
-              open={openPanel}
-              toggleDrawer={toggleDrawer}
-              closeDrawer={closeDrawer}
-              openDrawerHeight="350px"
-              isPullerPresent={false}
-            />
-          </>
+          <Panel
+            panelChildren={displayPaymentMode()}
+            open={openPanel}
+            toggleDrawer={toggleDrawer}
+            closeDrawer={closeDrawer}
+            openDrawerHeight="350px"
+            isPullerPresent={false}
+          />
         )}
       <Footer />
     </>
