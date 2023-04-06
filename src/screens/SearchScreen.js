@@ -131,7 +131,6 @@ const LocationSearchDrawer = ({
 
 const SearchScreen = ({ isMapsLoaded }) => {
   const [openPanel, setOpenPanel] = useState(false);
-  const [isMapPresent, setisMapPresent] = useState(false);
   const toggleDrawer = () => {
     setOpenPanel(true);
   };
@@ -187,15 +186,14 @@ const SearchScreen = ({ isMapsLoaded }) => {
           showMarker
           originLocation={fromLocation}
           destinationLocation={toLocation}
-          onMapLoaded={() => setisMapPresent(true)}
           onMyLocationClick={handleMyLocationClick}
         />
       )}
       <Panel
-        drawerHeight={isMapPresent ? panelHeightSearchScreen : 20}
-        openDrawerHeight={isMapPresent ? '70%' : '30%'}
-        isPullerPresent={!!isMapPresent}
-        panelChildren={isMapPresent ? (
+        drawerHeight={isMapsLoaded ? panelHeightSearchScreen : 20}
+        openDrawerHeight={isMapsLoaded ? '70%' : '30%'}
+        isPullerPresent={!!isMapsLoaded}
+        panelChildren={isMapsLoaded ? (
           <LocationSearchDrawer
             fromLocation={fromLocation}
             toLocation={toLocation}
@@ -213,9 +211,9 @@ const SearchScreen = ({ isMapsLoaded }) => {
             setDateTime={setDateTime}
           />
         ) : (<CarLoader isTextAbsent />)}
-        open={isMapPresent ? openPanel : true}
+        open={isMapsLoaded ? openPanel : true}
         toggleDrawer={toggleDrawer}
-        isTransitionPresent={isMapPresent}
+        isTransitionPresent={isMapsLoaded}
       />
       <Footer />
     </div>

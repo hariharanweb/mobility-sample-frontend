@@ -27,7 +27,6 @@ const Map = ({
   showMarker,
   originLocation,
   destinationLocation,
-  onMapLoaded,
   onMyLocationClick,
 }) => {
   const origin = originLocation?.display;
@@ -47,7 +46,6 @@ const Map = ({
   };
   const onMapLoad = () => {
     if (showMarker) {
-      onMapLoaded(true);
       setisMapLoaded(true);
     }
   };

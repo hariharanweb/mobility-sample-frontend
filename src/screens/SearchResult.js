@@ -27,6 +27,8 @@ const SearchResult = ({ isMapsLoaded }) => {
   };
   const { message_id, locationMap, locations } = location.state;
   const [searchResults, setSearchResults] = useState([]);
+  const [originLocation] = useState(locations.originLocation);
+  const [destinationLocation] = useState(locations.destinationLocation);
   const [searchResultsLoaded, setSearchResultsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [info, setinfo] = useState({});
@@ -153,8 +155,8 @@ const SearchResult = ({ isMapsLoaded }) => {
       <Map
         openPanel={openPanel}
         showMarker={false}
-        destinationLocation={locations.destinationLocation}
-        originLocation={locations.originLocation}
+        destinationLocation={destinationLocation}
+        originLocation={originLocation}
       />
       )}
       {loading ? (
