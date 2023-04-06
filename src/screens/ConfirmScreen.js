@@ -67,7 +67,7 @@ const ConfirmScreen = () => {
   }, [message_id]);
   useEffect(() => {
     if (loading) {
-      Api.poll(getConfirmResult, 2, 2000);
+      Api.poll(getConfirmResult, 5, 2000);
     }
   }, [getConfirmResult, loading]);
 

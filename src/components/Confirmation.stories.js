@@ -33,6 +33,13 @@ const details = {
           },
         ],
         fulfillment: {
+          start: {
+            authorization: {
+              type: 'OTP',
+              token: '234234',
+            },
+          },
+          tracking: true,
           agent: {
             name: 'Nikhil',
             dob: '01/02/1996',
