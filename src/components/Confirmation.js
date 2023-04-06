@@ -52,7 +52,8 @@ const Confirmation = ({ details, onTrackVehicle, onCheckStatus }) => (
           justifyContent="space-evenly"
           border="1px solid grey"
           borderRadius="0.75em"
-          my={5}
+          my={2}
+          py={1}
         >
           <Typography variant="body1" display="block" gutterBottom>
             OTP to start the ride:
