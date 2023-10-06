@@ -167,7 +167,7 @@ const SearchScreen = ({ isMapsLoaded }) => {
 
   const handleMyLocationClick = () => {
     LocationService.getCurrentLocation().then((location) => {
-      if (!currentLocation) {
+      if (currentLocation) {
         setCurrentLocation(location);
         setFromLocation({
           display: `${location.lat}, ${location.lng}`,

@@ -23,6 +23,7 @@ describe('Location Search', () => {
         onLocationChange={() => {
         }}
         isPanelOpen
+        label="from_location"
       />,
     );
     expect(screen.getByLabelText('from_location')).toBeInTheDocument();
