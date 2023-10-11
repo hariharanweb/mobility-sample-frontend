@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 import SearchScreen from './screens/SearchScreen';
@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<SearchScreen isMapsLoaded={isLoaded} />} />
             <Route path="/search" element={<SearchResult isMapsLoaded={isLoaded} />} />
@@ -39,7 +39,7 @@ const App = () => {
             <Route path="/track" element={<TrackScreen />} />
             <Route path="/status" element={<StatusScreen />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProvider>
     </div>
   );

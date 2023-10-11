@@ -151,7 +151,7 @@ const SearchScreen = ({ isMapsLoaded }) => {
     setFromLocation(toLocation);
     setToLocation(fromLocation);
   };
-  const panelHeightSearchScreen = !openPanel ? 200 : 20;
+  const panelHeightSearchScreen = !openPanel ? 150 : 20;
 
   useEffect(() => {
     LocationService.getCurrentLocation().then((location) => {
