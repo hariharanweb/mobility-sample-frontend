@@ -23,7 +23,7 @@ const CashPayment = ({ onPaymentSelect, selectedValue }) => (
       label={(
         <div className="payment-label">
           <div className="payment-mode-icon">
-            <img width="25px" height="25px" src="./cash.png" alt="cash" />
+            <img width="25px" height="25px" src="https://ondc-frontend.s3.ap-south-1.amazonaws.com/cash.png" alt="cash" />
           </div>
 
           <p className="payment-mode-name cash-payment">Pay on Cash</p>
@@ -52,7 +52,7 @@ const OnlinePayment = ({ onPaymentSelect, selectedValue }) => (
 
         <div className="payment-label">
           <div className="payment-mode-icon">
-            <img height="14px" width="45px" src="./upi.png" alt="upi" />
+            <img height="14px" width="45px" src="https://ondc-frontend.s3.ap-south-1.amazonaws.com/upi.png" alt="upi" />
           </div>
 
           <p className="payment-mode-name">Pay via UPI</p>

@@ -55,8 +55,8 @@ function ColorlibStepDotIcon(props) {
   } = props;
 
   const icons = {
-    1: '/FromLocation.png',
-    2: 'ToLocation.png',
+    1: 'https://ondc-frontend.s3.ap-south-1.amazonaws.com/FromLocation.png',
+    2: 'https://ondc-frontend.s3.ap-south-1.amazonaws.com/ToLocation.png',
   };
 
   return (
